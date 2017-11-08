@@ -4,7 +4,8 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {
     seqCurrent: 1,
-    seqTotal: 1
+    seqTotal: 1,
+    cardHide: true,
   },
   subjectId: null,
   questionList: null,
@@ -30,17 +31,28 @@ Page({
         that.questionList[q['questionId.seq']] = q;
       }
       that.renderQuestion();
-      //wx.setNavigationBarTitle({
-      //  title: data.subject
-      //})
+
+      var time = 0;
+      setInterval(function () {
+        time++;
+        var time_m = ~~(time / 60);
+        var time_s = time % 60;
+        time_m = time_m < 10 ? ('0' + time_m) : time_m;
+        time_s = time_s < 10 ? ('0' + time_s) : time_s;
+        wx.setNavigationBarTitle({
+          title: '答题中 [' + (time_m + ':' + time_s) + ']'
+        });
+      }, 1000);
     });
   },
 
   renderQuestion: function () {
     var that = this;
     var q = that.questionList[this.data.seqCurrent];
+    var q_content = q['questionId.question'];
+    q_content = q_content.replace(/\[\]/g, '（__）');
     this.setData({
-      question: q['questionId.question']
+      question: q_content
     });
 
     if (q.answers) {
@@ -82,11 +94,32 @@ Page({
     that.renderQuestion();
   },
 
-  showSeqs: function () {
+  gotoQuestion: function (e) {
+    console.log(e);
+    var seq = ~~e.currentTarget.dataset.seq;
+    this.setData({
+      cardHide: true,
+      seqCurrent: seq
+    });
+    this.renderQuestion();
+  },
+
+  showDtcard: function () {
     var that = this;
-    wx.showModal({
-      title: '答题卡',
-      content: that.data.seqTotal + ''
+    var takes = [];
+    for (var k in this.questionList) {
+      var q = this.questionList[k];
+      takes.push({ seq: q['questionId.seq'], clazz: (q.selected && q.selected.length > 0 ? 'active' : '') });
+    }
+
+    this.setData({
+      questionTakes: takes,
+      cardHide: false
+    })
+  },
+  closeDtcard: function () {
+    this.setData({
+      cardHide: true
     })
   },
 
@@ -94,13 +127,37 @@ Page({
     console.log(e);
     var that = this;
     var key = e.currentTarget.dataset.key;
+    var key_prefix = key.charAt(0);
+    var _selected = this.questionList[this.data.seqCurrent].selected || [];
+    var _selected_replace = false;
+    for (var i = 0; i < _selected.length; i++) {
+      var k = _selected[i];
+      if (k.charAt(0) == key_prefix) {
+        _selected[i] = key;
+        _selected_replace = true;
+        break;
+      }
+    }
+    if (!_selected_replace) {
+      _selected.push(key);
+    }
+
+    var q = that.questionList[this.data.seqCurrent];
+    for (var i = 0; i < q.answers.length; i++) {
+      q.answers[i].clazz = '';
+      if (_selected.join(',').indexOf(q.answers[i].key) > -1) {
+        q.answers[i].clazz = 'selected';
+      }
+    }
     this.setData({
-      keySelected: that.data.seqCurrent + '-' + key
+      answerList: q.answers
     });
-    this.questionList[this.data.seqCurrent].selected = key;
+
+    console.log(_selected);
+    this.questionList[this.data.seqCurrent].selected = _selected;
   },
 
   onShareAppMessage: function () {
-    return { title: '这道题我不会啊，帮我看看', path: '/pages/index/index' };
+    return { title: '帮忙看看这道题怎么破？', path: '/pages/index/go?source=exam' };
   }
 });

@@ -55,7 +55,7 @@ page, .page {
 }
 
 .answer-list .item:active {
-  opacity: .7;
+  opacity: .8;
 }
 
 .answer-list .item.selected {
@@ -102,4 +102,49 @@ page, .page {
   width: 36px;
   height: 36px;
   margin-top: 3px;
+}
+
+.dt-card {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255,255,255,1);
+  padding: 14px;
+  text-align: center;
+}
+.dt-card view {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  border: 1px solid #ccc;
+  color: #999;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.dt-card view.active {
+  border-color: #4b8ef9;
+  background-color: #4b8ef9;
+  color: #fff;
+}
+.dt-card view.close {
+  position: fixed;
+  bottom: 14px;
+  border-color: #555;
+  width: 42px;
+  height: 42px;
+  left: 50%;
+  margin-left: -21px;
+}
+.dt-card view.close image {
+  width: 26px;
+  height: 26px;
+  margin-top: 8px;
+}
+.dt-card view.close:active {
+  background-color: #eee;
 }

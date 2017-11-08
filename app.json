@@ -6,7 +6,8 @@
     "pages/question/result",
     "pages/my/home",
     "pages/index/about",
-    "pages/index/feedback"
+    "pages/index/feedback",
+    "pages/index/go"
   ],
   "window": {
     "backgroundTextStyle": "white",

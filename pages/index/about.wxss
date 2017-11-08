@@ -1,1 +1,7 @@
-/* pages/index/about.wxss */
+view {
+  margin: 24px;
+  font-size: 15px;
+}
+view text {
+  color: #4b8ef9;
+}

@@ -9,13 +9,13 @@
 
   <view class="page__bd" style="padding-bottom:62px;padding-top:43px;">
     <view class="question">
-      {{question}}
+      <rich-text nodes="{{question}}"></rich-text>
     </view>
     <view class="answer-list">
       <block wx:for="{{answerList}}" wx:key="key_answerList">
         <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
         </view>
-        <view class="item {{item.keyUnique == keySelected ? 'selected' : ''}}" bindtap="answer" data-key="{{item.key}}" data-ukey="{{item.keyUnique}}">
+        <view class="item {{item.clazz}}" bindtap="answer" data-key="{{item.key}}">
           <view class="key">{{item.keyText}}</view>
           <view class="text">{{item.answer}}</view>
           <view class="clearfix"></view>
@@ -37,7 +37,7 @@
         </button>
       </view>
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="showSeqs">
+        <button class="bbtn" bindtap="showDtcard">
           <image src="../../images/exam-card.png" style="margin-top:8px;width:26px;height:26px;"></image>
         </button>
       </view>
@@ -46,6 +46,15 @@
           <image src="../../images/arrow-right.png"></image>
         </button>
       </view>
+    </view>
+  </view>
+
+  <view class="dt-card" hidden="{{cardHide}}" animation="{{dtcardAnimationData}}">
+    <view wx:for="{{questionTakes}}" wx:key="key_questionTakes" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
+      {{item.seq}}
+    </view>
+    <view class="close" bindtap="closeDtcard">
+      <image src="../../images/close.png"></image>
     </view>
   </view>
 </view>
