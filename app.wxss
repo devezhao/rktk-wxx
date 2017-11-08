@@ -1,0 +1,83 @@
+@import "libs/weui.wxss";
+
+page, .page {
+  background-color: #eee;
+  font-size: 14px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  min-height: 100%;
+}
+
+.page__bd {
+  margin: 0 14px;
+  padding: 0;
+}
+
+.page__hd {
+  margin: 0;
+  padding: 0;
+}
+
+.navigator-hover {
+  background-color: transparent;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+}
+
+.hide {
+  display: none !important;
+}
+
+.base-hover {
+  opacity: 0.8;
+}
+
+.float-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #4b8ef9;
+  text-align: center;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+}
+.float-btn image {
+  width: 26px;
+  height: 26px;
+  margin-top: 13px;
+}
+
+.tophead {
+  text-align: center;
+  background-color: #4b8ef9;
+  padding: 15px 0;
+  margin: 0;
+  color: #fff;
+  font-size: 24px;
+}
+
+.fix-foobar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+button, button::after {
+  border: 0 none;
+}

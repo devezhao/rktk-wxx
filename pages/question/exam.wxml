@@ -1,0 +1,51 @@
+<view class="page">
+  <view class="page__hd subtitle">
+    <view class="pull-left">{{subject}}</view>
+    <view class="pull-right seq-no">
+      <text>{{seqCurrent}}</text>/{{seqTotal}}
+    </view>
+    <view class="clearfix"></view>
+  </view>
+
+  <view class="page__bd" style="padding-bottom:62px;padding-top:43px;">
+    <view class="question">
+      {{question}}
+    </view>
+    <view class="answer-list">
+      <block wx:for="{{answerList}}" wx:key="key_answerList">
+        <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
+        </view>
+        <view class="item {{item.keyUnique == keySelected ? 'selected' : ''}}" bindtap="answer" data-key="{{item.key}}" data-ukey="{{item.keyUnique}}">
+          <view class="key">{{item.keyText}}</view>
+          <view class="text">{{item.answer}}</view>
+          <view class="clearfix"></view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="fix-foobar">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <button class="bbtn" bindtap="prevQuestion">
+          <image src="../../images/arrow-left.png"></image>
+        </button>
+      </view>
+      <view class="weui-flex__item">
+        <button class="bbtn" open-type="share">
+          <image src="../../images/exam-ask.png" style="margin-top:8px;width:26px;height:26px;"></image>
+        </button>
+      </view>
+      <view class="weui-flex__item">
+        <button class="bbtn" bindtap="showSeqs">
+          <image src="../../images/exam-card.png" style="margin-top:8px;width:26px;height:26px;"></image>
+        </button>
+      </view>
+      <view class="weui-flex__item">
+        <button class="bbtn" bindtap="nextQuestion" airal-label="">
+          <image src="../../images/arrow-right.png"></image>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

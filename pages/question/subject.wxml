@@ -1,0 +1,10 @@
+<view class="page">
+  
+  <view class="weui-cells__title">{{mainSubject}}</view>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="exam?subject={{item.subjectId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{subjectList}}" wx:key="subjectList">
+      <view class="weui-cell__bd">{{item.name}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+</view>

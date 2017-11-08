@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/question/subject",
+    "pages/question/exam",
+    "pages/question/result",
+    "pages/my/home",
+    "pages/index/about",
+    "pages/index/feedback"
+  ],
+  "window": {
+    "backgroundTextStyle": "white",
+    "navigationBarBackgroundColor": "#4b8ef9",
+    "navigationBarTitleText": "软考题库PRO",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#555",
+    "selectedColor": "#4b8ef9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon-home.png",
+        "selectedIconPath": "images/icon-home-s.png"
+      },
+      {
+        "pagePath": "pages/question/subject",
+        "text": "题库",
+        "iconPath": "images/icon-subject.png",
+        "selectedIconPath": "images/icon-subject-s.png"
+      },
+      {
+        "pagePath": "pages/my/home",
+        "text": "我",
+        "iconPath": "images/icon-user.png",
+        "selectedIconPath": "images/icon-user-s.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 6000,
+    "connectSocket": 6000,
+    "uploadFile": 15000,
+    "downloadFile": 15000
+  },
+  "debug": false
+}
