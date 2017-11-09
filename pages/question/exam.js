@@ -7,13 +7,24 @@ Page({
     seqTotal: 1,
     cardHide: true,
   },
+  examId: null,
   subjectId: null,
   questionList: null,
 
   onLoad: function (e) {
     var that = this;
     this.subjectId = e.subject;
-    this.loadQuestion();
+    zutils.post(app, 'api/exam/start?subject=' + that.subjectId, function (res) {
+      that.examId = res.data.data.exam_id;
+      that.loadQuestion();
+    });
+  },
+
+  onUnload: function () {
+    if (this._countdown) {
+      clearInterval(this._countdown);
+      this._countdown = null;
+    }
   },
 
   loadQuestion: function () {
@@ -33,7 +44,7 @@ Page({
       that.renderQuestion();
 
       var time = 0;
-      setInterval(function () {
+      that._countdown = setInterval(function () {
         time++;
         var time_m = ~~(time / 60);
         var time_s = time % 60;
@@ -46,17 +57,18 @@ Page({
     });
   },
 
-  renderQuestion: function () {
+  renderQuestion: function (s) {
     var that = this;
-    var q = that.questionList[this.data.seqCurrent];
+    var q_seq = this.data.seqCurrent + (s || 0);
+    var q = that.questionList[q_seq];
     var q_content = q['questionId.question'];
     q_content = q_content.replace(/\[\]/g, '（__）');
-    this.setData({
-      question: q_content
-    });
+    q_content = q['questionId.seq'] + '. ' + q_content;
 
     if (q.answers) {
       that.setData({
+        seqCurrent: q_seq,
+        question: q_content,
         answerList: q.answers,
         keySelected: q['questionId.seq'] + '-' + (q.selected || '')
       });
@@ -66,10 +78,11 @@ Page({
         for (var i = 0; i < data.length; i++) {
           var dd = data[i];
           dd.keyText = dd.key.substr(1);
-          dd.keyUnique = that.data.seqCurrent + '-' + dd.key;
         }
         q.answers = data;
         that.setData({
+          seqCurrent: q_seq,
+          question: q_content,
           answerList: q.answers
         });
       });
@@ -78,20 +91,12 @@ Page({
 
   prevQuestion: function () {
     if (this.data.seqCurrent == 1) return false;
-    var that = this;
-    that.setData({
-      seqCurrent: that.data.seqCurrent - 1
-    });
-    that.renderQuestion();
+    this.renderQuestion(-1);
   },
 
   nextQuestion: function () {
     if (this.data.seqCurrent == this.data.seqTotal) return false;
-    var that = this;
-    that.setData({
-      seqCurrent: that.data.seqCurrent + 1
-    });
-    that.renderQuestion();
+    this.renderQuestion(1);
   },
 
   gotoQuestion: function (e) {
@@ -124,7 +129,6 @@ Page({
   },
 
   answer: function (e) {
-    console.log(e);
     var that = this;
     var key = e.currentTarget.dataset.key;
     var key_prefix = key.charAt(0);
@@ -155,6 +159,48 @@ Page({
 
     console.log(_selected);
     this.questionList[this.data.seqCurrent].selected = _selected;
+
+    zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.questionId + '&answer=' + _selected.join(','), function (res) {
+      console.log(res);
+    });
+  },
+
+  finish: function () {
+    var undo = 0;
+    for (var k in this.questionList) {
+      var q = this.questionList[k];
+      if (!q.selected || q.selected.length == 0) undo++;
+    }
+
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '有一些题目还没做完，确认要交卷吗？',
+      confirmText: '交卷',
+      success: function (res) {
+        if (res.confirm) {
+          zutils.post(app, 'api/exam/finish?exam=' + that.examId, function (res) {
+            if (res.data.error_code == 0) {
+              if (that._countdown) {
+                clearInterval(that._countdown);
+                that._countdown = null;
+              }
+              wx.redirectTo({
+                url: 'result?exam=' + that.examId
+              });
+            } else {
+              wx.showModal({
+                title: '提示',
+                showCancel: false,
+                content: res.data.error_msg || '错误'
+              })
+            }
+          });
+        } else {
+          // TODO
+        }
+      }
+    });
   },
 
   onShareAppMessage: function () {

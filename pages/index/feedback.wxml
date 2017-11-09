@@ -1,2 +1,7 @@
-<!--pages/index/feedback.wxml-->
-<text>pages/index/feedback.wxml</text>
+<view class="tophead">
+  问题反馈
+</view>
+<view style="text-align:center">
+  请加入 QQ 群
+  <text bindtap="copy" data-text="610301533">610301533</text> 反馈问题
+</view>

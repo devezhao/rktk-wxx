@@ -1,12 +1,11 @@
 .user-block {
-  text-align: center;
-  background-color: #4b8ef9;
-  padding: 28px 0;
+  padding: 12px 14px;
+  background-color: #fff;
 }
 
 .user-block .headimg {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
@@ -18,30 +17,30 @@
 }
 
 .user-block .nick {
-  color: #fff;
+  color: #000;
   font-size: 16px;
+  margin-left: 12px;
+  padding-top: 9px;
+  line-height: 1.4;
+}
+.user-block .nick text {
+  font-size: 11px;
+  border: 1px solid #bbb;
+  border-radius: 99px;
+  padding: 1px 9px;
+  color: #aaa;
+  font-style: italic;
 }
 
-.btns {
-  margin: 38px 15px;
-  text-align: center;
+.user-block .subject {
+  margin-top: 16px;
+  color: #ec5353;
+  border: 1px solid #ec5353;
+  border-radius: 99px;
+  padding: 2px 9px;
+  font-size: 12px;
 }
 
-.btns button {
-  border-radius: 2px;
-  background-color: #222;
-  color: #fff;
-  font-size: 16px;
-  padding: 3px;
-  width: 250px;
-  margin-bottom: 9px;
-}
-
-.btns button::after {
-  border: 0 none;
-}
-
-.btns text {
-  color: #999;
-  font-size: 13px;
+.weui-cells {
+  margin-top: 15px;
 }

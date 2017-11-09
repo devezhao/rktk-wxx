@@ -78,6 +78,10 @@ page, .page {
   width: 100%;
 }
 
-button, button::after {
+button, button::after, .weui-btn {
   border: 0 none;
+  border-radius: 2px;
+}
+button[type="primary"] {
+  background-color: #4b8ef9;
 }

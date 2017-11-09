@@ -17,7 +17,7 @@
         </view>
         <view class="item {{item.clazz}}" bindtap="answer" data-key="{{item.key}}">
           <view class="key">{{item.keyText}}</view>
-          <view class="text">{{item.answer}}</view>
+          <view class="text">{{item.content}}</view>
           <view class="clearfix"></view>
         </view>
       </block>
@@ -50,11 +50,14 @@
   </view>
 
   <view class="dt-card" hidden="{{cardHide}}" animation="{{dtcardAnimationData}}">
-    <view wx:for="{{questionTakes}}" wx:key="key_questionTakes" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
-      {{item.seq}}
+    <view class="seqs">
+      <view wx:for="{{questionTakes}}" wx:key="key_questionTakes" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
+        {{item.seq}}
+      </view>
     </view>
-    <view class="close" bindtap="closeDtcard">
-      <image src="../../images/close.png"></image>
+    <view class="fix-foobar">
+      <view><icon bindtap="closeDtcard" type="cancel" size="42" color="#aaa"></icon></view>
+      <button class="weui-btn" type="primary" bindtap="finish">交卷</button>
     </view>
   </view>
 </view>

@@ -55,16 +55,18 @@ page, .page {
 }
 
 .answer-list .item:active {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .answer-list .item.selected {
   background-color: #4b8ef9;
   border-color: #4b8ef9;
 }
+
 .answer-list .item.selected .key {
   color: #fff;
 }
+
 .answer-list .item.selected .text {
   border-color: #4b8ef9;
 }
@@ -110,11 +112,13 @@ page, .page {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(255,255,255,1);
-  padding: 14px;
+  background-color: rgba(255, 255, 255, 1);
   text-align: center;
 }
-.dt-card view {
+.dt-card .seqs {
+  padding: 14px;
+}
+.dt-card .seqs view {
   width: 38px;
   height: 38px;
   line-height: 38px;
@@ -126,25 +130,19 @@ page, .page {
   font-size: 18px;
   text-align: center;
 }
-.dt-card view.active {
+.dt-card .seqs view.active {
   border-color: #4b8ef9;
   background-color: #4b8ef9;
   color: #fff;
 }
-.dt-card view.close {
-  position: fixed;
-  bottom: 14px;
-  border-color: #555;
-  width: 42px;
-  height: 42px;
-  left: 50%;
-  margin-left: -21px;
+
+.dt-card .fix-foobar {
+  width: 100%;
+  border: 0 none;
+  margin: 0;
+  padding: 0;
 }
-.dt-card view.close image {
-  width: 26px;
-  height: 26px;
-  margin-top: 8px;
-}
-.dt-card view.close:active {
-  background-color: #eee;
+.dt-card .fix-foobar button {
+  width: 100%;
+  border-radius: 0;
 }

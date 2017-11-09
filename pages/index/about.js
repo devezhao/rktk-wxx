@@ -1,3 +1,6 @@
+const app = app || getApp();
+const zutils = require('../../utils/zutils.js');
+
 Page({
   copy: function(e){
     var data = e.currentTarget.dataset.text;
@@ -12,7 +15,25 @@ Page({
     })
   },
 
+  award: function() {
+    var that = this;
+    var fee = (Math.random() * 19) + 1;
+    zutils.get(app, 'api/pay/create?fee=' + fee, function (res) {
+      var data = res.data.data;
+      console.log(data);
+      data.success = function(res){
+        console.log(data);
+        wx.showToast({
+          title: '感谢赞赏'
+        });
+      };
+      data.fail = function (res) {
+      };
+      wx.requestPayment(data);
+    });
+  },
+
   onShareAppMessage: function () {
-    return { title: '软考题库', path: '/pages/index/go?source=about' };
+    return { title: '软考刷题必备利器', path: '/pages/index/go?source=about' };
   }
 })

@@ -1,12 +1,36 @@
 <view class="page">
   <view class="page__hd">
     <view class="user-block">
-      <view class="headimg">
+      <view class="pull-left headimg">
         <image src="{{headimgUrl}}"></image>
       </view>
-      <view class="nick">{{nick}}</view>
+      <view class="pull-left nick">
+        <view>{{nick}}</view>
+        <text>Lv.1</text>
+      </view>
+      <view class="pull-right subject">
+        <navigator url="../index/select-subject">
+          <icon type="search" size="13" color='#ec5353'></icon> {{subjectList[subject]}}</navigator>
+      </view>
+      <view class="clearfix"></view>
     </view>
   </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <navigator url="../index/feedback" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">答题记录</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../index/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">错题本</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../index/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">收藏</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
   <view class="weui-cells weui-cells_after-title">
     <navigator url="../index/feedback" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__bd">问题反馈</view>
@@ -17,4 +41,5 @@
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
+
 </view>
