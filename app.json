@@ -4,16 +4,21 @@
     "pages/question/subject",
     "pages/question/exam",
     "pages/question/result",
-    "pages/my/home",
     "pages/index/about",
     "pages/index/feedback",
     "pages/index/go",
-    "pages/index/select-subject"
+    "pages/index/select-subject",
+    "pages/my/home",
+    "pages/my/my-exams",
+    "pages/my/my-favs",
+    "pages/my/incorrects",
+    "pages/question/explain"
   ],
   "window": {
-    "backgroundTextStyle": "white",
     "navigationBarBackgroundColor": "#4b8ef9",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "软考题库PRO",
+    "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false
   },
   "tabBar": {

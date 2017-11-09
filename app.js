@@ -2,7 +2,8 @@ const zutils = require('utils/zutils.js');
 
 App({
   GLOBAL_DATA: {
-    USER_INFO: null
+    USER_INFO: null,
+    RELOAD_SUBJECT: []
   },
   onLaunch: function (e) {
     var that = this;
@@ -10,7 +11,7 @@ App({
       key: 'USER_INFO',
       success: function (res) {
         that.GLOBAL_DATA.USER_INFO = res.data;
-        console.log('checkUserInfo 1 - ' + JSON.stringify(res))
+        console.log('onLaunch # checkUserInfo - ' + JSON.stringify(res))
       }
     });
     this.checkUserInfo(null, true);

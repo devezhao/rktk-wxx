@@ -1,42 +1,52 @@
 <view class="page">
   <view class="page__hd">
-    <view class="weui-cells__title">高级</view>
-    <view class="weui-cells weui-cells_after-title">
-      <radio-group bindchange="subjectChange">
-        <label class="weui-cell weui-check__label" wx:for="{{subjectList_1}}" wx:key="key_subjectList_1">
-          <radio class="weui-check" value="{{item[0]}}" checked="{{item[2]}}" />
-          <view class="weui-cell__bd">{{item[1]}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item[2]}}">
-            <icon class="weui-icon-radio" type="success" size="18"></icon>
-          </view>
-        </label>
-      </radio-group>
-    </view>
+    <block wx:if="{{subjectList_1.length > 0}}">
+      <view class="weui-cells__title">高级</view>
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group bindchange="subjectChange">
+          <label class="weui-cell weui-check__label" wx:for="{{subjectList_1}}" wx:key="key_subjectList_1">
+            <radio class="weui-check" value="{{item[0]}}" checked="{{item[3]}}" disabled="{{item[2]}}" />
+            <view class="weui-cell__bd">{{item[1]}} <text wx:if="{{item[2]}}">即将开放</text></view>
+            <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item[3]}}">
+              <icon class="weui-icon-radio" type="success" size="18"></icon>
+            </view>
+          </label>
+        </radio-group>
+      </view>
+    </block>
 
-    <view class="weui-cells__title">中级</view>
-    <view class="weui-cells weui-cells_after-title">
-      <radio-group bindchange="subjectChange">
-        <label class="weui-cell weui-check__label" wx:for="{{subjectList_2}}" wx:key="key_subjectList_2">
-          <radio class="weui-check" value="{{item[0]}}" checked="{{item[2]}}" />
-          <view class="weui-cell__bd">{{item[1]}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item[2]}}">
-            <icon class="weui-icon-radio" type="success" size="18"></icon>
-          </view>
-        </label>
-      </radio-group>
-    </view>
+    <block wx:if="{{subjectList_2.length > 0}}">
+      <view class="weui-cells__title">中级</view>
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group bindchange="subjectChange">
+          <label class="weui-cell weui-check__label" wx:for="{{subjectList_2}}" wx:key="key_subjectList_2">
+            <radio class="weui-check" value="{{item[0]}}" checked="{{item[3]}}" disabled="{{item[2]}}" />
+            <view class="weui-cell__bd">{{item[1]}} <text wx:if="{{item[2]}}">即将开放</text></view>
+            <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item[3]}}">
+              <icon class="weui-icon-radio" type="success" size="18"></icon>
+            </view>
+          </label>
+        </radio-group>
+      </view>
+    </block>
 
-    <view class="weui-cells__title">初级</view>
-    <view class="weui-cells weui-cells_after-title">
-      <radio-group bindchange="subjectChange">
-        <label class="weui-cell weui-check__label" wx:for="{{subjectList_3}}" wx:key="key_subjectList_3">
-          <radio class="weui-check" value="{{item[0]}}" checked="{{item[2]}}" />
-          <view class="weui-cell__bd">{{item[1]}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item[2]}}">
-            <icon class="weui-icon-radio" type="success" size="18"></icon>
-          </view>
-        </label>
-      </radio-group>
-    </view>
+    <block wx:if="{{subjectList_3.length > 0}}">
+      <view class="weui-cells__title">初级</view>
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group bindchange="subjectChange">
+          <label class="weui-cell weui-check__label" wx:for="{{subjectList_3}}" wx:key="key_subjectList_3">
+            <radio class="weui-check" value="{{item[0]}}" checked="{{item[3]}}" disabled="{{item[2]}}" />
+            <view class="weui-cell__bd">{{item[1]}} <text wx:if="{{item[2]}}">即将开放</text></view>
+            <view class="weui-cell__ft weui-cell__ft_in-radio" wx:if="{{item[3]}}">
+              <icon class="weui-icon-radio" type="success" size="18"></icon>
+            </view>
+          </label>
+        </radio-group>
+      </view>
+    </block>
+  </view>
+
+  <view class="fix-foobar" style="margin:0">
+    <button class="weui-btn" type="primary" bindtap="saveChange" style="border-radius:0">保存</button>
   </view>
 </view>

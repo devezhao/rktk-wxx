@@ -4,7 +4,6 @@ page, .page {
   background-color: #eee;
   font-size: 14px;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  min-height: 100%;
 }
 
 .page__bd {
@@ -84,4 +83,8 @@ button, button::after, .weui-btn {
 }
 button[type="primary"] {
   background-color: #4b8ef9;
+}
+.button-hover[type="primary"] {
+  background-color: #4b8ef9;
+  opacity: 0.8;
 }

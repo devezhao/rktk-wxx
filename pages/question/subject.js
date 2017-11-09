@@ -6,8 +6,14 @@ Page({
   },
 
   onLoad: function () {
-    var that = this;
-    that.listSubject();
+    this.listSubject();
+  },
+
+  onShow: function(){
+    if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
+      zutils.array.erase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject');
+      this.listSubject();
+    }
   },
 
   listSubject: function () {
@@ -22,6 +28,6 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return { title: '八分钟约会源于犹太人的传统习俗，年轻的单身男女在互不了解的情况下进行八分钟的交谈', path: '/pages/index/index' };
+    return { title: '软考刷题必备利器', path: '/pages/index/go?source=subject' };
   }
 });

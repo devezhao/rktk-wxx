@@ -61,8 +61,28 @@ function z_post(app, url, data, call) {
   })
 }
 
+var z_array = {
+  in: function (array, item){
+    var i = array.length;
+    while (i--) {
+      if (array[i] === item) {
+        return true;
+      }
+    }
+    return false;
+  },
+  erase: function (array, item){
+    for (var i = array.length; i--;) {
+      if (array[i] === item) array.splice(i, 1);
+    }
+    return array;
+  }
+}
+
+// API
 module.exports = {
   get: z_get,
   post: z_post,
-  base_url: baseUrl
-}
+  baseUrl: baseUrl,
+  array: z_array
+};
