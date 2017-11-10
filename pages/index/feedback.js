@@ -16,6 +16,6 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return { title: '软考刷题必备利器', path: '/pages/index/go?source=feedback' };
+    return app.shareData();
   }
 })

@@ -1,1 +1,9 @@
-/* pages/index.wxss */
+.maxmax {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 50px;
+  background-color: #fff;
+  transform: translate(0, 100%);
+}

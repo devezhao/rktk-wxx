@@ -4,11 +4,12 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {
     headimgUrl: '../../images/nohead2.png',
-    nick: '访客'
+    nick: '游客',
+    level: 'Lv.1',
+    subject: '点击设置'
   },
-  is_toSelectSubject: false,
 
-  onLoad: function (e) {
+  onReady: function (e) {
     var that = this;
     app.getUserInfo(function (res) {
       that.setData({
@@ -38,7 +39,7 @@ Page({
     });
   },
 
-  toSelectSubject: function () {
-    this.is_toSelectSubject = true;
+  onShareAppMessage: function () {
+    return app.shareData();
   }
 });

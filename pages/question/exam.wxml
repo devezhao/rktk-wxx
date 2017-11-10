@@ -7,7 +7,7 @@
     <view class="clearfix"></view>
   </view>
 
-  <view class="page__bd" style="padding-bottom:62px;padding-top:43px;">
+  <view class="page__bd" style="padding-bottom:62px;padding-top:43px;" animation="{{questionAnimation}}">
     <view class="question">
       <rich-text nodes="{{question}}"></rich-text>
     </view>
@@ -49,7 +49,7 @@
     </view>
   </view>
 
-  <view class="dt-card" hidden="{{cardHide}}" animation="{{dtcardAnimationData}}">
+  <view class="dt-card" animation="{{dtcardAnimation}}">
     <view class="seqs">
       <view wx:for="{{questionTakes}}" wx:key="key_questionTakes" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
         {{item.seq}}

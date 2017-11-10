@@ -9,7 +9,7 @@
         <text>{{level}}</text>
       </view>
       <view class="pull-right subject">
-        <navigator url="../index/select-subject?source=home" bindtap='toSelectSubject'>
+        <navigator url="../index/select-subject?source=home">
           <icon type="search" size="13" color='#ec5353'></icon> {{subject}}</navigator>
       </view>
       <view class="clearfix"></view>

@@ -6,10 +6,13 @@ Page({
   },
 
   onLoad: function () {
-    this.listSubject();
+    var that = this;
+    app.getUserInfo(function () {
+      that.listSubject();
+    })
   },
 
-  onShow: function(){
+  onShow: function () {
     if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
       zutils.array.erase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject');
       this.listSubject();
@@ -27,7 +30,7 @@ Page({
     });
   },
 
-  onShareAppMessage: function () {
-    return { title: '软考刷题必备利器', path: '/pages/index/go?source=subject' };
+  onShareAppMessage: function (e) {
+    return app.shareData(e);
   }
 });

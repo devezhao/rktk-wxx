@@ -10,20 +10,38 @@ Page({
   examId: null,
   subjectId: null,
   questionList: null,
-
+  dtcardAnimation: null,
+  questionAnimation: null,
+  
   onLoad: function (e) {
-    var that = this;
     this.subjectId = e.subject;
-    zutils.post(app, 'api/exam/start?subject=' + that.subjectId, function (res) {
-      that.examId = res.data.data.exam_id;
-      that.loadQuestion();
+    this.dtcardAnimation = wx.createAnimation({
+      duration: 200,
+      timingFunction: 'ease',
+      delay: 50
     });
+    this.questionAnimation = wx.createAnimation({
+      duration: 200,
+      timingFunction: 'ease',
+      delay: 50
+    });
+
+    var that = this;
+    app.getUserInfo(function(){
+      zutils.post(app, 'api/exam/start?subject=' + that.subjectId, function (res) {
+        that.examId = res.data.data.exam_id;
+        that.loadQuestion();
+      });
+    })
   },
 
   onUnload: function () {
     if (this._countdown) {
       clearInterval(this._countdown);
       this._countdown = null;
+      wx.setNavigationBarTitle({
+        title: '软考题库PRO'
+      });
     }
   },
 
@@ -91,19 +109,35 @@ Page({
 
   prevQuestion: function () {
     if (this.data.seqCurrent == 1) return false;
-    this.renderQuestion(-1);
+    var that = this;
+    setTimeout(function () {
+      that.renderQuestion(-1);
+    }, 0);
+
+    //this.questionAnimation.translateX('120%').step().translateX(0).step()
+    //this.setData({
+    //  questionAnimation: this.questionAnimation.export()
+    //});
   },
 
   nextQuestion: function () {
     if (this.data.seqCurrent == this.data.seqTotal) return false;
-    this.renderQuestion(1);
+    var that = this;
+    setTimeout(function () {
+      that.renderQuestion(1);
+    }, 0);
+
+    //this.questionAnimation.translateX('-120%').step().translateX(0).step()
+    //this.setData({
+    //  questionAnimation: this.questionAnimation.export()
+    //});
   },
 
   gotoQuestion: function (e) {
-    console.log(e);
     var seq = ~~e.currentTarget.dataset.seq;
+    this.dtcardAnimation.translateY('100%').step({ duration: 0 });
     this.setData({
-      cardHide: true,
+      dtcardAnimation: this.dtcardAnimation.export(),
       seqCurrent: seq
     });
     this.renderQuestion();
@@ -116,16 +150,20 @@ Page({
       var q = this.questionList[k];
       takes.push({ seq: q['questionId.seq'], clazz: (q.selected && q.selected.length > 0 ? 'active' : '') });
     }
-
     this.setData({
-      questionTakes: takes,
-      cardHide: false
-    })
+      questionTakes: takes
+    });
+
+    this.dtcardAnimation.translateY(0).step();
+    this.setData({
+      dtcardAnimation: this.dtcardAnimation.export()
+    });
   },
   closeDtcard: function () {
+    this.dtcardAnimation.translateY('100%').step();
     this.setData({
-      cardHide: true
-    })
+      dtcardAnimation: this.dtcardAnimation.export()
+    });
   },
 
   answer: function (e) {

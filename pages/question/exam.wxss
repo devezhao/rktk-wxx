@@ -112,11 +112,12 @@ page, .page {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.95);
   text-align: center;
+  transform: translate(0, 100%);
 }
 .dt-card .seqs {
-  padding: 14px;
+  padding: 18px;
 }
 .dt-card .seqs view {
   width: 38px;
@@ -129,6 +130,7 @@ page, .page {
   margin: 5px 6px;
   font-size: 18px;
   text-align: center;
+  background-color: #fff;
 }
 .dt-card .seqs view.active {
   border-color: #4b8ef9;
