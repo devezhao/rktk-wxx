@@ -82,9 +82,6 @@ Page({
     var q_seq = ~~this.data.seqCurrent + (s || 0);
     var q = that.questionList[q_seq];
     var q_content = q['questionId.question'];
-    q_content = q_content.replace(/\[\]/g, '（__）');
-    q_content = q['questionId.seq'] + '. ' + q_content;
-
     var answers_data = {
       seqCurrent: q_seq,
       question: q_content,

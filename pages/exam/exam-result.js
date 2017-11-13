@@ -43,11 +43,5 @@ Page({
     ctx.setLineWidth(5);
     ctx.stroke();
     ctx.draw();
-  },
-
-  gotoExplain: function(e){
-    var seq = e.currentTarget.dataset.seq;
-    wx
-    console.log(seq)
   }
 });

@@ -17,8 +17,8 @@ Page({
         if (that.answerKey && that.answerKey.indexOf(item[0]) > -1) {
           clazz += ' selected';
         }
-        item[3] = clazz;
-        item[2] = item[0].substr(1);
+        item[10] = clazz;
+        item[11] = item[0].substr(1);
         data.answer_list[i] = item;
       }
 

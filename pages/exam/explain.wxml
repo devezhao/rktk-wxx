@@ -7,9 +7,9 @@
       <block wx:for="{{answer_list}}" wx:key="key_answer_list">
         <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
         </view>
-        <view class="item {{item[3]}}">
-          <view class="key">{{item[2]}}</view>
-          <view class="text">{{item[1]}}</view>
+        <view class="item {{item[10]}}">
+          <view class="key">{{item[11]}}</view>
+          <view class="text"><rich-text nodes="{{item[1]}}"></rich-text></view>
           <view class="clearfix"></view>
         </view>
       </block>
