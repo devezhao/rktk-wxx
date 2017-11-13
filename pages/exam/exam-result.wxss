@@ -1,0 +1,60 @@
+.result-block {
+  background-color: #fff;
+  padding: 24px 0;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.circle, .circle-scope {
+  width: 100px;
+  height: 100px;
+}
+
+.circle {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.circle-scope {
+  position: absolute;
+  color: #d9534f;
+  font-size: 42px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.circle-scope.OK {
+  color: #4cae4c;
+}
+
+.scope-infos {
+  color: #777;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.scope-infos text {
+  margin: 0 3px;
+  color: #aaa;
+}
+
+.seqs {
+  margin-top: 9px;
+}
+.seqs .item {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px 6px;
+  font-size: 18px;
+  text-align: center;
+  background-color: #d9534f;
+}
+.seqs .item.right {
+  background-color: #4cae4c;
+}

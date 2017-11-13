@@ -72,7 +72,7 @@ App({
       wx.hideLoading()
     })
   },
-  __forceUserInfo: function(cb){
+  __forceUserInfo: function (cb) {
     var that = this;
     wx.getUserInfo({
       withCredentials: true,
@@ -95,7 +95,11 @@ App({
     })
   },
 
-  shareData: function(s) {
-    return { title: '软考刷题必备利器', path: '/pages/index/go?source=' + (s || '')  };
+  shareData: function (s) {
+    var url = '/pages/index/go?u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
+    if (!!s) {
+      url += '&s=' + s;
+    }
+    return { title: '软考刷题必备利器', path: url };
   }
 })

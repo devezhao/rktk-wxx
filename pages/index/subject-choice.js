@@ -62,8 +62,8 @@ Page({
         wx.navigateBack({
         });
       } else {
-        wx.redirectTo({
-          url: '../question/subject'
+        wx.switchTab({
+          url: '../question/subject-list'
         })
       }
     });

@@ -27,13 +27,13 @@
   <view class="fix-foobar">
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="prevQuestion">
+        <button class="bbtn" bindtap="prevQuestion" hidden="{{isFirst}}">
           <image src="../../images/arrow-left.png"></image>
         </button>
       </view>
       <view class="weui-flex__item">
-        <button class="bbtn" open-type="share">
-          <image src="../../images/exam-ask.png" style="margin-top:8px;width:26px;height:26px;"></image>
+        <button class="bbtn" bindtap="fav">
+          <image src="../../images/star{{isFav ? '-filled' : ''}}.png" style="margin-top:6px;width:28px;height:28px;"></image>
         </button>
       </view>
       <view class="weui-flex__item">
@@ -42,8 +42,11 @@
         </button>
       </view>
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="nextQuestion" airal-label="">
+        <button class="bbtn" bindtap="nextQuestion" hidden="{{isLast}}">
           <image src="../../images/arrow-right.png"></image>
+        </button>
+        <button class="bbtn {{isLast ? 'last' : ''}}" bindtap="finish" hidden="{{!isLast}}">
+          <text>交卷</text>
         </button>
       </view>
     </view>
@@ -56,7 +59,9 @@
       </view>
     </view>
     <view class="fix-foobar">
-      <view><icon bindtap="closeDtcard" type="cancel" size="42" color="#aaa"></icon></view>
+      <view>
+        <icon bindtap="closeDtcard" type="cancel" size="42" color="#aaa"></icon>
+      </view>
       <button class="weui-btn" type="primary" bindtap="finish">交卷</button>
     </view>
   </view>

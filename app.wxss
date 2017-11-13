@@ -52,8 +52,9 @@ page, .page {
   position: fixed;
   right: 24px;
   bottom: 24px;
-  box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
 }
+
 .float-btn image {
   width: 26px;
   height: 26px;
@@ -81,10 +82,28 @@ button, button::after, .weui-btn {
   border: 0 none;
   border-radius: 2px;
 }
+
 button[type="primary"] {
   background-color: #4b8ef9;
 }
+
 .button-hover[type="primary"] {
   background-color: #4b8ef9;
   opacity: 0.8;
+}
+
+.icon-box {
+  margin-top: 25%;
+  text-align: center;
+}
+
+.icon-box__title {
+  font-size: 18px;
+  margin-top: 9px;
+}
+
+.icon-box__desc {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #777;
 }

@@ -1,0 +1,28 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="result-block">
+      <canvas class="circle" canvas-id="circle-scope">
+        <view class="circle-scope {{scope_color}}">
+          {{scope}}
+        </view>
+      </canvas>
+      <view style="font-size:21px;margin-top:9px;text-align:center">
+        {{scope_tips}}
+      </view>
+      <view class="scope-infos">
+        满分 {{full_scope}}
+        <text>-</text>
+        正确率 {{scope_percent}}
+        <text>-</text>
+        耗时 {{duration}}
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="seqs">
+      <navigator class="item {{item[2] == item[3] ? 'right' : ''}}" wx:for="{{exam_items}}" wx:key="key_exam_items" url="explain?q={{item[0]}}&a={{item[3]}}">
+        {{item[1]}}
+      </navigator>
+    </view>
+  </view>
+</view>

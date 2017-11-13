@@ -1,2 +1,21 @@
-<!--pages/my/my-exams.wxml-->
-<text>pages/my/my-exams.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-panel" wx:for="{{exams}}" wx:key="key_exams">
+      <view class="weui-panel__bd">
+        <navigator url="../exam/exam-result?exam={{item[0]}}" class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__desc">{{item[1]}}</view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">{{item[2]}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[3]}}</view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="icon-box" hidden="{{!nodata}}">
+      <icon type="info" size="93"></icon>
+      <view class="icon-box__title">没有答题</view>
+    </view>
+  </view>
+</view>

@@ -6,14 +6,18 @@ Page({
     seqCurrent: 1,
     seqTotal: 1,
     cardHide: true,
+    isFirst: true,
+    isLast: false,
   },
   examId: null,
   subjectId: null,
   questionList: null,
   dtcardAnimation: null,
   questionAnimation: null,
-  
+  favList: [],
+
   onLoad: function (e) {
+    this.examId = e.exam;
     this.subjectId = e.subject;
     this.dtcardAnimation = wx.createAnimation({
       duration: 200,
@@ -27,12 +31,10 @@ Page({
     });
 
     var that = this;
-    app.getUserInfo(function(){
-      zutils.post(app, 'api/exam/start?subject=' + that.subjectId, function (res) {
-        that.examId = res.data.data.exam_id;
-        that.loadQuestion();
-      });
-    })
+    zutils.get(app, 'api/fav/ids', function (res) {
+      that.favList = res.data.data;
+    });
+    this.loadQuestion();
   },
 
   onUnload: function () {
@@ -77,19 +79,25 @@ Page({
 
   renderQuestion: function (s) {
     var that = this;
-    var q_seq = this.data.seqCurrent + (s || 0);
+    var q_seq = ~~this.data.seqCurrent + (s || 0);
     var q = that.questionList[q_seq];
     var q_content = q['questionId.question'];
     q_content = q_content.replace(/\[\]/g, '（__）');
     q_content = q['questionId.seq'] + '. ' + q_content;
 
+    var answers_data = {
+      seqCurrent: q_seq,
+      question: q_content,
+      answerList: q.answers,
+      isFirst: q_seq == 1,
+      isLast: q_seq == ~~this.data.seqTotal,
+      isFav: zutils.array.in(this.favList, q['questionId'])
+    };
+    console.log(JSON.stringify(answers_data));
+
     if (q.answers) {
-      that.setData({
-        seqCurrent: q_seq,
-        question: q_content,
-        answerList: q.answers,
-        keySelected: q['questionId.seq'] + '-' + (q.selected || '')
-      });
+      answers_data.keySelected = q['questionId.seq'] + '-' + (q.selected || '');
+      that.setData(answers_data);
     } else {
       zutils.get(app, 'api/question/get-answers?question=' + q['questionId'], function (res) {
         var data = res.data.data.result_list;
@@ -98,11 +106,8 @@ Page({
           dd.keyText = dd.key.substr(1);
         }
         q.answers = data;
-        that.setData({
-          seqCurrent: q_seq,
-          question: q_content,
-          answerList: q.answers
-        });
+        answers_data.answerList = q.answers;
+        that.setData(answers_data);
       });
     }
   },
@@ -148,7 +153,9 @@ Page({
     var takes = [];
     for (var k in this.questionList) {
       var q = this.questionList[k];
-      takes.push({ seq: q['questionId.seq'], clazz: (q.selected && q.selected.length > 0 ? 'active' : '') });
+      var clazz = q.selected && q.selected.length > 0 ? 'active' : '';
+      if (!!clazz && ~~q['questionId.answerNum'] > q.selected.length) clazz += ' half';
+      takes.push({ seq: q['questionId.seq'], clazz: clazz });
     }
     this.setData({
       questionTakes: takes
@@ -163,6 +170,23 @@ Page({
     this.dtcardAnimation.translateY('100%').step();
     this.setData({
       dtcardAnimation: this.dtcardAnimation.export()
+    });
+  },
+
+  fav: function (e) {
+    var that = this;
+    var q = that.questionList[this.data.seqCurrent];
+    var questionId = q['questionId'];
+    zutils.post(app, 'api/fav/toggle?question=' + questionId, function (res) {
+      var data = res.data.data;
+      that.setData({
+        isFav: data.is_fav
+      });
+      if (data.is_fav) {
+        that.favList.push(questionId);
+      } else {
+        zutils.array.erase(that.favList, questionId);
+      }
     });
   },
 
@@ -198,50 +222,70 @@ Page({
     console.log(_selected);
     this.questionList[this.data.seqCurrent].selected = _selected;
 
-    zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.questionId + '&answer=' + _selected.join(','), function (res) {
-      console.log(res);
-    });
+    if (that.examId) {
+      zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.questionId + '&answer=' + _selected.join('/'), function (res) {
+        console.log(res);
+      });
+    } else {
+      console.error('No exam?');
+    }
   },
 
   finish: function () {
     var undo = 0;
     for (var k in this.questionList) {
       var q = this.questionList[k];
-      if (!q.selected || q.selected.length == 0) undo++;
+      if (!q.selected || q.selected.length < ~~q['questionId.answerNum']) undo++;
+    }
+    var that= this;
+    if (undo > 0) {
+      wx.showModal({
+        title: '提示',
+        content: '还有' + undo + '道题没答，确认交卷吗？',
+        success: function (res) {
+          if (res.confirm) {
+            that.finish2();
+          }
+        }
+      })
+    } else {
+      wx.showModal({
+        content: '确认交卷？',
+        success: function (res) {
+          if (res.confirm) {
+            that.finish2();
+          }
+        }
+      })
+    }
+  },
+  finish2: function () {
+    if (!this.examId) {
+      console.error('No exam?');
+      return;
     }
 
     var that = this;
-    wx.showModal({
-      title: '提示',
-      content: '有一些题目还没做完，确认要交卷吗？',
-      confirmText: '交卷',
-      success: function (res) {
-        if (res.confirm) {
-          zutils.post(app, 'api/exam/finish?exam=' + that.examId, function (res) {
-            if (res.data.error_code == 0) {
-              if (that._countdown) {
-                clearInterval(that._countdown);
-                that._countdown = null;
-              }
-              wx.redirectTo({
-                url: 'result?exam=' + that.examId
-              });
-            } else {
-              wx.showModal({
-                title: '提示',
-                showCancel: false,
-                content: res.data.error_msg || '错误'
-              })
-            }
-          });
-        } else {
-          // TODO
+    zutils.post(app, 'api/exam/finish?exam=' + that.examId, function (res) {
+      if (res.data.error_code == 0) {
+        if (that._countdown) {
+          clearInterval(that._countdown);
+          that._countdown = null;
         }
+        wx.redirectTo({
+          url: 'exam-result?exam=' + that.examId
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          showCancel: false,
+          content: res.data.error_msg || '错误'
+        })
       }
     });
   },
 
   onShareAppMessage: function () {
-    return { title: '帮忙看看这道题怎么破？', path: '/pages/index/go?source=exam' };
+    return app.shareData('exam&id=' + this.subjectId);
   }
 });

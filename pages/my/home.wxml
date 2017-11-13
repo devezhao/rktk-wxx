@@ -9,7 +9,7 @@
         <text>{{level}}</text>
       </view>
       <view class="pull-right subject">
-        <navigator url="../index/select-subject?source=home">
+        <navigator url="../index/subject-choice?source=home">
           <icon type="search" size="13" color='#ec5353'></icon> {{subject}}</navigator>
       </view>
       <view class="clearfix"></view>
@@ -21,11 +21,11 @@
       <view class="weui-cell__bd">答题记录</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <navigator url="my-favs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="incorrects" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__bd">错题本</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <navigator url="incorrects" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="my-favs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__bd">我的收藏</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
@@ -41,5 +41,4 @@
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
-
 </view>

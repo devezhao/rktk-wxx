@@ -94,6 +94,7 @@ page, .page {
   font-size: 14px;
   padding: 0;
   background-color: #fff;
+  overflow: hidden;
 }
 
 .fix-foobar .bbtn:active {
@@ -104,6 +105,11 @@ page, .page {
   width: 36px;
   height: 36px;
   margin-top: 3px;
+}
+.fix-foobar .bbtn.last {
+  color: #fff;
+  background-color: #4b8ef9;
+  line-height: 42px;
 }
 
 .dt-card {
@@ -136,6 +142,14 @@ page, .page {
   border-color: #4b8ef9;
   background-color: #4b8ef9;
   color: #fff;
+}
+.dt-card .seqs view.active.half {
+  border: 6px solid #4b8ef9;
+  background-color: #fff;
+  color: #4b8ef9;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
 }
 
 .dt-card .fix-foobar {

@@ -1,10 +1,32 @@
 <view class="page">
-  
-  <view class="weui-cells__title">{{mainSubject}}</view>
-  <view class="weui-cells weui-cells_after-title">
-    <navigator url="exam?subject={{item.subjectId}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{subjectList}}" wx:key="subjectList">
-      <view class="weui-cell__bd">{{item.name}}</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
+  <view class="page__hd">
+    <view class="subject-block">
+      <view class="title-sub">{{parent_name}}</view>
+      <view class="title">{{subject_name}}</view>
+      <view class="subject-infos">
+        题数 {{question_num}}
+        <text>-</text>
+        满分 {{question_scope}}
+        <text>-</text>
+        答题人次 {{answer_num}}
+        <text>-</text>
+        通过率 {{answer_pass}}
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd">
+    <view style="color:#777;margin:14px 0;font-size:15px">
+      {{description}}
+    </view>
+  </view>
+
+  <view class="fix-foobar">
+    <view class="pull-left">
+      <button class="weui-btn" type="primary" bindtap="explain">试题解析</button>
+    </view>
+    <view class="pull-left">
+      <button class="weui-btn split" type="primary" bindtap="exam">开始答题</button>
+    </view>
   </view>
 </view>

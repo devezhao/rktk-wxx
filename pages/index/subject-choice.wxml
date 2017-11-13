@@ -46,7 +46,7 @@
     </block>
   </view>
 
-  <view class="fix-foobar" style="margin:0">
-    <button class="weui-btn" type="primary" bindtap="saveChange" style="border-radius:0">保存</button>
+  <view class="fix-foobar">
+    <button class="weui-btn" type="primary" bindtap="saveChange" style="border-radius:0">确定</button>
   </view>
 </view>

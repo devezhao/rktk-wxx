@@ -1,18 +1,19 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/question/subject",
-    "pages/question/exam",
-    "pages/question/result",
+    "pages/index/go",
     "pages/index/about",
     "pages/index/feedback",
-    "pages/index/go",
-    "pages/index/select-subject",
+    "pages/index/subject-choice",
+    "pages/question/subject",
+    "pages/exam/exam",
+    "pages/exam/exam-result",
+    "pages/exam/explain",
     "pages/my/home",
     "pages/my/my-exams",
     "pages/my/my-favs",
     "pages/my/incorrects",
-    "pages/question/explain"
+    "pages/question/subject-list"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",
@@ -33,7 +34,7 @@
         "selectedIconPath": "images/icon-home-s.png"
       },
       {
-        "pagePath": "pages/question/subject",
+        "pagePath": "pages/question/subject-list",
         "text": "题库",
         "iconPath": "images/icon-subject.png",
         "selectedIconPath": "images/icon-subject-s.png"
