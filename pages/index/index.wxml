@@ -1,4 +1,92 @@
 <view class="page">
+  <block wx:if="{{banners.length > 0}}">
+    <swiper indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" bindchange="bannerChange">
+      <swiper-item wx:for="{{banners}}" wx:key="*this">
+        <navigator url="{{item[1]}}">
+          <image src="{{item[0]}}" class="slide-image" />
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </block>
+
   <view class="page__hd">
+    <view class="weui-flex top-column">
+      <view class="weui-flex__item">
+        <navigator url="../my/incorrects" class="icon-w">
+          <view class="icon">
+            <image src="../../images/h-icon-incorrect.png" class="x26"></image>
+          </view>
+          <text>错题本</text>
+        </navigator>
+      </view>
+      <view class="weui-flex__item">
+        <navigator url="../my/my-favs" class="icon-w">
+          <view class="icon">
+            <image src="../../images/h-icon-star.png" class="x26"></image>
+          </view>
+          <text>收藏</text>
+        </navigator>
+      </view>
+      <view class="weui-flex__item">
+        <navigator class="icon-w">
+          <view class="icon">
+            <image src="../../images/h-home-rnd.png" class="x30"></image>
+          </view>
+          <text>每日一练</text>
+        </navigator>
+      </view>
+      <view class="weui-flex__item hide">
+        <navigator class="icon-w">
+          <view class="icon">
+            <image src="../../images/h-icon-report.png" class="x26"></image>
+          </view>
+          <text>学习报告</text>
+        </navigator>
+      </view>
+      <view class="weui-flex__item">
+        <navigator class="icon-w">
+          <view class="icon">
+            <image src="../../images/h-icon-signin.png" class="x24" style="margin-top:2px"></image>
+          </view>
+          <text>签到</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{unexam > 0}}">
+    <view class="unexam">
+      你有 {{unexam}} 个答题尚未完成，超过6小时将自动交卷
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+  </block>
+
+  <view class="weui-panel weui-panel_access recent_exams">
+    <view class="weui-panel__hd">最近答题</view>
+    <view class="weui-panel__bd">
+      <navigator url="../exam/exam-result?exam={{item[0]}}" class="weui-media-box weui-media-box_text" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
+        <view class="weui-media-box__title weui-media-box__title_in-text">{{item[2]}}{{item[1]}}</view>
+        <view class="weui-media-box__desc">
+          分数 {{item[5]}}
+          <text>-</text> 耗时 {{item[4]}}
+          <text>-</text> 于{{item[3]}}
+        </view>
+      </navigator>
+      <block wx:if="{{recent_exams.length == 0}}">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text" style="margin:0">
+            无最近答题记录
+          </view>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{recent_exams.length > 0}}">
+      <view class="weui-panel__ft">
+        <navigator url="../my/my-exams" class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+      </view>
+    </block>
   </view>
 </view>

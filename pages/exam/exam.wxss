@@ -144,12 +144,12 @@ page, .page {
   color: #fff;
 }
 .dt-card .seqs view.active.half {
-  border: 6px solid #4b8ef9;
+  border: 3px solid #4b8ef9;
   background-color: #fff;
   color: #4b8ef9;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
 }
 
 .dt-card .fix-foobar {

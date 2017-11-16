@@ -25,7 +25,7 @@ function z_get(app, url, call) {
     method: 'GET',
     success: call || function (res) { },
     fail: function (res) {
-      console.error('GET ' + url + ' Error: ' + JSON.stringify(res || []));
+      console.error('请求失败<GET:' + url + '> - ' + JSON.stringify(res || []));
     }, complete: function () {
       if (req_timer) clearTimeout(req_timer)
       if (url.indexOf('noloading') == -1) wx.hideLoading();
@@ -53,7 +53,7 @@ function z_post(app, url, data, call) {
     data: data,
     success: call || function (res) { },
     fail: function (res) {
-      console.error('POST ' + url + ' Error: ' + JSON.stringify(res || []));
+      console.error('请求失败<POST:' + url + '> - ' + JSON.stringify(res || []));
     }, complete: function () {
       if (req_timer) clearTimeout(req_timer)
       if (url.indexOf('noloading') == -1) wx.hideLoading();

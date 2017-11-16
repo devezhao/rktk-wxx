@@ -1,0 +1,12 @@
+.weui-tab__panel .weui-media-box__desc {
+  color: #000;
+  font-size: 17px;
+}
+
+.weui-tab__panel .weui-media-box__info {
+  margin-top: 8px;
+}
+
+.weui-panel {
+  margin-top: 9px;
+}

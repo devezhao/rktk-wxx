@@ -16,8 +16,12 @@ App({
     });
   },
   onShow: function () {
-    this.checkUserInfo(null, true);
+    this.checkUserInfo(null, false);
   },
+  onError: function (e) {
+    console.error("出现错误: " + JSON.stringify(e));
+  },
+
   checkUserInfo: function (cb, needLogin) {
     var that = this;
     wx.checkSession({
@@ -75,7 +79,6 @@ App({
   __forceUserInfo: function (cb) {
     var that = this;
     wx.getUserInfo({
-      withCredentials: true,
       success: function (res) {
         that.__storeUserInfo(res, cb);
       }, fail: function (res) {
@@ -85,7 +88,7 @@ App({
           showCancel: false,
           success: function () {
             wx.openSetting({
-              success: function (res2) {
+              success: function () {
                 that.__forceUserInfo(cb);
               }
             })

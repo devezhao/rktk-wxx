@@ -33,7 +33,8 @@ Page({
   __format_answerKey: function (ak) {
     var answer_key = ak.split('/');
     for (var i = 0; i < answer_key.length; i++) {
-      answer_key[i] = answer_key[i].substr(1);
+      var a = answer_key[i].substr(1);
+      answer_key[i] = a == 'X' ? '无' : a;
     }
     answer_key = answer_key.join(' / ');
     return answer_key;

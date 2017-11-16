@@ -98,12 +98,58 @@ button[type="primary"] {
 }
 
 .icon-box__title {
-  font-size: 18px;
-  margin-top: 9px;
+  font-size: 17px;
+  margin-top: 14px;
+  color: #333;
 }
 
 .icon-box__desc {
   margin-top: 6px;
   font-size: 14px;
   color: #777;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+  color: #4b8ef9;
+}
+
+.weui-navbar__slider {
+  background-color: #4b8ef9;
+}
+
+.weui-media-box {
+  padding: 14px;
+}
+
+.weui-media-box__info, .weui-media-box__desc {
+  color: #777;
+}
+
+.weui-panel__hd {
+  color: #555;
+}
+
+image.x32 {
+  width: 32px;
+  height: 32px;
+}
+
+image.x30 {
+  width: 30px;
+  height: 30px;
+}
+
+image.x28 {
+  width: 28px;
+  height: 28px;
+}
+
+image.x26 {
+  width: 26px;
+  height: 26px;
+}
+
+image.x24 {
+  width: 24px;
+  height: 24px;
 }

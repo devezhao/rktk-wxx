@@ -24,13 +24,17 @@
   padding-top: 9px;
   line-height: 1.4;
 }
-.user-block .nick text {
+.user-block .nick text.level {
   font-size: 11px;
   border: 1px solid #bbb;
   border-radius: 99px;
   padding: 1px 9px;
   color: #aaa;
   font-style: italic;
+}
+.user-block .nick text.coin {
+  color: #888;
+  font-size: 13px;
 }
 
 .user-block .subject {
@@ -39,7 +43,16 @@
   border: 1px solid #ec5353;
   border-radius: 99px;
   padding: 2px 9px;
+  padding-right: 18px;
   font-size: 12px;
+  position: relative;
+}
+.user-block .subject image {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 4px;
+  top: 5px;
 }
 
 .weui-cells {

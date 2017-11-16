@@ -25,7 +25,7 @@ Page({
       console.log(res);
       if (res.data.error_code > 0) {
         wx.redirectTo({
-          url: '../index/subject-choice?source=first'
+          url: 'subject-choice?source=first'
         });
         return;
       }

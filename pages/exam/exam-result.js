@@ -20,13 +20,16 @@ Page({
       that.setData({
         scope: data.scope,
         scope_color: scope_percent < 0.6 ? '' : 'OK',
-        scope_tips: scope_percent < 0.6 ? '本次考试不及格' : '本次考试及格',
+        scope_tips: scope_percent < 0.6 ? '本次答题未通过' : '本次答题通过',
         scope_percent: (scope_percent * 100).toFixed(1) + '%',
         duration: data.duration,
         full_scope: data.full_scope,
         exam_items: data.exam_items
       });
       that.__draw_circle(scope_percent);
+      wx.setNavigationBarTitle({
+        title: data.subject_name
+      })
     });
   },
 

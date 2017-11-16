@@ -1,9 +1,69 @@
-.maxmax {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 50px;
+.slide-image {
+  width: 100%;
+}
+
+.top-column {
   background-color: #fff;
-  transform: translate(0, 100%);
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.top-column .weui-flex__item view, .top-column .weui-flex__item navigator {
+  text-align: center;
+  line-height: 1;
+}
+
+.top-column .weui-flex__item .icon-w {
+  padding: 12px 0;
+}
+
+.top-column .weui-flex__item .icon-w:active {
+  background-color: #ececec;
+}
+
+.top-column .weui-flex__item .icon-w .icon {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.top-column .weui-flex__item navigator text {
+  display: block;
+  color: #333;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.unexam {
+  margin: 0 14px;
+  background-color: #fefcec;
+  padding: 9px 12px;
+  margin-top: 10px;
+  color: #f87c3d;
+  font-size: 13px;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.unexam .weui-cell__ft_in-access {
+  position: absolute;
+  right: 12px;
+  margin-top: -11px;
+}
+
+.recent_exams .weui-media-box__desc {
+  color: #555;
+}
+
+.recent_exams .weui-media-box__desc text {
+  color: #999;
+  margin: 0 4px;
+  display: inline-block;
+}
+
+.recent_exams .weui-media-box__title {
+  font-size: 16px;
 }

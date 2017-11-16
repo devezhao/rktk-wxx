@@ -6,7 +6,7 @@
           {{scope}}
         </view>
       </canvas>
-      <view style="font-size:21px;margin-top:9px;text-align:center">
+      <view style="font-size:21px;margin-top:12px;margin-bottom:3px;text-align:center">
         {{scope_tips}}
       </view>
       <view class="scope-infos">

@@ -3,8 +3,9 @@
     "pages/index/index",
     "pages/index/go",
     "pages/index/about",
-    "pages/index/feedback",
-    "pages/index/subject-choice",
+    "pages/index/h5",
+    "pages/question/subject-choice",
+    "pages/question/subject-list",
     "pages/question/subject",
     "pages/exam/exam",
     "pages/exam/exam-result",
@@ -13,7 +14,8 @@
     "pages/my/my-exams",
     "pages/my/my-favs",
     "pages/my/incorrects",
-    "pages/question/subject-list"
+    "pages/my/coin-buy",
+    "pages/my/coin-records"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",

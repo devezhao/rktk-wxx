@@ -8,9 +8,7 @@
         <text>-</text>
         满分 {{question_scope}}
         <text>-</text>
-        答题人次 {{answer_num}}
-        <text>-</text>
-        通过率 {{answer_pass}}
+        价格 {{coin}}学豆
       </view>
     </view>
   </view>

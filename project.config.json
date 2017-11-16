@@ -1,0 +1,62 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": false,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.6.4",
+	"appid": "wxeaec28deca5ee303",
+	"projectname": "rktk-wxx",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "about",
+					"pathName": "pages/index/about"
+				},
+				{
+					"id": -1,
+					"name": "home",
+					"pathName": "pages/my/home"
+				},
+				{
+					"id": -1,
+					"name": "list",
+					"pathName": "pages/question/subject-list"
+				},
+				{
+					"id": -1,
+					"name": "subject",
+					"pathName": "pages/question/subject",
+					"query": "id=110-015f8c4b34bf0000"
+				},
+				{
+					"id": 4,
+					"name": "exam-result",
+					"pathName": "pages/exam/exam-result",
+					"query": "exam=114-015fb5237f320006"
+				},
+				{
+					"id": -1,
+					"name": "favs",
+					"pathName": "pages/my/my-favs",
+					"query": ""
+				}
+			]
+		}
+	}
+}
