@@ -6,6 +6,7 @@
           {{scope}}
         </view>
       </canvas>
+      <view class="title" style="margin-top:6px;">
         {{scope_tips}}
       </view>
       <view class="subtitle infos">

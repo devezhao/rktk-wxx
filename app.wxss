@@ -84,7 +84,7 @@ page, .page {
 }
 
 .top-block view.subtitle.infos text {
-  color: #bbb;
+  color: #cecece;
   margin: 0 3px;
 }
 
