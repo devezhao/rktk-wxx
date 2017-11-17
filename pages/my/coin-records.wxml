@@ -12,8 +12,8 @@
       <view class="weui-tab__panel">
         <view class="weui-panel" wx:for="{{records}}" wx:key="*this">
           <view class="weui-panel__bd">
-            <view class="weui-media-box weui-media-box_text">
-              <view class="weui-media-box__desc">{{item[0]}}</view>
+            <view class="weui-media-box rktk-record">
+              <view class="weui-media-box__title">{{item[0]}}</view>
               <view class="weui-media-box__info">
                 <view class="weui-media-box__info__meta">{{item[3]}}</view>
                 <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[2]}}</view>

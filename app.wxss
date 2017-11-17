@@ -61,13 +61,31 @@ page, .page {
   margin-top: 13px;
 }
 
-.tophead {
+.top-block {
+  padding: 24px 14px;
+  background-color: #fff;
+  border-bottom: 1px solid #d9d9d9;
   text-align: center;
-  background-color: #4b8ef9;
-  padding: 15px 0;
-  margin: 0;
-  color: #fff;
-  font-size: 24px;
+}
+
+.top-block view.title {
+  font-size: 21px;
+  color: #222;
+}
+
+.top-block view.subtitle {
+  font-size: 14;
+  color: #999;
+}
+
+.top-block view.subtitle.infos {
+  color: #666;
+  margin-top: 3px;
+}
+
+.top-block view.subtitle.infos text {
+  color: #bbb;
+  margin: 0 3px;
 }
 
 .fix-foobar {
@@ -117,18 +135,6 @@ button[type="primary"] {
   background-color: #4b8ef9;
 }
 
-.weui-media-box {
-  padding: 14px;
-}
-
-.weui-media-box__info, .weui-media-box__desc {
-  color: #777;
-}
-
-.weui-panel__hd {
-  color: #555;
-}
-
 image.x32 {
   width: 32px;
   height: 32px;
@@ -152,4 +158,17 @@ image.x26 {
 image.x24 {
   width: 24px;
   height: 24px;
+}
+
+.weui-media-box.rktk-record {
+  padding: 14px;
+}
+
+.weui-media-box.rktk-record .weui-media-box__info {
+  margin-top: 8px;
+  color: #888;
+}
+
+.weui-media-box.rktk-record .weui-media-box__info text {
+  color: #444;
 }

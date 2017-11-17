@@ -13,9 +13,10 @@ Page({
   list: function () {
     var that = this;
     zutils.get(app, 'api/fav/incorrect-list?page=' + this.pageNo, function (res) {
+      var data = res.data.data;
       that.setData({
-        incorr: res.data.data,
-        nodata: that.pageNo == 1 && res.data.data.length == 0
+        in_list: data,
+        nodata: that.pageNo == 1 && data.length == 0
       });
     });
   },

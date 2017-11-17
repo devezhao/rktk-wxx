@@ -1,7 +1,5 @@
-.weui-media-box__desc {
-  color: #333;
-  font-size: 14px;
-}
-.weui-media-box__info__meta {
-  font-size: 13px;
+.weui-media-box__title {
+  font-size: 15px;
+  word-wrap: break-word;
+  white-space: normal;
 }

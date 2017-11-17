@@ -64,12 +64,18 @@
   <view class="weui-panel weui-panel_access recent_exams">
     <view class="weui-panel__hd">最近答题</view>
     <view class="weui-panel__bd">
-      <navigator url="../exam/exam-result?exam={{item[0]}}" class="weui-media-box weui-media-box_text" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
-        <view class="weui-media-box__title weui-media-box__title_in-text">{{item[2]}}{{item[1]}}</view>
-        <view class="weui-media-box__desc">
-          分数 {{item[5]}}
-          <text>-</text> 耗时 {{item[4]}}
-          <text>-</text> 于{{item[3]}}
+      <navigator url="../exam/exam-result?exam={{item[0]}}" class="weui-media-box rktk-record" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
+        <view class="weui-media-box__title">{{item[2]}}{{item[1]}}</view>
+        <view class="weui-media-box__info">
+          <view class="weui-media-box__info__meta">
+            得分
+            <text>{{item[5]}}</text>
+          </view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+            耗时
+            <text>{{item[4]}}</text>
+          </view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">于{{item[3]}}</view>
         </view>
       </navigator>
       <block wx:if="{{recent_exams.length == 0}}">

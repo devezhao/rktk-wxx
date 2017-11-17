@@ -26,17 +26,20 @@
 				{
 					"id": -1,
 					"name": "about",
-					"pathName": "pages/index/about"
+					"pathName": "pages/index/about",
+					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "home",
-					"pathName": "pages/my/home"
+					"pathName": "pages/my/home",
+					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "list",
-					"pathName": "pages/question/subject-list"
+					"pathName": "pages/question/subject-list",
+					"query": ""
 				},
 				{
 					"id": -1,
@@ -54,6 +57,12 @@
 					"id": -1,
 					"name": "favs",
 					"pathName": "pages/my/my-favs",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "my-exams",
+					"pathName": "pages/my/my-exams",
 					"query": ""
 				}
 			]

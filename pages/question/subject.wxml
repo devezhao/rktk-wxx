@@ -1,14 +1,15 @@
 <view class="page">
   <view class="page__hd">
-    <view class="subject-block">
-      <view class="title-sub">{{parent_name}}</view>
+    <view class="top-block">
+      <view class="subtitle">{{parent_name}}</view>
       <view class="title">{{subject_name}}</view>
-      <view class="subject-infos">
+      <view class="subtitle infos">
         题数 {{question_num}}
-        <text>-</text>
-        满分 {{question_scope}}
-        <text>-</text>
-        价格 {{coin}}学豆
+        <text>/</text> 满分 {{question_scope}}
+        <text>/</text> 通过率 0.0%
+        <text>/</text>
+        <block wx:if="{{coin > 0}}">{{coin}}学豆</block>
+        <block wx:if="{{coin <= 0}}">免费</block>
       </view>
     </view>
   </view>

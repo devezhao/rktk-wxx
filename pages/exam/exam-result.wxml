@@ -1,20 +1,17 @@
 <view class="page">
   <view class="page__hd">
-    <view class="result-block">
+    <view class="top-block">
       <canvas class="circle" canvas-id="circle-scope">
         <view class="circle-scope {{scope_color}}">
           {{scope}}
         </view>
       </canvas>
-      <view style="font-size:21px;margin-top:12px;margin-bottom:3px;text-align:center">
         {{scope_tips}}
       </view>
-      <view class="scope-infos">
+      <view class="subtitle infos">
         满分 {{full_scope}}
-        <text>-</text>
-        正确率 {{scope_percent}}
-        <text>-</text>
-        耗时 {{duration}}
+        <text>/</text> 正确率 {{scope_percent}}
+        <text>/</text> 耗时 {{duration}}
       </view>
     </view>
   </view>

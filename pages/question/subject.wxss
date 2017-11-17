@@ -1,37 +1,11 @@
-.subject-block {
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  padding: 24px 0;
-  border-bottom: 1px solid #d9d9d9;
-}
-.subject-block .title {
-  font-size: 21px;
-}
-.subject-block .title-sub {
-  color: #999;
-  font-size: 14px;
-}
-
 .fix-foobar .pull-left {
   width: 50%;
 }
+
 .fix-foobar .pull-left button {
   border-radius: 0;
 }
+
 .fix-foobar .pull-left button.split {
   border-left: 1px solid #eee;
-}
-
-.subject-infos {
-  color: #777;
-  font-size: 14px;
-  text-align: center;
-  line-height: 1;
-  margin-top: 3px;
-}
-
-.subject-infos text {
-  margin: 0 3px;
-  color: #aaa;
 }

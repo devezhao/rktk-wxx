@@ -54,16 +54,3 @@
   margin-top: -11px;
 }
 
-.recent_exams .weui-media-box__desc {
-  color: #555;
-}
-
-.recent_exams .weui-media-box__desc text {
-  color: #999;
-  margin: 0 4px;
-  display: inline-block;
-}
-
-.recent_exams .weui-media-box__title {
-  font-size: 16px;
-}

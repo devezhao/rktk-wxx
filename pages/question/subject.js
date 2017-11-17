@@ -33,7 +33,6 @@ Page({
     }
 
     wx.showModal({
-      title: '提示',
       content: tips_content,
       confirmText: '开始答题',
       success: function (res) {

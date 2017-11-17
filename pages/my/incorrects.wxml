@@ -1,12 +1,19 @@
 <view class="page">
   <view class="page__hd">
-    <view class="weui-panel" wx:for="{{incorr}}" wx:key="key_incorr">
+    <view class="weui-panel" wx:for="{{in_list}}" wx:key="*this">
       <view class="weui-panel__bd">
-        <navigator url="../exam/explain?q={{item[0]}}" class="weui-media-box weui-media-box_text">
-          <view class="weui-media-box__desc">{{item[1]}}</view>
+        <navigator url="../exam/explain?q={{item[0]}}" class="weui-media-box rktk-record">
+          <view class="weui-media-box__title">{{item[1]}}</view>
           <view class="weui-media-box__info">
-            <view class="weui-media-box__info__meta">{{item[2]}}</view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[3]}}</view>
+            <view class="weui-media-box__info__meta">
+              答错次数
+              <text>{{item[4]}}</text>
+            </view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+              答错率
+              <text>{{item[5]}}%</text>
+            </view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[2]}}</view>
           </view>
         </navigator>
       </view>

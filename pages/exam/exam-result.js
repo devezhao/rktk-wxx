@@ -19,7 +19,7 @@ Page({
       var scope_percent = data.scope / data.full_scope;
       that.setData({
         scope: data.scope,
-        scope_color: scope_percent < 0.6 ? '' : 'OK',
+        scope_color: scope_percent < 0.6 ? '' : 'pass',
         scope_tips: scope_percent < 0.6 ? '本次答题未通过' : '本次答题通过',
         scope_percent: (scope_percent * 100).toFixed(1) + '%',
         duration: data.duration,
