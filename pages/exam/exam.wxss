@@ -106,6 +106,7 @@ page, .page {
   height: 36px;
   margin-top: 3px;
 }
+
 .fix-foobar .bbtn.last {
   color: #fff;
   background-color: #4b8ef9;
@@ -122,9 +123,11 @@ page, .page {
   text-align: center;
   transform: translate(0, 100%);
 }
+
 .dt-card .seqs {
   padding: 18px;
 }
+
 .dt-card .seqs view {
   width: 38px;
   height: 38px;
@@ -138,11 +141,13 @@ page, .page {
   text-align: center;
   background-color: #fff;
 }
+
 .dt-card .seqs view.active {
   border-color: #4b8ef9;
   background-color: #4b8ef9;
   color: #fff;
 }
+
 .dt-card .seqs view.active.half {
   border: 3px solid #4b8ef9;
   background-color: #fff;
@@ -158,6 +163,7 @@ page, .page {
   margin: 0;
   padding: 0;
 }
+
 .dt-card .fix-foobar button {
   width: 100%;
   border-radius: 0;

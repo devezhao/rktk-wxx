@@ -23,7 +23,8 @@
 }
 
 .seqs {
-  margin-top: 9px;
+  padding: 18px;
+  text-align: center;
 }
 
 .seqs .item {
@@ -32,11 +33,11 @@
   line-height: 38px;
   color: #fff;
   border-radius: 50%;
-  display: inline-block;
   margin: 5px 6px;
   font-size: 18px;
   text-align: center;
   background-color: #d9534f;
+  display: inline-block;
 }
 
 .seqs .item.right {

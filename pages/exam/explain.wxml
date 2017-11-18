@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page" style="margin-bottom:56px">
   <view class="page__bd">
     <view class="question">
       <rich-text nodes="{{question}}"></rich-text>
@@ -9,14 +9,16 @@
         </view>
         <view class="item {{item[10]}}">
           <view class="key">{{item[11]}}</view>
-          <view class="text"><rich-text nodes="{{item[1]}}"></rich-text></view>
+          <view class="text">
+            <rich-text nodes="{{item[1]}}"></rich-text>
+          </view>
           <view class="clearfix"></view>
         </view>
       </block>
     </view>
   </view>
 
-  <view class="page__bd" style="margin-bottom:56px">
+  <view class="page__bd">
     <view class="explain-title">
       题目解析
     </view>
@@ -24,25 +26,25 @@
       <rich-text nodes="{{explain}}"></rich-text>
     </view>
   </view>
+</view>
 
-  <view class="fbtns">
-    <button class="bbtn" open-type="share">
-      <image src="../../images/share.png" style="margin-top:8px;width:26px;height:26px;"></image>
-    </button>
-    <button class="bbtn" bindtap="fav">
-      <image src="../../images/star{{isFav ? '-filled' : ''}}.png" style="margin-top:6px;width:28px;height:28px;"></image>
-    </button>
-  </view>
+<view class="fbtns">
+  <button class="bbtn" open-type="share">
+    <image src="../../images/share.png" style="margin-top:8px;width:26px;height:26px;"></image>
+  </button>
+  <button class="bbtn" bindtap="fav">
+    <image src="../../images/star{{isFav ? '-filled' : ''}}.png" style="margin-top:6px;width:28px;height:28px;"></image>
+  </button>
+</view>
 
-  <view class="fix-foobar answerkeys" hidden="{{yourAnswer == null}}">
-    <view class="pull-left">
-      正确答案
-      <text>{{rightAnswer}}</text>
-    </view>
-    <view class="pull-left">
-      你的答案
-      <text>{{yourAnswer}}</text>
-    </view>
-    <view class="clearfix"></view>
+<view class="fix-foobar answerkeys" hidden="{{yourAnswer == null}}">
+  <view class="pull-left">
+    正确答案
+    <text>{{rightAnswer}}</text>
   </view>
+  <view class="pull-left">
+    你的答案
+    <text>{{yourAnswer}}</text>
+  </view>
+  <view class="clearfix"></view>
 </view>

@@ -64,7 +64,6 @@ page, .page {
 .answerkeys {
   padding: 11px 0;
   background-color: #eee;
-  border-top: 1px solid #ddd;
 }
 
 .answerkeys .pull-left {
@@ -79,7 +78,7 @@ page, .page {
 }
 
 .explain-title {
-  font-size: 15px;
+  font-size: 17px;
   margin-top: 14px;
 }
 
@@ -88,7 +87,6 @@ page, .page {
   line-height: 1.7;
   font-size: 15px;
 }
-
 
 .fbtns {
   bottom: 48px;

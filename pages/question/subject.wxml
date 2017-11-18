@@ -22,7 +22,7 @@
 
   <view class="fix-foobar">
     <view class="pull-left">
-      <button class="weui-btn" type="primary" bindtap="explain">试题解析</button>
+      <button class="weui-btn" type="primary" bindtap="explain">题目解析</button>
     </view>
     <view class="pull-left">
       <button class="weui-btn split" type="primary" bindtap="exam">开始答题</button>

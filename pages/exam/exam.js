@@ -251,6 +251,7 @@ Page({
     if (undo > 0) {
       wx.showModal({
         content: '还有' + undo + '道题没答，确认交卷吗？',
+        confirmText: '交卷',
         success: function (res) {
           if (res.confirm) {
             that.finish2();
@@ -260,6 +261,7 @@ Page({
     } else {
       wx.showModal({
         content: '确认交卷吗？',
+        confirmText: '交卷',
         success: function (res) {
           if (res.confirm) {
             that.finish2();
@@ -276,7 +278,7 @@ Page({
 
     var that = this;
     wx.showLoading({
-      title: '正在交卷...'
+      title: '正在判题...'
     });
     zutils.post(app, 'api/exam/finish?noliading&exam=' + that.examId, function (res) {
       if (res.data.error_code == 0) {

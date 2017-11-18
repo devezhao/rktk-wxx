@@ -3,12 +3,19 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    hideFoobar: true
   },
   examId: null,
 
   onLoad: function (e) {
     this.examId = e.exam;
     this.loadResult();
+    
+    if (e.redirect == 1) {
+      this.setData({
+        hideFoobar: false
+      })
+    }
   },
 
   loadResult: function () {
@@ -38,12 +45,12 @@ Page({
     ctx.beginPath();
     ctx.arc(50, 50, 47, 0, 2 * Math.PI);
     ctx.setStrokeStyle('#eeeeee');
-    ctx.setLineWidth(5);
+    ctx.setLineWidth(4);
     ctx.stroke();
     ctx.beginPath();
     ctx.arc(50, 50, 47, 0, p * 2 * Math.PI);
     ctx.setStrokeStyle(p >= 0.6 ? '#4cae4c' : '#d9534f');
-    ctx.setLineWidth(5);
+    ctx.setLineWidth(4);
     ctx.stroke();
     ctx.draw();
   },

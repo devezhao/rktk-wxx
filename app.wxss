@@ -43,24 +43,6 @@ page, .page {
   opacity: 0.8;
 }
 
-.float-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background-color: #4b8ef9;
-  text-align: center;
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.float-btn image {
-  width: 26px;
-  height: 26px;
-  margin-top: 13px;
-}
-
 .top-block {
   padding: 24px 14px;
   background-color: #fff;
@@ -107,6 +89,10 @@ page, .page {
   font-size: 17px;
 }
 
+.page.has-foobar {
+  padding-bottom: 45px;
+}
+
 button, button::after, .weui-btn {
   border: 0 none;
   border-radius: 2px;
@@ -119,6 +105,10 @@ button[type="primary"] {
 .button-hover[type="primary"] {
   background-color: #4b8ef9;
   opacity: 0.8;
+}
+
+.weui-cell {
+  padding: 10px 14px;
 }
 
 .icon-box {
@@ -171,12 +161,16 @@ image.x24 {
   height: 24px;
 }
 
-.weui-media-box.rktk-record {
+.weui-panel__hd {
+  padding: 14px 14px 10px;
+}
+
+.weui-media-box {
   padding: 14px;
 }
 
 .weui-media-box.rktk-record .weui-media-box__info {
-  margin-top: 8px;
+  margin-top: 7px;
   color: #888;
 }
 
