@@ -5,11 +5,10 @@ Page({
   data: {
     selected: null,
   },
-  from_source: null,
+  back: null,
 
   onLoad: function (e) {
-    this.from_source = e.source;
-
+    this.back = e.back || 0;
     var that = this;
     zutils.get(app, 'api/subject/list-top', function (res) {
       var data = res.data;
@@ -47,7 +46,6 @@ Page({
     var that = this;
     if (!that.data.selected) {
       wx.showModal({
-        title: '提示',
         content: '请选择你要参加的考试',
         showCancel: false
       })
@@ -55,12 +53,9 @@ Page({
     }
 
     zutils.post(app, 'api/user/settings?key=MainSubject&value=' + that.data.selected, function (res) {
-      console.log(res);
-      // 更改后要刷新的标记
       app.GLOBAL_DATA.RELOAD_SUBJECT = ['Home', 'Subject'];
-      if (that.from_source == 'home') {
-        wx.navigateBack({
-        });
+      if (that.back == 1) {
+        wx.navigateBack();
       } else {
         wx.switchTab({
           url: '../question/subject-list'

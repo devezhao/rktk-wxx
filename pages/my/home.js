@@ -9,7 +9,7 @@ Page({
     subject: '点击设置'
   },
 
-  onReady: function (e) {
+  onLoad: function (e) {
     var that = this;
     app.getUserInfo(function (res) {
       that.setData({

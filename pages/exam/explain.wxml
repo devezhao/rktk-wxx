@@ -1,4 +1,4 @@
-<view class="page" style="margin-bottom:56px">
+<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '51px'}}">
   <view class="page__bd">
     <view class="question">
       <rich-text nodes="{{question}}"></rich-text>
@@ -28,7 +28,7 @@
   </view>
 </view>
 
-<view class="fbtns">
+<view class="fbtns" style="{{yourAnswer == null ? 'bottom:11px' : ''}}">
   <button class="bbtn" open-type="share">
     <image src="../../images/share.png" style="margin-top:8px;width:26px;height:26px;"></image>
   </button>
@@ -39,7 +39,7 @@
 
 <view class="fix-foobar answerkeys" hidden="{{yourAnswer == null}}">
   <view class="pull-left">
-    正确答案
+    参考答案
     <text>{{rightAnswer}}</text>
   </view>
   <view class="pull-left">

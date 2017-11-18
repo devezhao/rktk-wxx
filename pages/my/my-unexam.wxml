@@ -6,7 +6,7 @@
           <view class="weui-media-box__title">{{item[4]}}{{item[3]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">
-              答题时间
+              开始时间
               <text>{{item[2]}}</text>
             </view>
             <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">

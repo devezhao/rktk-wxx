@@ -1,5 +1,5 @@
-//const baseUrl = 'https://rktk.qidapp.com/';
-const baseUrl = 'http://192.168.0.159:8080/rktk/';
+const baseUrl = 'https://rktk.qidapp.com/';
+//const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 function __url_wrap(app, url) {
   if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
@@ -16,7 +16,6 @@ function z_get(app, url, call) {
   var loading_show = false;
   if (url.indexOf('noloading') == -1) {
     loading_timer = setTimeout(function () {
-      console.log('showLoading')
       wx.showLoading({
         title: '请稍后'
       });

@@ -3,8 +3,12 @@ const zutils = require('utils/zutils.js');
 App({
   GLOBAL_DATA: {
     USER_INFO: null,
-    RELOAD_SUBJECT: []
+    // 数据刷新
+    RELOAD_SUBJECT: [],
+    RELOAD_EXAM: [],
+    RELOAD_COIN: []
   },
+
   onLaunch: function (e) {
     var that = this;
     wx.getStorage({
@@ -15,9 +19,11 @@ App({
       }
     });
   },
+
   onShow: function () {
     this.checkUserInfo(null, false);
   },
+
   onError: function (e) {
     console.error("出现错误: " + JSON.stringify(e));
   },
@@ -46,6 +52,7 @@ App({
       }
     });
   },
+
   getUserInfo: function (cb) {
     if (this.GLOBAL_DATA.USER_INFO) {
       typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
@@ -66,6 +73,7 @@ App({
       })
     }
   },
+
   __storeUserInfo: function (res, cb) {
     console.log('存储授权 - ' + JSON.stringify(res))
     var that = this;
@@ -76,6 +84,7 @@ App({
       wx.hideLoading()
     })
   },
+
   __forceUserInfo: function (cb) {
     var that = this;
     wx.getUserInfo({
@@ -98,6 +107,7 @@ App({
     })
   },
 
+  // 分享数据
   shareData: function (s) {
     var url = '/pages/index/go?u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
     if (!!s) {

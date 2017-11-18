@@ -23,14 +23,14 @@ Page({
       }
 
       if (that.answerKey) {
-        data.rightAnswer = that.__format_answerKey(data.answer_key);
-        data.yourAnswer = that.__format_answerKey(that.answerKey);
+        data.rightAnswer = that.__formatAnswerKey(data.answer_key);
+        data.yourAnswer = that.__formatAnswerKey(that.answerKey);
       }
       that.setData(data);
     });
   },
 
-  __format_answerKey: function (ak) {
+  __formatAnswerKey: function (ak) {
     var answer_key = ak.split('/');
     for (var i = 0; i < answer_key.length; i++) {
       var a = answer_key[i].substr(1);
@@ -49,4 +49,8 @@ Page({
       });
     });
   },
+
+  onShareAppMessage: function(){
+    return app.shareData();
+  }
 });

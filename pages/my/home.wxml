@@ -10,7 +10,7 @@
         <text class="coin">学豆 {{coin}}</text>
       </view>
       <view class="pull-right subject">
-        <navigator url="../question/subject-choice?source=home">
+        <navigator url="../question/subject-choice?back=1">
           {{subject}}
           <image src="../../images/arrow-right-nl-32.png"></image>
         </navigator>

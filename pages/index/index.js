@@ -5,7 +5,9 @@ Page({
   onLoad: function () {
     var that = this;
     app.getUserInfo(function () {
-      that.onPullDownRefresh();
+      zutils.get(app, 'api/home/recent-exams', function (res) {
+        that.setData(res.data.data);
+      });
     });
 
     zutils.get(app, 'api/home/banners', function (res) {
@@ -15,11 +17,14 @@ Page({
     });
   },
 
-  onPullDownRefresh: function () {
-    var that = this;
-    zutils.get(app, 'api/home/recent-exams', function (res) {
-      that.setData(res.data.data);
-    });
+  onShow: function () {
+    if (zutils.array.in(app.GLOBAL_DATA.RELOAD_EXAM, 'Index')) {
+      zutils.array.erase(app.GLOBAL_DATA.RELOAD_EXAM, 'Index');
+      var that = this;
+      zutils.get(app, 'api/home/recent-exams', function (res) {
+        that.setData(res.data.data);
+      });
+    }
   },
 
   todayExam: function () {
@@ -31,11 +36,18 @@ Page({
           url: '../exam/exam?subject=' + data.subject_id + '&exam=' + data.exam_id
         });
       } else {
-        wx.showModal({
-          title: '提示',
-          content: res.data.error_msg || '系统错误',
-          showCancel: false
-        })
+        var error_msg = res.data.error_msg || '系统错误';
+        if (error_msg.indexOf('考试类型') > -1) {
+          wx.navigateTo({
+            url: '../question/subject-choice?back=1'
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: error_msg,
+            showCancel: false
+          });
+        }
       }
     });
   },

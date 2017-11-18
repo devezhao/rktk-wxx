@@ -18,16 +18,17 @@ Page({
   duration: 0,
 
   onLoad: function (e) {
+    this.examId = e.exam;
+    this.subjectId = e.subject;
+    this.duration = e.duration || 0;
     if (!e.exam || !e.subject) {
       wx.redirectTo({
         url: '../index/tips?msg=非法请求参数'
       });
       return;
     }
-    this.duration = e.duration || 0;
 
-    this.examId = e.exam;
-    this.subjectId = e.subject;
+    app.GLOBAL_DATA.RELOAD_EXAM = ['Index'];
 
     this.dtcardAnimation = wx.createAnimation({
       duration: 200,
@@ -48,22 +49,12 @@ Page({
   },
 
   onUnload: function () {
-    this._clearCountdown();
-  },
-
-  _clearCountdown: function () {
-    if (this._countdown) {
-      clearInterval(this._countdown);
-      this._countdown = null;
-      wx.setNavigationBarTitle({
-        title: '软考题库PRO'
-      });
-    }
+    this.__clearCountdown();
   },
 
   loadQuestion: function () {
     var that = this;
-    zutils.get(app, 'api/question/list?subject=' + that.subjectId, function (res) {
+    zutils.get(app, 'api/question/list?subject=' + that.subjectId + '&restore=' + (that.duration > 0 ? that.examId : ''), function (res) {
       var data = res.data.data;
       that.setData({
         subject: data.subject,
@@ -74,6 +65,10 @@ Page({
       that.questionList = {};
       for (var i = 0; i < data.result_list.length; i++) {
         var q = data.result_list[i];
+        if (q._selected) {
+          q._selected = q._selected.split('/');
+          console.log('restore selected: ' + q._selected);
+        }
         that.questionList[q.seq] = q;
       }
       that.renderQuestion();
@@ -81,9 +76,8 @@ Page({
       var time = that.duration;
       that._countdown = setInterval(function () {
         time++;
-        var ttt = that.__formatTime(time);
         wx.setNavigationBarTitle({
-          title: '答题中 [' + ttt + ']'
+          title: '答题中 [' + that.__formatTime(time) + ']'
         });
       }, 1000);
     });
@@ -104,14 +98,17 @@ Page({
     console.log(JSON.stringify(answers_data));
 
     if (q._answers) {
-      answers_data.keySelected = seq + '-' + (q._selected || '');
       that.setData(answers_data);
     } else {
       zutils.get(app, 'api/question/get-answers?question=' + q.questionId, function (res) {
         var data = res.data.data.result_list;
+        var _selected = q._selected;
         for (var i = 0; i < data.length; i++) {
           var dd = data[i];
           dd.keyText = dd.key.substr(1);
+          if (_selected && _selected.join(',').indexOf(dd.key) > -1) {
+            dd.clazz = 'selected';
+          }
         }
         q._answers = data;
         answers_data.answerList = q._answers;
@@ -156,48 +153,6 @@ Page({
     this.renderQuestion();
   },
 
-  showDtcard: function () {
-    var that = this;
-    var takes = [];
-    for (var seq in this.questionList) {
-      var q = this.questionList[seq];
-      var clazz = q._selected && q._selected.length > 0 ? 'active' : '';
-      if (!!clazz && ~~q.answerNum > q._selected.length) clazz += ' half';
-      takes.push({ seq: q.seq, clazz: clazz });
-    }
-    //this.setData({
-    //  questionTakes: takes
-    //});
-
-    this.dtcardAnimation.translateY(0).step();
-    this.setData({
-      questionTakes: takes,
-      dtcardAnimation: this.dtcardAnimation.export()
-    });
-  },
-  closeDtcard: function () {
-    this.dtcardAnimation.translateY('100%').step();
-    this.setData({
-      dtcardAnimation: this.dtcardAnimation.export()
-    });
-  },
-
-  fav: function (e) {
-    var that = this;
-    var q = that.questionList[this.data.seqCurrent];
-    zutils.post(app, 'api/fav/toggle?question=' + q.questionId, function (res) {
-      var data = res.data.data;
-      that.setData({
-        isFav: data.is_fav
-      });
-      if (data.is_fav) {
-        that.favList.push(q.questionId);
-      } else {
-        zutils.array.erase(that.favList, q.questionId);
-      }
-    });
-  },
-
   answer: function (e) {
     var that = this;
     var key = e.currentTarget.dataset.key;
@@ -230,13 +185,48 @@ Page({
     console.log(_selected);
     this.questionList[this.data.seqCurrent]._selected = _selected;
 
-    if (that.examId) {
-      zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.itemId + '&answer=' + _selected.join('/'), function (res) {
-        console.log(res);
-      });
-    } else {
-      console.error('No exam?');
+    zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.itemId + '&answer=' + _selected.join('/'), function (res) {
+      console.log(res);
+    });
+  },
+
+  showDtcard: function () {
+    var that = this;
+    var takes = [];
+    for (var seq in this.questionList) {
+      var q = this.questionList[seq];
+      var clazz = q._selected && q._selected.length > 0 ? 'active' : '';
+      if (!!clazz && ~~q.answerNum > q._selected.length) clazz += ' half';
+      takes.push({ seq: q.seq, clazz: clazz });
     }
+
+    this.dtcardAnimation.translateY(0).step();
+    this.setData({
+      questionTakes: takes,
+      dtcardAnimation: this.dtcardAnimation.export()
+    });
+  },
+  closeDtcard: function () {
+    this.dtcardAnimation.translateY('100%').step();
+    this.setData({
+      dtcardAnimation: this.dtcardAnimation.export()
+    });
+  },
+
+  fav: function (e) {
+    var that = this;
+    var q = that.questionList[this.data.seqCurrent];
+    zutils.post(app, 'api/fav/toggle?question=' + q.questionId, function (res) {
+      var data = res.data.data;
+      that.setData({
+        isFav: data.is_fav
+      });
+      if (data.is_fav) {
+        that.favList.push(q.questionId);
+      } else {
+        zutils.array.erase(that.favList, q.questionId);
+      }
+    });
   },
 
   finish: function () {
@@ -281,7 +271,7 @@ Page({
     });
     zutils.post(app, 'api/exam/finish?noliading&exam=' + that.examId, function (res) {
       if (res.data.error_code == 0) {
-        that._clearCountdown();
+        that.__clearCountdown();
         wx.redirectTo({
           url: 'exam-result?redirect=1&exam=' + that.examId
         });
@@ -310,6 +300,16 @@ Page({
       return (time_h + ':' + time_m + ':' + time_s);
     } else {
       return (time_m + ':' + time_s);
+    }
+  },
+
+  __clearCountdown: function () {
+    if (this._countdown) {
+      clearInterval(this._countdown);
+      this._countdown = null;
+      wx.setNavigationBarTitle({
+        title: '软考题库PRO'
+      });
     }
   },
 
