@@ -308,7 +308,7 @@ Page({
       clearInterval(this._countdown);
       this._countdown = null;
       wx.setNavigationBarTitle({
-        title: '软考题库PRO'
+        title: '软考必备'
       });
     }
   },
