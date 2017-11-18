@@ -12,13 +12,16 @@ function __url_wrap(app, url) {
 
 // GET 方法
 function z_get(app, url, call) {
-  var req_timer;
+  var loading_timer;
+  var loading_show = false;
   if (url.indexOf('noloading') == -1) {
-    req_timer = setTimeout(function () {
+    loading_timer = setTimeout(function () {
+      console.log('showLoading')
       wx.showLoading({
         title: '请稍后'
       });
-    }, 400);
+      loading_show = true;
+    }, 300);
   }
   wx.request({
     url: baseUrl + __url_wrap(app, url),
@@ -27,8 +30,11 @@ function z_get(app, url, call) {
     fail: function (res) {
       console.error('请求失败<GET:' + url + '> - ' + JSON.stringify(res || []));
     }, complete: function () {
-      if (req_timer) clearTimeout(req_timer)
-      if (url.indexOf('noloading') == -1) wx.hideLoading();
+      if (loading_timer) {
+        clearTimeout(loading_timer);
+        loading_timer = null;
+      }
+      if (loading_show == true) wx.hideLoading();
     }
   })
 }
@@ -62,7 +68,7 @@ function z_post(app, url, data, call) {
 }
 
 var z_array = {
-  in: function (array, item){
+  in: function (array, item) {
     var i = array.length;
     while (i--) {
       if (array[i] === item) {
@@ -71,7 +77,7 @@ var z_array = {
     }
     return false;
   },
-  erase: function (array, item){
+  erase: function (array, item) {
     for (var i = array.length; i--;) {
       if (array[i] === item) array.splice(i, 1);
     }

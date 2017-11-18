@@ -44,12 +44,12 @@
         </navigator>
       </view>
       <view class="weui-flex__item">
-        <navigator class="icon-w">
+        <view class="icon-w" bindtap="signin">
           <view class="icon">
             <image src="../../images/h-icon-signin.png" class="x24" style="margin-top:2px"></image>
           </view>
           <text>签到</text>
-        </navigator>
+        </view>
       </view>
     </view>
   </view>
@@ -64,7 +64,7 @@
   <view class="weui-panel weui-panel_access recent_exams">
     <view class="weui-panel__hd">最近答题</view>
     <view class="weui-panel__bd">
-      <navigator url="../exam/exam-result?redirect=1&exam={{item[0]}}" class="weui-media-box rktk-record" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
+      <navigator url="../exam/exam-result?exam={{item[0]}}" class="weui-media-box rktk-record" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
         <view class="weui-media-box__title">{{item[2]}}{{item[1]}}</view>
         <view class="weui-media-box__info">
           <view class="weui-media-box__info__meta">

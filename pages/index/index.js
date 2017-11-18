@@ -25,12 +25,29 @@ Page({
   todayExam: function () {
     var that = this;
     zutils.post(app, 'api/exam/today-exam', function (res) {
-      console.log(res);
       if (res.data.error_code == 0) {
-          var data = res.data.data;
-          wx.redirectTo({
-            url: '../exam/exam?subject=' + data.subject_id + '&exam=' + data.exam_id
-          });
+        var data = res.data.data;
+        wx.redirectTo({
+          url: '../exam/exam?subject=' + data.subject_id + '&exam=' + data.exam_id
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.error_msg || '系统错误',
+          showCancel: false
+        })
+      }
+    });
+  },
+
+  signin: function () {
+    zutils.post(app, 'api/home/signin?noloading', function (res) {
+      if (res.data.error_code == 0) {
+        wx.showToast({
+          title: '签到成功',
+          icon: 'success',
+          duration: 2000
+        });
       } else {
         wx.showModal({
           title: '提示',

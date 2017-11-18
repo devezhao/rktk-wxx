@@ -90,7 +90,7 @@ page, .page {
 }
 
 .page.has-foobar {
-  padding-bottom: 45px;
+  padding-bottom: 56px;
 }
 
 button, button::after, .weui-btn {
