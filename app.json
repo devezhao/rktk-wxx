@@ -15,7 +15,8 @@
     "pages/my/my-favs",
     "pages/my/incorrects",
     "pages/my/coin-buy",
-    "pages/my/coin-records"
+    "pages/my/coin-records",
+    "pages/index/tips"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",

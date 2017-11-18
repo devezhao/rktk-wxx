@@ -42,7 +42,7 @@ Page({
             if (data2.error_code == 0) {
               wx.redirectTo({
                 url: '../exam/exam?subject=' + that.subjectId + '&exam=' + data2.data.exam_id
-              })
+              });
             } else {
               wx.showModal({
                 content: data2.error_msg || '错误',

@@ -18,7 +18,7 @@ function z_get(app, url, call) {
       wx.showLoading({
         title: '请稍后'
       });
-    }, 200);
+    }, 400);
   }
   wx.request({
     url: baseUrl + __url_wrap(app, url),

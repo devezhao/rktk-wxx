@@ -20,5 +20,28 @@ Page({
     zutils.get(app, 'api/home/recent-exams', function (res) {
       that.setData(res.data.data);
     });
+  },
+
+  todayExam: function () {
+    var that = this;
+    zutils.post(app, 'api/exam/today-exam', function (res) {
+      console.log(res);
+      if (res.data.error_code == 0) {
+          var data = res.data.data;
+          wx.redirectTo({
+            url: '../exam/exam?subject=' + data.subject_id + '&exam=' + data.exam_id
+          });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.error_msg || '系统错误',
+          showCancel: false
+        })
+      }
+    });
+  },
+
+  onShareAppMessage: function () {
+    return app.shareData();
   }
 })

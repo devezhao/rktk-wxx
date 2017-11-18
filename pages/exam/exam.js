@@ -17,8 +17,16 @@ Page({
   favList: [],
 
   onLoad: function (e) {
+    if (!e.exam || !e.subject) {
+      wx.redirectTo({
+        url: '../index/tips?msg=非法请求参数'
+      });
+      return;
+    }
+
     this.examId = e.exam;
     this.subjectId = e.subject;
+
     this.dtcardAnimation = wx.createAnimation({
       duration: 200,
       timingFunction: 'ease',
@@ -31,13 +39,17 @@ Page({
     });
 
     var that = this;
-    zutils.get(app, 'api/fav/ids', function (res) {
+    zutils.get(app, 'api/fav/ids?spec=' + this.subjectId, function (res) {
       that.favList = res.data.data;
     });
     this.loadQuestion();
   },
 
   onUnload: function () {
+    this._clearCountdown();
+  },
+
+  _clearCountdown: function(){
     if (this._countdown) {
       clearInterval(this._countdown);
       this._countdown = null;
@@ -56,10 +68,11 @@ Page({
         seqTotal: data.total_result,
         seqCurrent: 1
       });
+
       that.questionList = {};
       for (var i = 0; i < data.result_list.length; i++) {
         var q = data.result_list[i];
-        that.questionList[q['questionId.seq']] = q;
+        that.questionList[q.seq] = q;
       }
       that.renderQuestion();
 
@@ -79,31 +92,30 @@ Page({
 
   renderQuestion: function (s) {
     var that = this;
-    var q_seq = ~~this.data.seqCurrent + (s || 0);
-    var q = that.questionList[q_seq];
-    var q_content = q['questionId.question'];
+    var seq = ~~this.data.seqCurrent + (s || 0);
+    var q = that.questionList[seq];
     var answers_data = {
-      seqCurrent: q_seq,
-      question: q_content,
-      answerList: q.answers,
-      isFirst: q_seq == 1,
-      isLast: q_seq == ~~this.data.seqTotal,
-      isFav: zutils.array.in(this.favList, q['questionId'])
+      seqCurrent: seq,
+      question: q.question,
+      answerList: q._answers,
+      isFirst: seq == 1,
+      isLast: seq == ~~this.data.seqTotal,
+      isFav: zutils.array.in(this.favList, q.questionId)
     };
     console.log(JSON.stringify(answers_data));
 
-    if (q.answers) {
-      answers_data.keySelected = q['questionId.seq'] + '-' + (q.selected || '');
+    if (q._answers) {
+      answers_data.keySelected = seq + '-' + (q._selected || '');
       that.setData(answers_data);
     } else {
-      zutils.get(app, 'api/question/get-answers?question=' + q['questionId'], function (res) {
+      zutils.get(app, 'api/question/get-answers?question=' + q.questionId, function (res) {
         var data = res.data.data.result_list;
         for (var i = 0; i < data.length; i++) {
           var dd = data[i];
           dd.keyText = dd.key.substr(1);
         }
-        q.answers = data;
-        answers_data.answerList = q.answers;
+        q._answers = data;
+        answers_data.answerList = q._answers;
         that.setData(answers_data);
       });
     }
@@ -148,18 +160,19 @@ Page({
   showDtcard: function () {
     var that = this;
     var takes = [];
-    for (var k in this.questionList) {
-      var q = this.questionList[k];
-      var clazz = q.selected && q.selected.length > 0 ? 'active' : '';
-      if (!!clazz && ~~q['questionId.answerNum'] > q.selected.length) clazz += ' half';
-      takes.push({ seq: q['questionId.seq'], clazz: clazz });
+    for (var seq in this.questionList) {
+      var q = this.questionList[seq];
+      var clazz = q._selected && q._selected.length > 0 ? 'active' : '';
+      if (!!clazz && ~~q.answerNum > q._selected.length) clazz += ' half';
+      takes.push({ seq: q.seq, clazz: clazz });
     }
-    this.setData({
-      questionTakes: takes
-    });
+    //this.setData({
+    //  questionTakes: takes
+    //});
 
     this.dtcardAnimation.translateY(0).step();
     this.setData({
+      questionTakes: takes,
       dtcardAnimation: this.dtcardAnimation.export()
     });
   },
@@ -173,16 +186,15 @@ Page({
   fav: function (e) {
     var that = this;
     var q = that.questionList[this.data.seqCurrent];
-    var questionId = q['questionId'];
-    zutils.post(app, 'api/fav/toggle?question=' + questionId, function (res) {
+    zutils.post(app, 'api/fav/toggle?question=' + q.questionId, function (res) {
       var data = res.data.data;
       that.setData({
         isFav: data.is_fav
       });
       if (data.is_fav) {
-        that.favList.push(questionId);
+        that.favList.push(q.questionId);
       } else {
-        zutils.array.erase(that.favList, questionId);
+        zutils.array.erase(that.favList, q.questionId);
       }
     });
   },
@@ -191,7 +203,7 @@ Page({
     var that = this;
     var key = e.currentTarget.dataset.key;
     var key_prefix = key.charAt(0);
-    var _selected = this.questionList[this.data.seqCurrent].selected || [];
+    var _selected = this.questionList[this.data.seqCurrent]._selected || [];
     var _selected_replace = false;
     for (var i = 0; i < _selected.length; i++) {
       var k = _selected[i];
@@ -206,21 +218,21 @@ Page({
     }
 
     var q = that.questionList[this.data.seqCurrent];
-    for (var i = 0; i < q.answers.length; i++) {
-      q.answers[i].clazz = '';
-      if (_selected.join(',').indexOf(q.answers[i].key) > -1) {
-        q.answers[i].clazz = 'selected';
+    for (var i = 0; i < q._answers.length; i++) {
+      q._answers[i].clazz = '';
+      if (_selected.join(',').indexOf(q._answers[i].key) > -1) {
+        q._answers[i].clazz = 'selected';
       }
     }
     this.setData({
-      answerList: q.answers
+      answerList: q._answers
     });
 
     console.log(_selected);
-    this.questionList[this.data.seqCurrent].selected = _selected;
+    this.questionList[this.data.seqCurrent]._selected = _selected;
 
     if (that.examId) {
-      zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.questionId + '&answer=' + _selected.join('/'), function (res) {
+      zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.itemId + '&answer=' + _selected.join('/'), function (res) {
         console.log(res);
       });
     } else {
@@ -232,12 +244,12 @@ Page({
     var undo = 0;
     for (var k in this.questionList) {
       var q = this.questionList[k];
-      if (!q.selected || q.selected.length < ~~q['questionId.answerNum']) undo++;
+      if (!q._selected || q._selected.length < ~~q.answerNum) undo++;
     }
+
     var that= this;
     if (undo > 0) {
       wx.showModal({
-        title: '提示',
         content: '还有' + undo + '道题没答，确认交卷吗？',
         success: function (res) {
           if (res.confirm) {
@@ -247,7 +259,7 @@ Page({
       })
     } else {
       wx.showModal({
-        content: '确认交卷？',
+        content: '确认交卷吗？',
         success: function (res) {
           if (res.confirm) {
             that.finish2();
@@ -263,20 +275,20 @@ Page({
     }
 
     var that = this;
-    zutils.post(app, 'api/exam/finish?exam=' + that.examId, function (res) {
+    wx.showLoading({
+      title: '正在交卷...'
+    });
+    zutils.post(app, 'api/exam/finish?noliading&exam=' + that.examId, function (res) {
       if (res.data.error_code == 0) {
-        if (that._countdown) {
-          clearInterval(that._countdown);
-          that._countdown = null;
-        }
+        that._clearCountdown();
         wx.redirectTo({
-          url: 'exam-result?exam=' + that.examId
+          url: 'exam-result?redirect=1&exam=' + that.examId
         });
       } else {
         wx.showModal({
           title: '提示',
           showCancel: false,
-          content: res.data.error_msg || '错误'
+          content: res.data.error_msg || '系统错误'
         })
       }
     });

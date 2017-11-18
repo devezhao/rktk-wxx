@@ -46,5 +46,15 @@ Page({
     ctx.setLineWidth(5);
     ctx.stroke();
     ctx.draw();
+  },
+
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
+  },
+
+  onShareAppMessage: function(){
+    return app.shareData();
   }
 });

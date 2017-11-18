@@ -64,6 +64,12 @@
 					"name": "my-exams",
 					"pathName": "pages/my/my-exams",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tips",
+					"pathName": "pages/index/tips",
+					"query": ""
 				}
 			]
 		}

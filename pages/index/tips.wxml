@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="icon-box">
+      <icon type="warn" size="88"></icon>
+      <view class="icon-box__title">{{msg}}</view>
+    </view>
+  </view>
+</view>
+<view class="fix-foobar btns">
+  <button class="weui-btn" type="default" bindtap="goHome">返回首页</button>
+</view>

@@ -28,7 +28,7 @@
   overflow: hidden;
 }
 
-.top-column .weui-flex__item navigator text {
+.top-column .weui-flex__item .icon-w text {
   display: block;
   color: #333;
   text-align: center;

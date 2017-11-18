@@ -24,16 +24,16 @@
           <view class="icon">
             <image src="../../images/h-icon-star.png" class="x26"></image>
           </view>
-          <text>收藏</text>
+          <text>我的收藏</text>
         </navigator>
       </view>
       <view class="weui-flex__item">
-        <navigator class="icon-w">
+        <view class="icon-w" bindtap="todayExam">
           <view class="icon">
             <image src="../../images/h-home-rnd.png" class="x30"></image>
           </view>
           <text>每日一练</text>
-        </navigator>
+        </view>
       </view>
       <view class="weui-flex__item hide">
         <navigator class="icon-w">
