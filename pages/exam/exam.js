@@ -15,6 +15,7 @@ Page({
   dtcardAnimation: null,
   questionAnimation: null,
   favList: [],
+  duration: 0,
 
   onLoad: function (e) {
     if (!e.exam || !e.subject) {
@@ -23,6 +24,7 @@ Page({
       });
       return;
     }
+    this.duration = e.duration || 0;
 
     this.examId = e.exam;
     this.subjectId = e.subject;
@@ -49,7 +51,7 @@ Page({
     this._clearCountdown();
   },
 
-  _clearCountdown: function(){
+  _clearCountdown: function () {
     if (this._countdown) {
       clearInterval(this._countdown);
       this._countdown = null;
@@ -76,15 +78,12 @@ Page({
       }
       that.renderQuestion();
 
-      var time = 0;
+      var time = that.duration;
       that._countdown = setInterval(function () {
         time++;
-        var time_m = ~~(time / 60);
-        var time_s = time % 60;
-        time_m = time_m < 10 ? ('0' + time_m) : time_m;
-        time_s = time_s < 10 ? ('0' + time_s) : time_s;
+        var ttt = that.__formatTime(time);
         wx.setNavigationBarTitle({
-          title: '答题中 [' + (time_m + ':' + time_s) + ']'
+          title: '答题中 [' + ttt + ']'
         });
       }, 1000);
     });
@@ -247,14 +246,14 @@ Page({
       if (!q._selected || q._selected.length < ~~q.answerNum) undo++;
     }
 
-    var that= this;
+    var that = this;
     if (undo > 0) {
       wx.showModal({
         content: '还有' + undo + '道题没答，确认交卷吗？',
         confirmText: '交卷',
         success: function (res) {
           if (res.confirm) {
-            that.finish2();
+            that.__finish();
           }
         }
       })
@@ -264,13 +263,13 @@ Page({
         confirmText: '交卷',
         success: function (res) {
           if (res.confirm) {
-            that.finish2();
+            that.__finish();
           }
         }
       })
     }
   },
-  finish2: function () {
+  __finish: function () {
     if (!this.examId) {
       console.error('No exam?');
       return;
@@ -294,6 +293,24 @@ Page({
         })
       }
     });
+  },
+
+  __formatTime: function (time) {
+    var time_h = ~~(time / 60 / 60);
+    if (time_h > 0) {
+      time = time - (time_h * 60 * 60);
+    }
+    var time_m = ~~(time / 60);
+    var time_s = time % 60;
+
+    time_m = time_m < 10 ? ('0' + time_m) : time_m;
+    time_s = time_s < 10 ? ('0' + time_s) : time_s;
+    if (time_h > 0) {
+      //time_h = time_h < 10 ? ('0' + time_h) : time_h;
+      return (time_h + ':' + time_m + ':' + time_s);
+    } else {
+      return (time_m + ':' + time_s);
+    }
   },
 
   onShareAppMessage: function () {

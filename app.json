@@ -16,7 +16,8 @@
     "pages/my/incorrects",
     "pages/my/coin-buy",
     "pages/my/coin-records",
-    "pages/index/tips"
+    "pages/index/tips",
+    "pages/my/my-unexam"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",
