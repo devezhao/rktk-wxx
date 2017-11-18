@@ -54,11 +54,11 @@
     </view>
   </view>
 
-  <block wx:if="{{unexam > 0}}">
-    <view class="unexam">
-      你有 {{unexam}} 个答题尚未完成，超过6小时将自动交卷
+  <block wx:if="{{unexams > 0}}">
+    <navigator url="../my/my-unexam" class="unexam">
+      你有 {{unexams}} 个答题尚未完成，超过6小时将自动交卷
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </view>
+    </navigator>
   </block>
 
   <view class="weui-panel weui-panel_access recent_exams">
@@ -79,8 +79,8 @@
         </view>
       </navigator>
       <block wx:if="{{recent_exams.length == 0}}">
-        <view class="weui-media-box weui-media-box_text">
-          <view class="weui-media-box__title weui-media-box__title_in-text" style="margin:0">
+        <view class="weui-media-box rktk-record">
+          <view class="weui-media-box__title" style="margin:0">
             无最近答题记录
           </view>
         </view>
