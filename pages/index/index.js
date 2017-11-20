@@ -5,6 +5,7 @@ Page({
   onLoad: function () {
     var that = this;
     app.getUserInfo(function () {
+      console.log(app.GLOBAL_DATA.USER_INFO)
       zutils.get(app, 'api/home/recent-exams', function (res) {
         that.setData(res.data.data);
       });
@@ -37,7 +38,7 @@ Page({
         });
       } else {
         var error_msg = res.data.error_msg || '系统错误';
-        if (error_msg.indexOf('考试类型') > -1) {
+        if (error_msg.indexOf('考试类型') > -1 || error_msg.indexOf('尚未选择') > -1) {
           wx.navigateTo({
             url: '../question/subject-choice?back=1'
           });
@@ -55,6 +56,7 @@ Page({
   signin: function () {
     zutils.post(app, 'api/home/signin?noloading', function (res) {
       if (res.data.error_code == 0) {
+        app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.showToast({
           title: '签到成功',
           icon: 'success',

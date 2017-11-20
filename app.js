@@ -77,7 +77,9 @@ App({
   __storeUserInfo: function (res, cb) {
     console.log('存储授权 - ' + JSON.stringify(res))
     var that = this;
-    zutils.post(this, 'api/user/wxx-login', { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData }, function (res2) {
+    var _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
+    _data.inviter = this.GLOBAL_DATA.__inviter || '';
+    zutils.post(this, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
       typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO)
@@ -92,8 +94,7 @@ App({
         that.__storeUserInfo(res, cb);
       }, fail: function (res) {
         wx.showModal({
-          title: '提示',
-          content: '请允许软考题库PRO使用用户信息',
+          content: '请允许使用用户信息',
           showCancel: false,
           success: function () {
             wx.openSetting({
@@ -113,6 +114,7 @@ App({
     if (!!s) {
       url += '&s=' + s;
     }
+    console.log('share: ' + url);
     return { title: '软考刷题必备利器', path: url };
   }
 })

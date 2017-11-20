@@ -29,6 +29,7 @@ Page({
     }
 
     app.GLOBAL_DATA.RELOAD_EXAM = ['Index'];
+    app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
 
     this.dtcardAnimation = wx.createAnimation({
       duration: 200,
