@@ -33,6 +33,7 @@ Page({
     }
 
     wx.showModal({
+      title: '提示',
       content: tips_content,
       confirmText: '开始答题',
       success: function (res) {
@@ -45,6 +46,7 @@ Page({
               });
             } else {
               wx.showModal({
+                title: '提示',
                 content: data2.error_msg || '错误',
                 showCancel: false
               });
@@ -60,6 +62,7 @@ Page({
     //  url: '../exam/explain?subject=' + this.subjectId
     //})
     wx.showModal({
+      title: '提示',
       content: '即将开放',
       showCancel: false
     })

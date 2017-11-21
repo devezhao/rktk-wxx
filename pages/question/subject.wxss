@@ -7,5 +7,5 @@
 }
 
 .fix-foobar .pull-left button.split {
-  border-left: 1px solid #eee;
+  border-left: 1rpx solid #eee;
 }

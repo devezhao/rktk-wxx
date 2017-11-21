@@ -94,7 +94,7 @@ App({
         that.__storeUserInfo(res, cb);
       }, fail: function (res) {
         wx.showModal({
-          content: '请允许使用用户信息',
+          content: '请允许软考必备使用你的用户信息',
           showCancel: false,
           success: function () {
             wx.openSetting({

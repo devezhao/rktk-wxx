@@ -62,7 +62,7 @@
       <view>
         <icon bindtap="closeDtcard" type="cancel" size="42" color="#aaa"></icon>
       </view>
-      <button class="weui-btn" type="primary" bindtap="finish">交卷</button>
+      <button class="weui-btn" type="primary" bindtap="finish">交卷并查看结果</button>
     </view>
   </view>
 </view>

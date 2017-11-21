@@ -6,7 +6,7 @@ Page({
     headimgUrl: '../../images/nohead2.png',
     nick: '游客',
     level: 'Lv.1',
-    subject: '选择考试科目'
+    subject: '选择考试类型'
   },
 
   onLoad: function (e) {

@@ -22,9 +22,8 @@ Page({
   listSubject: function () {
     var that = this;
     zutils.post(app, 'api/subject/list', function (res) {
-      console.log(res);
       if (res.data.error_code > 0) {
-        wx.redirectTo({
+        wx.navigateTo({
           url: 'subject-choice?source=first'
         });
         return;

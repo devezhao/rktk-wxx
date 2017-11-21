@@ -46,7 +46,7 @@ page, .page {
 .top-block {
   padding: 24px 14px;
   background-color: #fff;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1rpx solid #d9d9d9;
   text-align: center;
 }
 
@@ -79,7 +79,7 @@ page, .page {
 }
 
 .fix-foobar.btns {
-  border-top: 1px solid #d9d9d9;
+  border-top: 1rpx solid #d9d9d9;
   margin: 0;
 }
 
@@ -107,12 +107,17 @@ button[type="primary"] {
   opacity: 0.8;
 }
 
+button[type="default"] {
+  color: #000;
+  background-color: #fff;
+}
+
 .weui-cell {
   padding: 10px 14px;
 }
 
 .icon-box {
-  margin-top: 25%;
+  margin-top: 40%;
   text-align: center;
 }
 

@@ -13,7 +13,7 @@ page, .page {
   margin-bottom: 11px;
   font-size: 14px;
   line-height: 1.5;
-  border: 1px solid #eee;
+  border: 1rpx solid #ddd;
 }
 
 .answer-list .item .key {
@@ -26,7 +26,7 @@ page, .page {
 .answer-list .item .text {
   padding: 9px 9px;
   margin-left: 32px;
-  border-left: 1px solid #eee;
+  border-left: 1rpx solid #ddd;
   background-color: #fff;
 }
 
@@ -57,12 +57,12 @@ page, .page {
 }
 
 .answer-list .split-line {
-  border-top: 1px dotted #eee;
+  border-top: 1rpx dotted #ddd;
   margin: 14px 0;
 }
 
 .answerkeys {
-  padding: 11px 0;
+  padding: 10px 0;
   background-color: #eee;
 }
 
@@ -78,15 +78,19 @@ page, .page {
 }
 
 .explain-title {
-  font-size: 17px;
-  margin-top: 14px;
+  border-top: 1rpx solid #d9d9d9;
+  font-size: 15px;
+  margin-top: 18px;
+  font-weight: bold;
+  padding: 14px;
+  padding-bottom: 4px;
 }
 
 .explain-content {
-  color: #555;
   line-height: 1.7;
   font-size: 15px;
-  margin-bottom: 14px;
+  padding: 14px;
+  padding-top: 0;
 }
 
 .fbtns {
@@ -96,7 +100,7 @@ page, .page {
 }
 
 .fbtns .bbtn {
-  border: 1px solid #4b8ef9;
+  border: 1rpx solid #4b8ef9;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -117,4 +121,43 @@ page, .page {
   width: 36px;
   height: 36px;
   margin-top: 3px;
+}
+
+.top-position {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 1;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+
+.top-position .weui-flex__item {
+  padding: 10px;
+  font-size: 14px;
+  position: relative;
+  color: #999;
+}
+
+.top-position .weui-flex__item image {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  margin-left: -17px;
+  top: 12px;
+  display: none;
+}
+
+.top-position .weui-flex__item.active {
+  color: #ec5353;
+}
+
+.top-position .weui-flex__item.active image {
+  display: inline-block;
+}
+
+scroll-view {
+  margin-top: 40px;
 }

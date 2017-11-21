@@ -17,7 +17,8 @@
     "pages/my/coin-buy",
     "pages/my/coin-records",
     "pages/index/tips",
-    "pages/my/my-unexam"
+    "pages/my/my-unexam",
+    "pages/my/user-reg"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",

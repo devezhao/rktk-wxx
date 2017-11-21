@@ -46,7 +46,8 @@ Page({
     var that = this;
     if (!that.data.selected) {
       wx.showModal({
-        content: '请选择考试科目',
+        title: '提示',
+        content: '请选择你的考试类型',
         showCancel: false
       })
       return;

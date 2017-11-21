@@ -240,6 +240,7 @@ Page({
     var that = this;
     if (undo > 0) {
       wx.showModal({
+        title: '提示',
         content: '还有' + undo + '道题没答，确认交卷吗？',
         confirmText: '交卷',
         success: function (res) {
@@ -250,6 +251,7 @@ Page({
       })
     } else {
       wx.showModal({
+        title: '提示',
         content: '确认交卷吗？',
         confirmText: '交卷',
         success: function (res) {

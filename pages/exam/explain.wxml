@@ -1,33 +1,48 @@
-<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '51px'}}">
-  <view class="page__bd">
-    <view class="question">
-      <rich-text nodes="{{question}}"></rich-text>
+<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '49px'}}">
+  <view class="page__hd">
+    <view class="weui-flex top-position">
+      <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
+        <image src="../../images/icon-marker.png"></image> 考题
+      </view>
+      <view class="weui-flex__item {{viewId == 'answers' ? 'active' : ''}}" data-vid="answers" bindtap="position">
+        <image src="../../images/icon-marker.png"></image> 参考答案
+      </view>
+      <view class="weui-flex__item {{viewId == 'explain' ? 'active' : ''}}" data-vid="explain" bindtap="position">
+        <image src="../../images/icon-marker.png"></image> 考题解析
+      </view>
     </view>
-    <view class="answer-list">
-      <block wx:for="{{answer_list}}" wx:key="key_answer_list">
-        <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
-        </view>
-        <view class="item {{item[10]}}">
-          <view class="key">{{item[11]}}</view>
-          <view class="text">
-            <rich-text nodes="{{item[1]}}"></rich-text>
+  </view>
+  <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}" style="height:{{viewHeight}}px">
+    <view class="page__bd" id="question" style="padding-top:1px">
+      <view class="question">
+        <rich-text nodes="{{question}}"></rich-text>
+      </view>
+    </view>
+    <view class="page__bd" id="answers" style="padding-top:1px">
+      <view class="answer-list">
+        <block wx:for="{{answer_list}}" wx:key="key_answer_list">
+          <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
           </view>
-          <view class="clearfix"></view>
-        </view>
-      </block>
+          <view class="item {{item[10]}}">
+            <view class="key">{{item[11]}}</view>
+            <view class="text">
+              <rich-text nodes="{{item[1]}}"></rich-text>
+            </view>
+            <view class="clearfix"></view>
+          </view>
+        </block>
+      </view>
     </view>
-  </view>
-
-  <view class="page__bd">
-    <view class="explain-title">
-      题目解析
+    <view class="page__hd" id="explain">
+      <view class="explain-title">
+        考题解析
+      </view>
+      <view class="explain-content" style="padding-bottom:{{yourAnswer == null ? '15px' : '5px'}}">
+        <rich-text nodes="{{explain}}"></rich-text>
+      </view>
     </view>
-    <view class="explain-content">
-      <rich-text nodes="{{explain}}"></rich-text>
-    </view>
-  </view>
+  </scroll-view>
 </view>
-
 <view class="fbtns" style="{{yourAnswer == null ? 'bottom:11px' : ''}}">
   <button class="bbtn" open-type="share">
     <image src="../../images/share.png" style="margin-top:8px;width:26px;height:26px;"></image>
