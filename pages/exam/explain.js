@@ -5,9 +5,17 @@ Page({
   data: {
     viewId: 'question'
   },
+  questionId: null,
+  answerKey: null,
 
   onLoad: function (e) {
-    console.log(e);
+    if (!e.q) {
+      wx.redirectTo({
+        url: '../index/tips',
+      });
+      return;
+    }
+
     this.questionId = e.q;
     this.answerKey = e.a;
     var that = this;
@@ -79,8 +87,63 @@ Page({
   },
 
   onShareAppMessage: function () {
-    var s = app.shareData();
-    s.title = '[考题解析]' + this.data.question.substr(0,10).replace('，', '') + '...';
+    var s = app.getBaseShareData();
+    s.title = '[考题解析]' + this.data.question.substr(0, 10).replace('，', '') + '...';
     return s;
+  },
+
+  share_CopyLink: function () {
+    var that = this;
+    zutils.get(app, 'api/share/short-url?id=' + this.questionId, function (res) {
+      var text = res.data.data;
+      wx.setClipboardData({
+        data: text,
+        success: function () {
+          wx.showToast({
+            title: '链接已复制'
+          });
+        }
+      });
+    });
+    this.shareboxClose();
+  },
+
+  share_QQ: function () {
+    var that = this;
+    zutils.get(app, 'api/share/token-gen?id=' + this.questionId, function (res) {
+      var text = res.data.data;
+      that.setData({
+        shareboxOpen: false,
+        dialogOpen: true,
+        tokenText: text
+      });
+
+      wx.setClipboardData({
+        data: text
+      });
+      app.GLOBAL_DATA.KT_TOKENS.push(text);
+    });
+  },
+
+  share_Frined: function () {
+    this.shareboxClose();
+  },
+
+  shareboxClose: function () {
+    this.setData({
+      shareboxOpen: false
+    })
+  },
+
+  shareboxOpen: function () {
+    this.setData({
+      shareboxOpen: true
+    })
+  },
+
+  dialogClose: function () {
+    this.setData({
+      dialogOpen: false
+    })
   }
 });

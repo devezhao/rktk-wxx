@@ -1,4 +1,5 @@
 @import "libs/weui.wxss";
+@import "pages/comps/templates.wxss";
 
 page, .page {
   background-color: #eee;
@@ -139,6 +140,16 @@ button[type="default"] {
 
 .weui-navbar__slider {
   background-color: #4b8ef9;
+}
+
+image.x36 {
+  width: 36px;
+  height: 36px;
+}
+
+image.x34 {
+  width: 34px;
+  height: 34px;
 }
 
 image.x32 {

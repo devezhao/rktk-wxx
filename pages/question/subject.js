@@ -25,7 +25,7 @@ Page({
     });
   },
 
-  exam: function () {
+  exam: function (e) {
     var that = this;
     var tips_content = '将进入答题页面，请做好准备';
     if (this.data.coin > 0) {
@@ -38,7 +38,7 @@ Page({
       confirmText: '开始答题',
       success: function (res) {
         if (res.confirm) {
-          zutils.post(app, 'api/exam/start?subject=' + that.subjectId, function (res2) {
+          zutils.post(app, 'api/exam/start?subject=' + that.subjectId + '&formId=' + (e.detail.formId || ''), function (res2) {
             var data2 = res2.data;
             if (data2.error_code == 0) {
               wx.redirectTo({

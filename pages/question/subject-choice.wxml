@@ -54,5 +54,7 @@
 </view>
 
 <view class="fix-foobar btns">
-  <button class="weui-btn" type="default" bindtap="saveChange">确定</button>
+  <form bindsubmit="saveChange" report-submit="true">
+    <button class="weui-btn" type="default" formType="submit">确定</button>
+  </form>
 </view>

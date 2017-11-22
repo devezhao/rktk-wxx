@@ -2,10 +2,12 @@ const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
 Page({
+  data: {},
+
   onLoad: function () {
+    console.log('Index onLoad');
     var that = this;
     app.getUserInfo(function () {
-      console.log(app.GLOBAL_DATA.USER_INFO)
       zutils.get(app, 'api/home/recent-exams', function (res) {
         that.setData(res.data.data);
       });
@@ -72,6 +74,6 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return app.shareData();
+    return app.getBaseShareData();
   }
 })

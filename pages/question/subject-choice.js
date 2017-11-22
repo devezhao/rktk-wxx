@@ -42,7 +42,7 @@ Page({
     this.data.selected = _selected;
   },
 
-  saveChange: function () {
+  saveChange: function (e) {
     var that = this;
     if (!that.data.selected) {
       wx.showModal({
@@ -53,7 +53,7 @@ Page({
       return;
     }
 
-    zutils.post(app, 'api/user/settings?key=MainSubject&value=' + that.data.selected, function (res) {
+    zutils.post(app, 'api/user/settings?key=MainSubject&value=' + that.data.selected + '&formId=' + (e.detail.formId || ''), function (res) {
       app.GLOBAL_DATA.RELOAD_SUBJECT = ['Home', 'Subject'];
       if (that.back == 1) {
         wx.navigateBack();

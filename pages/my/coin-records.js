@@ -25,6 +25,7 @@ Page({
       that.loadRecords();
     });
   },
+  
   loadRecords: function (e) {
     if (!!e) {
       this.setData({

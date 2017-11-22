@@ -44,7 +44,7 @@
   </scroll-view>
 </view>
 <view class="fbtns" style="{{yourAnswer == null ? 'bottom:11px' : ''}}">
-  <button class="bbtn" open-type="share">
+  <button class="bbtn" bindtap="shareboxOpen">
     <image src="../../images/share.png" style="margin-top:8px;width:26px;height:26px;"></image>
   </button>
   <button class="bbtn" bindtap="fav">
@@ -62,4 +62,54 @@
     <text>{{yourAnswer}}</text>
   </view>
   <view class="clearfix"></view>
+</view>
+
+<view id="sharebox" hidden="{{!shareboxOpen}}">
+  <view class="mask"></view>
+  <view class="sharebox">
+    <view class="title">分享考题</view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="icon" bindtap="share_Frined">
+          <image src="../../images/share-weixin.png" class="x36"></image>
+          <button type="default" open-type="share">分享</button>
+        </view>
+        <text>发送给朋友</text>
+      </view>
+      <view class="weui-flex__item">
+        <view class="icon" bindtap="share_QQ">
+          <image src="../../images/share-qq.png" class="x36"></image>
+        </view>
+        <text>分享到手机QQ</text>
+      </view>
+      <view class="weui-flex__item">
+        <view class="icon" bindtap="share_CopyLink">
+          <image src="../../images/share-link2.png" class="x34" style="margin-top:13px"></image>
+        </view>
+        <text>复制链接</text>
+      </view>
+      <view class="weui-flex__item">
+      </view>
+      <view class="weui-flex__item">
+      </view>
+    </view>
+    <view>
+      <button class="weui-btn" type="default" bindtap="shareboxClose">取消</button>
+    </view>
+  </view>
+</view>
+
+<view id="dialog" hidden="{{!dialogOpen}}">
+  <view class="mask"></view>
+  <view class="dialog">
+    <view class="text">
+      <text class="token-title">考题口令已复制，请发送给QQ好友</text>
+      <view class="token-text">
+        {{tokenText}}
+      </view>
+    </view>
+    <view class="btns">
+      <button class="weui-btn" bindtap="dialogClose">知道了</button>
+    </view>
+  </view>
 </view>

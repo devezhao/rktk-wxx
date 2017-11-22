@@ -4,6 +4,7 @@
     "pages/index/go",
     "pages/index/about",
     "pages/index/h5",
+    "pages/index/tips",
     "pages/question/subject-choice",
     "pages/question/subject-list",
     "pages/question/subject",
@@ -16,7 +17,6 @@
     "pages/my/incorrects",
     "pages/my/coin-buy",
     "pages/my/coin-records",
-    "pages/index/tips",
     "pages/my/my-unexam",
     "pages/my/user-reg"
   ],

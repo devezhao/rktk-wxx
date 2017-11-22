@@ -25,7 +25,9 @@
       <button class="weui-btn" type="primary" bindtap="explain">考题解析</button>
     </view>
     <view class="pull-left">
-      <button class="weui-btn split" type="primary" bindtap="exam">开始答题</button>
+      <form bindsubmit="exam" report-submit="true">
+        <button class="weui-btn split" type="primary" formType="submit">开始答题</button>
+      </form>
     </view>
   </view>
 </view>

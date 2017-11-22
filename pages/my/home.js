@@ -3,7 +3,7 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    headimgUrl: '../../images/nohead2.png',
+    headimgUrl: '../../images/afo.png',
     nick: '游客',
     level: 'Lv.1',
     subject: '选择考试类型'
@@ -38,9 +38,5 @@ Page({
         coin: res.data.data.coin_balance
       })
     });
-  },
-
-  onShareAppMessage: function () {
-    return app.shareData();
   }
 });

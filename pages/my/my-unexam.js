@@ -17,9 +17,5 @@ Page({
         exams: res.data.data
       });
     });
-  },
-
-  onShareAppMessage: function (e) {
-    return app.shareData(e);
   }
 });

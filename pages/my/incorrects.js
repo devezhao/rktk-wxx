@@ -19,9 +19,5 @@ Page({
         nodata: that.pageNo == 1 && data.length == 0
       });
     });
-  },
-
-  onShareAppMessage: function (e) {
-    return app.shareData(e);
   }
 });

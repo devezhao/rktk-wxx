@@ -7,7 +7,7 @@ Page({
 
   onLoad: function (e) {
     this.setData({
-      msg: e.msg || '非法请求参数'
+      msg: e.msg || '无效的请求参数'
     });
   },
 

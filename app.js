@@ -2,11 +2,13 @@ const zutils = require('utils/zutils.js');
 
 App({
   GLOBAL_DATA: {
+    // 用户信息
     USER_INFO: null,
     // 数据刷新
     RELOAD_SUBJECT: [],
     RELOAD_EXAM: [],
-    RELOAD_COIN: []
+    RELOAD_COIN: [],
+    KT_TOKENS: []
   },
 
   onLaunch: function (e) {
@@ -15,24 +17,95 @@ App({
       key: 'USER_INFO',
       success: function (res) {
         that.GLOBAL_DATA.USER_INFO = res.data;
-        console.log('onLaunch checkUserInfo - ' + JSON.stringify(res))
+        console.log('Launch checkUserInfo - ' + JSON.stringify(res))
+      },
+      complete: function () {
+        that.__checkUserInfo(null, false);
       }
     });
   },
 
-  onShow: function () {
-    this.checkUserInfo(null, false);
+  onShow: function (e) {
+    console.log("小程序进入前台: " + JSON.stringify(e));
+    var rktk_token = false;
+    var that = this;
+    wx.getClipboardData({
+      success: function (res) {
+        if (res.data && res.data.substr(0, 6) == '#考题解析#') {
+          // 非自己分享的
+          if (zutils.array.in(that.GLOBAL_DATA.KT_TOKENS, res.data) == false) {
+            rktk_token = true;
+            zutils.get(this, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
+              if (res2.data.error_code == 0) {
+                var _data = res2.data.data;
+                console.log(_data)
+                wx.showModal({
+                  confirmText: '查看考题',
+                  title: '考题口令',
+                  content: _data.content,
+                  success: function (res3) {
+                    if (res3.confirm) {
+                      wx.navigateTo({
+                        url: '../exam/explain?q=' + _data.id,
+                        fail: function () {
+                          wx.navigateTo({
+                            url: '../../exam/explain?q=' + _data.id
+                          });
+                        }
+                      })
+                    }
+                  }
+                });
+              }
+            });
+          }
+        }
+      }
+    });
+
+    // 清理口令
+    setTimeout(function () {
+      if (rktk_token == true) {
+        wx.setClipboardData({
+          data: '',
+        });
+      }
+    }, 3000);
   },
 
   onError: function (e) {
     console.error("出现错误: " + JSON.stringify(e));
   },
 
-  checkUserInfo: function (cb, needLogin) {
+  // 需要授权才能访问的页面/资源先调用此方法
+  // 在回调函数中执行实际的业务操作
+  getUserInfo: function (cb) {
+    if (this.GLOBAL_DATA.USER_INFO) {
+      typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
+    } else {
+      var that = this;
+      wx.login({
+        success: function (res) {
+          that.login_code = res.code;
+          wx.getUserInfo({
+            success: function (res2) {
+              res2.code = res.code;
+              that.__storeUserInfo(res2, cb);
+            }, fail: function (res2) {
+              that.__forceUserInfo(cb);
+            }
+          })
+        }
+      })
+    }
+  },
+
+  __checkUserInfo: function (cb, needLogin) {
+    console.log('检查授权 - cb=' + (cb == null ? 'N' : 'Y') + ', needLogin=' + (needLogin ? 'Y' : 'N'));
     var that = this;
     wx.checkSession({
       fail: function () {
-        if (needLogin == true) that.getUserInfo()
+        if (needLogin == true) that.getUserInfo(cb)
       },
       success: function () {
         if (that.GLOBAL_DATA.USER_INFO) {
@@ -45,33 +118,12 @@ App({
               typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO);
             },
             fail: function () {
-              if (needLogin == true) that.getUserInfo()
+              if (needLogin == true) that.getUserInfo(cb)
             }
           });
         }
       }
     });
-  },
-
-  getUserInfo: function (cb) {
-    if (this.GLOBAL_DATA.USER_INFO) {
-      typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
-    } else {
-      var that = this;
-      wx.login({
-        success: function (res1) {
-          that.login_code = res1.code;
-          wx.getUserInfo({
-            success: function (res2) {
-              res2.code = res1.code;
-              that.__storeUserInfo(res2, cb);
-            }, fail: function (res2) {
-              that.__forceUserInfo(cb);
-            }
-          })
-        }
-      })
-    }
   },
 
   __storeUserInfo: function (res, cb) {
@@ -83,7 +135,6 @@ App({
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
       typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO)
-      wx.hideLoading()
     })
   },
 
@@ -94,6 +145,7 @@ App({
         that.__storeUserInfo(res, cb);
       }, fail: function (res) {
         wx.showModal({
+          title: '提示',
           content: '请允许软考必备使用你的用户信息',
           showCancel: false,
           success: function () {
@@ -109,7 +161,7 @@ App({
   },
 
   // 分享数据
-  shareData: function (s) {
+  getBaseShareData: function (s) {
     var url = '/pages/index/go?u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
     if (!!s) {
       url += '&s=' + s;
