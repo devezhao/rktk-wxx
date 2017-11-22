@@ -96,7 +96,6 @@ Page({
       isLast: seq == ~~this.data.seqTotal,
       isFav: zutils.array.in(this.favList, q.questionId)
     };
-    console.log(JSON.stringify(answers_data));
 
     if (q._answers) {
       that.setData(answers_data);
@@ -115,11 +114,11 @@ Page({
         answers_data.answerList = q._answers;
         that.setData(answers_data);
 
-        setTimeout(function(){
-          wx.pageScrollTo({
-            scrollTop: 0
-          });
-        }, 200)
+        //setTimeout(function(){
+        //  wx.pageScrollTo({
+        //    scrollTop: 0
+        //  });
+        //}, 200)
       });
     }
   },
