@@ -111,7 +111,7 @@ page, .page {
   color: #fff;
   background-color: #4b8ef9;
   line-height: 42px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .dt-card {

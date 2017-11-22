@@ -20,7 +20,7 @@
     </block>
   </view>
 
-  <block wx:if="{{subname1 == null && subname2 == null}}">
+  <block wx:if="{{showNosubject}}">
     <view class="page__bd" style="text-align:center;">
       <view class="icon-box">
         <icon type="info" size="88"></icon>

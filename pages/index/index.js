@@ -46,6 +46,7 @@ Page({
           });
         } else {
           wx.showModal({
+            title: '提示',
             content: error_msg,
             showCancel: false
           });
@@ -60,8 +61,7 @@ Page({
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.showToast({
           title: '签到成功',
-          icon: 'success',
-          duration: 2000
+          icon: 'success'
         });
       } else {
         wx.showModal({

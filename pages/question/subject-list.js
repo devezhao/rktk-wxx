@@ -23,17 +23,21 @@ Page({
     var that = this;
     zutils.post(app, 'api/subject/list', function (res) {
       if (res.data.error_code > 0) {
+        that.setData({
+          showNosubject: true
+        })
         wx.navigateTo({
           url: 'subject-choice?source=first'
         });
         return;
       }
 
-      var data = res.data.data;
+      var _data = res.data.data;
       wx.setNavigationBarTitle({
-        title: data.subject
+        title: _data.subject
       });
-      that.setData(data);
+      _data.showNosubject = false;
+      that.setData(_data);
     });
   },
 

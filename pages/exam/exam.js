@@ -114,6 +114,12 @@ Page({
         q._answers = data;
         answers_data.answerList = q._answers;
         that.setData(answers_data);
+
+        setTimeout(function(){
+          wx.pageScrollTo({
+            scrollTop: 0
+          });
+        }, 200)
       });
     }
   },
@@ -183,7 +189,6 @@ Page({
       answerList: q._answers
     });
 
-    console.log(_selected);
     this.questionList[this.data.seqCurrent]._selected = _selected;
 
     zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.itemId + '&answer=' + _selected.join('/'), function (res) {
@@ -272,7 +277,7 @@ Page({
     wx.showLoading({
       title: '正在判题...'
     });
-    zutils.post(app, 'api/exam/finish?noliading&exam=' + that.examId, function (res) {
+    zutils.post(app, 'api/exam/finish?noloading&exam=' + that.examId, function (res) {
       if (res.data.error_code == 0) {
         that.__clearCountdown();
         wx.redirectTo({

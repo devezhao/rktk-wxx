@@ -9,8 +9,11 @@ Page({
 
   onLoad: function (e) {
     this.examId = e.exam;
-    this.loadResult();
-    
+    var that = this;
+    app.getUserInfo(function () {
+      that.loadResult();
+    });
+
     if (e.redirect == 1) {
       this.setData({
         hideFoobar: false
@@ -61,7 +64,7 @@ Page({
     });
   },
 
-  onShareAppMessage: function(){
+  onShareAppMessage: function () {
     return app.shareData();
   }
 });

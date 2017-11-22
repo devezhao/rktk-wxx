@@ -26,7 +26,8 @@
 }
 
 .sharebox .weui-flex {
-  margin: 14px 9px;
+  margin: 17px 9px;
+  margin-bottom: 14px;
 }
 
 .sharebox .weui-flex__item .icon {
