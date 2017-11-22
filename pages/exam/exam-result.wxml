@@ -4,6 +4,7 @@
       <canvas class="circle" canvas-id="circle-scope">
         <view class="circle-scope {{scope_color}}">
           {{scope}}
+          <text>分</text>
         </view>
       </canvas>
       <view class="title" style="margin-top:6px;">
