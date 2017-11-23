@@ -40,18 +40,13 @@ App({
                 var _data = res2.data.data;
                 console.log(_data)
                 wx.showModal({
-                  confirmText: '查看考题',
                   title: '考题口令',
+                  confirmText: '查看考题',
                   content: _data.content,
                   success: function (res3) {
                     if (res3.confirm) {
                       wx.navigateTo({
                         url: '../exam/explain?q=' + _data.id,
-                        fail: function () {
-                          wx.navigateTo({
-                            url: '../../exam/explain?q=' + _data.id
-                          });
-                        }
                       })
                     }
                   }
@@ -161,12 +156,13 @@ App({
   },
 
   // 分享数据
-  getBaseShareData: function (s) {
-    var url = '/pages/index/go?u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
-    if (!!s) {
-      url += '&s=' + s;
-    }
-    console.log('share: ' + url);
-    return { title: '软考刷题必备利器', path: url };
+  warpShareData: function (url) {
+    url = url || '/pages/index/go';
+    if (url.indexOf('?') > -1) url += '&';
+    else url += '?';
+    url += '_su=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
+    var d = { title: '软考刷题必备利器', path: url };
+    console.log(d);
+    return d;
   }
 })

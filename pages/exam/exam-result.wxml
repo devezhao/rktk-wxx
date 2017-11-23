@@ -19,7 +19,7 @@
   </view>
   <view class="page__hd">
     <view class="seqs">
-      <navigator class="item {{item[2] == item[3] ? 'right' : ''}}" wx:for="{{exam_items}}" wx:key="key_exam_items" url="explain?q={{item[0]}}&a={{item[3]}}">
+      <navigator class="item {{item[2] == item[3] ? 'right' : ''}}" wx:for="{{exam_items}}" wx:key="key_exam_items" url="explain?id={{item[0]}}&a={{item[3]}}">
         {{item[1]}}
       </navigator>
       <view class="clearfix"></view>

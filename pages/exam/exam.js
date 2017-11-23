@@ -280,7 +280,7 @@ Page({
       if (res.data.error_code == 0) {
         that.__clearCountdown();
         wx.redirectTo({
-          url: 'exam-result?redirect=1&exam=' + that.examId
+          url: 'exam-result?redirect=1&id=' + that.examId
         });
       } else {
         wx.showModal({
@@ -318,9 +318,5 @@ Page({
         title: '软考必备'
       });
     }
-  },
-
-  onShareAppMessage: function () {
-    return app.shareData('exam&id=' + this.subjectId);
   }
 });

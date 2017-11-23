@@ -34,6 +34,6 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return app.shareData();
+    return app.warpShareData();
   }
 })

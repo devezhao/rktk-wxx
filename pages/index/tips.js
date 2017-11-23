@@ -15,9 +15,5 @@ Page({
     wx.switchTab({
       url: 'index'
     });
-  },
-
-  onShareAppMessage: function () {
-    return app.shareData();
   }
 })

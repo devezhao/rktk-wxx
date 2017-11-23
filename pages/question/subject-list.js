@@ -42,6 +42,10 @@ Page({
   },
 
   onShareAppMessage: function (e) {
-    return app.shareData(e);
+    var d = app.warpShareData('/pages/question/subject-list');
+    if (this.data.subject) d.title = this.data.subject + '题库';
+    else d.title = '软考题库';
+    console.log(d);
+    return d;
   }
 });

@@ -9,14 +9,14 @@ Page({
   answerKey: null,
 
   onLoad: function (e) {
-    if (!e.q) {
+    if (!e.id) {
       wx.redirectTo({
         url: '../index/tips',
       });
       return;
     }
 
-    this.questionId = e.q;
+    this.questionId = e.id;
     this.answerKey = e.a;
     var that = this;
     app.getUserInfo(function () {
@@ -87,9 +87,10 @@ Page({
   },
 
   onShareAppMessage: function () {
-    var s = app.getBaseShareData();
-    s.title = '[考题解析]' + this.data.question.substr(0, 10).replace('，', '') + '...';
-    return s;
+    var d = app.warpShareData('/pages/exam/explain?id=' + this.questionId);
+    d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 10) + '...';
+    console.log(d);
+    return d;
   },
 
   share_CopyLink: function () {

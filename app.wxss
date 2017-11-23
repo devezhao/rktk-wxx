@@ -1,5 +1,4 @@
 @import "libs/weui.wxss";
-@import "pages/comps/templates.wxss";
 
 page, .page {
   background-color: #eee;

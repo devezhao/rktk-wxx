@@ -8,7 +8,7 @@ Page({
   examId: null,
 
   onLoad: function (e) {
-    this.examId = e.exam;
+    this.examId = e.id;
     var that = this;
     app.getUserInfo(function () {
       that.loadResult();
@@ -65,6 +65,6 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return app.shareData();
+    return app.warpShareData();
   }
 });

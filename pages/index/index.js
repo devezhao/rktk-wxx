@@ -74,6 +74,6 @@ Page({
   },
 
   onShareAppMessage: function () {
-    return app.getBaseShareData();
+    return app.warpShareData();
   }
 })

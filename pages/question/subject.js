@@ -68,9 +68,10 @@ Page({
     })
   },
 
-  onShareAppMessage: function (e) {
-    var d = app.shareData(e);
-    d.title = this.fullName;
+  onShareAppMessage: function () {
+    var d = app.warpShareData('/pages/question/subject?id=' + this.subjectId);
+    if (this.fullName) d.title = this.fullName;
+    console.log(d);
     return d;
   }
 });
