@@ -222,11 +222,15 @@ Page({
     var that = this;
     var q = that.questionList[this.data.seqCurrent];
     zutils.post(app, 'api/fav/toggle?question=' + q.questionId, function (res) {
-      var data = res.data.data;
+      var _data = res.data.data;
       that.setData({
-        isFav: data.is_fav
+        isFav: _data.is_fav
       });
-      if (data.is_fav) {
+      wx.showToast({
+        title: _data.is_fav ? '已加入收藏' : '已取消收藏'
+      });
+
+      if (_data.is_fav) {
         that.favList.push(q.questionId);
       } else {
         zutils.array.erase(that.favList, q.questionId);

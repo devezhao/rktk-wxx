@@ -1,8 +1,12 @@
 const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
+import { zsharebox } from '../comps/z-sharebox.js';
+zsharebox.data.typeName = '考题';
+
 Page({
   data: {
+    shareboxData: zsharebox.data,
     viewId: 'question'
   },
   questionId: null,
@@ -72,9 +76,12 @@ Page({
   fav: function (e) {
     var that = this;
     zutils.post(app, 'api/fav/toggle?question=' + this.questionId, function (res) {
-      var data = res.data.data;
+      var _data = res.data.data;
       that.setData({
-        isFav: data.is_fav
+        isFav: _data.is_fav
+      });
+      wx.showToast({
+        title: _data.is_fav ? '已加入收藏' : '已取消收藏'
       });
     });
   },
@@ -93,58 +100,25 @@ Page({
     return d;
   },
 
-  share_CopyLink: function () {
-    var that = this;
-    zutils.get(app, 'api/share/short-url?id=' + this.questionId, function (res) {
-      var text = res.data.data;
-      wx.setClipboardData({
-        data: text,
-        success: function () {
-          wx.showToast({
-            title: '链接已复制'
-          });
-        }
-      });
-    });
-    this.shareboxClose();
-  },
-
-  share_QQ: function () {
-    var that = this;
-    zutils.get(app, 'api/share/token-gen?id=' + this.questionId, function (res) {
-      var text = res.data.data;
-      that.setData({
-        shareboxOpen: false,
-        dialogOpen: true,
-        tokenText: text
-      });
-
-      wx.setClipboardData({
-        data: text
-      });
-      app.GLOBAL_DATA.KT_TOKENS.push(text);
-    });
-  },
-
-  share_Frined: function () {
-    this.shareboxClose();
-  },
-
-  shareboxClose: function () {
-    this.setData({
-      shareboxOpen: false
-    })
-  },
-
   shareboxOpen: function () {
-    this.setData({
-      shareboxOpen: true
-    })
+    zsharebox.shareboxOpen(this);
   },
-
+  shareboxClose: function () {
+    zsharebox.shareboxClose(this);
+  },
+  dialogOpen: function () {
+    zsharebox.dialogOpen(this);
+  },
   dialogClose: function () {
-    this.setData({
-      dialogOpen: false
-    })
+    zsharebox.dialogClose(this);
+  },
+  share2Frined: function () {
+    zsharebox.share2Frined(this);
+  },
+  share2QQ: function () {
+    zsharebox.share2QQ(this);
+  },
+  share2CopyLink: function () {
+    zsharebox.share2CopyLink(this);
   }
 });

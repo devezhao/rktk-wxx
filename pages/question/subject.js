@@ -1,12 +1,23 @@
 const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
+import { zsharebox } from '../comps/z-sharebox.js';
+zsharebox.data.typeName = '题库';
+
 Page({
   data: {
+    shareboxData: zsharebox.data
   },
   subjectId: null,
 
   onLoad: function (e) {
+    var that = this;
+    app.getUserInfo(function () {
+      that.__onLoad(e);
+    });
+  },
+
+  __onLoad: function (e) {
     var that = this;
     that.subjectId = e.id;
     zutils.get(app, 'api/subject/details?id=' + that.subjectId, function (res) {
@@ -25,7 +36,7 @@ Page({
     });
   },
 
-  exam: function (e) {
+  toExam: function (e) {
     var that = this;
     var tips_content = '将进入答题页面，请做好准备';
     if (this.data.coin > 0) {
@@ -57,7 +68,7 @@ Page({
     });
   },
 
-  explain: function () {
+  toExplain: function () {
     wx.showModal({
       title: '提示',
       content: '即将开放',
@@ -70,5 +81,33 @@ Page({
     if (this.fullName) d.title = this.fullName;
     console.log(d);
     return d;
+  },
+
+  shareboxOpen: function () {
+    zsharebox.shareboxOpen(this);
+  },
+  shareboxClose: function () {
+    zsharebox.shareboxClose(this);
+  },
+  dialogOpen: function () {
+    zsharebox.dialogOpen(this);
+  },
+  dialogClose: function () {
+    zsharebox.dialogClose(this);
+  },
+  share2Frined: function () {
+    zsharebox.share2Frined(this);
+  },
+  share2QQ: function () {
+    zsharebox.share2QQ(this);
+  },
+  share2CopyLink: function () {
+    zsharebox.share2CopyLink(this);
   }
 });
+
+//zutils.extends(PageHandler, zsharebox.methods);
+//PageHandler.shareboxOpen = function(){
+//  zsharebox.methods.shareboxOpen(this);
+//}
+//Page(PageHandler);

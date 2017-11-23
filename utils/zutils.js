@@ -8,7 +8,7 @@ function __url_wrap(app, url) {
     url += 'wxxuid=' + app.GLOBAL_DATA.USER_INFO.uid
   }
   return url;
-}
+};
 
 // GET 方法
 function z_get(app, url, call) {
@@ -37,7 +37,7 @@ function z_get(app, url, call) {
       if (loading_show == true) wx.hideLoading();
     }
   });
-}
+};
 
 // POST 方法
 function z_post(app, url, data, call) {
@@ -72,7 +72,7 @@ function z_post(app, url, data, call) {
       if (loading_show == true) wx.hideLoading();
     }
   });
-}
+};
 
 var z_array = {
   in: function (array, item) {
@@ -95,12 +95,25 @@ var z_array = {
     if (isIn) this.erase(array, item);
     return isIn;
   }
-}
+};
+
+var z_extends = function (dest, source) {
+  for (var prop in source) {
+    if (prop.substr(0, 1) == '_') {
+      // No copy
+    } else {
+      dest[prop] = source[prop];
+    }
+  }
+  for (var prop in dest) console.log(prop);
+  return dest;
+};
 
 // API
 module.exports = {
   get: z_get,
   post: z_post,
   baseUrl: baseUrl,
-  array: z_array
+  array: z_array,
+  extends: z_extends
 };

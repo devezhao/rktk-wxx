@@ -1,0 +1,49 @@
+<template name="z-sharebox">
+  <view id="sharebox" hidden="{{shareboxHide}}">
+    <view class="mask" bindtap="shareboxClose"></view>
+    <view class="sharebox">
+      <view class="title">分享{{typeName}}</view>
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="icon" bindtap="share2Frined">
+            <image src="../../images/share-weixin.png" class="x36"></image>
+            <button type="default" open-type="share">分享</button>
+          </view>
+          <text>发送给朋友</text>
+        </view>
+        <view class="weui-flex__item">
+          <view class="icon" bindtap="share2QQ">
+            <image src="../../images/share-qq.png" class="x36"></image>
+          </view>
+          <text>分享到手机QQ</text>
+        </view>
+        <view class="weui-flex__item">
+          <view class="icon" bindtap="share2CopyLink">
+            <image src="../../images/share-link2.png" class="x34" style="margin-top:13px"></image>
+          </view>
+          <text>复制链接</text>
+        </view>
+        <view class="weui-flex__item">
+        </view>
+      </view>
+      <view>
+        <button class="weui-btn" type="default" bindtap="shareboxClose">取消</button>
+      </view>
+    </view>
+  </view>
+
+  <view id="dialog" hidden="{{dialogHide}}">
+    <view class="mask" bindtap="dialogClose"></view>
+    <view class="dialog">
+      <view class="text">
+        <text class="token-title">{{typeName}}口令已复制，请发送给QQ好友</text>
+        <view class="token-text">
+          {{typeTokenText}}
+        </view>
+      </view>
+      <view class="btns">
+        <button class="weui-btn" bindtap="dialogClose">知道了</button>
+      </view>
+    </view>
+  </view>
+</template>

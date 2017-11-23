@@ -26,8 +26,8 @@
 }
 
 .sharebox .weui-flex {
-  margin: 17px 9px;
-  margin-bottom: 14px;
+  margin: 22px 13px;
+  margin-bottom: 21px;
 }
 
 .sharebox .weui-flex__item .icon {
@@ -90,7 +90,7 @@
 .dialog button {
   color: #0bb20c;
   font-size: 17px;
-  border-top: 1rpx solid #eee;
+  border-top: 1rpx solid #d9d9d9;
   background-color: #fff;
   padding: 2px;
 }
