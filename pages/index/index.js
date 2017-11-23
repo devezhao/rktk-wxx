@@ -67,7 +67,7 @@ Page({
   },
 
   signin: function () {
-    zutils.post(app, 'api/home/signin?noloading', function (res) {
+    zutils.post(app, 'api/home/signin', function (res) {
       if (res.data.error_code == 0) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.showToast({

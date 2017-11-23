@@ -58,9 +58,6 @@ Page({
   },
 
   explain: function () {
-    //wx.navigateTo({
-    //  url: '../exam/explain?subject=' + this.subjectId
-    //})
     wx.showModal({
       title: '提示',
       content: '即将开放',

@@ -32,6 +32,10 @@ App({
 
   onShow: function (e) {
     console.log("小程序进入前台: " + JSON.stringify(e));
+    this.__checkToken();
+  },
+
+  __checkToken: function(){
     var rktk_token = false;
     var that = this;
     wx.getClipboardData({
@@ -43,7 +47,6 @@ App({
             zutils.get(this, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
               if (res2.data.error_code == 0) {
                 var _data = res2.data.data;
-                console.log(_data)
                 wx.showModal({
                   title: '考题口令',
                   confirmText: '查看考题',
@@ -51,7 +54,7 @@ App({
                   success: function (res3) {
                     if (res3.confirm) {
                       wx.navigateTo({
-                        url: '../exam/explain?q=' + _data.id,
+                        url: '../exam/explain?id=' + _data.id,
                       })
                     }
                   }
@@ -62,7 +65,7 @@ App({
         }
       }
     });
-
+    
     // 清理口令
     setTimeout(function () {
       if (rktk_token == true) {
