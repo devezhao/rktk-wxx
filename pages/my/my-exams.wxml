@@ -19,6 +19,7 @@
       </view>
     </view>
   </view>
+
   <view class="page__bd">
     <view class="icon-box" hidden="{{!nodata}}">
       <icon type="info" size="93"></icon>

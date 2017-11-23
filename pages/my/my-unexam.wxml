@@ -24,4 +24,11 @@
       </view>
     </view>
   </view>
+
+  <view class="page__bd">
+    <view class="icon-box" hidden="{{!nodata}}">
+      <icon type="info" size="88"></icon>
+      <view class="icon-box__title">没有未答题</view>
+    </view>
+  </view>
 </view>

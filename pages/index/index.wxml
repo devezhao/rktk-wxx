@@ -56,7 +56,7 @@
 
   <block wx:if="{{unexams > 0}}">
     <navigator url="../my/my-unexam" class="unexam">
-      你有 {{unexams}} 个答题尚未完成，超过6小时将自动交卷
+      有 {{unexams}} 份答题尚未完成，超过6小时将自动交卷
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </block>

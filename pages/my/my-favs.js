@@ -7,7 +7,10 @@ Page({
   pageNo: 1,
 
   onLoad: function (e) {
-    this.list();
+    var that = this;
+    app.getUserInfo(function () {
+      that.list();
+    })
   },
 
   list: function () {
