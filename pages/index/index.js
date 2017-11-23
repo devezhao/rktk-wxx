@@ -4,25 +4,36 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {},
 
-  onLoad: function () {
-    console.log('Index onLoad');
+  onLoad: function (e) {
     var that = this;
-    app.getUserInfo(function () {
-      zutils.get(app, 'api/home/recent-exams', function (res) {
-        that.setData(res.data.data);
-      });
-    });
-
     zutils.get(app, 'api/home/banners', function (res) {
       that.setData({
         banners: res.data.data
       })
     });
+
+    app.getUserInfo(function () {
+      zutils.get(app, 'api/home/recent-exams', function (res) {
+        that.setData(res.data.data);
+        that.__checkTwxx(e.q);
+      });
+    });
+  },
+
+  __checkTwxx: function (q) {
+    if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
+      zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
+        if (res.data.error_code == 0) {
+          wx.navigateTo({
+            url: res.data.data
+          })
+        }
+      });
+    }
   },
 
   onShow: function () {
-    if (zutils.array.in(app.GLOBAL_DATA.RELOAD_EXAM, 'Index')) {
-      zutils.array.erase(app.GLOBAL_DATA.RELOAD_EXAM, 'Index');
+    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_EXAM, 'Index')) {
       var that = this;
       zutils.get(app, 'api/home/recent-exams', function (res) {
         that.setData(res.data.data);

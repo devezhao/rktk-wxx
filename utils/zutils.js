@@ -1,5 +1,5 @@
-const baseUrl = 'https://rktk.qidapp.com/';
-//const baseUrl = 'http://192.168.0.159:8080/rktk/';
+//const baseUrl = 'https://rktk.qidapp.com/';
+const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 function __url_wrap(app, url) {
   if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
@@ -20,8 +20,9 @@ function z_get(app, url, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 300);
+    }, 200);
   }
+
   wx.request({
     url: baseUrl + __url_wrap(app, url),
     method: 'GET',
@@ -35,7 +36,7 @@ function z_get(app, url, call) {
       }
       if (loading_show == true) wx.hideLoading();
     }
-  })
+  });
 }
 
 // POST 方法
@@ -44,14 +45,18 @@ function z_post(app, url, data, call) {
     call = data;
     data = null;
   }
-  var req_timer;
+
+  var loading_timer;
+  var loading_show = false;
   if (url.indexOf('noloading') == -1) {
-    req_timer = setTimeout(function () {
+    loading_timer = setTimeout(function () {
       wx.showLoading({
         title: '请稍后'
       });
+      loading_show = true;
     }, 200);
   }
+
   wx.request({
     url: baseUrl + __url_wrap(app, url),
     method: 'POST',
@@ -60,10 +65,13 @@ function z_post(app, url, data, call) {
     fail: function (res) {
       console.error('请求失败<POST:' + url + '> - ' + JSON.stringify(res || []));
     }, complete: function () {
-      if (req_timer) clearTimeout(req_timer)
-      if (url.indexOf('noloading') == -1) wx.hideLoading();
+      if (loading_timer) {
+        clearTimeout(loading_timer);
+        loading_timer = null;
+      }
+      if (loading_show == true) wx.hideLoading();
     }
-  })
+  });
 }
 
 var z_array = {
@@ -81,6 +89,11 @@ var z_array = {
       if (array[i] === item) array.splice(i, 1);
     }
     return array;
+  },
+  inAndErase: function (array, item) {
+    var isIn = this.in(array, item);
+    if (isIn) this.erase(array, item);
+    return isIn;
   }
 }
 

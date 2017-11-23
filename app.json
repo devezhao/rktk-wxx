@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index/go",
     "pages/index/about",
     "pages/index/h5",
     "pages/index/tips",

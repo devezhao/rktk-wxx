@@ -12,6 +12,11 @@ App({
   },
 
   onLaunch: function (e) {
+    console.log("小程序初始化: " + JSON.stringify(e));
+    if (e.u) {
+      app.GLOBAL_DATA.__inviter = e.u;
+    }
+
     var that = this;
     wx.getStorage({
       key: 'USER_INFO',
@@ -157,12 +162,19 @@ App({
 
   // 分享数据
   warpShareData: function (url) {
-    url = url || '/pages/index/go';
+    url = url || '/pages/index/index';
     if (url.indexOf('?') > -1) url += '&';
     else url += '?';
     url += '_su=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
     var d = { title: '软考刷题必备利器', path: url };
     console.log(d);
     return d;
+  },
+
+  // 到首页
+  goHome: function(){
+    wx.switchTab({
+      url: 'index'
+    });
   }
 })
