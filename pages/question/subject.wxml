@@ -6,10 +6,12 @@
       <view class="subtitle infos">
         题数 {{question_num}}
         <text>/</text> 满分 {{question_scope}}
-        <text>/</text> 通过率 0.0%
+        <text>/</text> 通过率 {{pass_percent}}%
         <text>/</text>
         <block wx:if="{{coin > 0}}"> {{coin}}学豆</block>
-        <block wx:if="{{coin <= 0}}">免费</block>
+        <block wx:if="{{coin <= 0}}">
+          <text class="color-base2">免费</text>
+        </block>
       </view>
     </view>
   </view>
@@ -38,5 +40,5 @@
   </button>
 </view>
 
-<import src="../comps/z-sharebox.wxml"/>
-<template is="z-sharebox" data="{{...shareboxData}}"/>
+<import src="../comps/z-sharebox.wxml" />
+<template is="z-sharebox" data="{{...shareboxData}}" />

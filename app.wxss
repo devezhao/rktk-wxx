@@ -234,3 +234,11 @@ image.x24 {
 .weui-media-box.rktk-record .weui-media-box__info text {
   color: #444;
 }
+
+.color-base1 {
+  color: #4b8ef9 !important;
+}
+
+.color-base2 {
+  color: #ec5353 !important;
+}

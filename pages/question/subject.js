@@ -21,17 +21,12 @@ Page({
     var that = this;
     that.subjectId = e.id;
     zutils.get(app, 'api/subject/details?id=' + that.subjectId, function (res) {
-      var data = res.data.data;
-      var pp = data.answer_pass / data.answer_num;
-      if (isNaN(pp)) {
-        data.answer_pass = '0.0%';
-      } else {
-        data.answer_pass = pp.toFixed(1) + '%';
-      }
-      that.setData(data);
-      that.fullName = data.parent_name + data.subject_name;
+      var _data = res.data.data;
+      _data.pass_percent = _data.pass_percent.toFixed(1);
+      that.setData(_data);
+      that.fullName = _data.parent_name + _data.subject_name;
       wx.setNavigationBarTitle({
-        title: data.subject_name
+        title: _data.subject_name
       });
     });
   },

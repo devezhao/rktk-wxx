@@ -37,6 +37,12 @@ Page({
         title: _data.subject
       });
       _data.showNosubject = false;
+
+      var _sublist1 = _data.sublist1;
+      for (var i = 0; i < _sublist1.length; i++) {
+        _sublist1[i][4] = _sublist1[i][4].toFixed(1);
+        _sublist1[i][10] = _sublist1[i][1].substr(0, 4);
+      }
       that.setData(_data);
     });
   },

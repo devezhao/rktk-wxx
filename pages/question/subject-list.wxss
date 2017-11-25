@@ -1,0 +1,10 @@
+.weui-panel {
+  margin-top: 0;
+}
+
+.weui-media-box__thumb {
+  background-color: #fcea88;
+  border-radius: 4px;
+  color: #be3b22;
+  font-size: 19px;
+}

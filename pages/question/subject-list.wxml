@@ -1,23 +1,36 @@
 <view class="page">
   <view class="page__hd">
-    <block wx:if="{{subname1 != null}}">
-      <view class="weui-cells__title">{{subname1}}</view>
-      <view class="weui-cells weui-cells_after-title">
-        <navigator url="subject?id={{item[0]}}" class="weui-cell weui-cell_access" wx:for="{{sublist1}}" wx:key="key_sublist1">
-          <view class="weui-cell__bd">{{item[1]}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    <view class="weui-cells__title">{{subname1}}</view>
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__bd">
+        <navigator wx:for="{{sublist1}}" wx:key="*this" url="subject?id={{item[0]}}" class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <view class="weui-media-box__thumb">
+              {{item[10]}}
+            </view>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{item[1]}}</view>
+            <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">
+                通过率
+                <text>{{item[4]}}%</text>
+              </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                <block wx:if="{{item[2] > 0}}">
+                  价格
+                  <text>{{item[2]}}学豆</text>
+                </block>
+                <block wx:if="{{item[2] == 0}}">
+                  <text class="color-base2">免费</text>
+                </block>
+              </view>
+            </view>
+          </view>
         </navigator>
       </view>
-    </block>
-    <block wx:if="{{subname2 != null}}">
-      <view class="weui-cells__title">{{subname2}}</view>
-      <view class="weui-cells weui-cells_after-title">
-        <navigator url="subject?id={{item[0]}}" class="weui-cell weui-cell_access" wx:for="{{sublist2}}" wx:key="key_sublist2">
-          <view class="weui-cell__bd">{{item[1]}}</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
-      </view>
-    </block>
+    </view>
   </view>
 
   <block wx:if="{{showNosubject}}">
