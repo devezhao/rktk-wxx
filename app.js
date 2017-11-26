@@ -177,7 +177,7 @@ App({
   // 到首页
   goHome: function(){
     wx.switchTab({
-      url: 'index'
+      url: '/pages/index/index'
     });
   }
 })

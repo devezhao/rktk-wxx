@@ -287,6 +287,7 @@ Page({
           url: 'exam-result?redirect=1&id=' + that.examId
         });
       } else {
+        wx.hideLoading()
         wx.showModal({
           title: '提示',
           showCancel: false,
