@@ -95,4 +95,25 @@
       </view>
     </block>
   </view>
+
+  <view class="weui-panel weui-panel_access recent_exams">
+    <view class="weui-panel__hd">推荐题库</view>
+    <view class="weui-panel__bd">
+      <block wx:if="{{!recommend_subject || recommend_subject.length == 0}}">
+        <view class="weui-media-box rktk-record">
+          <view class="weui-media-box__title" style="margin:0">
+            无最近答题记录
+          </view>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{!!recommend_subject || recommend_subject.length > 0}}">
+      <view class="weui-panel__ft">
+        <navigator url="../question/subject-list" class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+      </view>
+    </block>
+  </view>
 </view>

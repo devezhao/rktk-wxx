@@ -42,6 +42,14 @@ Page({
       for (var i = 0; i < _sublist1.length; i++) {
         _sublist1[i][4] = _sublist1[i][4].toFixed(1);
         _sublist1[i][10] = _sublist1[i][1].substr(0, 4);
+        _sublist1[i][11] = _sublist1[i][1].substr(4, 3);
+        var sname = _sublist1[i][1];
+        if (sname.indexOf('下午题') > -1) {
+          _sublist1[i][12] = 't2';
+          if (sname.indexOf('Ⅱ') > -1) {
+            _sublist1[i][12] = 't3';
+          }
+        }
       }
       that.setData(_data);
     });
