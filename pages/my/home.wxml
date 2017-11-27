@@ -6,7 +6,7 @@
       </view>
       <view class="pull-left nick">
         <view>{{nick}}</view>
-        <text class="level">{{level}}</text>
+        <text class="level hide">{{level}}</text>
         <text class="coin">学豆 {{coin}}</text>
       </view>
       <view class="pull-right subject">
@@ -19,42 +19,66 @@
     </view>
   </view>
 
-  <view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells rktk">
     <navigator url="my-exams" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/icon-exam-record.png"></image>
+      </view>
       <view class="weui-cell__bd">答题记录</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="incorrects" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/h-icon-incorrect.png"></image>
+      </view>
       <view class="weui-cell__bd">错题本</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="my-favs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/h-icon-star.png"></image>
+      </view>
       <view class="weui-cell__bd">我的收藏</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
 
-  <view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells rktk">
     <navigator url="coin-records" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/icon-coin-bill.png"></image>
+      </view>
       <view class="weui-cell__bd">学豆记录</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="coin-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/icon-coin-buy.png"></image>
+      </view>
       <view class="weui-cell__bd">学豆充值</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
 
-  <view class="weui-cells weui-cells_after-title">
+  <view class="weui-cells rktk">
     <navigator url="../index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+     <view class="weui-cell__hd">
+        <image src="../../images/icon-faq.png"></image>
+      </view>
       <view class="weui-cell__bd">常见问题</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+     <view class="weui-cell__hd">
+        <image src="../../images/icon-feedback2.png"></image>
+      </view>
       <view class="weui-cell__bd">问题反馈</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="../index/h5?url=m%2frights.htm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+     <view class="weui-cell__hd">
+        <image src="../../images/icon-rights.png"></image>
+      </view>
       <view class="weui-cell__bd">免责声明</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>

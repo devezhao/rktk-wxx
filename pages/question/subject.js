@@ -66,7 +66,7 @@ Page({
   toExplain: function () {
     wx.showModal({
       title: '提示',
-      content: '即将开放',
+      content: '暂未开放，你可在答题后查看解析',
       showCancel: false
     })
   },
