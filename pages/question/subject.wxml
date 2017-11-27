@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="page__bd">
+  <view class="page__bd hide">
     <view style="color:#777;margin:14px 0;font-size:15px">
       {{description}}
     </view>

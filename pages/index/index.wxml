@@ -35,14 +35,6 @@
           <text>每日一练</text>
         </view>
       </view>
-      <view class="weui-flex__item hide">
-        <navigator class="icon-w">
-          <view class="icon">
-            <image src="../../images/h-icon-report.png" class="x26"></image>
-          </view>
-          <text>学习报告</text>
-        </navigator>
-      </view>
       <view class="weui-flex__item">
         <view class="icon-w" bindtap="signin">
           <view class="icon">
