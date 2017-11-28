@@ -95,7 +95,7 @@ Page({
 
   onShareAppMessage: function () {
     var d = app.warpShareData('/pages/exam/explain?id=' + this.questionId);
-    d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 10) + '...';
+    d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';
     console.log(d);
     return d;
   },

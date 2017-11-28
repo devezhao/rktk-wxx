@@ -100,9 +100,3 @@ Page({
     zsharebox.share2CopyLink(this);
   }
 });
-
-//zutils.extends(PageHandler, zsharebox.methods);
-//PageHandler.shareboxOpen = function(){
-//  zsharebox.methods.shareboxOpen(this);
-//}
-//Page(PageHandler);

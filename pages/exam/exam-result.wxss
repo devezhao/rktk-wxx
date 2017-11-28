@@ -34,7 +34,6 @@
 .seqs {
   padding: 18px;
   text-align: center;
-  padding-bottom: 6px;
 }
 
 .seqs .item {
@@ -52,4 +51,8 @@
 
 .seqs .item.right {
   background-color: #4cae4c;
+}
+
+.page.has-foobar {
+  padding-bottom: 43px;
 }
