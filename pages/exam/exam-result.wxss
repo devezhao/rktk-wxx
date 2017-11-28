@@ -34,6 +34,7 @@
 .seqs {
   padding: 18px;
   text-align: center;
+  padding-bottom: 6px;
 }
 
 .seqs .item {

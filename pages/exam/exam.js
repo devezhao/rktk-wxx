@@ -100,7 +100,7 @@ Page({
     if (q._answers) {
       that.setData(answers_data);
     } else {
-      zutils.get(app, 'api/question/get-answers?question=' + q.questionId, function (res) {
+      zutils.get(app, 'api/question/get-answers?noloading&question=' + q.questionId, function (res) {
         var data = res.data.data.result_list;
         var _selected = q._selected;
         for (var i = 0; i < data.length; i++) {
