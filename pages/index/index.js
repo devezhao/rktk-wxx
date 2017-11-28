@@ -13,13 +13,25 @@ Page({
     });
 
     app.getUserInfo(function () {
-      zutils.get(app, 'api/home/recent-exams', function (res) {
-        that.setData(res.data.data);
-        that.__checkTwxx(e.q);
-      });
+      that.__loadRecent();
+      that.__loadRecommend();
+      that.__checkTwxx(e.q);
+      if (app.__checkToken_OK != true) {
+        app.__checkToken();
+      }
     });
   },
 
+  onShow: function () {
+    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_EXAM, 'Index')) {
+      this.__loadRecent();
+    }
+    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Index')) {
+      this.__loadRecommend();
+    }
+  },
+
+  // 解析分享来源，以跳转到分享的页面
   __checkTwxx: function (q) {
     if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
       zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
@@ -31,14 +43,37 @@ Page({
       });
     }
   },
-
-  onShow: function () {
-    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_EXAM, 'Index')) {
-      var that = this;
-      zutils.get(app, 'api/home/recent-exams', function (res) {
-        that.setData(res.data.data);
-      });
-    }
+  // 最近答题
+  __loadRecent: function () {
+    var that = this;
+    zutils.get(app, 'api/home/recent-exams', function (res) {
+      that.setData(res.data.data);
+    });
+  },
+  // 推荐题库
+  __loadRecommend: function () {
+    var that = this;
+    zutils.get(app, 'api/home/recommend-subjects', function (res) {
+      var _data = res.data.data;
+      if (!_data) return;
+      var _subjects = _data.recommend_subjects;
+      for (var i = 0; i < _subjects.length; i++) {
+        var sname = _subjects[i][1];
+        _subjects[i][10] = sname.substr(0, 7);
+        _subjects[i][11] = sname.substr(7);
+        if (sname.indexOf('下午题') > -1) {
+          _subjects[i][12] = 'T2';
+          if (sname.indexOf('Ⅱ') > -1) {
+            _subjects[i][12] = 'T3';
+          }
+        }
+      }
+      if (_subjects.length > 3) {
+        _data.recommend_subjects = [_subjects[0], _subjects[1], _subjects[2]];
+        _data.recommend_subjects2 = [_subjects[3], _subjects[4], _subjects[5]];
+      }
+      that.setData(_data);
+    });
   },
 
   todayExam: function () {
@@ -82,6 +117,12 @@ Page({
         })
       }
     });
+  },
+
+  goSubjectList: function () {
+    wx.switchTab({
+      url: '/pages/question/subject-list'
+    })
   },
 
   onShareAppMessage: function () {

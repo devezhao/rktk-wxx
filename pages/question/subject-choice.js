@@ -54,7 +54,7 @@ Page({
     }
 
     zutils.post(app, 'api/user/settings?key=MainSubject&value=' + that.data.selected + '&formId=' + (e.detail.formId || ''), function (res) {
-      app.GLOBAL_DATA.RELOAD_SUBJECT = ['Home', 'Subject'];
+      app.GLOBAL_DATA.RELOAD_SUBJECT = ['Home', 'Subject', 'Index'];
       if (that.back == 1) {
         wx.navigateBack();
       } else {

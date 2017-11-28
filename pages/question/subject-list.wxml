@@ -6,8 +6,8 @@
         <navigator wx:for="{{sublist1}}" wx:key="*this" url="subject?id={{item[0]}}" class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <view class="weui-media-box__thumb {{item[12]}}">
-              <text class="d1">{{item[10]}}</text>
-              <text class="d2">{{item[11]}}</text>
+              <text class="Y">{{item[10]}}</text>
+              <text class="M">{{item[11]}}</text>
             </view>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">

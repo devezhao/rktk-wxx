@@ -45,9 +45,9 @@ Page({
         _sublist1[i][11] = _sublist1[i][1].substr(4, 3);
         var sname = _sublist1[i][1];
         if (sname.indexOf('下午题') > -1) {
-          _sublist1[i][12] = 't2';
+          _sublist1[i][12] = 'T2';
           if (sname.indexOf('Ⅱ') > -1) {
-            _sublist1[i][12] = 't3';
+            _sublist1[i][12] = 'T3';
           }
         }
       }

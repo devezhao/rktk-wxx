@@ -8,21 +8,25 @@ App({
     RELOAD_SUBJECT: [],
     RELOAD_EXAM: [],
     RELOAD_COIN: [],
-    KT_TOKENS: []
+    // 自己分享的口令
+    KT_TOKENS: [],
+    // 进入场景
+    ENTER_SCENE: 0
   },
 
   onLaunch: function (e) {
     console.log("小程序初始化: " + JSON.stringify(e));
+    this.GLOBAL_DATA.ENTER_SCENE = e.scene;
     if (e.u || e._su) {
-      app.GLOBAL_DATA.__inviter = e.u || e._su;
+      this.GLOBAL_DATA.__inviter = e.u || e._su;
     }
 
     var that = this;
     wx.getStorage({
       key: 'USER_INFO',
       success: function (res) {
+        console.log('Launch checkUserInfo - ' + JSON.stringify(res));
         that.GLOBAL_DATA.USER_INFO = res.data;
-        console.log('Launch checkUserInfo - ' + JSON.stringify(res))
       },
       complete: function () {
         that.__checkUserInfo(null, false);
@@ -32,12 +36,16 @@ App({
 
   onShow: function (e) {
     console.log("小程序进入前台: " + JSON.stringify(e));
-    this.__checkToken();
+    if (this.USER_INFO) {
+      this.__checkToken();
+    }
   },
 
-  __checkToken: function(){
+  __checkToken: function () {
+    this.__checkToken_OK = true;
+
+    // 清除口令
     var rktk_token = false;
-    // 清理口令
     setTimeout(function () {
       if (rktk_token == true) {
         wx.setClipboardData({
@@ -50,27 +58,35 @@ App({
     wx.getClipboardData({
       success: function (res) {
         if (res.data && res.data.substr(0, 6) == '#考题解析#') {
-          // 非自己分享的
-          if (zutils.array.in(that.GLOBAL_DATA.KT_TOKENS, res.data) == false) {
+          // 扫码进入，优先级高于粘贴板
+          if (that.GLOBAL_DATA.ENTER_SCENE == 1011) {
+            console.log('扫码进入1011: ' + res.data);
             rktk_token = true;
-            zutils.get(that, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
-              if (res2.data.error_code == 0) {
-                var _data = res2.data.data;
-                wx.showModal({
-                  title: _data.title,
-                  confirmText: '立即查看',
-                  content: _data.content,
-                  success: function (res3) {
-                    if (res3.confirm) {
-                      wx.navigateTo({
-                        url: _data.page
-                      })
-                    }
-                  }
-                });
-              }
-            });
+            return;
           }
+          // 自己分享的
+          if (zutils.array.in(that.GLOBAL_DATA.KT_TOKENS, res.data)) {
+            return;
+          }
+
+          rktk_token = true;
+          zutils.get(that, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
+            if (res2.data.error_code == 0) {
+              var _data = res2.data.data;
+              wx.showModal({
+                title: _data.title,
+                confirmText: '立即查看',
+                content: _data.content,
+                success: function (res3) {
+                  if (res3.confirm) {
+                    wx.navigateTo({
+                      url: _data.page
+                    })
+                  }
+                }
+              });
+            }
+          });
         }
       }
     });
@@ -175,7 +191,7 @@ App({
   },
 
   // 到首页
-  goHome: function(){
+  goHome: function () {
     wx.switchTab({
       url: '/pages/index/index'
     });

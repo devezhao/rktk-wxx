@@ -54,3 +54,59 @@
   margin-top: -11px;
 }
 
+.weui-media-box__title.nodata-tips {
+  margin: 14px 0;
+  text-align: center;
+}
+
+.weui-media-box__title.nodata-tips navigator,
+.weui-media-box__title.nodata-tips .link {
+  color: #586c94;
+  font-size: 16px;
+}
+
+.book {
+  background-color: #fcea88;
+  border-radius: 4px;
+  color: #be3b22;
+  overflow: hidden;
+  margin: 3px 7px;
+  text-align: center;
+  padding-top: 24px;
+}
+
+.book text {
+  display: block;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.book text.YM {
+  background-color: rgba(190, 59, 34, 0.7);
+  color: #fff;
+  width: 75%;
+  margin: 0 auto;
+  border-radius: 99px;
+  line-height: 1.5;
+  font-size: 12px;
+  margin-top: 16px;
+  margin-bottom: 14px;
+}
+
+.book.T2 {
+  background-color: #afefb7;
+  color: #345f4b;
+}
+
+.book.T2 text.YM {
+  background-color: rgba(52, 95, 75, 0.7);
+}
+
+.book.T3 {
+  background-color: #ffd09c;
+  color: #aa0101;
+}
+
+.book.T3 text.YM {
+  background-color: rgba(170, 1, 1, 0.7);
+}

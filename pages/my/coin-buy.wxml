@@ -3,7 +3,9 @@
     <view class="icon-box">
       <icon type="waiting" size="88"></icon>
       <view class="icon-box__title">充值功能暂不开放</view>
-      <view class="icon-box__desc">可通过其他方式获取学习币，如多做题、签到</view>
+      <view class="icon-box__desc">你可通过其他方式获取学豆
+        <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dwhat-coin" style="color:#586c94;">点击查看如何获取</navigator>
+      </view>
     </view>
   </view>
 </view>
