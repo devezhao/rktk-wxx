@@ -24,7 +24,9 @@
 
   <view class="fix-foobar">
     <view class="pull-left">
-      <button class="weui-btn" type="primary" bindtap="toExplain">考题解析</button>
+      <form bindsubmit="toExplain" report-submit="true">
+        <button class="weui-btn" type="primary" formType="submit">考题解析</button>
+      </form>
     </view>
     <view class="pull-left">
       <form bindsubmit="toExam" report-submit="true">

@@ -63,7 +63,8 @@ Page({
     });
   },
 
-  toExplain: function () {
+  toExplain: function (e) {
+    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
     wx.showModal({
       title: '提示',
       content: '暂未开放，你可在答题后查看解析',
