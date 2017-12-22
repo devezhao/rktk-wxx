@@ -27,9 +27,9 @@ Page({
     this.realNum = ~~n;
   },
 
-  buyNow: function () {
+  buyNow: function (e) {
     var that = this;
-    zutils.get(app, 'api/pay/create-buycoin?num=' + (this.realNum || 100), function (res) {
+    zutils.get(app, 'api/pay/create-buycoin?num=' + (this.realNum || 100) + '&formId=' + (e.detail.formId || ''), function (res) {
       var data = res.data.data;
       console.log(data);
       data.success = function (res) {

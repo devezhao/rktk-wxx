@@ -1,4 +1,4 @@
-<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '49px'}}">
+<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '44px'}}">
   <view class="page__hd">
     <view class="weui-flex top-position">
       <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">

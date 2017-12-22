@@ -67,7 +67,7 @@ Page({
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
     wx.showModal({
       title: '提示',
-      content: '本功能仅向VIP会员开放',
+      content: '本功能暂未开放',
       showCancel: false
     })
   },

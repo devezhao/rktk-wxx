@@ -64,8 +64,10 @@ page, .page {
 }
 
 .answerkeys {
-  padding: 10px 0;
   background-color: #eee;
+  height: 44px;
+  line-height: 44px;
+  border: 0 none;
 }
 
 .answerkeys .pull-left {

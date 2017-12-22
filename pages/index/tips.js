@@ -3,7 +3,9 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    btnText: '返回首页'
   },
+  fromCoinBuy: false,
 
   onLoad: function (e) {
     var msg = e.msg || '无效的请求参数';
@@ -13,11 +15,24 @@ Page({
       msg: msg,
       icon: icon
     });
+
+    this.fromCoinBuy = msg.indexOf('充值成功') > -1;
+    if (this.fromCoinBuy) {
+      this.setData({
+        btnText: '查看充值记录'
+      });
+    }
   },
 
   goHome: function () {
-    wx.switchTab({
-      url: 'index'
-    });
+    if (this.fromCoinBuy) {
+      wx.redirectTo({
+        url: '../my/coin-records'
+      })
+    } else {
+      wx.switchTab({
+        url: 'index'
+      });
+    }
   }
 })

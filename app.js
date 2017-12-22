@@ -11,7 +11,9 @@ App({
     // 自己分享的口令
     KT_TOKENS: [],
     // 进入场景
-    ENTER_SCENE: 0
+    ENTER_SCENE: 0,
+    // 进入参数
+    ENTER_QSTR: null
   },
 
   onLaunch: function (e) {
@@ -150,6 +152,7 @@ App({
     var that = this;
     var _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
     _data.inviter = that.GLOBAL_DATA.__inviter || '';
+    _data.inviter2 = that.GLOBAL_DATA.ENTER_QSTR || '';
     zutils.post(that, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })

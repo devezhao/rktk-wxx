@@ -89,10 +89,6 @@ page, .page {
   font-size: 17px;
 }
 
-.page.has-foobar {
-  padding-bottom: 56px;
-}
-
 .float-btns {
   bottom: 14px;
   right: 14px;
