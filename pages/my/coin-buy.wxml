@@ -1,11 +1,48 @@
 <view class="page">
   <view class="page__bd">
-    <view class="icon-box">
-      <icon type="waiting" size="88"></icon>
-      <view class="icon-box__title">充值功能暂不开放</view>
-      <view class="icon-box__desc">你可通过其他方式获取学豆
-        <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dwhat-coin" style="color:#586c94;">点击查看如何获取</navigator>
+    <view class="weui-cells__title">充值数量（10金豆=1元）</view>
+    <view class="weui-flex num-warp">
+      <view class="weui-flex__item">
+        <view class="c {{num == 30 ? 'active' : ''}}" bindtap="selectNum" data-num="30">30</view>
       </view>
+      <view class="weui-flex__item">
+        <view class="c {{num == 50 ? 'active' : ''}}" bindtap="selectNum" data-num="50">50</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="c {{num == 100 ? 'active' : ''}}" bindtap="selectNum" data-num="100">100</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="c {{num == 200 ? 'active' : ''}}" bindtap="selectNum" data-num="200">200</view>
+      </view>
+    </view>
+    <view class="weui-flex num-warp">
+      <view class="weui-flex__item">
+        <view class="c {{num == 300 ? 'active' : ''}}" bindtap="selectNum" data-num="300">300</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="c {{num == 500 ? 'active' : ''}}" bindtap="selectNum" data-num="500">500</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="c {{num == 800 ? 'active' : ''}}" bindtap="selectNum" data-num="800">800</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="c input {{num == 99999 ? 'active' : ''}}" bindtap="selectNum" data-num="99999">
+          <input type="number" maxlength="4" bindinput="inputNum"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd" style="margin-top:15px;text-align:center">
+    <button type="button" type="primary" bindtap="buyNow">立即支付</button>
+    <navigator class="color-link" style="margin-top:12px;font-size:14px" url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}">[ 支付遇到问题 ]</navigator>
+  </view>
+
+  <view class="icon-box hide">
+    <icon type="waiting" size="88"></icon>
+    <view class="icon-box__title">充值功能暂不开放</view>
+    <view class="icon-box__desc">你可通过其他方式获取学豆
+      <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dwhat-coin" style="color:#586c94;">点击查看如何获取</navigator>
     </view>
   </view>
 </view>

@@ -5,7 +5,7 @@ Page({
   data: {
     headimgUrl: '../../images/afo.png',
     nick: '游客',
-    level: 'Lv.1',
+    level: '普通会员',
     subject: '选择考试类型'
   },
 
@@ -13,7 +13,8 @@ Page({
     var that = this;
     app.getUserInfo(function (res) {
       that.setData({
-        headimgUrl: res.headimgUrl.replace('/0', '/64'),
+        //headimgUrl: res.headimgUrl.replace('/0', '/64'),
+        headimgUrl: res.headimgUrl,
         nick: res.nick,
         user: res.uid
       });

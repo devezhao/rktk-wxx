@@ -67,7 +67,7 @@ Page({
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
     wx.showModal({
       title: '提示',
-      content: '暂未开放，你可在答题后查看解析',
+      content: '本功能仅向VIP会员开放',
       showCancel: false
     })
   },

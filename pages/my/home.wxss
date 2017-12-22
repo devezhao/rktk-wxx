@@ -1,7 +1,8 @@
 .user-block {
-  padding: 12px 14px;
+  padding: 14px 14px;
   background-color: #fff;
   border-bottom: 1rpx solid #d9d9d9;
+  position: relative;
 }
 
 .user-block .headimg {
@@ -27,44 +28,36 @@
 
 .user-block .nick text {
   overflow: hidden;
-  margin-top: 2px;
+  margin-top: 3px;
   line-height: 1;
   float: left;
 }
 
-.user-block .nick text.level {
+.user-block .nick text {
   font-size: 11px;
   border: 1px solid #bbb;
   border-radius: 99px;
-  padding: 2px 11px;
-  color: #aaa;
-  font-style: italic;
-  margin-right: 9px;
-}
-
-.user-block .nick text.coin {
+  padding: 2px 7px;
   color: #666;
-  font-size: 13px;
-  padding-top: 3px;
+  margin-right: 6px;
 }
 
 .user-block .subject {
-  margin-top: 16px;
   color: #ec5353;
-  border: 1rpx solid #ec5353;
-  border-radius: 99px;
-  padding: 2px 9px;
-  padding-right: 18px;
-  font-size: 12px;
-  position: relative;
+  font-size: 13px;
+  position: absolute;
+  background-color: #fff;
+  top: 25px;
+  right: 14px;
+  padding-right: 10px;
 }
 
 .user-block .subject image {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   position: absolute;
-  right: 4px;
-  top: 5px;
+  right: -4px;
+  top: 3px;
 }
 
 .weui-cells {

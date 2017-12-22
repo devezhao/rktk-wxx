@@ -6,7 +6,7 @@
       </view>
       <view class="pull-left nick">
         <view>{{nick}}</view>
-        <text class="level hide">{{level}}</text>
+        <text class="level">{{level}}</text>
         <text class="coin">学豆 {{coin}}</text>
       </view>
       <view class="pull-right subject">

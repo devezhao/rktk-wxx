@@ -1,66 +1,45 @@
-// pages/my/coin-buy.js
+const app = app || getApp();
+const zutils = require('../../utils/zutils.js');
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    num: 100
+  },
+  realNum: 0,
+
+  onLoad: function (e) {
+    var that = this;
+    app.getUserInfo(function (res) {
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  selectNum: function (e) {
+    var n = e.currentTarget.dataset.num;
+    this.setData({
+      num: n
+    });
+    this.realNum = ~~n;
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  inputNum: function(e){
+    var n = e.detail.value;
+    this.realNum = ~~n;
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  buyNow: function () {
+    var that = this;
+    zutils.get(app, 'api/pay/create-buycoin?num=' + (this.realNum || 100), function (res) {
+      var data = res.data.data;
+      console.log(data);
+      data.success = function (res) {
+        wx.navigateTo({
+          url: '../index/tips?msg=充值成功',
+        });
+      };
+      data.fail = function (res) {
+      };
+      wx.requestPayment(data);
+    });
   }
-})
+});

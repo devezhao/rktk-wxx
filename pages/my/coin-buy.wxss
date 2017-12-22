@@ -1,1 +1,37 @@
-/* pages/my/coin-buy.wxss */
+.weui-cells__title {
+  padding-left: 0;
+}
+
+.num-warp {
+  text-align: center;
+  margin: 0 -5px;
+}
+
+.num-warp .weui-flex__item {
+  padding: 0 5px;
+}
+
+.num-warp view.c {
+  display: inline-block;
+  border: 1rpx solid #d9d9d9;
+  background-color: #fff;
+  padding: 5px 0;
+  font-size: 16px;
+  border-radius: 2px;
+  width: 100%;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.num-warp view.c.input {
+  padding: 6px 0;
+}
+
+.num-warp view.c.input input {
+  font-size: 16px;
+}
+
+.num-warp view.c.active {
+  color: #4b8ef9;
+  border-color: #4b8ef9;
+}

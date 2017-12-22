@@ -242,3 +242,7 @@ image.x24 {
 .color-base2 {
   color: #ec5353 !important;
 }
+
+.color-link {
+  color: #586c94;
+}
