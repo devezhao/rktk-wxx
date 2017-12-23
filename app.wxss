@@ -160,15 +160,16 @@ button[type="default"] {
 }
 
 .icon-box__title {
-  font-size: 17px;
+  font-size: 18px;
   margin-top: 14px;
   color: #333;
 }
 
 .icon-box__desc {
-  margin-top: 6px;
-  font-size: 14px;
+  margin: 6px auto;
+  font-size: 15px;
   color: #777;
+  width: 88%;
 }
 
 .weui-navbar__item.weui-bar__item_on {

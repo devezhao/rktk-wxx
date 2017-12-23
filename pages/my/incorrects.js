@@ -22,5 +22,26 @@ Page({
         nodata: that.pageNo == 1 && data.length == 0
       });
     });
+  },
+  
+  moreAction: function (e) {
+    var _id = e.currentTarget.dataset.qid;
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['忽略此题', '加入收藏'],
+      success: function (res) {
+        if (res.tapIndex == 1) {
+          zutils.post(app, 'api/fav/toggle?force=1&question=' + _id, function (res) {
+            wx.showToast({
+              title: '已加入收藏'
+            });
+          });
+        } else if (res.tapIndex == 0) {
+          zutils.post(app, 'api/fav/incorrect-ignore?question=' + _id, function (res) {
+            that.list();
+          });
+        }
+      }
+    });
   }
 });

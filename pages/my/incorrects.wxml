@@ -3,7 +3,7 @@
     <view class="weui-panel" wx:for="{{in_list}}" wx:key="*this">
       <view class="weui-panel__bd">
         <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">
-          <view class="weui-media-box__title">{{item[1]}}</view>
+          <view class="weui-media-box__title has-btn-more">{{item[1]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">
               答错次数
@@ -15,6 +15,7 @@
             </view>
             <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[2]}}</view>
           </view>
+          <view class="btn-more" catchtap="moreAction" data-qid="{{item[0]}}"><image src="/images/action-more.png"></image></view>
         </navigator>
       </view>
     </view>
@@ -24,6 +25,7 @@
     <view class="icon-box" hidden="{{!nodata}}">
       <icon type="info" size="88"></icon>
       <view class="icon-box__title">暂无错题</view>
+      <view class="icon-box__desc">答错的题会自动加入错题本，连续答对3次自动移出</view>
     </view>
   </view>
 </view>

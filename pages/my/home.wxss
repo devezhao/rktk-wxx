@@ -22,7 +22,7 @@
   color: #000;
   font-size: 16px;
   margin-left: 12px;
-  padding-top: 9px;
+  padding-top: 8px;
   line-height: 1.4;
 }
 
@@ -47,7 +47,7 @@
   font-size: 13px;
   position: absolute;
   background-color: #fff;
-  top: 25px;
+  top: 24px;
   right: 14px;
   padding-right: 10px;
 }
