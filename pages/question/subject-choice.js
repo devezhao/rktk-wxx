@@ -4,6 +4,7 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {
     selected: null,
+    tipsbarHide: true
   },
   back: null,
 
@@ -45,11 +46,12 @@ Page({
   saveChange: function (e) {
     var that = this;
     if (!that.data.selected) {
-      wx.showModal({
-        title: '提示',
-        content: '请选择你的考试类型',
-        showCancel: false
-      })
+      zutils.tipsbar(that, '请选择你的考试类型');
+      //wx.showModal({
+      //  title: '提示',
+      //  content: '请选择你的考试类型',
+      //  showCancel: false
+      //});
       return;
     }
 

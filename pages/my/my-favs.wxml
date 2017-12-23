@@ -3,11 +3,12 @@
     <view class="weui-panel" wx:for="{{favs}}" wx:key="*this">
       <view class="weui-panel__bd">
         <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">
-          <view class="weui-media-box__title">{{item[1]}}</view>
+          <view class="weui-media-box__title has-btn-more">{{item[1]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">{{item[2]}}</view>
             <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">收藏于{{item[3]}}</view>
           </view>
+          <view class="btn-more" catchtap="moreAction" data-id="{{item[0]}}"><image src="/images/action-more.png"></image></view>
         </navigator>
       </view>
     </view>

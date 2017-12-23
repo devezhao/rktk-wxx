@@ -2,7 +2,8 @@ const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
 Page({
-  data: {},
+  data: {
+  },
 
   onLoad: function (e) {
     app.GLOBAL_DATA.ENTER_QSTR = e.q;

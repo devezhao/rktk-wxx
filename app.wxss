@@ -230,6 +230,21 @@ image.x24 {
 .weui-media-box.rktk-record .weui-media-box__info text {
   color: #444;
 }
+.weui-media-box.rktk-record .weui-media-box__title.has-btn-more {
+  padding-right: 20px;
+}
+.weui-media-box.rktk-record .btn-more {
+  position: absolute;
+  right: 4px;
+  top: 17px;
+  background-color: #fff;
+  width: 30px;
+  text-align: center;
+}
+.weui-media-box.rktk-record .btn-more image {
+  width: 18px;
+  height: 18px;
+}
 
 .color-base1 {
   color: #4b8ef9 !important;
@@ -241,4 +256,23 @@ image.x24 {
 
 .color-link {
   color: #586c94;
+}
+
+.tipsbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  text-align: center;
+}
+
+.tipsbar view {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 9px 18px;
+  font-size: 14px;
+  display: inline-block;
+  border-radius: 6px;
+  min-width: 80px;
+  max-width: 80%;
 }

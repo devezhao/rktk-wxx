@@ -58,3 +58,7 @@
     <button class="weui-btn" type="default" formType="submit">确定</button>
   </form>
 </view>
+
+<view class="tipsbar" hidden="{{tipsbarHide}}">
+  <view>{{tips}}</view>
+</view>

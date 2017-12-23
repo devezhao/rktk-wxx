@@ -21,5 +21,20 @@ Page({
         nodata: that.pageNo == 1 && res.data.data.length == 0
       });
     });
+  },
+
+  moreAction: function (e) {
+    var _id = e.currentTarget.dataset.id;
+    var that = this;
+    wx.showActionSheet({
+      itemList: ['取消收藏'],
+      success: function (res) {
+        if (res.tapIndex == 0) {
+          zutils.post(app, 'api/fav/toggle?question=' + _id, function (res) {
+            that.list();
+          });
+        }
+      }
+    });
   }
 });
