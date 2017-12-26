@@ -1,5 +1,5 @@
-const baseUrl = 'https://rktk.qidapp.com/';
-//const baseUrl = 'http://192.168.0.159:8080/rktk/';
+//const baseUrl = 'https://rktk.qidapp.com/';
+const baseUrl = 'http://192.168.0.159:8080/rktk/';
 //const baseUrl = 'https://rktk.qidapp.com/rktk/';
 
 function __url_wrap(app, url) {
@@ -110,11 +110,24 @@ var z_extends = function (dest, source) {
   return dest;
 };
 
+var z_tipsbar = function(o, tips) {
+  o.setData({
+    tips: tips || '提示',
+    tipsbarHide: false
+  });
+  setTimeout(function () {
+    o.setData({
+      tipsbarHide: true
+    });
+  }, 3000);
+};
+
 // API
 module.exports = {
   get: z_get,
   post: z_post,
   baseUrl: baseUrl,
   array: z_array,
-  extends: z_extends
+  extends: z_extends,
+  tipsbar: z_tipsbar
 };

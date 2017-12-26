@@ -10,7 +10,12 @@ Page({
   },
   pageNo: 1,
 
-  onLoad: function () {
+  onLoad: function (e) {
+    if (e.type && e.type == 'invite') {
+      this.setData({
+        activeIndex: 2
+      })
+    }
     var that = this;
     wx.getSystemInfo({
       success: function (res) {

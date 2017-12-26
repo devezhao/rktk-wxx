@@ -2,7 +2,7 @@
   <view id="sharebox" hidden="{{shareboxHide}}">
     <view class="mask" bindtap="shareboxClose"></view>
     <view class="sharebox">
-      <view class="title">分享{{typeName}}</view>
+      <view class="title">分享得学豆</view>
       <view class="weui-flex">
         <view class="weui-flex__item">
           <view class="icon" bindtap="share2Frined">

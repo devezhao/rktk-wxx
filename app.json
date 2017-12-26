@@ -4,6 +4,7 @@
     "pages/index/about",
     "pages/index/h5",
     "pages/index/tips",
+    "pages/index/share-guide",
     "pages/question/subject-choice",
     "pages/question/subject-list",
     "pages/question/subject",
@@ -17,7 +18,8 @@
     "pages/my/coin-buy",
     "pages/my/coin-records",
     "pages/my/my-unexam",
-    "pages/my/user-reg"
+    "pages/my/user-reg",
+    "pages/my/vip-buy"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",

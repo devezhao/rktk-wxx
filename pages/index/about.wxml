@@ -1,17 +1,31 @@
-  <view class="tophead">
-    软考必备
+<view class="page">
+  <view class="ver">
+    <image src="https://c.rktk.qidapp.com/a/wxx/logo-200.png"></image>
+    <view>
+      软考必备 V0.4.2
+    </view>
   </view>
-  <view>
-    一个偶然的机会，我接触到软考（架构师），从此便踏上艰辛的学习之路。有过软考经历的朋友都知道，在如今互联网的大背景下，软考资料实在太过匮乏，除了寥寥几本严重滞后的书籍以外，网上也缺乏可供系统学习的地方，于是我便诞生了制作这样一个地方的想法。
+  <view class="weui-cells rktk">
+    <navigator url="../index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/icon-faq.png"></image>
+      </view>
+      <view class="weui-cell__bd">常见问题</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/icon-feedback2.png"></image>
+      </view>
+      <view class="weui-cell__bd">问题反馈</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../index/h5?url=m%2frights.htm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd">
+        <image src="../../images/icon-rights.png"></image>
+      </view>
+      <view class="weui-cell__bd">免责声明</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
   </view>
-  <view>
-    如你所见，经过一段时间的开发「软考必备」上线了，目前题库还在不断完善中，欢迎有兴趣的朋友加入一同完善。我创建了一个 QQ 群
-    <text bindtap="copy" data-text="610301533">610301533</text> 供大家交流学习，欢迎加入。
-  </view>
-  <view>
-    对了，这个小程序是开源的，欢迎有兴趣的朋友 fork
-    <text bindtap="copy" data-text="https://github.com/devezhao/rktk-wxx">github.com/devezhao/rktk-wxx</text>
-  </view>
-<view class="fix-foobar btns">
-  <button class="weui-btn" type="default" bindtap="award">赞赏</button>
 </view>

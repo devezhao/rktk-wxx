@@ -51,11 +51,27 @@ Page({
                 url: '../exam/exam?subject=' + that.subjectId + '&exam=' + data2.data.exam_id
               });
             } else {
-              wx.showModal({
-                title: '提示',
-                content: data2.error_msg || '错误',
-                showCancel: false
-              });
+              data2.error_msg = data2.error_msg || '错误'
+              if (data2.error_msg.indexOf('好友') > -1) {
+                wx.showModal({
+                  title: '提示',
+                  content: data2.error_msg,
+                  confirmText: '立即邀请',
+                  success: function(res3) {
+                    if (res3.confirm) {
+                      wx.navigateTo({
+                        url: '/pages/index/share-guide'
+                      })
+                    }
+                  }
+                });
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: data2.error_msg,
+                  showCancel: false
+                });
+              }
             }
           });
         }
@@ -67,7 +83,7 @@ Page({
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
     wx.showModal({
       title: '提示',
-      content: '本功能暂未开放',
+      content: '本功能暂未开放，你可在答题完成后查看解析',
       showCancel: false
     })
   },

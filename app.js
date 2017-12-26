@@ -10,18 +10,12 @@ App({
     RELOAD_COIN: [],
     // 自己分享的口令
     KT_TOKENS: [],
-    // 进入场景
-    ENTER_SCENE: 0,
-    // 进入参数
-    ENTER_QSTR: null
   },
 
   onLaunch: function (e) {
     console.log("小程序初始化: " + JSON.stringify(e));
-    this.GLOBAL_DATA.ENTER_SCENE = e.scene;
-    if (e.u || e._su) {
-      this.GLOBAL_DATA.__inviter = e.u || e._su;
-    }
+    //e.query.q = 'http://192.168.0.159:8080/rktk/t/wxx/MTEwLTAxNWY5MDk2NzU2MTAxN2EsMTAwLTAxNjA3Y2FmMDM1YTAwMDAsdjI.?from=twxx';  // 扫普通二维码参数
+    this.__enter_source = e;
 
     var that = this;
     wx.getStorage({
@@ -43,7 +37,9 @@ App({
     }
   },
 
+  // 解析口令
   __checkToken: function () {
+    if (this.__checkToken_OK == true) return;
     this.__checkToken_OK = true;
 
     // 清除口令
@@ -61,8 +57,8 @@ App({
       success: function (res) {
         if (res.data && res.data.substr(0, 6) == '#考题解析#') {
           // 扫码进入，优先级高于粘贴板
-          if (that.GLOBAL_DATA.ENTER_SCENE == 1011) {
-            console.log('扫码进入1011: ' + res.data);
+          if (that.__enter_source.scene == 1011 || that.__enter_source.scene == 1012 || that.__enter_source.scene == 1013) {
+            console.log('扫码进入' + that.__enter_source.scene + ': ' + res.data);
             rktk_token = true;
             return;
           }
@@ -151,8 +147,9 @@ App({
     console.log('存储授权 - ' + JSON.stringify(res))
     var that = this;
     var _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
-    _data.inviter = that.GLOBAL_DATA.__inviter || '';
-    _data.inviter2 = that.GLOBAL_DATA.ENTER_QSTR || '';
+    _data.inviter = that.__enter_source.u || that.__enter_source._su;
+    _data.inviter2 = that.__enter_source.query.q;
+
     zutils.post(that, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
@@ -188,7 +185,11 @@ App({
     if (url.indexOf('?') > -1) url += '&';
     else url += '?';
     url += 'u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
-    var d = { title: '软考刷题必备利器', path: url };
+    var d = {
+      title: '软考刷题必备利器', path: url, success: function (shareTickets) {
+        console.log(JSON.stringify(shareTickets || []));
+      }
+    };
     console.log(d);
     return d;
   },

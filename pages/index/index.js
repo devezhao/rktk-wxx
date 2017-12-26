@@ -6,7 +6,6 @@ Page({
   },
 
   onLoad: function (e) {
-    app.GLOBAL_DATA.ENTER_QSTR = e.q;
     var that = this;
     zutils.get(app, 'api/home/banners', function (res) {
       that.setData({
@@ -18,9 +17,7 @@ Page({
       that.__loadRecent();
       that.__loadRecommend();
       that.__checkTwxx();
-      if (app.__checkToken_OK != true) {
-        app.__checkToken();
-      }
+      app.__checkToken();
     });
   },
 
@@ -33,9 +30,9 @@ Page({
     }
   },
 
-  // 解析分享来源，以跳转到分享的页面
+  // 解析分享来源
   __checkTwxx: function () {
-    var q = app.GLOBAL_DATA.ENTER_QSTR;
+    var q = app.__enter_source.query.q;
     if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
       zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
         if (res.data.error_code == 0) {
