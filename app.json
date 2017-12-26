@@ -26,6 +26,7 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "软考必备",
     "backgroundTextStyle": "dark",
+    "backgroundColor": "#efeff4",
     "enablePullDownRefresh": false
   },
   "tabBar": {
@@ -54,8 +55,8 @@
     ]
   },
   "networkTimeout": {
-    "request": 15000,
-    "connectSocket": 15000,
+    "request": 30000,
+    "connectSocket": 10000,
     "uploadFile": 90000,
     "downloadFile": 90000
   },

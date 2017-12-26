@@ -17,7 +17,6 @@
   background-color: #fff;
   padding: 5px 0;
   font-size: 16px;
-  border-radius: 2px;
   width: 100%;
   text-align: center;
   margin: 4px 0;
@@ -32,6 +31,6 @@
 }
 
 .num-warp view.c.active {
-  color: #4b8ef9;
-  border-color: #4b8ef9;
+  color: #ec5353;
+  border-color: #ec5353;
 }

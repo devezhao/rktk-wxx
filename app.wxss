@@ -150,6 +150,14 @@ button[type="default"] {
   background-color: #fff;
 }
 
+button.T2 {
+  background-color: #ec5353;
+}
+button.T2.button-hover {
+  background-color: #ec5353;
+  opacity: 0.8;
+}
+
 .weui-cell {
   padding: 10px 14px;
 }
@@ -173,11 +181,11 @@ button[type="default"] {
 }
 
 .weui-navbar__item.weui-bar__item_on {
-  color: #4b8ef9;
+  color: #ec5353;
 }
 
 .weui-navbar__slider {
-  background-color: #4b8ef9;
+  background-color: #ec5353;
 }
 
 image.x36 {

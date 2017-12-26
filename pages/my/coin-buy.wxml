@@ -27,7 +27,7 @@
       </view>
       <view class="weui-flex__item">
         <view class="c input {{num == 99999 ? 'active' : ''}}" bindtap="selectNum" data-num="99999">
-          <input type="number" maxlength="4" bindinput="inputNum"></input>
+          <input type="number" maxlength="4" bindinput="inputNum" placeholder="自定义"></input>
         </view>
       </view>
     </view>
@@ -35,7 +35,7 @@
 
   <view class="page__bd" style="margin-top:15px;text-align:center">
     <form bindsubmit="buyNow" report-submit="true">
-      <button type="button" type="primary" formType="submit">立即支付</button>
+      <button type="button" type="primary" formType="submit" class="T2">立即支付</button>
     </form>
     <navigator class="color-link" style="margin-top:12px;font-size:14px" url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}">[ 支付遇到问题 ]</navigator>
   </view>
