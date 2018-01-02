@@ -15,7 +15,7 @@
             </view>
             <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[2]}}</view>
           </view>
-          <view class="btn-more" catchtap="moreAction" data-qid="{{item[0]}}"><image src="/images/action-more.png"></image></view>
+          <view class="btn-more" catchtap="moreAction" data-qid="{{item[0]}}"><image src="/images/action-more2.png"></image></view>
         </navigator>
       </view>
     </view>

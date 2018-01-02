@@ -14,11 +14,11 @@ Page({
       that.loadResult();
     });
 
-    if (e.redirect == 1) {
-      this.setData({
-        hideFoobar: false
-      })
-    }
+    //if (e.redirect == 1) {
+    //  this.setData({
+    //    hideFoobar: false
+    //  })
+    //}
   },
 
   loadResult: function () {

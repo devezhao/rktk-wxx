@@ -240,19 +240,21 @@ image.x24 {
   color: #444;
 }
 .weui-media-box.rktk-record .weui-media-box__title.has-btn-more {
-  padding-right: 20px;
+  padding-right: 15px;
 }
 .weui-media-box.rktk-record .btn-more {
   position: absolute;
-  right: 4px;
-  top: 17px;
+  right: 0;
+  top: 1px;
   background-color: #fff;
   width: 30px;
+  height: 28px;
   text-align: center;
+  padding-top: 15px;
 }
 .weui-media-box.rktk-record .btn-more image {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .color-base1 {
