@@ -10,7 +10,7 @@ Page({
     zutils.get(app, 'api/home/banners', function (res) {
       that.setData({
         banners: res.data.data
-      })
+      });
     });
 
     app.getUserInfo(function () {
@@ -132,6 +132,25 @@ Page({
     wx.switchTab({
       url: '/pages/question/subject-list'
     })
+  },
+
+  bannerChange: function (e) {
+    console.log(e);
+  },
+
+  gotoPage: function (e) {
+    var _url = e.currentTarget.dataset.url;
+    if (!!!_url) return;
+
+    if (_url == '/pages/question/subject-list' || _url == '/pages/my/home') {
+      wx.switchTab({
+        url: _url
+      })
+    } else {
+      wx.navigateTo({
+        url: _url
+      })
+    }
   },
 
   onShareAppMessage: function () {

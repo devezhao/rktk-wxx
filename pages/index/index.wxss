@@ -1,5 +1,11 @@
 .slide-image {
-  width: 100%;
+  text-align: center;
+  background-color: #4b8ef9;
+}
+
+.slide-image image {
+  height: 150px;
+  width: 375px;
 }
 
 .top-column {
@@ -121,6 +127,7 @@
 .book.T4 text.YM {
   background-color: rgba(27, 66, 53, 0.7);
 }
+
 .book.T4 text.TXT {
   height: 44px;
   vertical-align: middle;
