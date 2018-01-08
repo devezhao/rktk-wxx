@@ -114,6 +114,8 @@
 .book.T4 {
   background-color: #a8ebfa;
   color: #1b4235;
+  background: #a8ebfa url(https://c.rktk.qidapp.com/a/wxx/icon-target-o50.png) no-repeat center 73px;
+  background-size: 40px 40px;
 }
 
 .book.T4 text.YM {

@@ -52,4 +52,6 @@
 .weui-media-box__thumb.T4 {
   background-color: #a8ebfa;
   color: #1b4235;
+  background: #a8ebfa url(https://c.rktk.qidapp.com/a/wxx/icon-target-o50.png) no-repeat center center;
+  background-size: 32px 32px;
 }
