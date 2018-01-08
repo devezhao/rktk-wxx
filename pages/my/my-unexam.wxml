@@ -17,10 +17,10 @@
         </view>
       </view>
       <view class="weui-panel__ft">
-        <navigator url="../exam/exam?exam={{item[0]}}&subject={{item[1]}}&duration={{item[6]}}" class="weui-cell weui-cell_access weui-cell_link">
+        <view data-exam="{{item[0]}}" data-subject="{{item[1]}}" data-duration="{{item[6]}}" bindtap="goExam" class="weui-cell weui-cell_access weui-cell_link">
           <view class="weui-cell__bd">继续答题</view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
+        </view>
       </view>
     </view>
   </view>

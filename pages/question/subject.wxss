@@ -11,3 +11,30 @@
 .fix-foobar .pull-left button.split {
   border-left: 1rpx solid #eee;
 }
+
+.kpoints .line {
+  font-size: 12px;
+  background-color: #ddd;
+  margin-bottom: 4px;
+  position: relative;
+  height: 15px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.kpoints .line text {
+  position: absolute;
+  right: 4px;
+  color: #999;
+  z-index: 2;
+  top: 2px;
+  line-height: 1;
+}
+.kpoints .line view {
+  position: absolute;
+  background-color: #ec5353;
+  left: 0;
+  top: 0;
+  width: 1%;
+  height: 100%;
+  z-index: 1;
+}

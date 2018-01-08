@@ -105,22 +105,26 @@
           <view class="weui-flex" style="margin:2px -6px">
             <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects}}" wx:key="*this">
               <view class="book {{item[12]}}">
-                <text>{{item[11]}}</text>
-                <text>{{item[2]}}</text>
+                <block wx:if="{{item[11] != null}}">
+                  <text>{{item[11]}}</text>
+                </block>
+                <text class="TXT">{{item[2]}}</text>
                 <text class="YM">{{item[10]}}</text>
               </view>
             </navigator>
           </view>
           <block wx:if="{{!!recommend_subjects2 && recommend_subjects2.length > 0}}">
-            <navigator url="../question/subject?id={{item[0]}}" class="weui-flex" style="margin:2px -6px;margin-top:8px;">
-              <view class="weui-flex__item" wx:for="{{recommend_subjects2}}" wx:key="*this">
-                <view class="book {{item[12]}}" wx:if="{{item[0] != null}}">
-                  <text>{{item[11]}}</text>
-                  <text>{{item[2]}}</text>
+            <view class="weui-flex" style="margin:2px -6px;margin-top:8px;">
+              <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects2}}" wx:key="*this">
+                <view class="book {{item[12]}}">
+                  <block wx:if="{{item[11] != null}}">
+                    <text>{{item[11]}}</text>
+                  </block>
+                  <text class="TXT">{{item[2]}}</text>
                   <text class="YM">{{item[10]}}</text>
                 </view>
-              </view>
-            </navigator>
+              </navigator>
+            </view>
           </block>
         </view>
       </block>

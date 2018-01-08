@@ -5,12 +5,14 @@ Page({
   data: {
   },
   pageNo: 1,
+  _redirect: 1,
 
   onLoad: function (e) {
     var that = this;
     app.getUserInfo(function () {
       that.list();
-    })
+    });
+    this._redirect = e.redirect || 1;
   },
 
   list: function () {
@@ -21,5 +23,15 @@ Page({
         nodata: that.pageNo == 1 && res.data.data.length == 0
       });
     });
+  },
+
+  goExam: function (e) {
+    var ds = e.currentTarget.dataset;
+    var url = '../exam/exam?exam=' + ds.exam + '&subject=' + ds.subject + '&duration=' + ds.duration;
+    if (this._redirect == 2) {
+      wx.navigateTo({ url: url });
+    } else {
+      wx.redirectTo({ url: url });
+    }
   }
 });

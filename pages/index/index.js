@@ -67,6 +67,13 @@ Page({
             _subjects[i][12] = 'T3';
           }
         }
+
+        if (_subjects[i][3] == 2) {
+          _subjects[i][12] = 'T4';
+          _subjects[i][10] = '知识点';
+          _subjects[i][11] = null;
+          _subjects[i][2] = _subjects[i][1];
+        }
       }
       if (_subjects.length > 3) {
         _data.recommend_subjects = [_subjects[0], _subjects[1], _subjects[2]];

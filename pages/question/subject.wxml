@@ -4,21 +4,30 @@
       <view class="subtitle">{{parent_name}}</view>
       <view class="title">{{subject_name}}</view>
       <view class="subtitle infos">
-        题数 {{question_num}}
-        <text>/</text> 满分 {{question_scope}}
-        <text>/</text> 通过率 {{pass_percent}}%
+        考题数 {{question_num}}
+        <block wx:if="{{subject_type == 1}}">
+          <text>/</text> 满分 {{question_scope}}
+          <text>/</text> 通过率 {{pass_percent}}%
+        </block>
         <text>/</text>
-        <block wx:if="{{coin > 0}}"> {{coin}}学豆</block>
-        <block wx:if="{{coin <= 0}}">
+        <block wx:if="{{coin > 0}}">
+          {{coin}}学豆
+        </block>
+        <block wx:if="{{coin == 0}}">
           <text class="color-base2">免费</text>
+        </block>
+        <block wx:if="{{coin < 0}}">
+          <text class="color-base2">限免</text>
         </block>
       </view>
     </view>
   </view>
 
-  <view class="page__bd hide">
-    <view style="color:#777;margin:14px 0;font-size:15px">
-      {{description}}
+  <view class="page__bd kpoints" hidden="{{kpoints == null}}">
+    <view class="weui-cells__title" style="padding:0">知识分布</view>
+    <view class="line" wx:for="{{kpoints}}" wx:key="*this">
+      <text>{{item[0]}} ({{item[1]}})</text>
+      <view style="width:{{item[1]*5}}%"></view>
     </view>
   </view>
 

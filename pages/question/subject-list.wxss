@@ -11,6 +11,7 @@
 
 .weui-media-box__thumb text {
   display: block;
+  font-size: 15px;
 }
 
 .weui-media-box__thumb text.Y {
@@ -46,4 +47,9 @@
 
 .weui-media-box__thumb.T3 text.M {
   background-color: rgba(170, 1, 1, 0.7);
+}
+
+.weui-media-box__thumb.T4 {
+  background-color: #a8ebfa;
+  color: #1b4235;
 }
