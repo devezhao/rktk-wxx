@@ -13,8 +13,7 @@ Page({
   },
 
   onShow: function () {
-    if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
-      zutils.array.erase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject');
+    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
       this.listSubject();
     }
   },
@@ -50,6 +49,11 @@ Page({
             _sublist1[i][12] = 'T3';
           }
         }
+      }
+
+      if (!!!_data.subname2) {
+        _data.subname2 = null;
+        _data._sublist2 = null;
       }
       that.setData(_data);
     });

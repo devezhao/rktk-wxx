@@ -78,6 +78,8 @@ Page({
       if (_subjects.length > 3) {
         _data.recommend_subjects = [_subjects[0], _subjects[1], _subjects[2]];
         _data.recommend_subjects2 = [_subjects[3], _subjects[4], _subjects[5]];
+      } else {
+        _data.recommend_subjects2 = null;
       }
       that.setData(_data);
     });
