@@ -2,7 +2,7 @@
   <view class="page__hd">
     <view class="weui-panel" wx:for="{{exams}}" wx:key="*this">
       <view class="weui-panel__bd">
-        <view class="weui-media-box rktk-record">
+        <navigator url="../question/subject?id={{item[1]}}" class="weui-media-box rktk-record" hover-class="weui-cell_active">
           <view class="weui-media-box__title">{{item[4]}}{{item[3]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">
@@ -14,7 +14,7 @@
               <text>{{item[5]}}</text>
             </view>
           </view>
-        </view>
+        </navigator>
       </view>
       <view class="weui-panel__ft">
         <view data-exam="{{item[0]}}" data-subject="{{item[1]}}" data-duration="{{item[6]}}" bindtap="goExam" class="weui-cell weui-cell_access weui-cell_link">

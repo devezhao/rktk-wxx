@@ -1,11 +1,11 @@
-.slide-image {
-  text-align: center;
-  background-color: #4b8ef9;
+.home-swiper {
+  height: 150px;
+  width: 100%;
 }
 
-.slide-image image {
-  height: 150px;
-  width: 375px;
+.home-swiper view, .home-swiper image {
+  height: 100%;
+  width: 100%;
 }
 
 .top-column {

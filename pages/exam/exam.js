@@ -47,6 +47,15 @@ Page({
       that.favList = res.data.data;
     });
     this.loadQuestion();
+
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        that.setData({
+          seqsHeight: res.windowHeight - 113
+        });
+      },
+    })
   },
 
   onUnload: function () {

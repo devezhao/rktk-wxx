@@ -1,8 +1,8 @@
 <view class="page">
   <block wx:if="{{banners.length > 0}}">
-    <swiper indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" bindchange="bannerChange">
+    <swiper class="home-swiper" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" bindchange="bannerChange">
       <swiper-item wx:for="{{banners}}" wx:key="*this">
-        <view data-url="{{item[1]}}" class="slide-image" bindtap="gotoPage">
+        <view data-url="{{item[1]}}" bindtap="gotoPage">
           <image src="{{item[0]}}" />
         </view>
       </swiper-item>

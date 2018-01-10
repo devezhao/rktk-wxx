@@ -53,12 +53,12 @@
   </view>
 
   <view class="dt-card" animation="{{dtcardAnimation}}">
-    <view class="seqs">
+    <view class="seqs" style="height:{{seqsHeight}}px">
       <view wx:for="{{questionTakes}}" wx:key="key_questionTakes" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
         {{item.seq}}
       </view>
     </view>
-    <view class="fix-foobar">
+    <view class="fix-foobar" style="background-color:rgba(255,255,255,1);">
       <view>
         <icon bindtap="closeDtcard" type="cancel" size="42" color="#aaa"></icon>
       </view>
