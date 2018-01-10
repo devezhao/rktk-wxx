@@ -1,9 +1,10 @@
 page, .page {
   background-color: #fff;
+  min-height: 100%;
 }
 
 .subtitle {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   border-bottom: 1rpx solid #eee;
   padding: 10px 14px;
   line-height: 1;
@@ -11,6 +12,7 @@ page, .page {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 20;
 }
 
 .subtitle .seq-no {
@@ -25,6 +27,12 @@ page, .page {
 .subtitle .pull-left {
   padding-top: 5px;
   color: #777;
+}
+
+.question-area {
+  padding-bottom: 62px;
+  padding-top: 43px;
+  transform: translateX(0px);
 }
 
 .question {

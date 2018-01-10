@@ -7,7 +7,7 @@
     <view class="clearfix"></view>
   </view>
 
-  <view class="page__bd" style="padding-bottom:62px;padding-top:43px;" animation="{{questionAnimation}}">
+  <view class="page__bd question-area" style="min-height:{{qareaHeight}}px;" bindtouchstart="toucheStart" bindtouchend="toucheEnd">
     <view class="question">
       <rich-text nodes="{{question}}"></rich-text>
     </view>
@@ -17,7 +17,9 @@
         </view>
         <view class="item {{item.clazz}}" bindtap="answer" data-key="{{item.key}}">
           <view class="key">{{item.keyText}}</view>
-          <view class="text"><rich-text nodes="{{item.content}}"></rich-text></view>
+          <view class="text">
+            <rich-text nodes="{{item.content}}"></rich-text>
+          </view>
           <view class="clearfix"></view>
         </view>
       </block>

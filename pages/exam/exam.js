@@ -13,7 +13,6 @@ Page({
   subjectId: null,
   questionList: null,
   dtcardAnimation: null,
-  questionAnimation: null,
   favList: [],
   duration: 0,
 
@@ -36,11 +35,6 @@ Page({
       timingFunction: 'ease',
       delay: 50
     });
-    this.questionAnimation = wx.createAnimation({
-      duration: 200,
-      timingFunction: 'ease',
-      delay: 50
-    });
 
     var that = this;
     zutils.get(app, 'api/fav/ids?spec=' + this.subjectId, function (res) {
@@ -50,9 +44,10 @@ Page({
 
     var that = this;
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
-          seqsHeight: res.windowHeight - 113
+          seqsHeight: res.windowHeight - 113,
+          qareaHeight: res.windowHeight - 105
         });
       },
     })
@@ -122,12 +117,6 @@ Page({
         q._answers = data;
         answers_data.answerList = q._answers;
         that.setData(answers_data);
-
-        //setTimeout(function(){
-        //  wx.pageScrollTo({
-        //    scrollTop: 0
-        //  });
-        //}, 200)
       });
     }
   },
@@ -135,27 +124,13 @@ Page({
   prevQuestion: function () {
     if (this.data.seqCurrent == 1) return false;
     var that = this;
-    setTimeout(function () {
-      that.renderQuestion(-1);
-    }, 0);
-
-    //this.questionAnimation.translateX('120%').step().translateX(0).step()
-    //this.setData({
-    //  questionAnimation: this.questionAnimation.export()
-    //});
+    that.renderQuestion(-1);
   },
 
   nextQuestion: function () {
     if (this.data.seqCurrent == this.data.seqTotal) return false;
     var that = this;
-    setTimeout(function () {
-      that.renderQuestion(1);
-    }, 0);
-
-    //this.questionAnimation.translateX('-120%').step().translateX(0).step()
-    //this.setData({
-    //  questionAnimation: this.questionAnimation.export()
-    //});
+    that.renderQuestion(1);
   },
 
   gotoQuestion: function (e) {
@@ -331,6 +306,29 @@ Page({
       wx.setNavigationBarTitle({
         title: '软考必备'
       });
+    }
+  },
+
+  toucheStart: function (e) {
+    console.log(JSON.stringify(e));
+    this.__toucheEvent = e.touches[0];
+  },
+  toucheEnd: function (e) {
+    if (!this.__toucheEvent) return;
+    console.log(JSON.stringify(e.changedTouches));
+    let _changed = e.changedTouches[0];
+
+    // 上下滑动
+    let leftY = _changed.pageY - this.__toucheEvent.pageY;
+    if (leftY > 80 || leftY < -80) {
+      return;
+    }
+
+    let leftX = _changed.pageX - this.__toucheEvent.pageX;
+    if (leftX > 80) {
+      this.prevQuestion();
+    } else if (leftX < -80) {
+      this.nextQuestion();
     }
   }
 });

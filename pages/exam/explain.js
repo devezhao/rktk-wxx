@@ -56,6 +56,13 @@ Page({
         data.yourAnswer = that.__formatAnswerKey(that.answerKey);
       }
       that.setData(data);
+
+      //setTimeout(function () {
+      //  wx.createSelectorQuery().selectAll('#question, #answers, #explain').boundingClientRect(function (rects) {
+      //    console.log(JSON.stringify(rects))
+      //    that.rects = rects;
+      //  }).exec();
+      //}, 1000)
     });
   },
 
@@ -89,15 +96,15 @@ Page({
   position: function (e) {
     var vid = e.currentTarget.dataset.vid;
     this.setData({
-      viewId: vid
+      viewId: vid,
     })
   },
 
-  gotoSubject: function(e) {
+  gotoSubject: function (e) {
     var s = e.currentTarget.dataset.subject;
     app.gotoPage('/pages/question/subject?id=' + s);
   },
-
+  
   onShareAppMessage: function () {
     var d = app.warpShareData('/pages/exam/explain?id=' + this.questionId);
     d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';

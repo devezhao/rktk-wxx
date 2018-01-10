@@ -13,7 +13,7 @@ var z_sharebox = {
     this.data.shareboxHide = false;
     page.setData({
       shareboxData: this.data
-    })
+    });
   },
 
   shareboxClose: function (page) {
