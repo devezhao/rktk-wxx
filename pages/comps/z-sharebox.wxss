@@ -68,6 +68,11 @@
   margin-top: 6px;
 }
 
+.sharebox view button.weui-btn {
+  border-radius: 0;
+  font-size: 17px;
+}
+
 .dialog {
   position: fixed;
   z-index: 999;

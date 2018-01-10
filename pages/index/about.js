@@ -2,6 +2,10 @@ const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
 Page({
+  data: {
+    tipsbarHide: true
+  },
+
   copy: function (e) {
     var data = e.currentTarget.dataset.text;
     wx.setClipboardData({
@@ -35,5 +39,19 @@ Page({
 
   onShareAppMessage: function () {
     return app.warpShareData();
+  },
+
+  debugTapTimes: 0,
+  onShow: function () {
+    this.debugTapTimes = 0;
+  },
+  enableDebug: function () {
+    this.debugTapTimes++;
+    if (this.debugTapTimes == 3) {
+      wx.setEnableDebug({
+        enableDebug: true
+      });
+      zutils.tipsbar(this, 'DEBUG 模式已开启');
+    }
   }
 })

@@ -27,5 +27,8 @@
   </view>
 </view>
 <view class="fix-foobar btns" hidden="{{hideFoobar}}">
-  <button class="weui-btn" type="default" bindtap="goHome">返回首页</button>
+  <button class="weui-btn" type="default" bindtap="shareboxOpen">邀好友PK得学豆</button>
 </view>
+
+<import src="../comps/z-sharebox.wxml"/>
+<template is="z-sharebox" data="{{...shareboxData}}"/>

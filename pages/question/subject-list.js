@@ -20,7 +20,7 @@ Page({
 
   listSubject: function () {
     var that = this;
-    zutils.post(app, 'api/subject/list?showAll=0', function (res) {
+    zutils.post(app, 'api/subject/list?showAll=1', function (res) {
       if (res.data.error_code > 0) {
         that.setData({
           showNosubject: true

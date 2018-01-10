@@ -15,7 +15,6 @@ page, .page {
   margin-bottom: 11px;
   font-size: 14px;
   line-height: 1.5;
-  border: 1rpx solid #ddd;
 }
 
 .answer-list .item .key {
@@ -23,39 +22,27 @@ page, .page {
   width: 32px;
   text-align: center;
   padding: 9px 0;
+  border: 1rpx solid #ddd;
 }
 
 .answer-list .item .text {
   padding: 9px 9px;
   margin-left: 32px;
-  border-left: 1rpx solid #ddd;
+  border: 1rpx solid #ddd;
+  border-left: 0 none;
   background-color: #fff;
-}
-
-.answer-list .item.selected {
-  background-color: #d9534f;
-  border-color: #d9534f;
 }
 
 .answer-list .item.selected .key {
   color: #fff;
-}
-
-.answer-list .item.selected .text {
+  background-color: #d9534f;
   border-color: #d9534f;
 }
 
-.answer-list .item.right {
+.answer-list .item.right .key {
   background-color: #4cae4c;
   border-color: #4cae4c;
-}
-
-.answer-list .item.right .key {
   color: #fff;
-}
-
-.answer-list .item.right .text {
-  border-color: #4cae4c;
 }
 
 .answer-list .split-line {
@@ -64,7 +51,7 @@ page, .page {
 }
 
 .answerkeys {
-  background-color: #eee;
+  background-color: #efeff4;
   height: 44px;
   line-height: 44px;
   border: 0 none;
@@ -81,13 +68,15 @@ page, .page {
   margin-left: 3px;
 }
 
-.explain-title {
+#explain {
   border-top: 1rpx solid #d9d9d9;
-  font-size: 15px;
   margin-top: 18px;
+}
+
+.explain-title {
+  font-size: 15px;
   font-weight: bold;
-  padding: 14px;
-  padding-bottom: 4px;
+  padding: 4px 14px;
 }
 
 .explain-content {
@@ -95,6 +84,21 @@ page, .page {
   font-size: 15px;
   padding: 14px;
   padding-top: 0;
+}
+
+.explain-source {
+  color: #777;
+  font-size: 13px;
+  padding: 12px 14px;
+  padding-bottom: 1px;
+  padding-left: 33px;
+  position: relative;
+}
+
+.explain-source icon {
+  position: absolute;
+  margin-top: 2px;
+  left: 14px;
 }
 
 .fbtns {

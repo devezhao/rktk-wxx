@@ -139,18 +139,7 @@ Page({
   },
 
   gotoPage: function (e) {
-    var _url = e.currentTarget.dataset.url;
-    if (!!!_url) return;
-
-    if (_url == '/pages/question/subject-list' || _url == '/pages/my/home') {
-      wx.switchTab({
-        url: _url
-      })
-    } else {
-      wx.navigateTo({
-        url: _url
-      })
-    }
+    app.gotoPage(e.currentTarget.dataset.url);
   },
 
   onShareAppMessage: function () {

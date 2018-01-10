@@ -23,14 +23,6 @@
     </view>
   </view>
 
-  <view class="page__bd kpoints" hidden="{{kpoints == null}}">
-    <view class="weui-cells__title" style="padding:0">知识分布</view>
-    <view class="line" wx:for="{{kpoints}}" wx:key="*this">
-      <text>{{item[0]}} ({{item[1]}})</text>
-      <view style="width:{{item[1]*5}}%"></view>
-    </view>
-  </view>
-
   <view class="fix-foobar">
     <view class="pull-left">
       <form bindsubmit="toExplain" report-submit="true">

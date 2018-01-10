@@ -1,7 +1,7 @@
 <view class="page">
   <view class="ver">
     <image src="https://c.rktk.qidapp.com/a/wxx/logo-200.png"></image>
-    <view>
+    <view bindtap="enableDebug">
       软考必备 V0.4.6
     </view>
   </view>
@@ -28,4 +28,8 @@
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
   </view>
+</view>
+
+<view class="tipsbar" hidden="{{tipsbarHide}}">
+  <view>{{tips}}</view>
 </view>

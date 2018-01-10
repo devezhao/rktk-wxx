@@ -34,6 +34,8 @@
       </view>
     </view>
     <view class="page__hd" id="explain">
+      <view class="explain-source" bindtap="gotoSubject" data-subject="{{source_subject_id}}">
+        <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}</view>
       <view class="explain-title">
         考题解析
       </view>
@@ -44,7 +46,10 @@
   </scroll-view>
 </view>
 
+<!--
 <view class="float-btns" style="bottom:{{yourAnswer == null ? '11px' : '48px'}}">
+-->
+<view class="float-btns" style="bottom:51px">
   <button class="zbtn" bindtap="shareboxOpen">
     <image src="../../images/share.png" class="share"></image>
   </button>
@@ -65,5 +70,5 @@
   <view class="clearfix"></view>
 </view>
 
-<import src="../comps/z-sharebox.wxml"/>
-<template is="z-sharebox" data="{{...shareboxData}}"/>
+<import src="../comps/z-sharebox.wxml" />
+<template is="z-sharebox" data="{{...shareboxData}}" />

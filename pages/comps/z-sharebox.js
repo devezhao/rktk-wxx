@@ -27,7 +27,7 @@ var z_sharebox = {
     this.data.dialogHide = false;
     page.setData({
       shareboxData: this.data
-    })
+    });
   },
 
   dialogClose: function (page) {
