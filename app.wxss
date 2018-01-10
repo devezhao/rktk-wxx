@@ -86,6 +86,9 @@ page, .page {
 .fix-foobar.btns button {
   border-radius: 0;
   background-color: #fff;
+}
+
+.fix-foobar button {
   font-size: 17px;
 }
 
@@ -153,6 +156,7 @@ button[type="default"] {
 button.T2 {
   background-color: #ec5353;
 }
+
 button.T2.button-hover {
   background-color: #ec5353;
   opacity: 0.8;
@@ -239,9 +243,11 @@ image.x24 {
 .weui-media-box.rktk-record .weui-media-box__info text {
   color: #444;
 }
+
 .weui-media-box.rktk-record .weui-media-box__title.has-btn-more {
   padding-right: 15px;
 }
+
 .weui-media-box.rktk-record .btn-more {
   position: absolute;
   right: 0;
@@ -252,6 +258,7 @@ image.x24 {
   text-align: center;
   padding-top: 15px;
 }
+
 .weui-media-box.rktk-record .btn-more image {
   width: 20px;
   height: 20px;

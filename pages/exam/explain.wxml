@@ -1,18 +1,17 @@
 <view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '44px'}}">
-  <view class="page__hd">
-    <view class="weui-flex top-position">
-      <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
-        <image src="../../images/icon-marker.png"></image> 考题
-      </view>
-      <view class="weui-flex__item {{viewId == 'answers' ? 'active' : ''}}" data-vid="answers" bindtap="position">
-        <image src="../../images/icon-marker.png"></image> 参考答案
-      </view>
-      <view class="weui-flex__item {{viewId == 'explain' ? 'active' : ''}}" data-vid="explain" bindtap="position">
-        <image src="../../images/icon-marker.png"></image> 考题解析
-      </view>
+  <view class="page__hd weui-flex top-position">
+    <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
+      <image src="../../images/icon-marker.png"></image> 考题
+    </view>
+    <view class="weui-flex__item {{viewId == 'answers' ? 'active' : ''}}" data-vid="answers" bindtap="position">
+      <image src="../../images/icon-marker.png"></image> 参考答案
+    </view>
+    <view class="weui-flex__item {{viewId == 'explain' ? 'active' : ''}}" data-vid="explain" bindtap="position">
+      <image src="../../images/icon-marker.png"></image> 考题解析
     </view>
   </view>
-  <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}" style="height:{{viewHeight}}px">
+
+  <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}" style="height:{{viewHeight}}px;margin-top:40px">
     <view class="page__bd" id="question" style="padding-top:1px">
       <view class="question">
         <rich-text nodes="{{question}}"></rich-text>
