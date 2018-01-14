@@ -21,7 +21,7 @@ function z_get(app, url, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 400);
+    }, 200);
   }
 
   wx.request({
@@ -55,7 +55,7 @@ function z_post(app, url, data, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 400);
+    }, 200);
   }
 
   wx.request({

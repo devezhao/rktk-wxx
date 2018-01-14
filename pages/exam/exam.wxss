@@ -133,6 +133,7 @@ page, .page {
   text-align: center;
   transform: translate(0, 100%);
   height: 100%;
+  z-index: 21;
 }
 
 .dt-card .seqs {

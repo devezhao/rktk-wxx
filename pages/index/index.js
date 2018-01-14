@@ -90,9 +90,9 @@ Page({
     zutils.post(app, 'api/exam/today-exam?formId=' + (e.detail.formId || ''), function (res) {
       if (res.data.error_code == 0) {
         var data = res.data.data;
-        wx.redirectTo({
+        wx.navigateTo({
           url: '../exam/exam?subject=' + data.subject_id + '&exam=' + data.exam_id
-        });
+        })
       } else {
         var error_msg = res.data.error_msg || '系统错误';
         if (error_msg.indexOf('考试类型') > -1 || error_msg.indexOf('尚未选择') > -1) {
