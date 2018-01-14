@@ -12,36 +12,44 @@
   <view class="page__hd">
     <view class="weui-flex top-column">
       <view class="weui-flex__item">
-        <navigator url="../my/incorrects" class="icon-w">
-          <view class="icon">
-            <image src="../../images/h-icon-incorrect.png" class="x26"></image>
-          </view>
-          <text>错题本</text>
-        </navigator>
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/incorrects">
+          <button class="icon-w" formType="submit">
+            <view class="icon">
+              <image src="../../images/h-icon-incorrect.png" class="x26"></image>
+            </view>
+            <text>错题本</text>
+          </button>
+        </form>
       </view>
       <view class="weui-flex__item">
-        <navigator url="../my/my-favs" class="icon-w">
-          <view class="icon">
-            <image src="../../images/h-icon-star.png" class="x26"></image>
-          </view>
-          <text>我的收藏</text>
-        </navigator>
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/my-favs">
+          <button class="icon-w" formType="submit">
+            <view class="icon">
+              <image src="../../images/h-icon-star.png" class="x26"></image>
+            </view>
+            <text>我的收藏</text>
+          </button>
+        </form>
       </view>
       <view class="weui-flex__item">
-        <view class="icon-w" bindtap="todayExam">
-          <view class="icon">
-            <image src="../../images/h-home-rnd.png" class="x30"></image>
-          </view>
-          <text>每日一练</text>
-        </view>
+        <form bindsubmit="todayExam" report-submit="true">
+          <button class="icon-w" formType="submit">
+            <view class="icon">
+              <image src="../../images/h-home-rnd.png" class="x30"></image>
+            </view>
+            <text>每日一练</text>
+          </button>
+        </form>
       </view>
       <view class="weui-flex__item">
-        <view class="icon-w" bindtap="signin">
-          <view class="icon">
-            <image src="../../images/h-icon-signin.png" class="x24" style="margin-top:2px"></image>
-          </view>
-          <text>签到</text>
-        </view>
+        <form bindsubmit="signin" report-submit="true">
+          <button class="icon-w" formType="submit">
+            <view class="icon">
+              <image src="../../images/h-icon-signin.png" class="x24" style="margin-top:2px"></image>
+            </view>
+            <text>签到</text>
+          </button>
+        </form>
       </view>
     </view>
   </view>

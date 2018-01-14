@@ -85,9 +85,9 @@ Page({
     });
   },
 
-  todayExam: function () {
+  todayExam: function (e) {
     var that = this;
-    zutils.post(app, 'api/exam/today-exam', function (res) {
+    zutils.post(app, 'api/exam/today-exam?formId=' + (e.detail.formId || ''), function (res) {
       if (res.data.error_code == 0) {
         var data = res.data.data;
         wx.redirectTo({
@@ -110,8 +110,8 @@ Page({
     });
   },
 
-  signin: function () {
-    zutils.post(app, 'api/home/signin?noloading', function (res) {
+  signin: function (e) {
+    zutils.post(app, 'api/home/signin?noloading&formId=' + (e.detail.formId || ''), function (res) {
       if (res.data.error_code == 0) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.showToast({
@@ -139,6 +139,9 @@ Page({
   },
 
   gotoPage: function (e) {
+    if (e.detail && e.detail.formId) {
+      zutils.post(app, 'api/user/report-formid?formId=' + e.detail.formId);
+    }
     app.gotoPage(e.currentTarget.dataset.url);
   },
 

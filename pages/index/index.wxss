@@ -20,6 +20,10 @@
 
 .top-column .weui-flex__item .icon-w {
   padding: 12px 0;
+  border-radius: 0;
+  font-size: 14px;
+  line-height: 1;
+  background-color: #fff;
 }
 
 .top-column .weui-flex__item .icon-w:active {

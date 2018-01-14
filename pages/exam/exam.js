@@ -310,12 +310,12 @@ Page({
   },
 
   toucheStart: function (e) {
-    console.log(JSON.stringify(e));
+    //console.log(JSON.stringify(e));
     this.__toucheEvent = e.touches[0];
   },
   toucheEnd: function (e) {
     if (!this.__toucheEvent) return;
-    console.log(JSON.stringify(e.changedTouches));
+    //console.log(JSON.stringify(e.changedTouches));
     let _changed = e.changedTouches[0];
 
     // 上下滑动

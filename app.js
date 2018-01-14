@@ -165,7 +165,7 @@ App({
       }, fail: function (res) {
         wx.showModal({
           title: '提示',
-          content: '请允许软考必备使用你的用户信息',
+          content: '请允许小程序使用你的用户信息',
           showCancel: false,
           success: function () {
             wx.openSetting({
