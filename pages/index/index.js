@@ -32,7 +32,7 @@ Page({
 
   // 解析分享来源
   __checkTwxx: function () {
-    var q = app.__enter_source.query.q;
+    var q = app.__enter_source.query.q || app.__enter_source.query.scene;
     if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
       zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
         if (res.data.error_code == 0) {

@@ -5,7 +5,8 @@ import { zsharebox } from '../comps/z-sharebox.js';
 Page({
   data: {
     hideFoobar: true,
-    shareboxData: zsharebox.data
+    shareboxData: zsharebox.data,
+    pkimgUrl: null
   },
   examId: null,
   subjectId: null,
@@ -71,10 +72,36 @@ Page({
     return app.warpShareData();
   },
 
+  imgMax: function (e) {
+    wx.previewImage({
+      urls: [this.__pkimgUrl]
+    })
+  },
+
   shareboxOpen: function () {
-    zsharebox.shareboxOpen(this);
+    if (this.__pkimgUrl) {
+      this.setData({
+        pkimgUrl: this.__pkimgUrl
+      });
+      return;
+    }
+
+    var that = this;
+    zutils.get(app, 'api/share/gen-pkimg?exam=' + this.examId, function (res) {
+      if (res.data.error_code == 0) {
+        that.__pkimgUrl = res.data.data;
+        that.setData({
+          pkimgUrl: that.__pkimgUrl
+        });
+      } else {
+        zsharebox.shareboxOpen(that);
+      }
+    });
   },
   shareboxClose: function () {
+    this.setData({
+      pkimgUrl: null
+    });
     zsharebox.shareboxClose(this);
   },
   dialogOpen: function () {

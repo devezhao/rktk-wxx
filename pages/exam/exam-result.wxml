@@ -1,12 +1,13 @@
 <view class="page {{hideFoobar ? '' : 'has-foobar'}}">
   <view class="page__hd">
     <view class="top-block">
-      <canvas class="circle" canvas-id="circle-scope">
+      <canvas class="circle" canvas-id="circle-scope" hidden="{{pkimgUrl != null}}">
         <view class="circle-scope {{scope_color}}">
           {{scope}}
           <text>分</text>
         </view>
       </canvas>
+      <view style="height:100px;" hidden="{{pkimgUrl == null}}"></view>
       <view class="title" style="margin-top:6px;">
         {{scope_tips}}
       </view>
@@ -30,5 +31,16 @@
   <button class="weui-btn" type="default" bindtap="shareboxOpen">邀好友PK得学豆</button>
 </view>
 
-<import src="../comps/z-sharebox.wxml"/>
-<template is="z-sharebox" data="{{...shareboxData}}"/>
+<import src="../comps/z-sharebox.wxml" />
+<template is="z-sharebox" data="{{...shareboxData}}" />
+
+<block wx:if="{{pkimgUrl != null}}">
+  <view class="mask" style="background-color: rgba(0, 0, 0, 0.6);"></view>
+  <view class="pkimg-show">
+    <image src="{{pkimgUrl}}" bindtap="imgMax"></image>
+    <view>
+      <text>点击图片放大长按保存并发送给好友</text>
+      <icon bindtap="shareboxClose" type="cancel" size="42" color="#fff"></icon>
+    </view>
+  </view>
+</block>

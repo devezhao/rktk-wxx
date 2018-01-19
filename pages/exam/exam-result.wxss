@@ -3,6 +3,7 @@
 .circle, .circle-scope {
   width: 100px;
   height: 100px;
+  z-index: 1;
 }
 
 .circle {
@@ -21,6 +22,7 @@
   margin-left: -4px;
   transform: translate(7px, 0);
 }
+
 .circle-scope text {
   font-size: 13px;
   color: #999;
@@ -57,4 +59,36 @@
 
 .page.has-foobar {
   padding-bottom: 43px;
+}
+
+.pkimg-show {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  text-align: center;
+}
+
+.pkimg-show image {
+  width: 300px;
+  height: 480px;
+  margin-top: 18px;
+  border-radius: 6px;
+}
+
+.pkimg-show text {
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  margin-top: 6px;
+}
+
+.pkimg-show icon {
+  position: fixed;
+  bottom: 18px;
+  text-align: center;
+  left: 50%;
+  margin-left: -21px;
 }
