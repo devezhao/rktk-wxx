@@ -1,3 +1,7 @@
+page, .page {
+  background-color: #fff;
+}
+
 .weui-cells__title {
   padding-left: 0;
 }
@@ -13,17 +17,18 @@
 
 .num-warp view.c {
   display: inline-block;
-  border: 1rpx solid #d9d9d9;
-  background-color: #fff;
-  padding: 5px 0;
-  font-size: 16px;
+  border: 2px solid #f7f7f9;
+  background-color: #f7f7f9;
+  padding: 4px 0;
+  font-size: 17px;
   width: 100%;
   text-align: center;
   margin: 4px 0;
+  border-radius: 2px;
 }
 
 .num-warp view.c.input {
-  padding: 6px 0;
+  padding: 6.4px 0;
 }
 
 .num-warp view.c.input input {
@@ -33,4 +38,5 @@
 .num-warp view.c.active {
   color: #ec5353;
   border-color: #ec5353;
+  background-color: #fff;
 }

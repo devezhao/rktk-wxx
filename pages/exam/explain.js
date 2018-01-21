@@ -7,7 +7,8 @@ zsharebox.data.typeName = '考题';
 Page({
   data: {
     shareboxData: zsharebox.data,
-    viewId: 'question'
+    viewId: 'question',
+    currentQuestionId: null
   },
   questionId: null,
   answerKey: null,
@@ -23,8 +24,12 @@ Page({
     this.questionId = e.id;
     this.answerKey = e.a;
     var that = this;
-    app.getUserInfo(function () {
+    app.getUserInfo(function (u) {
       that.__onLoad(e);
+      that.setData({
+        currentQuestionId: that.questionId,
+        user: u.uid
+      })
     });
 
     wx.getSystemInfo({
@@ -34,6 +39,10 @@ Page({
         })
       }
     });
+
+    this.setData({
+
+    })
   },
 
   __onLoad: function (e) {

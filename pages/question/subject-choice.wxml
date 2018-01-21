@@ -51,6 +51,12 @@
       </view>
     </block>
   </view>
+
+  <view class="page__bd" style="padding-top:12px;">
+    <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dNoSubject" class="color-link" style="font-size:15px;display:inline-block;">
+      <icon size="15" type="info_circle" color="#586c94" /> 没有需要的考试类型？
+    </navigator>
+  </view>
 </view>
 
 <view class="fix-foobar btns">

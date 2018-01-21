@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "学豆充值"
+  "navigationBarTitleText": "学豆充值",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#fff"
 }

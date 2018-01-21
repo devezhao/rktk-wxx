@@ -40,6 +40,11 @@
       </view>
       <view class="explain-content" style="padding-bottom:{{yourAnswer == null ? '15px' : '12px'}}">
         <rich-text nodes="{{explain}}"></rich-text>
+        <view style="padding-top:1px;text-align:right">
+          <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}" class="color-link" style="font-size:14px;display:inline-block;">
+            <icon size="14" type="info_circle" color="#586c94" /> 纠错
+          </navigator>
+        </view>
       </view>
     </view>
   </scroll-view>

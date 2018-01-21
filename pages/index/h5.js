@@ -18,6 +18,7 @@ Page({
 
     var _url = e.url;
     _url = decodeURIComponent(_url);
+    console.log(_url);
     if (e.bgcolor) {
       wx.setNavigationBarColor({
         frontColor: (e.bgcolor == 'fff' || e.bgcolor == 'ffffff') ? '#000000' : '#ffffff',

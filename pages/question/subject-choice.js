@@ -11,12 +11,18 @@ Page({
   onLoad: function (e) {
     this.back = e.back || 0;
     var that = this;
-    zutils.get(app, 'api/subject/list-top', function (res) {
-      var data = res.data;
+    app.getUserInfo(function (u) {
       that.setData({
-        subjectList_1: data.data.L1,
-        subjectList_2: data.data.L2,
-        subjectList_3: data.data.L3
+        user: u.uid
+      })
+
+      zutils.get(app, 'api/subject/list-top', function (res) {
+        var data = res.data;
+        that.setData({
+          subjectList_1: data.data.L1,
+          subjectList_2: data.data.L2,
+          subjectList_3: data.data.L3
+        });
       });
     });
   },
