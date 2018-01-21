@@ -15,6 +15,7 @@ page, .page {
   margin-bottom: 11px;
   font-size: 14px;
   line-height: 1.5;
+  border: 1rpx solid #ddd;
 }
 
 .answer-list .item .key {
@@ -22,26 +23,28 @@ page, .page {
   width: 32px;
   text-align: center;
   padding: 9px 0;
-  border: 1rpx solid #ddd;
 }
 
 .answer-list .item .text {
   padding: 9px 9px;
   margin-left: 32px;
-  border: 1rpx solid #ddd;
-  border-left: 0 none;
+  border-left: 1rpx solid #ddd;
   background-color: #fff;
+}
+
+.answer-list .item.selected {
+  background-color: #d9534f;
 }
 
 .answer-list .item.selected .key {
   color: #fff;
-  background-color: #d9534f;
-  border-color: #d9534f;
+}
+
+.answer-list .item.right {
+  background-color: #4cae4c;
 }
 
 .answer-list .item.right .key {
-  background-color: #4cae4c;
-  border-color: #4cae4c;
   color: #fff;
 }
 

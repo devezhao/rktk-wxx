@@ -96,6 +96,8 @@ Page({
       } else {
         zsharebox.shareboxOpen(that);
       }
+    }, function () {
+      zsharebox.shareboxOpen(that);
     });
   },
   shareboxClose: function () {
