@@ -21,7 +21,20 @@ Page({
     var that = this;
     that.subjectId = e.id;
     zutils.get(app, 'api/subject/details?id=' + that.subjectId, function (res) {
-      var _data = res.data.data;
+      var _data = res.data;
+      if (_data.error_code > 0) {
+        wx.showModal({
+          title: '提示',
+          content: _data.error_msg,
+          showCancel: false,
+          success: function () {
+            app.gotoPage('/pages/index/index');
+          }
+        });
+        return;
+      }
+
+      _data = _data.data;
       _data.pass_percent = _data.pass_percent.toFixed(1);
       that.setData(_data);
       that.fullName = _data.parent_name + _data.subject_name;

@@ -26,7 +26,7 @@
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "软考必备",
     "backgroundTextStyle": "dark",
-    "backgroundColor": "#efeff4",
+    "backgroundColor": "#f7f7f9",
     "enablePullDownRefresh": false
   },
   "tabBar": {

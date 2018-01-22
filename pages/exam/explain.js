@@ -39,10 +39,6 @@ Page({
         })
       }
     });
-
-    this.setData({
-
-    })
   },
 
   __onLoad: function (e) {
@@ -113,7 +109,7 @@ Page({
     var s = e.currentTarget.dataset.subject;
     app.gotoPage('/pages/question/subject?id=' + s);
   },
-  
+
   onShareAppMessage: function () {
     var d = app.warpShareData('/pages/exam/explain?id=' + this.questionId);
     d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';

@@ -50,7 +50,13 @@ Page({
           qareaHeight: res.windowHeight - 105
         });
       },
-    })
+    });
+
+    this.__turningAnimation = wx.createAnimation({
+      duration: 200,
+      timingFunction: 'ease',
+      transformOrigin: '50% 50% 0'
+    });
   },
 
   onUnload: function () {
@@ -123,14 +129,14 @@ Page({
 
   prevQuestion: function () {
     if (this.data.seqCurrent == 1) return false;
-    var that = this;
-    that.renderQuestion(-1);
+    this.renderQuestion(-1);
+    return true;
   },
 
   nextQuestion: function () {
     if (this.data.seqCurrent == this.data.seqTotal) return false;
-    var that = this;
-    that.renderQuestion(1);
+    this.renderQuestion(1);
+    return true;
   },
 
   gotoQuestion: function (e) {
@@ -309,26 +315,51 @@ Page({
     }
   },
 
-  toucheStart: function (e) {
-    //console.log(JSON.stringify(e));
-    this.__toucheEvent = e.touches[0];
+  // 翻页
+
+  turningStart: function (e) {
+    this.__turningAnimation.opacity(0.8).step();
+    this.setData({
+      turningData: this.__turningAnimation.export()
+    });
+    this.__turning_CX = e.touches[0].clientX;
   },
-  toucheEnd: function (e) {
-    if (!this.__toucheEvent) return;
-    //console.log(JSON.stringify(e.changedTouches));
-    let _changed = e.changedTouches[0];
 
-    // 上下滑动
-    let leftY = _changed.pageY - this.__toucheEvent.pageY;
-    if (leftY > 80 || leftY < -80) {
-      return;
+  turningMove: function (e) {
+    if (this.__turning_CX == -9999) return;
+
+    let moveX = e.touches[0].clientX;
+    let leftX = moveX - this.__turning_CX;
+    this.__turningAnimation.translateX(leftX + 'px').step({ duration: 0 });
+    this.__turning_Left = leftX;
+    this.setData({
+      turningData: this.__turningAnimation.export()
+    });
+    console.log('leftX ' + leftX);
+  },
+
+  turningEnd: function (e) {
+    if (this.__turning_CX == -9999) return;
+    this.__turning_CX = -9999;
+
+    let left = this.__turning_Left;
+    let next = true;
+    if (left > 80) {
+      next = this.prevQuestion();
+    } else if (left < -80) {
+      next = this.nextQuestion();
     }
 
-    let leftX = _changed.pageX - this.__toucheEvent.pageX;
-    if (leftX > 80) {
-      this.prevQuestion();
-    } else if (leftX < -80) {
-      this.nextQuestion();
+    if ((left > 80 || left < -80) && next === true) {
+      this.__turningAnimation.translateX(left > 80 ? '98%' : '-98%').opacity(0.1).step({ duration: 200 }).translateX('0px').opacity(1).step({ duration: 0 });
+      this.setData({
+        turningData: this.__turningAnimation.export()
+      });
+    } else {
+      this.__turningAnimation.translateX('0px').opacity(1).step({ duration: 200 });
+      this.setData({
+        turningData: this.__turningAnimation.export()
+      });
     }
-  }
+  },
 });
