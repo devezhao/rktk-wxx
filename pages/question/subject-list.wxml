@@ -26,7 +26,7 @@
                   <text class="color-base2">免费</text>
                 </block>
                 <block wx:if="{{item[2] < 0}}">
-                  <text class="color-base2">限免</text>
+                  <text class="color-base2">(限免)</text>
                 </block>
               </view>
             </view>
@@ -61,7 +61,7 @@
                     <text class="color-base2">免费</text>
                   </block>
                   <block wx:if="{{item[2] < 0}}">
-                    <text class="color-base2">限免</text>
+                    <text class="color-base2">(限免)</text>
                   </block>
                 </view>
               </view>

@@ -112,16 +112,17 @@ Page({
 
   signin: function (e) {
     zutils.post(app, 'api/home/signin?noloading&formId=' + (e.detail.formId || ''), function (res) {
-      if (res.data.error_code == 0) {
+      var _data = res.data;
+      if (_data.error_code == 0) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.showToast({
-          title: '签到成功',
+          title: _data.data || '签到成功',
           icon: 'success'
         });
       } else {
         wx.showModal({
           title: '提示',
-          content: res.data.error_msg || '系统错误',
+          content: _data.error_msg || '系统错误',
           showCancel: false
         })
       }

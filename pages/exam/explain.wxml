@@ -76,3 +76,16 @@
 
 <import src="../comps/z-sharebox.wxml" />
 <template is="z-sharebox" data="{{...shareboxData}}" />
+
+<view class="page-nos" hidden="{{hideNos}}">
+  <view class="el page-prev" bindtap="goPrev" hover-class="go-hover">
+    <image src="../../images/arrow-left-fff.png"></image>
+  </view>
+  <view class="el page-no">
+    {{qidsNo}}/{{qidsTotal}}
+  </view>
+  <view class="el page-next" bindtap="goNext" hover-class="go-hover">
+    <image src="../../images/arrow-right-fff.png"></image>
+  </view>
+  <view class="clearfix"></view>
+</view>

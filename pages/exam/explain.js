@@ -8,9 +8,10 @@ Page({
   data: {
     shareboxData: zsharebox.data,
     viewId: 'question',
-    currentQuestionId: null
+    currentQuestionId: null,
+    hideNos: true
   },
-  questionId: null,
+  qosid: null,
   answerKey: null,
 
   onLoad: function (e) {
@@ -21,15 +22,45 @@ Page({
       return;
     }
 
-    this.questionId = e.id;
     this.answerKey = e.a;
+    this.qosid = e.id;
     var that = this;
     app.getUserInfo(function (u) {
-      that.__onLoad(e);
       that.setData({
-        currentQuestionId: that.questionId,
         user: u.uid
-      })
+      });
+
+      if (that.qosid.substr(0, 3) == '112') {
+        that.setData({
+          currentQuestionId: that.qosid
+        });
+        that.__loadQuestion(e);
+      } else {
+        zutils.get(app, 'api/subject/subject-qids?subject=' + that.qosid, function (res) {
+          that.__qids = res.data.data;
+          let idx = 1;
+          try {
+            idx = wx.getStorageSync('ExplainPageNo' + that.qosid);
+            if (idx) {
+              idx = ~~idx;
+              if (idx < 1 || idx > that.__qids.length) {
+                idx = 1;
+              }
+            } else {
+              idx = 1;
+            }
+          } catch (e) {
+          }
+
+          that.setData({
+            hideNos: false,
+            qidsTotal: that.__qids.length,
+            qidsNo: idx,
+            currentQuestionId: that.__qids[idx - 1]
+          });
+          that.__loadQuestion();
+        });
+      }
     });
 
     wx.getSystemInfo({
@@ -41,9 +72,16 @@ Page({
     });
   },
 
-  __onLoad: function (e) {
+  __loadQuestion: function (idx) {
+    if (idx && typeof idx == 'number') {
+      wx.setStorage({
+        key: 'ExplainPageNo' + this.qosid,
+        data: idx
+      })
+    }
+
     var that = this;
-    zutils.get(app, 'api/question/details?id=' + this.questionId, function (res) {
+    zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
       var data = res.data.data;
       for (var i = 0; i < data.answer_list.length; i++) {
         var item = data.answer_list[i];
@@ -60,15 +98,31 @@ Page({
         data.rightAnswer = that.__formatAnswerKey(data.answer_key);
         data.yourAnswer = that.__formatAnswerKey(that.answerKey);
       }
+      data.viewId = 'question';
       that.setData(data);
-
-      //setTimeout(function () {
-      //  wx.createSelectorQuery().selectAll('#question, #answers, #explain').boundingClientRect(function (rects) {
-      //    console.log(JSON.stringify(rects))
-      //    that.rects = rects;
-      //  }).exec();
-      //}, 1000)
     });
+  },
+
+  goPrev: function (e) {
+    let idx = this.data.qidsNo;
+    if (idx <= 1) return;
+    idx -= 1;
+    this.setData({
+      qidsNo: idx,
+      currentQuestionId: this.__qids[idx - 1]
+    });
+    this.__loadQuestion(idx);
+  },
+
+  goNext: function (e) {
+    let idx = this.data.qidsNo;
+    if (idx >= this.__qids.length) return;
+    idx += 1;
+    this.setData({
+      qidsNo: idx,
+      currentQuestionId: this.__qids[idx - 1]
+    });
+    this.__loadQuestion(idx);
   },
 
   __formatAnswerKey: function (ak) {
@@ -87,7 +141,7 @@ Page({
 
   fav: function (e) {
     var that = this;
-    zutils.post(app, 'api/fav/toggle?question=' + this.questionId, function (res) {
+    zutils.post(app, 'api/fav/toggle?question=' + this.data.currentQuestionId, function (res) {
       var _data = res.data.data;
       that.setData({
         isFav: _data.is_fav
@@ -110,10 +164,11 @@ Page({
     app.gotoPage('/pages/question/subject?id=' + s);
   },
 
+
+
   onShareAppMessage: function () {
-    var d = app.warpShareData('/pages/exam/explain?id=' + this.questionId);
+    var d = app.warpShareData('/pages/exam/explain?id=' + this.data.currentQuestionId);
     d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';
-    console.log(d);
     return d;
   },
 

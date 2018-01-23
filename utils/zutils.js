@@ -1,12 +1,12 @@
-const baseUrl = 'https://rktk.qidapp.com/';
-//const baseUrl = 'http://127.0.0.1:8080/rktk/';
+//const baseUrl = 'https://rktk.qidapp.com/';
+const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 function __url_wrap(app, url) {
-  if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
-    if (url.indexOf('?') == -1) url += '?';
-    else url += '&';
-    url += 'wxxuid=' + app.GLOBAL_DATA.USER_INFO.uid
-  }
+  // if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
+  //   if (url.indexOf('?') == -1) url += '?';
+  //   else url += '&';
+  //   url += 'wxxuid=' + app.GLOBAL_DATA.USER_INFO.uid
+  // }
   return url;
 };
 
@@ -23,9 +23,15 @@ function z_get(app, url, call) {
     }, 200);
   }
 
+  let wxxuid = null;
+  if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
+    wxxuid = app.GLOBAL_DATA.USER_INFO.uid
+  }
+
   wx.request({
     url: baseUrl + __url_wrap(app, url),
     method: 'GET',
+    header: { wxxuid: wxxuid },
     success: call || function (res) { },
     fail: function (res) {
       console.error('请求失败<GET:' + url + '> - ' + JSON.stringify(res || []));
@@ -57,9 +63,15 @@ function z_post(app, url, data, call) {
     }, 200);
   }
 
+  let wxxuid = null;
+  if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
+    wxxuid = app.GLOBAL_DATA.USER_INFO.uid
+  }
+
   wx.request({
     url: baseUrl + __url_wrap(app, url),
     method: 'POST',
+    header: { wxxuid: wxxuid },
     data: data,
     success: call || function (res) { },
     fail: function (res) {
@@ -109,7 +121,7 @@ var z_extends = function (dest, source) {
   return dest;
 };
 
-var z_tipsbar = function(o, tips) {
+var z_tipsbar = function (o, tips) {
   o.setData({
     tips: tips || '提示',
     tipsbarHide: false

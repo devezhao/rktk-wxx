@@ -11,3 +11,14 @@
 .fix-foobar .pull-left button.split {
   border-left: 1rpx solid #eee;
 }
+
+.xfree {
+  position: relative;
+}
+
+.xfree text {
+  position: absolute;
+  font-size: 12px;
+  color: #ec5353;
+  margin-left: 2px;
+}

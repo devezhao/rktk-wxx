@@ -143,11 +143,14 @@ Page({
 
   toExplain: function (e) {
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
-    wx.showModal({
-      title: '提示',
-      content: '本功能暂未开放，你可在答题完成后查看解析',
-      showCancel: false
-    })
+    wx.redirectTo({
+      url: '../exam/explain?id=' + this.subjectId
+    });
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '本功能暂未开放，你可在答题完成后查看解析',
+    //   showCancel: false
+    // })
   },
 
   onShareAppMessage: function () {

@@ -3,6 +3,7 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    listData: []
   },
   pageNo: 1,
 
@@ -16,14 +17,19 @@ Page({
   list: function () {
     var that = this;
     zutils.get(app, 'api/fav/incorrect-list?page=' + this.pageNo, function (res) {
-      var data = res.data.data;
+      var _data = res.data.data || [];;
+      var _listData = that.data.listData;
+      if (that.pageNo == 1) _listData = [];
+      if (_data && _data.length > 0) _listData = _listData.concat(_data);
+      else that.pageNo = -1;
+
       that.setData({
-        in_list: data,
-        nodata: that.pageNo == 1 && data.length == 0
+        listData: _listData,
+        nodata: _listData.length == 0
       });
     });
   },
-  
+
   moreAction: function (e) {
     var _id = e.currentTarget.dataset.qid;
     var that = this;
@@ -38,10 +44,20 @@ Page({
           });
         } else if (res.tapIndex == 0) {
           zutils.post(app, 'api/fav/incorrect-ignore?question=' + _id, function (res) {
+            wx.showToast({
+              title: '错题已忽略'
+            });
+            that.pageNo = 1;
             that.list();
           });
         }
       }
     });
+  },
+
+  onReachBottom: function (e) {
+    if (this.pageNo == -1) return;
+    this.pageNo++;
+    this.list();
   }
 });

@@ -169,3 +169,55 @@ page, .page {
 .top-position .weui-flex__item.active image {
   display: inline-block;
 }
+
+.page-nos {
+  position: fixed;
+  bottom: 15px;
+  width: 162px;
+  left: 50%;
+  margin-left: -81px;
+  height: 36px;
+  text-align: center;
+  white-space: normal;
+  overflow: hidden;
+}
+
+.page-nos view.el {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  display: inline-block;
+  width: 45px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1;
+  height: 36px;
+  overflow: hidden;
+}
+
+.page-nos view image {
+  width: 30px;
+  height: 30px;
+  margin-top: 2.5px;
+}
+
+.page-nos view.page-no {
+  text-align: center;
+  width: 70px;
+  line-height: 36px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.page-nos view.page-prev {
+  border-radius: 99px 0 0 99px;
+  float: left;
+}
+
+.page-nos view.page-next {
+  border-radius: 0 99px 99px 0;
+  float: right;
+}
+
+view.go-hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
