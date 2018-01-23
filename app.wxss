@@ -299,8 +299,16 @@ image.x24 {
   font-size: 14px;
 }
 
+.fs-15 {
+  font-size: 15px;
+}
+
 .fs-16 {
   font-size: 16px;
+}
+
+.fs-17 {
+  font-size: 17px;
 }
 
 .fs-18 {

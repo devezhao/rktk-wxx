@@ -40,9 +40,9 @@
       </view>
       <view class="explain-content" style="padding-bottom:{{yourAnswer == null ? '15px' : '12px'}}">
         <rich-text nodes="{{explain}}"></rich-text>
-        <view style="padding-top:1px;">
-          <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}" class="color-link" style="font-size:14px;display:inline-block;">
-            <icon size="14" type="info_circle" color="#586c94" /> 纠错
+        <view style="padding-top:0;text-align:right;line-height:1">
+          <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}" class="color-link fs-14" style="display:inline-block;">
+            [ 考题纠错 ]
           </navigator>
         </view>
       </view>
