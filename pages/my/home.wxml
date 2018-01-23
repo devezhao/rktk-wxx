@@ -6,14 +6,13 @@
       </view>
       <view class="pull-left nick">
         <view>{{nick}}</view>
-        <text class="level">{{level}}</text>
-        <text class="coin">学豆 {{coin}}</text>
-      </view>
-      <view class="pull-right subject">
-        <navigator url="../question/subject-choice?back=1">
+        <navigator class="weui-cell__ft_in-access min" url="../question/subject-choice?back=1">
           {{subject}}
-          <image src="../../images/arrow-right-nl-32.png"></image>
         </navigator>
+      </view>
+      <view class="tags">
+        <text class="coin">{{coin}}学豆</text>
+        <text class="level">{{level}}</text>
       </view>
       <view class="clearfix"></view>
     </view>

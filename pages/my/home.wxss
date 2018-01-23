@@ -1,5 +1,5 @@
 .user-block {
-  padding: 14px 14px;
+  padding: 14px;
   background-color: #fff;
   border-bottom: 1rpx solid #d9d9d9;
   position: relative;
@@ -11,7 +11,6 @@
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
-  
 }
 
 .user-block .headimg image {
@@ -22,54 +21,38 @@
 
 .user-block .nick {
   color: #000;
-  font-size: 16px;
-  margin-left: 12px;
-  padding-top: 8px;
-  line-height: 1.4;
+  font-size: 17px;
+  margin-left: 9px;
+  padding-top: 11px;
+  line-height: 1.2;
 }
 
-.user-block .nick text {
-  overflow: hidden;
-  margin-top: 3px;
-  line-height: 1;
-  float: left;
-}
-
-.user-block .nick text {
-  font-size: 11px;
-  border: 1px solid #bbb;
-  border-radius: 99px;
-  padding: 2px 7px;
-  color: #666;
-  margin-right: 6px;
-}
-
-.user-block .subject {
-  color: #ec5353;
+.user-block .nick navigator {
   font-size: 13px;
-  position: absolute;
-  background-color: #fff;
-  top: 24px;
-  right: 14px;
-  padding-right: 10px;
+  color: #999;
+  display: inline-block;
+  margin-top: 0;
 }
 
-.user-block .subject image {
-  width: 13px;
-  height: 13px;
+.tags {
   position: absolute;
-  right: -4px;
-  top: 3px;
+  right: 14px;
+  top: 14px;
+}
+
+.tags text {
+  font-size: 11px;
+  border: 1px solid #aaa;
+  padding: 2px 7px;
+  color: #555;
+  display: inline-block;
+  line-height: 1;
+  border-radius: 99px;
+  margin-left: 3px;
 }
 
 .weui-cells {
   margin-top: 15px;
-}
-
-.rktk 
-
-.rktk .weui-cell__hd {
-  position: relative;
 }
 
 .rktk .weui-cell__hd image {

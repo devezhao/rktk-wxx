@@ -306,3 +306,13 @@ image.x24 {
 .fs-18 {
   font-size: 18px;
 }
+
+.weui-cell__ft_in-access.min {
+  padding-right: 11px;
+}
+
+.weui-cell__ft_in-access.min:after {
+  border-width: 1px 1px 0 0;
+  height: 6px;
+  width: 6px;
+}
