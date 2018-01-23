@@ -33,5 +33,9 @@ Page({
     } else {
       wx.redirectTo({ url: url });
     }
+  },
+
+  goSubjectList: function () {
+    app.gotoPage('/pages/question/subject-list');
   }
 });

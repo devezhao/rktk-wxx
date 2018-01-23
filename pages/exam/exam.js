@@ -351,7 +351,7 @@ Page({
     }
 
     if ((left > 80 || left < -80) && next === true) {
-      this.__turningAnimation.translateX(left > 80 ? '98%' : '-98%').opacity(0.1).step({ duration: 200 }).translateX('0px').opacity(1).step({ duration: 0 });
+      this.__turningAnimation.translateX(left > 80 ? '100%' : '-100%').step({ duration: 200 }).translateX('0px').opacity(1).step({ duration: 0 });
       this.setData({
         turningData: this.__turningAnimation.export()
       });

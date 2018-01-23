@@ -28,7 +28,10 @@
   <view class="page__bd">
     <view class="icon-box" hidden="{{!nodata}}">
       <icon type="info" size="88"></icon>
-      <view class="icon-box__title">没有未答题</view>
+      <view class="icon-box__title">没有未完成的答题</view>
+      <view style="margin-top:6px;">
+        <text class="color-link fs-16" bindtap="goSubjectList">去题库看看</text>
+      </view>
     </view>
   </view>
 </view>
