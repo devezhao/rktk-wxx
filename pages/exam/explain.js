@@ -13,6 +13,7 @@ Page({
   },
   qosid: null,
   answerKey: null,
+  questionId: null,  // for share
 
   onLoad: function (e) {
     if (!e.id) {
@@ -73,6 +74,7 @@ Page({
   },
 
   __loadQuestion: function (idx) {
+    this.questionId = this.data.currentQuestionId;
     if (idx && typeof idx == 'number') {
       wx.setStorage({
         key: 'ExplainPageNo' + this.qosid,

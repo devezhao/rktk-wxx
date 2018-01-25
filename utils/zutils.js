@@ -1,5 +1,5 @@
-//const baseUrl = 'https://rktk.qidapp.com/';
-const baseUrl = 'http://192.168.0.159:8080/rktk/';
+const baseUrl = 'https://rktk.qidapp.com/';
+//const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 function __url_wrap(app, url) {
   // if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {

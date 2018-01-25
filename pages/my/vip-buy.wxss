@@ -1,1 +1,59 @@
-/* pages/my/vip-buy.wxss */
+page, .page {
+  background-color: #fff;
+}
+
+.top-block {
+  background-color: #a18d62;
+  padding: 1px;
+  border: 0 none;
+}
+
+.weui-cells__title {
+  padding-left: 0;
+}
+
+.tt {
+  border: 1rpx solid #a18d62;
+  color: #a18d62;
+  padding: 7px 9px;
+  border-radius: 2px;
+  position: relative;
+  font-size: 15px;
+}
+.tt .right {
+  position: absolute;
+  right: 9px;
+  top: 6px;
+}
+
+.tt + .tt {
+  border-top-width: 0;
+  border-radius: 0 0 2px 2px;
+}
+
+.tt.L1 {
+  border-radius: 2px 2px 0 0;
+}
+
+.tt .weui-cell__ft_in-access:after {
+  border-color: #a18d62;
+  margin-top: -15px;
+}
+
+.fix-foobar.btns .pull-right button {
+  background-color: #a18d62;
+  color: #fff;
+  width: 140px;
+}
+
+.fix-foobar.btns {
+  border-color: #a18d62;
+}
+
+.fix-foobar.btns .pull-left text {
+  color: #ec5353;
+  font-size: 21px;
+  padding-left: 14px;
+  padding-top: 4px;
+  display: inline-block;
+}
