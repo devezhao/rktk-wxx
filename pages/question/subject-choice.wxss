@@ -7,5 +7,5 @@
   float: right;
   font-size: 13px;
   padding-right: 3px;
-  padding-top: 4px;
+  padding-top: 3px;
 }

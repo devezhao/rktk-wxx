@@ -65,3 +65,9 @@
 .rktk .weui-cell__bd {
   margin-left: 27px;
 }
+
+.vip {
+  background-color: #a18d62;
+  border-color: #a18d62 !important;
+  color: #fff !important;
+}

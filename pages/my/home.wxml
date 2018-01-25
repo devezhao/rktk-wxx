@@ -12,7 +12,7 @@
       </view>
       <view class="tags">
         <text class="coin">{{coin}}学豆</text>
-        <text class="level">{{level}}</text>
+        <text class="level {{vip}}" bindtap="goVip">{{level}}</text>
       </view>
       <view class="clearfix"></view>
     </view>

@@ -4,17 +4,28 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {
     selected: null,
-    tipsbarHide: true
+    tipsbarHide: true,
+    vipHide: false
   },
   back: null,
 
   onLoad: function (e) {
     this.back = e.back || 0;
+    if (this.back == 'vip') {
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#a18d62'
+      });
+      this.setData({
+        vipHide: true
+      })
+    }
+
     var that = this;
     app.getUserInfo(function (u) {
       that.setData({
         user: u.uid
-      })
+      });
 
       zutils.get(app, 'api/subject/list-top', function (res) {
         var data = res.data;
@@ -29,6 +40,13 @@ Page({
 
   subjectChange: function (e) {
     var _selected = e.detail.value;
+    if (this.back == 'vip') {
+      app.GLOBAL_DATA.__BuySubject = _selected;
+      wx.navigateBack({
+      });
+      return;
+    }
+
     var _subjectList1 = this.data.subjectList_1;
     for (var i = 0, len = _subjectList1.length; i < len; ++i) {
       _subjectList1[i][3] = _subjectList1[i][0] == _selected;

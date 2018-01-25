@@ -10,20 +10,26 @@ page, .page {
 
 .weui-cells__title {
   padding-left: 0;
+  color: #777;
 }
 
 .tt {
   border: 1rpx solid #a18d62;
   color: #a18d62;
-  padding: 7px 9px;
+  padding: 8px 9px;
   border-radius: 2px;
   position: relative;
   font-size: 15px;
 }
+
+.tt:active {
+  background-color: #f7f7f9;
+}
+
 .tt .right {
   position: absolute;
   right: 9px;
-  top: 6px;
+  top: 7px;
 }
 
 .tt + .tt {
@@ -37,7 +43,12 @@ page, .page {
 
 .tt .weui-cell__ft_in-access:after {
   border-color: #a18d62;
-  margin-top: -15px;
+  margin-top: -16px;
+}
+
+.tt view text.p {
+  float: right;
+  padding-right: 28px;
 }
 
 .fix-foobar.btns .pull-right button {
@@ -50,10 +61,26 @@ page, .page {
   border-color: #a18d62;
 }
 
-.fix-foobar.btns .pull-left text {
-  color: #ec5353;
-  font-size: 21px;
+.fix-foobar.btns .pull-left {
   padding-left: 14px;
+  line-height: 1.2;
+}
+
+.fix-foobar.btns .pull-left .T1 {
+  color: #ec5353;
+  font-size: 18px;
   padding-top: 4px;
-  display: inline-block;
+}
+
+.fix-foobar.btns .pull-left .T1 text {
+  font-size: 14px;
+}
+
+.fix-foobar.btns .pull-left .T2 {
+  font-size: 11px;
+  color: #777;
+}
+
+.fix-foobar.btns .pull-left .T2 text {
+  color: #ec5353;
 }

@@ -1,40 +1,42 @@
 <view class="page">
   <view class="top-block">
     <image src="../../images/diamond-v3.png" style="width:60px;height:60px;"></image>
+    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-terms" style="color:rgba(0,0,0,0.4);font-size:14px;margin-bottom:14px;">
+      [ 了解会员权益 ]
+    </navigator>
   </view>
 
   <view class="page__bd">
-    <view class="weui-cells__title">开通考试类型</view>
-    <view class="tt">
-      <view>架构师</view>
+    <view class="weui-cells__title">选择考试类型</view>
+    <view class="tt" bindtap="selectSubject">
+      <view>{{subjectName || '选择考试类型'}}</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
 
-    <view class="weui-cells__title">选择时长</view>
-    <view class="tt L1" data-fee="199">
-      <view>一个考季 (至 2018.05.28)</view>
-      <view class="right">
+    <view class="weui-cells__title">选择会员等级</view>
+    <view class="tt L1" data-tt="vip" bindtap="selectType">
+      <view>VIP会员 <text class="p">¥199</text></view>
+      <view class="right" hidden="{{tt == 'svip'}}">
         <icon type="success_no_circle" color="#a18d62" size="18"></icon>
       </view>
     </view>
-    <view class="tt" data-fee="299">
-      <view>永久有效</view>
-      <view class="right">
+    <view class="tt" data-tt="svip" bindtap="selectType">
+      <view>SVIP会员 <text class="p">¥299</text></view>
+      <view class="right" hidden="{{tt == 'vip'}}">
+        <icon type="success_no_circle" color="#a18d62" size="18"></icon>
       </view>
     </view>
-
-    <view style="margin-top:14px;">
-      <icon type="info_circle" color="#ec5353" size="16"></icon>
-      <text style="display:inline-block;margin-left:4px;">学豆余额抵扣{{coinFee}}元</text>
-    </view>
+    <view class="clearfix"></view>
   </view>
-
-
 </view>
 
 <view class="fix-foobar btns">
   <view class="pull-left">
-    <text>¥{{payFee}}</text>
+    <view class="T1">¥{{fee || 199}}<text>.{{feeFix || 0}}</text></view>
+    <view class="T2">
+      已使用学豆余额抵扣
+      <text>{{coinFee || 0}}</text> 元
+    </view>
   </view>
   <view class="pull-right">
     <button class="weui-btn" type="default" bindtap="buyNow">立即开通</button>

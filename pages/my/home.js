@@ -13,7 +13,6 @@ Page({
     var that = this;
     app.getUserInfo(function (res) {
       that.setData({
-        //headimgUrl: res.headimgUrl.replace('/0', '/64'),
         headimgUrl: res.headimgUrl,
         nick: res.nick,
         user: res.uid
@@ -31,13 +30,19 @@ Page({
   },
 
   reloadUserInfos: function (e) {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/user/infos', function (res) {
+      let _data = res.data.data;
       that.setData({
-        level: res.data.data.user_level,
-        subject: res.data.data.subject,
-        coin: res.data.data.coin_balance
+        level: _data.user_level,
+        subject: _data.subject,
+        coin: _data.coin_balance,
+        vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : ''
       })
     });
+  },
+
+  goVip: function() {
+    // app.gotoPage('/pages/my/vip-buy');
   }
 });
