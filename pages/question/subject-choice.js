@@ -70,7 +70,10 @@ Page({
   saveChange: function (e) {
     var that = this;
     if (!that.data.selected) {
-      zutils.tipsbar(that, '请选择你的考试类型');
+      wx.showToast({
+        icon: 'none',
+        title: '请选择你的考试类型'
+      })
       return;
     }
 

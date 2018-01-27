@@ -1,14 +1,5 @@
-const baseUrl = 'https://rktk.qidapp.com/';
-//const baseUrl = 'http://192.168.0.159:8080/rktk/';
-
-function __url_wrap(app, url) {
-  // if (app && app.GLOBAL_DATA && app.GLOBAL_DATA.USER_INFO) {
-  //   if (url.indexOf('?') == -1) url += '?';
-  //   else url += '&';
-  //   url += 'wxxuid=' + app.GLOBAL_DATA.USER_INFO.uid
-  // }
-  return url;
-};
+//const baseUrl = 'https://rktk.qidapp.com/';
+const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 // GET 方法
 function z_get(app, url, call) {
@@ -29,7 +20,7 @@ function z_get(app, url, call) {
   }
 
   wx.request({
-    url: baseUrl + __url_wrap(app, url),
+    url: baseUrl + url,
     method: 'GET',
     header: { wxxuid: wxxuid },
     success: call || function (res) { },
@@ -69,7 +60,7 @@ function z_post(app, url, data, call) {
   }
 
   wx.request({
-    url: baseUrl + __url_wrap(app, url),
+    url: baseUrl + url,
     method: 'POST',
     header: { wxxuid: wxxuid },
     data: data,
@@ -121,24 +112,11 @@ var z_extends = function (dest, source) {
   return dest;
 };
 
-var z_tipsbar = function (o, tips) {
-  o.setData({
-    tips: tips || '提示',
-    tipsbarHide: false
-  });
-  setTimeout(function () {
-    o.setData({
-      tipsbarHide: true
-    });
-  }, 3000);
-};
-
 // API
 module.exports = {
   get: z_get,
   post: z_post,
   baseUrl: baseUrl,
   array: z_array,
-  extends: z_extends,
-  tipsbar: z_tipsbar
+  extends: z_extends
 };

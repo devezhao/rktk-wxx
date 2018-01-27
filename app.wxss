@@ -107,7 +107,7 @@ page, .page {
   margin: 0 auto;
   font-size: 14px;
   padding: 0;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
   overflow: hidden;
   margin-bottom: 9px;
 }

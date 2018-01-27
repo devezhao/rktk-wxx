@@ -11,6 +11,7 @@
     "pages/exam/exam",
     "pages/exam/exam-result",
     "pages/exam/explain",
+    "pages/exam/explain-rich",
     "pages/my/home",
     "pages/my/my-exams",
     "pages/my/my-favs",

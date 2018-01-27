@@ -12,7 +12,6 @@ Page({
     hideNos: true
   },
   qosid: null,
-  answerKey: null,
   questionId: null,  // for share
 
   onLoad: function (e) {
@@ -21,7 +20,6 @@ Page({
       return;
     }
 
-    this.answerKey = e.a;
     this.qosid = e.id;
     var that = this;
     app.getUserInfo(function (u) {
@@ -82,24 +80,13 @@ Page({
 
     var that = this;
     zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
-      var data = res.data.data;
-      for (var i = 0; i < data.answer_list.length; i++) {
-        var item = data.answer_list[i];
-        var clazz = data.answer_key.indexOf(item[0]) > -1 ? 'right' : '';
-        if (that.answerKey && that.answerKey.indexOf(item[0]) > -1) {
-          clazz += ' selected';
-        }
-        item[10] = clazz;
-        item[11] = item[0].substr(1);
-        data.answer_list[i] = item;
+      var _data = res.data.data;
+      _data.viewId = 'question';
+      let nos = ['一', '二', '三', '四', '五'];
+      for (let i = 0; i < _data.answer_list.length; i++) {
+        _data.answer_list[i].no = nos[i];
       }
-
-      if (that.answerKey) {
-        data.rightAnswer = that.__formatAnswerKey(data.answer_key);
-        data.yourAnswer = that.__formatAnswerKey(that.answerKey);
-      }
-      data.viewId = 'question';
-      that.setData(data);
+      that.setData(_data);
     });
   },
 
@@ -123,20 +110,6 @@ Page({
       currentQuestionId: this.__qids[idx - 1]
     });
     this.__loadQuestion(idx);
-  },
-
-  __formatAnswerKey: function (ak) {
-    var answer_key = ak.split('/');
-    for (var i = 0; i < answer_key.length; i++) {
-      var a = answer_key[i].substr(1);
-      answer_key[i] = (a == 'X') ? '无' : a;
-      if (a == 'ull') {  // null
-        answer_key[i] = '未作答';
-        answer_key[i] = '无';
-      }
-    }
-    answer_key = answer_key.join(' / ');
-    return answer_key;
   },
 
   fav: function (e) {
@@ -164,10 +137,8 @@ Page({
     app.gotoPage('/pages/question/subject?id=' + s);
   },
 
-
-
   onShareAppMessage: function () {
-    var d = app.warpShareData('/pages/exam/explain?id=' + this.data.currentQuestionId);
+    var d = app.warpShareData('/pages/exam/explain-rich?id=' + this.data.currentQuestionId);
     d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';
     return d;
   },

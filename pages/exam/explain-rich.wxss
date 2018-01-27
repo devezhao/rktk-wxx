@@ -1,0 +1,50 @@
+@import "../comps/z-sharebox.wxss";
+@import "explain.wxss";
+
+page, .page {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.question {
+  font-size: 15px;
+}
+
+#explain {
+  margin-top: 2px;
+}
+
+.rich-item {
+  padding: 0;
+  border-top: 1rpx solid #d9d9d9;
+  font-size: 15px;
+}
+
+.rich-item .q {
+  padding: 9px 14px;
+  background-color: #f7f7f9;
+}
+
+.rich-item .a {
+  padding: 11px 14px;
+}
+
+.rich-item .k {
+  font-weight: bold;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  border: 1rpx solid #d9d9d9;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 3px 0;
+  margin-bottom: 5px;
+}
+
+.td {
+  border: 1rpx solid #d9d9d9;
+  vertical-align: top;
+  padding: 5px 9px;
+  text-align: left;
+}

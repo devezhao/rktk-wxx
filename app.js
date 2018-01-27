@@ -14,7 +14,6 @@ App({
 
   onLaunch: function (e) {
     console.log("小程序初始化: " + JSON.stringify(e));
-    //e.query.q = 'http://192.168.0.159:8080/rktk/t/wxx/MTEwLTAxNWY5MDk2NzU2MTAxN2EsMTAwLTAxNjA3Y2FmMDM1YTAwMDAsdjI.?from=twxx';  // 扫普通二维码参数
     this.__enter_source = e;
 
     var that = this;
@@ -196,13 +195,11 @@ App({
 
   // 到首页
   goHome: function () {
-    wx.switchTab({
-      url: '/pages/index/index'
-    });
+    this.gotoPage('/pages/index/index');
   },
 
   // 页面跳转
-  gotoPage: function (url){
+  gotoPage: function (url) {
     if (!!!url) return;
     if (url == '/pages/index/index' || url == '/pages/question/subject-list' || url == '/pages/my/home') {
       wx.switchTab({
@@ -213,5 +210,15 @@ App({
         url: url
       })
     }
+  },
+
+  // 上报分析数据
+  // t=EXAM,EXPLAIN
+  // s=相关题库（可选）
+  reportKpi: function (t, s) {
+    wx.reportAnalytics('kpi', {
+      type: t,
+      subject: s || '',
+    });
   }
 })

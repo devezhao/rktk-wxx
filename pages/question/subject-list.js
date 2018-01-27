@@ -20,7 +20,7 @@ Page({
 
   listSubject: function () {
     var that = this;
-    zutils.post(app, 'api/subject/list?showAll=0', function (res) {
+    zutils.post(app, 'api/subject/list?showAll=1', function (res) {
       if (res.data.error_code > 0) {
         that.setData({
           showNosubject: true
@@ -43,9 +43,9 @@ Page({
         _sublist1[i][10] = _sublist1[i][1].substr(0, 4);
         _sublist1[i][11] = _sublist1[i][1].substr(4, 3);
         var sname = _sublist1[i][1];
-        if (sname.indexOf('下午题') > -1) {
+        if (sname.indexOf('下午') > -1) {
           _sublist1[i][12] = 'T2';
-          if (sname.indexOf('Ⅱ') > -1) {
+          if (sname.indexOf('论文') > -1) {
             _sublist1[i][12] = 'T3';
           }
         }

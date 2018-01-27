@@ -45,6 +45,14 @@ Page({
   },
 
   toExam: function (e) {
+    if (this.data.subject_type == 11) {
+      wx.showModal({
+        title: '提示',
+        content: '此题库暂不提供答题服务',
+        showCancel: false
+      });
+      return;
+    }
     if (this.data.subject_type == 2) {
       this.toExam_Type2(e);
       return;
@@ -108,10 +116,13 @@ Page({
   },
 
   __toExam: function (subject, e) {
+    app.reportKpi('EXAM', that.fullName);
+
     var that = this;
     zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (e.detail.formId || ''), function (res) {
       var _data = res.data;
       if (_data.error_code == 0) {
+
         wx.redirectTo({
           url: '../exam/exam?subject=' + subject + '&exam=' + _data.data.exam_id
         });
@@ -142,15 +153,14 @@ Page({
   },
 
   toExplain: function (e) {
+    app.reportKpi('EXPLAIN', this.fullName);
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+
+    var _url = '../exam/explain?id=' + this.subjectId;
+    if (this.data.subject_type == 11) _url = '../exam/explain-rich?id=' + this.subjectId;
     wx.redirectTo({
-      url: '../exam/explain?id=' + this.subjectId
+      url: _url
     });
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '本功能暂未开放，你可在答题完成后查看解析',
-    //   showCancel: false
-    // })
   },
 
   onShareAppMessage: function () {

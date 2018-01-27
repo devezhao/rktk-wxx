@@ -15,8 +15,14 @@
             <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
             <view class="weui-media-box__info">
               <view class="weui-media-box__info__meta">
-                通过率
-                <text>{{item[4]}}%</text>
+                <block wx:if="{{item[12] == 'T2' || item[12] == 'T3'}}">
+                  考题数
+                  <text>{{item[3]}}</text>
+                </block>
+                <block wx:else>
+                  通过率
+                  <text>{{item[4]}}%</text>
+                </block>
               </view>
               <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
                 <block wx:if="{{item[2] > 0}}">
