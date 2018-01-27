@@ -84,3 +84,20 @@ page, .page {
 .fix-foobar.btns .pull-left .T2 text {
   color: #ec5353;
 }
+
+.vip-level {
+  text-align: center;
+  margin-bottom: 14px;
+  margin-top: -6px;
+}
+
+.vip-level view {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  display: inline-block;
+  padding: 4px 9px;
+  line-height: 1;
+  margin: 3px 0;
+  border-radius: 99px;
+  font-size: 12px;
+}

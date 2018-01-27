@@ -17,7 +17,7 @@ Page({
         nick: res.nick,
         user: res.uid
       });
-      that.reloadUserInfos();
+      that.__onLoad();
     })
   },
 
@@ -25,11 +25,11 @@ Page({
     if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home') || zutils.array.in(app.GLOBAL_DATA.RELOAD_COIN, 'Home')) {
       zutils.array.erase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home');
       zutils.array.erase(app.GLOBAL_DATA.RELOAD_COIN, 'Home');
-      this.reloadUserInfos();
+      this.__onLoad();
     }
   },
 
-  reloadUserInfos: function (e) {
+  __onLoad: function (e) {
     let that = this;
     zutils.get(app, 'api/user/infos', function (res) {
       let _data = res.data.data;
@@ -38,11 +38,22 @@ Page({
         subject: _data.subject,
         coin: _data.coin_balance,
         vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : ''
-      })
+      });
+      if (that.data.vip == 'vip') {
+        wx.setNavigationBarColor({
+          frontColor: '#ffffff',
+          backgroundColor: '#a18d62'
+        })
+      } else {
+        wx.setNavigationBarColor({
+          frontColor: '#ffffff',
+          backgroundColor: '#4b8ef9'
+        })
+      }
     });
   },
 
-  goVip: function() {
-    // app.gotoPage('/pages/my/vip-buy');
+  goVip: function () {
+    app.gotoPage('/pages/my/vip-buy');
   }
 });

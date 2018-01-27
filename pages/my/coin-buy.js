@@ -57,7 +57,8 @@ Page({
 
       _data = _data.data;
       _data.success = function (res) {
-        wx.navigateTo({
+        app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
+        wx.redirectTo({
           url: '../index/tips?msg=充值成功',
         });
       };

@@ -1,6 +1,6 @@
 <view class="page">
   <view class="page__hd">
-    <view class="user-block">
+    <view class="user-block {{vip}}">
       <view class="pull-left headimg">
         <image src="{{headimgUrl}}"></image>
       </view>
@@ -12,7 +12,7 @@
       </view>
       <view class="tags">
         <text class="coin">{{coin}}学豆</text>
-        <text class="level {{vip}}" bindtap="goVip">{{level}}</text>
+        <text class="level" bindtap="goVip">{{level}}</text>
       </view>
       <view class="clearfix"></view>
     </view>

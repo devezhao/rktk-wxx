@@ -3,10 +3,24 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    tt: 'vip'
+    tt: 'vip',
+    vipLevel: null
   },
 
   onLoad: function (e) {
+    if (app.GLOBAL_DATA.USER_INFO) {
+      var that = this;
+      zutils.get(app, 'api/user/vip-info', function (res) {
+        let _data = res.data.data;
+        if (_data.level != 'N') {
+          let info = '已开通' + _data.subject + _data.level + '会员 ۰ ' + _data.expires;
+          if (_data.is_expired == true) info = _data.subject + _data.level + '会员 ۰ 已过期';
+          that.setData({
+            vipLevel: info
+          })
+        }
+      });
+    }
   },
 
   onShow: function (e) {
@@ -31,6 +45,7 @@ Page({
   __calcFee: function () {
     let coin_fee = this.__buydata.coin_balance / 10;
     let fee = this.__buydata[this.data.tt + '_fee'] - coin_fee;
+    if (fee < 0.01) fee = 0.01;
     fee = fee.toFixed(2).split('.');
     this.setData({
       coinFee: coin_fee.toFixed(2),
@@ -71,8 +86,9 @@ Page({
 
       _data = _data.data;
       _data.success = function (res) {
-        wx.navigateTo({
-          url: '../index/tips?msg=' + that.tt + '会员开通成功',
+        app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
+        wx.redirectTo({
+          url: '../index/tips?msg=' + that.data.tt.toUpperCase() + '会员开通成功',
         });
       };
       _data.fail = function (res) {

@@ -48,7 +48,7 @@ Page({
     if (this.data.subject_type == 11) {
       wx.showModal({
         title: '提示',
-        content: '此题库暂不提供答题服务',
+        content: '此题库不提供答题服务',
         showCancel: false
       });
       return;
@@ -59,7 +59,7 @@ Page({
     }
 
     var tips_content = '将进入答题页面，请做好准备';
-    if (this.data.coin > 0) {
+    if (this.data.coin > 0 && this.data.vip_free == false) {
       tips_content = '本次答题将消耗' + this.data.coin + '学豆';
     }
     var that = this;

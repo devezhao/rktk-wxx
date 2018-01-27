@@ -13,13 +13,16 @@
           <text>/</text> 满分 75
         </block>
         <text>/</text>
-        <block wx:if="{{coin > 0}}">
-          {{coin}}学豆
-        </block>
         <block wx:if="{{coin == 0}}">
           <text class="color-base2">免费</text>
         </block>
-        <block wx:if="{{coin < 0}}">
+        <block wx:elif="{{vip_free == true}}">
+          <text class="color-base2">(VIP免费)</text>
+        </block>
+        <block wx:elif="{{coin > 0}}">
+          {{coin}}学豆
+        </block>
+        <block wx:elif="{{coin < 0}}">
           <text class="color-base2">(限免)</text>
         </block>
       </view>

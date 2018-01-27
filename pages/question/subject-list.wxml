@@ -85,7 +85,7 @@
         <icon type="info" size="88"></icon>
         <view class="icon-box__title">
           请先选择考试类型
-          <navigator url="subject-choice?back=1" style="color:#586c94;font-size:16px;">点击选择</navigator>
+          <navigator url="subject-choice?back=1" style="color:#586c94;font-size:16px;">[ 点击选择 ]</navigator>
         </view>
       </view>
     </view>

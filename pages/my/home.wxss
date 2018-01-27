@@ -20,7 +20,6 @@
 }
 
 .user-block .nick {
-  color: #000;
   font-size: 16px;
   margin-left: 9px;
   padding-top: 11px;
@@ -37,13 +36,13 @@
 .tags {
   position: absolute;
   right: 14px;
-  top: 14px;
+  top: 10px;
 }
 
 .tags text {
   font-size: 11px;
   border: 1px solid #aaa;
-  padding: 2px 7px;
+  padding: 2px 5px;
   color: #555;
   display: inline-block;
   line-height: 1;
@@ -68,6 +67,20 @@
 
 .vip {
   background-color: #a18d62;
-  border-color: #a18d62 !important;
-  color: #fff !important;
+  color: #fff;
+  border-color: #a18d62;
+}
+
+.vip .tags text {
+  border-color: #fff;
+  background-color: #fff;
+  color: #a18d62;
+}
+
+.vip .nick navigator {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.vip .nick navigator:after {
+  border-color: rgba(0, 0, 0, 0.3);
 }
