@@ -98,7 +98,7 @@ page, .page {
   position: fixed;
 }
 
-.float-btns .zbtn {
+.zbtn {
   border: 1rpx solid #4b8ef9;
   width: 44px;
   height: 44px;
@@ -112,26 +112,33 @@ page, .page {
   margin-bottom: 9px;
 }
 
-.float-btns .zbtn:active {
+.zbtn:active {
   background-color: #eee;
 }
 
-.float-btns .zbtn image {
+.zbtn image {
   width: 36px;
   height: 36px;
   margin-top: 3px;
 }
 
-.float-btns .zbtn image.share {
+.zbtn image.share {
   margin-top: 8px;
   width: 26px;
   height: 26px;
 }
 
-.float-btns .zbtn image.fav {
+.zbtn image.fav {
   margin-top: 6px;
   width: 28px;
   height: 28px;
+}
+
+.zbtn.htxt {
+  color: #fff;
+  background-color: #4b8ef9;
+  line-height: 42px;
+  font-size: 15px;
 }
 
 button, button::after, .weui-btn {

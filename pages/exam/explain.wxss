@@ -8,7 +8,6 @@ page, .page {
   margin: 14px 0;
   line-height: 1.7;
   font-size: 15px;
-  
 }
 
 .answer-list .item {
@@ -105,34 +104,8 @@ page, .page {
   left: 14px;
 }
 
-.fbtns {
-  bottom: 48px;
-  right: 14px;
-  position: fixed;
-}
-
-.fbtns .bbtn {
-  border: 1rpx solid #4b8ef9;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 14px;
-  padding: 0;
-  background-color: #fff;
-  overflow: hidden;
-  margin-bottom: 9px;
-}
-
-.fbtns .bbtn:active {
-  background-color: #eee;
-}
-
-.fbtns .bbtn image {
-  width: 36px;
-  height: 36px;
-  margin-top: 3px;
+.float-btns {
+  bottom: 51px;
 }
 
 .top-position {

@@ -29,25 +29,25 @@
   <view class="fix-foobar">
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="prevQuestion" hidden="{{isFirst}}">
+        <button class="zbtn" bindtap="prevQuestion" hidden="{{isFirst}}">
           <image src="../../images/arrow-left.png"></image>
         </button>
       </view>
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="fav">
-          <image src="../../images/star{{isFav ? '-filled' : ''}}.png" style="margin-top:6px;width:28px;height:28px;"></image>
+        <button class="zbtn" bindtap="fav">
+          <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
         </button>
       </view>
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="showDtcard">
+        <button class="zbtn" bindtap="showDtcard">
           <image src="../../images/exam-card.png" style="margin-top:8px;width:26px;height:26px;"></image>
         </button>
       </view>
       <view class="weui-flex__item">
-        <button class="bbtn" bindtap="nextQuestion" hidden="{{isLast}}">
+        <button class="zbtn" bindtap="nextQuestion" hidden="{{isLast}}">
           <image src="../../images/arrow-right.png"></image>
         </button>
-        <button class="bbtn {{isLast ? 'last' : ''}}" bindtap="finish" hidden="{{!isLast}}">
+        <button class="zbtn {{isLast ? 'htxt' : ''}}" bindtap="finish" hidden="{{!isLast}}">
           <text>交卷</text>
         </button>
       </view>

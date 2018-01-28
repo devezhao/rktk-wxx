@@ -93,36 +93,6 @@ page, .page {
   margin: 0 7%;
 }
 
-.fix-foobar .bbtn {
-  border: 1rpx solid #4b8ef9;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  text-align: center;
-  margin: 0 auto;
-  font-size: 14px;
-  padding: 0;
-  background-color: #fff;
-  overflow: hidden;
-}
-
-.fix-foobar .bbtn:active {
-  background-color: #eee;
-}
-
-.fix-foobar .bbtn image {
-  width: 36px;
-  height: 36px;
-  margin-top: 3px;
-}
-
-.fix-foobar .bbtn.last {
-  color: #fff;
-  background-color: #4b8ef9;
-  line-height: 42px;
-  font-size: 15px;
-}
-
 .dt-card {
   position: fixed;
   left: 0;

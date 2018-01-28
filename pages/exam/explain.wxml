@@ -50,10 +50,7 @@
   </scroll-view>
 </view>
 
-<!--
-<view class="float-btns" style="bottom:{{yourAnswer == null ? '11px' : '48px'}}">
--->
-<view class="float-btns" style="bottom:51px">
+<view class="float-btns">
   <button class="zbtn" bindtap="shareboxOpen">
     <image src="../../images/share.png" class="share"></image>
   </button>
