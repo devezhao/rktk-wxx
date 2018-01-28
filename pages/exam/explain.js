@@ -11,9 +11,10 @@ Page({
     currentQuestionId: null,
     hideNos: true
   },
+  questionId: null,  // for share
+  qcached: {},
   qosid: null,
   answerKey: null,
-  questionId: null,  // for share
 
   onLoad: function (e) {
     if (!e.id && e.id.length != 20) {
@@ -80,26 +81,32 @@ Page({
       })
     }
 
+    if (this.qcached[this.data.currentQuestionId]) {
+      this.setData(this.qcached[this.data.currentQuestionId]);
+      return;
+    }
+
     var that = this;
     zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
-      var data = res.data.data;
-      for (var i = 0; i < data.answer_list.length; i++) {
-        var item = data.answer_list[i];
-        var clazz = data.answer_key.indexOf(item[0]) > -1 ? 'right' : '';
+      var _data = res.data.data;
+      for (var i = 0; i < _data.answer_list.length; i++) {
+        var item = _data.answer_list[i];
+        var clazz = _data.answer_key.indexOf(item[0]) > -1 ? 'right' : '';
         if (that.answerKey && that.answerKey.indexOf(item[0]) > -1) {
           clazz += ' selected';
         }
         item[10] = clazz;
         item[11] = item[0].substr(1);
-        data.answer_list[i] = item;
+        _data.answer_list[i] = item;
       }
 
       if (that.answerKey) {
-        data.rightAnswer = that.__formatAnswerKey(data.answer_key);
-        data.yourAnswer = that.__formatAnswerKey(that.answerKey);
+        _data.rightAnswer = that.__formatAnswerKey(_data.answer_key);
+        _data.yourAnswer = that.__formatAnswerKey(that.answerKey);
       }
-      data.viewId = 'question';
-      that.setData(data);
+      _data.viewId = 'question';
+      that.setData(_data);
+      that.qcached[that.data.currentQuestionId] = _data;
     });
   },
 

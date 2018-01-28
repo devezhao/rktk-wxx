@@ -11,8 +11,9 @@ Page({
     currentQuestionId: null,
     hideNos: true
   },
-  qosid: null,
   questionId: null,  // for share
+  qcached: {},
+  qosid: null,
 
   onLoad: function (e) {
     if (!e.id && e.id.length != 20) {
@@ -78,6 +79,11 @@ Page({
       })
     }
 
+    if (this.qcached[this.data.currentQuestionId]) {
+      this.setData(this.qcached[this.data.currentQuestionId]);
+      return;
+    }
+
     var that = this;
     zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
       var _data = res.data.data;
@@ -87,6 +93,7 @@ Page({
         _data.answer_list[i].no = nos[i];
       }
       that.setData(_data);
+      that.qcached[that.data.currentQuestionId] = _data;
     });
   },
 
