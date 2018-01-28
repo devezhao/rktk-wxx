@@ -48,7 +48,7 @@ Page({
     if (this.data.subject_type == 11) {
       wx.showModal({
         title: '提示',
-        content: '此题库不提供答题服务',
+        content: '此题库暂不提供答题服务',
         showCancel: false
       });
       return;
@@ -116,7 +116,7 @@ Page({
   },
 
   __toExam: function (subject, e) {
-    app.reportKpi('EXAM', that.fullName);
+    app.reportKpi('EXAM', this.fullName);
 
     var that = this;
     zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (e.detail.formId || ''), function (res) {

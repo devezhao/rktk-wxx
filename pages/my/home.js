@@ -44,11 +44,6 @@ Page({
           frontColor: '#ffffff',
           backgroundColor: '#a18d62'
         })
-      } else {
-        wx.setNavigationBarColor({
-          frontColor: '#ffffff',
-          backgroundColor: '#4b8ef9'
-        })
       }
     });
   },

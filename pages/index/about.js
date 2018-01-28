@@ -6,35 +6,12 @@ Page({
     tipsbarHide: true
   },
 
-  copy: function (e) {
-    var data = e.currentTarget.dataset.text;
-    wx.setClipboardData({
-      data: data,
-      success: function (res) {
-        wx.showToast({
-          icon: 'success',
-          title: '已复制'
-        });
-      }
-    })
-  },
-
-  award: function () {
-    var that = this;
-    var fee = (Math.random() * 19) + 1;
-    zutils.get(app, 'api/pay/create?fee=' + fee, function (res) {
-      var data = res.data.data;
-      console.log(data);
-      data.success = function (res) {
-        console.log(data);
-        wx.showToast({
-          title: '感谢赞赏'
-        });
-      };
-      data.fail = function (res) {
-      };
-      wx.requestPayment(data);
-    });
+  onLoad: function () {
+    if (app.GLOBAL_DATA.USER_INFO.uid) {
+      this.setData({
+        user: app.GLOBAL_DATA.USER_INFO.uid
+      })
+    }
   },
 
   onShareAppMessage: function () {
@@ -51,7 +28,10 @@ Page({
       wx.setEnableDebug({
         enableDebug: true
       });
-      zutils.tipsbar(this, 'DEBUG 模式已开启');
+      wx.showToast({
+        icon: 'none',
+        title: 'DEBUG 模式已开启'
+      })
     }
   }
 })
