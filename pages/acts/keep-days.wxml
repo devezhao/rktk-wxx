@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="round-days">
+    <text style="font-size:{{daysFs}}px;{{daysFs < 88 ? 'margin-top:35px' : ''}}">{{days}}</text>
+  </view>
+  <view class="text-days">
+    连续{{days}}天答题
+    <text>{{date}}</text>
+  </view>
+  <view class="line"></view>
+  <view class="slogen" bindtap="slogenRandom">
+    {{slogen}}
+  </view>
+  <view class="hide" style="margin-top:21px;text-align:center">
+    <button style="width:160px;border:1px solid #586c94;color:#586c94;background-color:transparent;border-radius:6px;line-height:2.3">分享</button>
+  </view>
+</view>
+<view class="logo">
+  <image src="{{aqrUrl}}" style="width:66px;height:66px;border-radius:50%;border:4px solid rgba(255,255,255,.1)"></image>
+</view>

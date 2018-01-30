@@ -13,13 +13,32 @@ Page({
 
   onLoad: function (e) {
     this.examId = e.id;
-    var that = this;
+    let that = this;
+    let __time = new Date().getTime();
     app.getUserInfo(function () {
       that.loadResult();
+
+      // Keep
+      if (e.redirect == 2) {
+        zutils.get(app, 'api/acts/keep-days?noloading', function (res) {
+          let _data = res.data;
+          if (_data && _data.data && _data.data.days) {
+            _data = _data.data;
+            __time = new Date().getTime() - __time;
+            __time = 800 - __time;
+            if (__time < 200) __time = 200;
+            setTimeout(function(){
+              wx.navigateTo({
+                url: '/pages/acts/keep-days?days=' + _data.days + '&date=' + _data.date
+              })
+            }, __time);
+          }
+        });
+      }
     });
 
     // PK
-    if (e.redirect == 1) {
+    if (e.redirect == 1 || e.redirect == 2) {
       this.setData({
         hideFoobar: false
       })

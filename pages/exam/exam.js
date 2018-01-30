@@ -274,7 +274,7 @@ Page({
       if (res.data.error_code == 0) {
         that.__clearCountdown();
         wx.redirectTo({
-          url: 'exam-result?redirect=1&id=' + that.examId
+          url: 'exam-result?redirect=2&id=' + that.examId
         });
       } else {
         wx.hideLoading()

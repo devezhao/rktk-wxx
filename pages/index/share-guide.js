@@ -32,9 +32,6 @@ Page({
     })
   },
 
-  shareWechat: function () {
-  },
-
   onShareAppMessage: function () {
     var d = app.warpShareData();
     d.imageUrl = 'https://c.rktk.qidapp.com/a/wxx/share-img.png?v2';

@@ -1,0 +1,63 @@
+page, .page {
+  background-color: #27282f;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.round-days {
+  background: url(https://c.rktk.qidapp.com/a/wxx/keep_days.png) no-repeat 0 0;
+  background-size: 180px 180px;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 24px;
+}
+
+.round-days text {
+  position: absolute;
+  width: 180px;
+  text-align: center;
+  font-size: 88px;
+  -webkit-text-stroke: 5px #54801f;
+  margin-top: 18px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.text-days {
+  text-align: center;
+  font-size: 21px;
+  margin-top: 36px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.text-days text {
+  display: block;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.line {
+  height: 1rpx;
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 140px;
+  margin: 15px auto;
+  line-height: 1;
+  font-size: 0;
+}
+
+.slogen {
+  text-align: center;
+  font-size: 17px;
+}
+
+.logo {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 14px;
+  line-height: 1;
+  text-align: center;
+}

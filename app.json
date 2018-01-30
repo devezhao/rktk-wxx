@@ -20,7 +20,8 @@
     "pages/my/coin-records",
     "pages/my/my-unexam",
     "pages/my/user-reg",
-    "pages/my/vip-buy"
+    "pages/my/vip-buy",
+    "pages/acts/keep-days"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",
