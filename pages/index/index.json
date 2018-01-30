@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "软考必备"
+  "navigationBarTitleText": "软考必备",
+  "enablePullDownRefresh": true
 }

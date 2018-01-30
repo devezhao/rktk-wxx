@@ -6,7 +6,7 @@ Page({
   },
 
   onLoad: function (e) {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/home/banners', function (res) {
       that.setData({
         banners: res.data.data
@@ -19,6 +19,24 @@ Page({
       that.__checkTwxx();
       app.__checkToken();
     });
+
+    wx.getStorage({
+      key: 'FOLLOW_SUBJECT',
+      success: function (res) {
+        let fs = res.data.split(',');
+        app.GLOBAL_DATA.FOLLOW_SUBJECT = fs;
+        if (fs.length > 0) {
+          that.__loadFollowSubject(fs);
+        }
+      }
+    })
+  },
+
+  onPullDownRefresh: function () {
+    this.onLoad();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+    }, 800);
   },
 
   onShow: function () {
@@ -29,26 +47,30 @@ Page({
       this.__loadRecommend();
     }
 
-    // 关注题库
+    let fs = app.GLOBAL_DATA.FOLLOW_SUBJECT;
+    if (fs && fs.length > 0) {
+      let lastFs = fs[fs.length - 1];
+      if (lastFs != this.__lastFs) {
+        this.__loadFollowSubject(fs);
+      }
+    }
+  },
+
+  // 最近关注题库
+  __loadFollowSubject: function (fs) {
+    if (!fs || fs.length == 0) return;
+    this.__lastFs = fs[fs.length - 1];
     let that = this;
-    wx.getStorage({
-      key: 'FOLLOW_SUBJECT',
-      success: function (res) {
-        let ff = res.data.split(',');
-        app.GLOBAL_DATA.FOLLOW_SUBJECT = ff;
-        zutils.get(app, 'api/home/subject-names?ids=' + ff.join(','), function (res) {
-          console.log('FOLLOW_SUBJECT - ' + JSON.stringify(res.data));
-          if (res.data && res.data.data && res.data.data.length > 0) {
-            let _subjects = res.data.data;
-            _subjects.reverse();
-            that.__formatSubject(_subjects);
-            that.setData({
-              followSubjects: _subjects
-            });
-          }
+    zutils.get(app, 'api/home/subject-names?ids=' + fs.join(','), function (res) {
+      if (res.data && res.data.data && res.data.data.length > 0) {
+        let _subjects = res.data.data;
+        _subjects.reverse();
+        that.__formatSubject(_subjects);
+        that.setData({
+          followSubjects: _subjects
         });
       }
-    })
+    });
   },
 
   // 解析分享来源

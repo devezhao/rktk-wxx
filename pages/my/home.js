@@ -21,6 +21,13 @@ Page({
     })
   },
 
+  onPullDownRefresh: function () {
+    this.onLoad();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+    }, 800);
+  },
+
   onShow: function (e) {
     if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home') || zutils.array.in(app.GLOBAL_DATA.RELOAD_COIN, 'Home')) {
       zutils.array.erase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home');

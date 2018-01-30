@@ -16,7 +16,7 @@ Page({
 
     wx.getSystemInfo({
       success: function (res) {
-        let w = res.windowWidth - 36
+        let w = res.windowWidth - 34
         w /= 5;
         if (w > 100) w = 100;
         if (w < 50) w = 50;
@@ -27,6 +27,13 @@ Page({
     })
   },
 
+  onPullDownRefresh: function () {
+    this.onLoad();
+    setTimeout(function () {
+      wx.stopPullDownRefresh();
+    }, 800);
+  },
+
   onShow: function () {
     if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
       this.listSubject();
@@ -35,7 +42,7 @@ Page({
 
   listSubject: function () {
     let that = this;
-    zutils.post(app, 'api/subject/list?showAll=1&filter=' + this.data.filter, function (res) {
+    zutils.post(app, 'api/subject/list?showAll=0&filter=' + this.data.filter, function (res) {
       if (res.data.error_code > 0) {
         that.setData({
           showNosubject: true
