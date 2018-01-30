@@ -48,3 +48,26 @@ page, .page {
   padding: 5px 9px;
   text-align: left;
 }
+
+.vip-upgrade {
+  background-color: #fefcec;
+  padding: 24px 14px;
+  border-radius: 4px;
+  margin-bottom: 9px;
+  text-align: center;
+}
+
+.vip-upgrade view {
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.vip-upgrade button {
+  color: #a18d62;
+  border: 1px solid #a18d62;
+  font-size: 16px;
+  background-color: transparent;
+  width: 160px;
+  line-height: 2.1;
+  border-radius: 4px;
+}

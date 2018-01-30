@@ -18,7 +18,7 @@ Page({
     });
 
     var that = this;
-    zutils.get(app, 'api/share/aqrcode?noloading', function (res) {
+    zutils.get(app, 'api/acts/aqrcode?noloading', function (res) {
       if (res.data.data) {
         that.setData({
           aqrUrl: res.data.data

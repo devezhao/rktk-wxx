@@ -40,7 +40,15 @@
         考题解析
       </view>
       <view class="explain-content" style="padding-bottom:{{yourAnswer == null ? '15px' : '12px'}}">
-        <rich-text nodes="{{explain}}"></rich-text>
+        <block wx:if="{{explain == 'VIP'}}">
+          <view class="vip-upgrade">
+            <view>升级VIP查看解析</view>
+            <button bindtap="goVip">立即升级</button>
+          </view>
+        </block>
+        <block wx:else>
+          <rich-text nodes="{{explain}}"></rich-text>
+        </block>
         <view style="padding-top:0;text-align:right;line-height:1">
           <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}" class="color-link fs-14" style="display:inline-block;">
             [ 考题纠错 ]
