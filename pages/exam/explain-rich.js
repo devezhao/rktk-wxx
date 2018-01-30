@@ -88,7 +88,7 @@ Page({
     zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
       var _data = res.data.data;
       _data.viewId = 'question';
-      let nos = ['一', '二', '三', '四', '五'];
+      let nos = ['一', '二', '三', '四', '五', '六', '七', '八'];
       for (let i = 0; i < _data.answer_list.length; i++) {
         _data.answer_list[i].no = nos[i];
       }
