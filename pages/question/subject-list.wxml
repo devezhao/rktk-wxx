@@ -1,47 +1,80 @@
-<view class="page">
-  <view class="page__hd">
-    <view class="weui-cells__title">{{subname1}}</view>
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__bd">
-        <navigator wx:for="{{sublist1}}" wx:key="*this" url="subject?id={{item[0]}}" class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <view class="weui-media-box__thumb {{item[12]}}">
-              <text class="Y">{{item[10]}}</text>
-              <text class="M">{{item[11]}}</text>
-            </view>
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item[1]}}</view>
-            <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
-            <view class="weui-media-box__info">
-              <view class="weui-media-box__info__meta">
-                <block wx:if="{{item[12] == 'T2' || item[12] == 'T3'}}">
-                  考题数
-                  <text>{{item[3]}}</text>
-                </block>
-                <block wx:else>
-                  通过率
-                  <text>{{item[4]}}%</text>
-                </block>
-              </view>
-              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
-                <block wx:if="{{item[2] > 0}}">
-                  <text>{{item[2]}}学豆</text>
-                </block>
-                <block wx:if="{{item[2] == 0}}">
-                  <text class="color-base2">免费</text>
-                </block>
-                <block wx:if="{{item[2] < 0}}">
-                  <text class="color-base2">(限免)</text>
-                </block>
-              </view>
-            </view>
-          </view>
-        </navigator>
+<view class="page" bindtap="doHideYears">
+  <view class="filter-hold" hidden="{{filterHold == false}}"></view>
+  <view class="filter {{filterHold == false ? '' : 'fixed'}}">
+    <view class="weui-flex top-column">
+      <view class="weui-flex__item">
+        <view bindtap="doFilter" class="s {{filter == 0 ? 'active' : ''}}" data-s="0">全部</view>
+      </view>
+      <view class="weui-flex__item">
+        <view bindtap="doFilter" class="s {{filter == 1 ? 'active' : ''}}" data-s="1">上午题</view>
+      </view>
+      <view class="weui-flex__item">
+        <view bindtap="doFilter" class="s {{filter == 2 ? 'active' : ''}}" data-s="2">下午题</view>
+      </view>
+      <view class="weui-flex__item">
+        <view bindtap="doFilter" class="s {{filter == 10 ? 'active' : ''}}" data-s="10">知识点</view>
+      </view>
+      <view class="weui-flex__item">
+        <view catchtap="doShowYears" class="s {{(filter == 20 || filter > 2000) ? 'active' : ''}}" data-s="20">{{yearsText || '年份'}}</view>
       </view>
     </view>
+  </view>
+  <view class="filter-years" hidden="{{yearsHide}}">
+    <view bindtap="doFilter" data-s="2017">2017</view>
+    <view bindtap="doFilter" data-s="2016">2016</view>
+    <view bindtap="doFilter" data-s="2015">2015</view>
+    <view bindtap="doFilter" data-s="2014">2014</view>
+    <view bindtap="doFilter" data-s="2013">2013</view>
+    <view bindtap="doFilter" data-s="2012">2012</view>
+    <view bindtap="doFilter" data-s="2011">2011</view>
+    <view bindtap="doFilter" data-s="2010">2010</view>
+  </view>
 
-    <block wx:if="{{subname2 != null}}">
+  <view class="page__hd">
+    <block wx:if="{{subname1 != null && sublist1.length > 0}}">
+      <view class="weui-cells__title">{{subname1}}</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <navigator wx:for="{{sublist1}}" wx:key="*this" url="subject?id={{item[0]}}" class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <view class="weui-media-box__thumb {{item[12]}}">
+                <text class="Y">{{item[10]}}</text>
+                <text class="M">{{item[11]}}</text>
+              </view>
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title">{{item[1]}}</view>
+              <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta">
+                  <block wx:if="{{item[12] == 'T2' || item[12] == 'T3'}}">
+                    考题数
+                    <text>{{item[3]}}</text>
+                  </block>
+                  <block wx:else>
+                    通过率
+                    <text>{{item[4]}}%</text>
+                  </block>
+                </view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                  <block wx:if="{{item[2] > 0}}">
+                    <text>{{item[2]}}学豆</text>
+                  </block>
+                  <block wx:if="{{item[2] == 0}}">
+                    <text class="color-base2">免费</text>
+                  </block>
+                  <block wx:if="{{item[2] < 0}}">
+                    <text class="color-base2">(限免)</text>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{subname2 != null && sublist2.length > 0}}">
       <view class="weui-cells__title">{{subname2}}</view>
       <view class="weui-panel weui-panel_access">
         <view class="weui-panel__bd">
@@ -76,7 +109,6 @@
         </view>
       </view>
     </block>
-
   </view>
 
   <block wx:if="{{showNosubject}}">
@@ -88,6 +120,12 @@
           <navigator url="subject-choice?back=1" style="color:#586c94;font-size:16px;">[ 点击选择 ]</navigator>
         </view>
       </view>
+    </view>
+  </block>
+  <block wx:if="{{showNodata}}">
+    <view class="icon-box">
+      <icon type="info" size="88" color="#ccc"></icon>
+      <view class="icon-box__title">未找到相关题库</view>
     </view>
   </block>
 </view>

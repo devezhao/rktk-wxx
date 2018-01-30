@@ -55,3 +55,62 @@
   background: #a8ebfa url(https://c.rktk.qidapp.com/a/wxx/icon-target-o50.png) no-repeat center center;
   background-size: 32px 32px;
 }
+
+.filter, .filter-hold {
+  height: 44px;
+}
+
+.filter.fixed, .filter-years {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9;
+}
+
+.filter {
+  background-color: rgba(255, 255, 255, 1);
+  border-bottom: 1rpx solid #d9d9d9;
+  overflow: hidden;
+  padding: 0 14px;
+}
+
+.filter view.s {
+  color: #555;
+  font-size: 14px;
+  line-height: 1;
+  padding: 6px 9px;
+  text-align: center;
+  margin-top: 9px;
+}
+
+.filter view.s.active {
+  background-color: #4b8ef9;
+  color: #fff;
+  border-radius: 99px;
+}
+
+.filter-years {
+  top: 4px;
+  left: auto;
+  right: 14px;
+  border: 1rpx solid #d9d9d9;
+  width: 69px;
+  padding: 6px 0;
+  z-index: 10;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.filter-years view {
+  line-height: 2;
+  text-align: center;
+  font-size: 15px;
+  color: #555;
+}
+
+.filter-years view:active {
+  background-color: #4b8ef9;
+  color: #fff;
+}

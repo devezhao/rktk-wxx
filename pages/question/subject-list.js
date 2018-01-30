@@ -3,6 +3,9 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    filter: 0,
+    filterHold: false,
+    yearsHide: true
   },
 
   onLoad: function () {
@@ -19,8 +22,8 @@ Page({
   },
 
   listSubject: function () {
-    var that = this;
-    zutils.post(app, 'api/subject/list?showAll=0', function (res) {
+    let that = this;
+    zutils.post(app, 'api/subject/list?showAll=0&filter=' + this.data.filter, function (res) {
       if (res.data.error_code > 0) {
         that.setData({
           showNosubject: true
@@ -31,18 +34,18 @@ Page({
         return;
       }
 
-      var _data = res.data.data;
+      let _data = res.data.data;
       wx.setNavigationBarTitle({
         title: _data.subject
       });
       _data.showNosubject = false;
 
-      var _sublist1 = _data.sublist1;
-      for (var i = 0; i < _sublist1.length; i++) {
+      let _sublist1 = _data.sublist1 || [];
+      for (let i = 0; i < _sublist1.length; i++) {
         _sublist1[i][4] = _sublist1[i][4].toFixed(1);
         _sublist1[i][10] = _sublist1[i][1].substr(0, 4);
         _sublist1[i][11] = _sublist1[i][1].substr(4, 3);
-        var sname = _sublist1[i][1];
+        let sname = _sublist1[i][1];
         if (sname.indexOf('下午') > -1) {
           _sublist1[i][12] = 'T2';
           if (sname.indexOf('论文') > -1) {
@@ -51,12 +54,63 @@ Page({
         }
       }
 
+      if (!!!_data.subname1 || _data.sublist1.length == 0) {
+        _data.subname1 = null;
+        _data.sublist1 = null;
+      }
       if (!!!_data.subname2) {
         _data.subname2 = null;
-        _data._sublist2 = null;
+        _data.sublist2 = null;
+      }
+
+      if (!_data.subname1 && !_data.subname2) {
+        _data.showNodata = true;
+      } else {
+        _data.showNodata = false;
       }
       that.setData(_data);
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
     });
+  },
+
+  doFilter: function (e) {
+    let s = e.currentTarget.dataset.s;
+    this.setData({
+      filter: s,
+      yearsText: ~~s > 2000 ? s : null,
+      yearsHide: true
+    });
+    this.listSubject();
+  },
+
+  doShowYears: function () {
+    this.setData({
+      yearsHide: false
+    });
+    return false;
+  },
+  doHideYears: function () {
+    this.setData({
+      yearsHide: true
+    })
+  },
+
+  onPageScroll: function (res) {
+    if (~~res.scrollTop > 80) {
+      if (this.data.filterHold == false) {
+        this.setData({
+          filterHold: true
+        })
+      }
+    } else {
+      if (this.data.filterHold == true) {
+        this.setData({
+          filterHold: false
+        })
+      }
+    }
   },
 
   onShareAppMessage: function (e) {
