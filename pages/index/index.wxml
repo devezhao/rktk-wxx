@@ -86,7 +86,7 @@
         <view class="weui-media-box__info">
           <view class="weui-media-box__info__meta">
             得分
-            <text>{{item[5]}}</text>
+            <text class="color-base2">{{item[5]}}</text>
           </view>
           <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
             耗时

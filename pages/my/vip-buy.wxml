@@ -5,7 +5,7 @@
       [ 了解会员权益 ]
     </navigator>
     <view class="vip-level" hidden="{{vipLevel == null}}">
-      <view>{{vipLevel}}</view>
+      <view class="{{expired == true ? 'color-base2' : ''}}">{{vipLevel}}</view>
     </view>
   </view>
 

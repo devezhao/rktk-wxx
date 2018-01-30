@@ -13,6 +13,18 @@ Page({
     app.getUserInfo(function () {
       that.listSubject();
     });
+
+    wx.getSystemInfo({
+      success: function (res) {
+        let w = res.windowWidth - 40
+        w /= 5;
+        if (w > 100) w = 100;
+        if (w < 50) w = 50;
+        that.setData({
+          fyWidth: w
+        })
+      }
+    })
   },
 
   onShow: function () {

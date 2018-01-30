@@ -9,18 +9,20 @@ Page({
 
   onLoad: function (e) {
     if (app.GLOBAL_DATA.USER_INFO) {
-      var that = this;
+      let that = this;
       zutils.get(app, 'api/user/vip-info', function (res) {
         let _data = res.data.data;
         if (_data.level != 'N') {
           let info = '已开通' + _data.subject + _data.level + '会员 ۰ ' + _data.expires;
           if (_data.is_expired == true) info = _data.subject + _data.level + '会员 ۰ 已过期';
           that.setData({
-            vipLevel: info
+            vipLevel: info,
+            expired: _data.is_expired
           })
         }
       });
     }
+    app.reportKpi('VIP', 'VIEW');
   },
 
   onShow: function (e) {
@@ -70,6 +72,7 @@ Page({
 
   buyNow: function () {
     if (!this.__buydata || !this.__buydata.subject) return;
+    app.reportKpi('VIP', 'CLICKBUY');
 
     let that = this;
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt;
