@@ -28,6 +28,27 @@ Page({
     if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Index')) {
       this.__loadRecommend();
     }
+
+    // 关注题库
+    let that = this;
+    wx.getStorage({
+      key: 'FOLLOW_SUBJECT',
+      success: function (res) {
+        let ff = res.data.split(',');
+        app.GLOBAL_DATA.FOLLOW_SUBJECT = ff;
+        zutils.get(app, 'api/home/subject-names?ids=' + ff.join(','), function (res) {
+          console.log('FOLLOW_SUBJECT - ' + JSON.stringify(res.data));
+          if (res.data && res.data.data && res.data.data.length > 0) {
+            let _subjects = res.data.data;
+            _subjects.reverse();
+            that.__formatSubject(_subjects);
+            that.setData({
+              followSubjects: _subjects
+            });
+          }
+        });
+      }
+    })
   },
 
   // 解析分享来源
@@ -43,6 +64,7 @@ Page({
       });
     }
   },
+
   // 最近答题
   __loadRecent: function () {
     var that = this;
@@ -50,31 +72,15 @@ Page({
       that.setData(res.data.data);
     });
   },
+
   // 推荐题库
   __loadRecommend: function () {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/home/recommend-subjects', function (res) {
-      var _data = res.data.data;
+      let _data = res.data.data;
       if (!_data) return;
-      var _subjects = _data.recommend_subjects;
-      for (var i = 0; i < _subjects.length; i++) {
-        var sname = _subjects[i][1];
-        _subjects[i][10] = sname.substr(0, 7);
-        _subjects[i][11] = sname.substr(7);
-        if (sname.indexOf('下午题') > -1) {
-          _subjects[i][12] = 'T2';
-          if (sname.indexOf('Ⅱ') > -1) {
-            _subjects[i][12] = 'T3';
-          }
-        }
-
-        if (_subjects[i][3] == 2) {
-          _subjects[i][12] = 'T4';
-          _subjects[i][10] = '知识点';
-          _subjects[i][11] = null;
-          _subjects[i][2] = _subjects[i][1];
-        }
-      }
+      let _subjects = _data.recommend_subjects;
+      that.__formatSubject(_subjects);
       if (_subjects.length > 3) {
         _data.recommend_subjects = [_subjects[0], _subjects[1], _subjects[2]];
         _data.recommend_subjects2 = [_subjects[3], _subjects[4], _subjects[5]];
@@ -83,6 +89,26 @@ Page({
       }
       that.setData(_data);
     });
+  },
+
+  __formatSubject: function (_subjects) {
+    for (var i = 0; i < _subjects.length; i++) {
+      var sname = _subjects[i][1];
+      _subjects[i][10] = sname.substr(0, 7);
+      _subjects[i][11] = sname.substr(7);
+      if (sname.indexOf('下午题') > -1) {
+        _subjects[i][12] = 'T2';
+        if (sname.indexOf('Ⅱ') > -1) {
+          _subjects[i][12] = 'T3';
+        }
+      }
+      if (_subjects[i][3] == 2) {
+        _subjects[i][12] = 'T4';
+        _subjects[i][10] = '知识点';
+        _subjects[i][11] = null;
+        _subjects[i][2] = _subjects[i][1];
+      }
+    }
   },
 
   todayExam: function (e) {

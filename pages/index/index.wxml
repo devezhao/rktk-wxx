@@ -61,6 +61,23 @@
     </navigator>
   </block>
 
+  <view class="weui-panel weui-panel_access" hidden="{{followSubjects == null}}">
+    <view class="weui-panel__hd">最近关注</view>
+    <view class="weui-panel__bd">
+      <scroll-view scroll-x="true" class="weui-media-box rktk-record follow-subjects">
+        <navigator url="../question/subject?id={{item[0]}}" wx:for="{{followSubjects}}" wx:key="{{*this}}">
+          <view class="book {{item[12]}}">
+            <block wx:if="{{item[11] != null}}">
+              <text>{{item[11]}}</text>
+            </block>
+            <text class="TXT">{{item[2]}}</text>
+            <text class="YM">{{item[10]}}</text>
+          </view>
+        </navigator>
+      </scroll-view>
+    </view>
+  </view>
+
   <view class="weui-panel weui-panel_access recent_exams">
     <view class="weui-panel__hd">最近答题</view>
     <view class="weui-panel__bd">
@@ -110,7 +127,7 @@
       </block>
       <block wx:if="{{!!recommend_subjects && recommend_subjects.length > 0}}">
         <view class="weui-media-box rktk-record">
-          <view class="weui-flex" style="margin:2px -6px">
+          <view class="weui-flex" style="margin:0px -6px">
             <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects}}" wx:key="*this">
               <view class="book {{item[12]}}">
                 <block wx:if="{{item[11] != null}}">
@@ -122,7 +139,7 @@
             </navigator>
           </view>
           <block wx:if="{{!!recommend_subjects2 && recommend_subjects2.length > 0}}">
-            <view class="weui-flex" style="margin:2px -6px;margin-top:8px;">
+            <view class="weui-flex" style="margin:0px -6px;margin-top:8px;">
               <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects2}}" wx:key="*this">
                 <view class="book {{item[12]}}">
                   <block wx:if="{{item[11] != null}}">
@@ -136,6 +153,12 @@
           </block>
         </view>
       </block>
+    </view>
+    <view class="weui-panel__ft">
+      <view bindtap="goSubjectList" class="weui-cell weui-cell_access weui-cell_link">
+        <view class="weui-cell__bd">查看更多</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
     </view>
   </view>
 </view>

@@ -10,13 +10,15 @@ App({
     RELOAD_COIN: [],
     // 自己分享的口令
     KT_TOKENS: [],
+    // 最近关注题库
+    FOLLOW_SUBJECT: []
   },
 
   onLaunch: function (e) {
     console.log("小程序初始化: " + JSON.stringify(e));
     this.__enter_source = e;
 
-    var that = this;
+    let that = this;
     wx.getStorage({
       key: 'USER_INFO',
       success: function (res) {
@@ -220,5 +222,20 @@ App({
       type: t,
       subject: s || '',
     });
+  },
+
+  // 添加关注题库（答题或解析的）
+  followSubject: function (id) {
+    if (!id || !this.GLOBAL_DATA.FOLLOW_SUBJECT) return;
+    let fs = this.GLOBAL_DATA.FOLLOW_SUBJECT;
+    zutils.array.erase(fs, id);
+    fs.push(id);
+    if (fs.length > 20) fs = fs.slice(fs.length - 20);
+    this.GLOBAL_DATA.FOLLOW_SUBJECT = fs;
+    let that = this;
+    wx.setStorage({
+      key: 'FOLLOW_SUBJECT',
+      data: that.GLOBAL_DATA.FOLLOW_SUBJECT.join(',')
+    })
   }
 })

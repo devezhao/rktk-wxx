@@ -138,3 +138,29 @@
   padding: 0 8px;
   overflow: hidden;
 }
+
+.follow-subjects {
+  height: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.follow-subjects navigator {
+  width: 31%;
+  display: inline-block;
+}
+
+.follow-subjects navigator .book {
+  margin: 0;
+  margin-right: 14px;
+  white-space: normal;
+}
+
+.follow-subjects navigator:last-child {
+  margin-right: 14px;
+}
+
+.weui-panel {
+  margin-top: 14px;
+}

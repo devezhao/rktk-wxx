@@ -118,11 +118,11 @@ Page({
   __toExam: function (subject, e) {
     app.reportKpi('EXAM', this.fullName);
 
-    var that = this;
+    let that = this;
     zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (e.detail.formId || ''), function (res) {
+      app.followSubject(that.subjectId);
       var _data = res.data;
       if (_data.error_code == 0) {
-
         wx.redirectTo({
           url: '../exam/exam?subject=' + subject + '&exam=' + _data.data.exam_id
         });
@@ -154,6 +154,7 @@ Page({
 
   toExplain: function (e) {
     app.reportKpi('EXPLAIN', this.fullName);
+    app.followSubject(this.subjectId);
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
 
     var _url = '../exam/explain?id=' + this.subjectId;
