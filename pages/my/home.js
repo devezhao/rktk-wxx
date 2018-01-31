@@ -22,10 +22,9 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    this.onLoad();
-    setTimeout(function () {
+    this.__onLoad(function(){
       wx.stopPullDownRefresh();
-    }, 800);
+    });
   },
 
   onShow: function (e) {
@@ -36,9 +35,10 @@ Page({
     }
   },
 
-  __onLoad: function (e) {
+  __onLoad: function (cb) {
     let that = this;
     zutils.get(app, 'api/user/infos', function (res) {
+      typeof cb == 'function' && cb();
       let _data = res.data.data;
       that.setData({
         level: _data.user_level,

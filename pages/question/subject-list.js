@@ -16,10 +16,10 @@ Page({
 
     wx.getSystemInfo({
       success: function (res) {
-        let w = res.windowWidth - 34
+        let w = res.windowWidth - 32
         w /= 5;
-        if (w > 100) w = 100;
-        if (w < 50) w = 50;
+        if (w > 90) w = 90;
+        if (w < 60) w = 60;
         that.setData({
           fyWidth: w
         })
@@ -28,21 +28,15 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    this.onLoad();
-    setTimeout(function () {
+    this.listSubject(function(){
       wx.stopPullDownRefresh();
-    }, 800);
+    });
   },
 
-  onShow: function () {
-    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
-      this.listSubject();
-    }
-  },
-
-  listSubject: function () {
+  listSubject: function (cb) {
     let that = this;
     zutils.post(app, 'api/subject/list?showAll=0&filter=' + this.data.filter, function (res) {
+      typeof cb == 'function' && cb();
       if (res.data.error_code > 0) {
         that.setData({
           showNosubject: true

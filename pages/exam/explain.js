@@ -199,5 +199,11 @@ Page({
   },
   share2CopyLink: function () {
     zsharebox.share2CopyLink(this);
+  },
+
+  goVip: function () {
+    wx.navigateTo({
+      url: '../my/vip-buy'
+    })
   }
 });

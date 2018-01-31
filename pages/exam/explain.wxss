@@ -87,6 +87,7 @@ page, .page {
   font-size: 15px;
   padding: 14px;
   padding-top: 0;
+  padding-bottom: 15px;
 }
 
 .explain-source {

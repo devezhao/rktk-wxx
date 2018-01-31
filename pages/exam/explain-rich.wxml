@@ -39,7 +39,7 @@
       <view class="explain-title">
         考题解析
       </view>
-      <view class="explain-content" style="padding-bottom:{{yourAnswer == null ? '15px' : '12px'}}">
+      <view class="explain-content">
         <block wx:if="{{explain == 'VIP'}}">
           <view class="vip-upgrade">
             <view>升级VIP查看解析</view>
