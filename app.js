@@ -8,6 +8,7 @@ App({
     RELOAD_SUBJECT: [],
     RELOAD_EXAM: [],
     RELOAD_COIN: [],
+    RELOAD_VIP: [],
     // 自己分享的口令
     KT_TOKENS: [],
     // 最近关注题库
@@ -237,5 +238,27 @@ App({
       key: 'FOLLOW_SUBJECT',
       data: that.GLOBAL_DATA.FOLLOW_SUBJECT.join(',')
     })
+  },
+
+  // 显示红点
+  showReddot: function (index, key) {
+    wx.getStorage({
+      key: 'TapedReddot' + key,
+      fail: function (res) {
+        wx.showTabBarRedDot({
+          index: index
+        });
+      }
+    })
+  },
+  // 显示红点
+  hideReddot: function (index, key) {
+    wx.setStorage({
+      key: 'TapedReddot' + key,
+      data: 'TAPED',
+    });
+    wx.hideTabBarRedDot({
+      index: index
+    });
   }
 })

@@ -1,5 +1,6 @@
 .page {
   position: relative;
+  padding-bottom: 14px;
 }
 
 .weui-panel {

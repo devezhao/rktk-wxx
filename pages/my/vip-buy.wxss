@@ -51,6 +51,12 @@ page, .page {
   padding-right: 28px;
 }
 
+.tt view text.p.del {
+  padding-right: 8px;
+  text-decoration: line-through;
+  color: #ec5353;
+}
+
 .fix-foobar.btns .pull-right button {
   background-color: #a18d62;
   color: #fff;

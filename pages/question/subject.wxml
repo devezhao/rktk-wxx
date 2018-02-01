@@ -10,7 +10,7 @@
           <text>/</text> 通过率 {{pass_percent}}%
         </block>
         <block wx:if="{{subject_type == 11}}">
-          <text>/</text> 满分 75
+          <text>/</text> 满分 {{question_scope}}
         </block>
         <text>/</text>
         <block wx:if="{{coin == 0}}">

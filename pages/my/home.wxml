@@ -40,7 +40,9 @@
         <image src="../../images/vip-gold.png"></image>
       </view>
       <view class="weui-cell__bd">{{vipLevelFull || '开通VIP会员'}}</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">
+        <text class="weui-cell__ft-tag">{{vip_discount || ''}}</text>
+      </view>
     </navigator>
   </view>
 

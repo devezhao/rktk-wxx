@@ -19,7 +19,8 @@
     <view class="weui-cells__title">开通会员等级</view>
     <view class="tt L1" data-tt="vip" bindtap="selectType">
       <view>VIP会员
-        <text class="p">¥199</text>
+        <text class="p">{{feeVip}}</text>
+        <text class="p {{feeVip ? 'del' : ''}}">{{feeVip ? '原价 ' : ''}}¥199</text>
       </view>
       <view class="right" hidden="{{tt == 'svip'}}">
         <icon type="success_no_circle" color="#a18d62" size="18"></icon>
@@ -27,7 +28,8 @@
     </view>
     <view class="tt" data-tt="svip" bindtap="selectType">
       <view>SVIP会员
-        <text class="p">¥299</text>
+        <text class="p">{{feeSVip}}</text>
+        <text class="p {{feeSVip ? 'del' : ''}}">{{feeSVip ? '原价 ' : ''}}¥299</text>
       </view>
       <view class="right" hidden="{{tt == 'vip'}}">
         <icon type="success_no_circle" color="#a18d62" size="18"></icon>

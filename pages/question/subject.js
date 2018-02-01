@@ -48,7 +48,7 @@ Page({
     if (this.data.subject_type == 11) {
       wx.showModal({
         title: '提示',
-        content: '此题库暂不提供答题服务',
+        content: '此题库不支持答题',
         showCancel: false
       });
       return;

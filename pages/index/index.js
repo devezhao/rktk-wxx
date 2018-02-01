@@ -3,14 +3,24 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    hideBanners: false
   },
 
   onLoad: function (e) {
     let that = this;
-    zutils.get(app, 'api/home/banners', function (res) {
-      that.setData({
-        banners: res.data.data
-      });
+    zutils.get(app, 'api/home/comdata', function (res) {
+      let _data = res.data.data;
+      if (!_data.banners || _data.banners.length == 0) {
+        that.setData({
+          hideBanners: true
+        });
+      } else {
+        that.setData({
+          banners: _data.banners
+        });
+      }
+
+      //app.showReddot(2, 'Home180201NEWMY');
     });
 
     app.getUserInfo(function () {
@@ -58,7 +68,7 @@ Page({
 
   // 最近关注题库
   __loadFollowSubject: function (fs) {
-    if (!fs || fs.length == 0) return;
+    if (!fs || fs.length < 3) return;
     this.__lastFs = fs[fs.length - 1];
     let that = this;
     zutils.get(app, 'api/home/subject-names?ids=' + fs.join(','), function (res) {

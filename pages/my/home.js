@@ -8,17 +8,20 @@ Page({
     level: '普通会员',
     subject: '选择考试类型'
   },
+  showTimes: 0,
 
   onLoad: function (e) {
-    var that = this;
-    app.getUserInfo(function (res) {
+    let that = this;
+    app.getUserInfo(function (u) {
       that.setData({
-        headimgUrl: res.headimgUrl,
-        nick: res.nick,
-        user: res.uid
+        headimgUrl: u.headimgUrl,
+        nick: u.nick,
+        user: u.uid
       });
       that.__onLoad();
-    })
+    });
+
+    //app.hideReddot(2, 'Home180201NEWMY');
   },
 
   onPullDownRefresh: function () {
@@ -28,10 +31,20 @@ Page({
   },
 
   onShow: function (e) {
-    if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home') || zutils.array.in(app.GLOBAL_DATA.RELOAD_COIN, 'Home')) {
+    this.showTimes++;
+    if (zutils.array.in(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home')
+      || zutils.array.in(app.GLOBAL_DATA.RELOAD_COIN, 'Home')
+      || zutils.array.in(app.GLOBAL_DATA.RELOAD_VIP, 'Home')) {
       zutils.array.erase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Home');
       zutils.array.erase(app.GLOBAL_DATA.RELOAD_COIN, 'Home');
+      zutils.array.erase(app.GLOBAL_DATA.RELOAD_VIP, 'Home');
       this.__onLoad();
+    }
+    if (app.GLOBAL_DATA.USER_INFO && this.showTimes > 1) {
+      let that = this;
+      zutils.get(app, 'api/user/study-infos?noloading', function (res) {
+        that.setData(res.data.data);
+      });
     }
   },
 
@@ -40,12 +53,12 @@ Page({
     zutils.get(app, 'api/user/infos', function (res) {
       typeof cb == 'function' && cb();
       let _data = res.data.data;
-      console.log(_data)
       that.setData({
         level: _data.user_level,
         subject: _data.subject,
         coin: _data.coin_balance,
-        vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : ''
+        vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : '',
+        vip_discount: _data.vip_discount || ''
       });
       if (that.data.vip == 'vip') {
         wx.setNavigationBarColor({

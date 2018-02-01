@@ -109,8 +109,9 @@
 .weui-cell__ft-tag {
   font-size: 14px;
   position: absolute;
-  width: 30px;
+  right: 13px;
   margin-top: -9px;
-  margin-left: -30px;
   color: #ec5353;
+  text-align: right;
+  width: 60px;
 }

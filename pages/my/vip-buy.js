@@ -38,7 +38,9 @@ Page({
       var _data = res.data.data;
       that.__buydata = _data;
       that.setData({
-        subjectName: _data.subject_name
+        subjectName: _data.subject_name,
+        feeVip: _data.vip_fee < 199 ? ('¥' + _data.vip_fee) : '',
+        feeSVip: _data.svip_fee < 299 ? ('¥' + _data.svip_fee) : ''
       });
       that.__calcFee();
     });
@@ -47,7 +49,10 @@ Page({
   __calcFee: function () {
     let coin_fee = this.__buydata.coin_balance / 10;
     let fee = this.__buydata[this.data.tt + '_fee'] - coin_fee;
-    if (fee < 0.01) fee = 0.01;
+    if (fee < 0.01) {
+      fee = 0.01;
+      coin_fee = this.__buydata[this.data.tt + '_fee'] - 0.01;
+    }
     fee = fee.toFixed(2).split('.');
     this.setData({
       coinFee: coin_fee.toFixed(2),
@@ -89,7 +94,7 @@ Page({
 
       _data = _data.data;
       _data.success = function (res) {
-        app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
+        app.GLOBAL_DATA.RELOAD_VIP = ['Home'];
         wx.redirectTo({
           url: '../index/tips?msg=' + that.data.tt.toUpperCase() + '会员开通成功',
         });
