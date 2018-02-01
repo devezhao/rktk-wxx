@@ -27,8 +27,14 @@ Page({
     })
   },
 
+  onShow: function () {
+    if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
+      this.listSubject();
+    }
+  },
+
   onPullDownRefresh: function () {
-    this.listSubject(function(){
+    this.listSubject(function () {
       wx.stopPullDownRefresh();
     });
   },

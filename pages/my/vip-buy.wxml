@@ -1,6 +1,6 @@
 <view class="page">
   <view class="top-block">
-    <image src="../../images/diamond-v3.png" style="width:60px;height:60px;"></image>
+    <image src="../../images/vip-white.png" style="width:60px;height:60px;"></image>
     <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-terms" style="color:rgba(0,0,0,0.4);font-size:14px;margin-bottom:14px;">
       [ 了解会员权益 ]
     </navigator>

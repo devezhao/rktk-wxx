@@ -1,16 +1,17 @@
 .user-block {
   padding: 14px;
-  background-color: #fff;
-  border-bottom: 1rpx solid #d9d9d9;
   position: relative;
+  background-color: #4b8ef9;
+  color: #fff;
 }
 
 .user-block .headimg {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
+  border: 3px solid rgba(0, 0, 0, 0.12);
 }
 
 .user-block .headimg image {
@@ -28,26 +29,30 @@
 
 .user-block .nick navigator {
   font-size: 13px;
-  color: #999;
   display: inline-block;
   margin-top: 1px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.user-block .nick navigator:after {
+  border-color: rgba(0, 0, 0, 0.4);
 }
 
 .tags {
   position: absolute;
   right: 14px;
-  top: 10px;
+  top: 11px;
 }
 
 .tags text {
   font-size: 11px;
-  border: 1px solid #aaa;
-  padding: 2px 5px;
-  color: #555;
+  padding: 3px 6px;
   display: inline-block;
   line-height: 1;
   border-radius: 99px;
-  margin-left: 3px;
+  margin-left: 4px;
+  background-color: #fff;
+  color: #444;
 }
 
 .weui-cells {
@@ -67,20 +72,45 @@
 
 .vip {
   background-color: #a18d62;
-  color: #fff;
-  border-color: #a18d62;
 }
 
 .vip .tags text {
-  border-color: #fff;
-  background-color: #fff;
   color: #a18d62;
 }
 
-.vip .nick navigator {
-  color: rgba(0, 0, 0, 0.3);
+.study-info {
+  background-color: #fff;
+  border-bottom: 1rpx solid #d9d9d9;
+  text-align: center;
 }
 
-.vip .nick navigator:after {
-  border-color: rgba(0, 0, 0, 0.3);
+.study-info .weui-flex__item {
+  padding: 16px 0;
+}
+
+.study-info .weui-flex__item  view {
+  border-left: 1rpx solid #d9d9d9;
+  border-right: 1rpx solid #d9d9d9;
+}
+
+.study-info text {
+  display: block;
+  color: #888;
+  line-height: 1;
+  font-size: 14px;
+}
+
+.study-info text.s {
+  color: #333;
+  font-size: 23px;
+  margin-bottom: 4px;
+}
+
+.weui-cell__ft-tag {
+  font-size: 14px;
+  position: absolute;
+  width: 30px;
+  margin-top: -9px;
+  margin-left: -30px;
+  color: #ec5353;
 }

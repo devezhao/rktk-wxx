@@ -22,7 +22,7 @@ Page({
   },
 
   onPullDownRefresh: function () {
-    this.__onLoad(function(){
+    this.__onLoad(function () {
       wx.stopPullDownRefresh();
     });
   },
@@ -40,6 +40,7 @@ Page({
     zutils.get(app, 'api/user/infos', function (res) {
       typeof cb == 'function' && cb();
       let _data = res.data.data;
+      console.log(_data)
       that.setData({
         level: _data.user_level,
         subject: _data.subject,
@@ -50,8 +51,18 @@ Page({
         wx.setNavigationBarColor({
           frontColor: '#ffffff',
           backgroundColor: '#a18d62'
-        })
+        });
+
+        zutils.get(app, 'api/user/vip-info', function (res) {
+          let _data = res.data.data;
+          that.setData({
+            vipLevelFull: '已开通' + _data.subject + _data.level + '会员'
+          })
+        });
       }
+    });
+    zutils.get(app, 'api/user/study-infos', function (res) {
+      that.setData(res.data.data);
     });
   },
 
