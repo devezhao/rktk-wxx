@@ -61,7 +61,7 @@
       <view class="weui-cell__bd">学豆充值</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <navigator url="../index/share-guide" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="../acts/share-guide" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="../../images/icon-share.png" style="width:14px;height:14px;top:15px"></image>
       </view>

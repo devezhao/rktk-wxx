@@ -21,7 +21,8 @@
     "pages/my/my-unexam",
     "pages/my/user-reg",
     "pages/my/vip-buy",
-    "pages/acts/keep-days"
+    "pages/acts/keep-days",
+    "pages/acts/share-guide"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",

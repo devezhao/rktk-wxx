@@ -136,7 +136,7 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 wx.navigateTo({
-                  url: '/pages/index/share-guide'
+                  url: '/pages/acts/share-guide'
                 })
               }
             }
