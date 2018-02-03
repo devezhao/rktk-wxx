@@ -20,7 +20,7 @@
           <text class="color-base2">(VIP免费)</text>
         </block>
         <block wx:elif="{{coin > 0}}">
-          {{coin}}学豆
+          {{coin}}学豆{{subject_type == 2 ? '起' : ''}}
         </block>
         <block wx:elif="{{coin < 0}}">
           <text class="color-base2">(限免)</text>
@@ -32,7 +32,9 @@
   <view class="fix-foobar">
     <view class="pull-left">
       <form bindsubmit="toExplain" report-submit="true">
-        <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析<text>(限免)</text></button>
+        <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析
+          <text hidden="{{vip_free == true}}">(限免)</text>
+        </button>
       </form>
     </view>
     <view class="pull-left">

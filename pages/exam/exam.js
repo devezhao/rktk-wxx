@@ -64,18 +64,18 @@ Page({
   },
 
   loadQuestion: function () {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/question/list?subject=' + that.subjectId + '&restore=' + (that.duration > 0 ? that.examId : ''), function (res) {
-      var data = res.data.data;
+      let _data = res.data.data;
       that.setData({
-        subject: data.subject,
-        seqTotal: data.total_result,
+        subject: _data.subject,
+        seqTotal: _data.total_result,
         seqCurrent: 1
       });
 
       that.questionList = {};
-      for (var i = 0; i < data.result_list.length; i++) {
-        var q = data.result_list[i];
+      for (var i = 0; i < _data.result_list.length; i++) {
+        var q = _data.result_list[i];
         if (q._selected) {
           q._selected = q._selected.split('/');
           console.log('restore selected: ' + q._selected);

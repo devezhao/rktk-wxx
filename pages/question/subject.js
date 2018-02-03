@@ -76,37 +76,32 @@ Page({
   },
 
   toExam_Type2: function (e) {
-    var that = this;
+    let that = this;
     wx.showActionSheet({
       itemList: ['答10题', '答20题', '答30题'],
       success: function (res) {
         let tapIndex = res.tapIndex;
-        var num = tapIndex == 0 ? 10 : 20;
+        let num = tapIndex == 0 ? 10 : 20;
         if (tapIndex == 2) num = 30;
-        zutils.post(app, 'api/subject/gen-private?quote=' + that.subjectId + '&num=' + num, function (res) {
-          var _data = res.data;
-          if (_data.error_code == 0) {
-            that.__toExam(_data.data, e);
-          } else {
-            let error_msg = _data.error_msg || '系统繁忙，请稍后重试';
-            if (error_msg.indexOf('会员') > -1) {
-              wx.showModal({
-                title: '提示',
-                content: error_msg,
-                confirmText: '立即开通',
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.navigateTo({
-                      url: '/pages/my/vip-buy'
-                    })
-                  }
+        let coin = ~~(num / (10 / that.data.coin));
+        let tips_content = '将进入答题页面，请做好准备';
+        if (that.data.coin > 0 && that.data.vip_free == false) {
+          tips_content = '本次答题将消耗' + coin + '学豆';
+        }
+
+        wx.showModal({
+          title: '提示',
+          content: tips_content,
+          confirmText: '开始答题',
+          success: function (res) {
+            if (res.confirm) {
+              zutils.post(app, 'api/subject/gen-private?quote=' + that.subjectId + '&num=' + num + '&formId=' + (e.detail.formId || ''), function (res) {
+                let _data = res.data;
+                if (_data.error_code == 0) {
+                  that.__toExam(_data.data, null);
+                } else {
+                  that.__examErrorMsg(_data.error_msg);
                 }
-              });
-            } else {
-              wx.showModal({
-                title: '提示',
-                content: error_msg,
-                showCancel: false
               });
             }
           }
@@ -117,9 +112,8 @@ Page({
 
   __toExam: function (subject, e) {
     app.reportKpi('EXAM', this.fullName);
-
     let that = this;
-    zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (e.detail.formId || ''), function (res) {
+    zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (!!e ? (e.detail.formId || '') : ''), function (res) {
       app.followSubject(that.subjectId);
       var _data = res.data;
       if (_data.error_code == 0) {
@@ -127,29 +121,46 @@ Page({
           url: '../exam/exam?subject=' + subject + '&exam=' + _data.data.exam_id
         });
       } else {
-        let error_msg = _data.error_msg || '系统繁忙，请稍后重试';
-        if (error_msg.indexOf('好友') > -1) {
-          wx.showModal({
-            title: '提示',
-            content: error_msg,
-            confirmText: '立即邀请',
-            success: function (res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/acts/share-guide'
-                })
-              }
-            }
-          });
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: error_msg,
-            showCancel: false
-          });
-        }
+        that.__examErrorMsg(_data.error_msg);
       }
     });
+  },
+
+  __examErrorMsg: function (error_msg) {
+    error_msg = error_msg || '系统繁忙，请稍后重试';
+    if (error_msg.indexOf('会员') > -1) {
+      wx.showModal({
+        title: '提示',
+        content: error_msg,
+        confirmText: '立即开通',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/my/vip-buy'
+            })
+          }
+        }
+      });
+    } else if (error_msg.indexOf('好友') > -1) {
+      wx.showModal({
+        title: '提示',
+        content: error_msg,
+        confirmText: '立即邀请',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/acts/share-guide'
+            })
+          }
+        }
+      });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: error_msg,
+        showCancel: false
+      });
+    }
   },
 
   toExplain: function (e) {

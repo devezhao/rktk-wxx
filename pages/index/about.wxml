@@ -1,8 +1,8 @@
 <view class="page">
   <view class="ver">
-    <image src="https://c.rktk.qidapp.com/a/wxx/logo-200.png"></image>
+    <image src="https://c.rktk.qidapp.com/a/wxx/logo200-v2.png"></image>
     <view bindtap="enableDebug">
-      软考必备 V0.6.4
+      软考必备 V0.6.5
     </view>
   </view>
   <view class="weui-cells rktk">
