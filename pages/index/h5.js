@@ -26,8 +26,7 @@ Page({
       })
     }
     this.setData({
-      url: 'https://rktk.qidapp.com/' + _url
-      //url: 'http://192.168.0.159:8080/rktk/' + _url
+      url: 'https://rk.statuspage.cn/' + _url
     });
   },
 

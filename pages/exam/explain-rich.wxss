@@ -32,19 +32,3 @@ page, .page {
   font-weight: bold;
 }
 
-.table {
-  width: 100%;
-  max-width: 100%;
-  border: 1rpx solid #d9d9d9;
-  border-spacing: 0;
-  border-collapse: collapse;
-  margin: 3px 0;
-  margin-bottom: 5px;
-}
-
-.td {
-  border: 1rpx solid #d9d9d9;
-  vertical-align: top;
-  padding: 5px 9px;
-  text-align: left;
-}
