@@ -12,7 +12,7 @@
       </view>
       <view class="tags">
         <block wx:if="{{bindMobile != 'N'}}">
-          <view bindtap="gotoPage" data-url="/pages/my/user-reg" class="mobile">
+          <view bindtap="gotoPage" data-url="/pages/my/user-reg?bind={{bindMobile}}" class="mobile">
             <image src="../../images/bind-mobile.png"></image>
           </view>
         </block>

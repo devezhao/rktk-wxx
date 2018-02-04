@@ -3,11 +3,14 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    inputBad: true
+    inputBad: true,
   },
   inputData: {},
 
   onLoad: function (options) {
+    this.setData({
+      bind: options.bind || null
+    })
   },
 
   inputTake: function (e) {
