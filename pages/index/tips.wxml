@@ -6,6 +6,6 @@
     </view>
   </view>
 </view>
-<view class="fix-foobar btns">
+<view class="fix-foobar btns" hidden="{{hideBtn}}">
   <button class="weui-btn" type="default" bindtap="goHome">{{btnText}}</button>
 </view>

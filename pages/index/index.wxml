@@ -52,13 +52,10 @@
     </view>
   </view>
 
-  <block wx:if="{{unexams > 0}}">
-    <navigator url="../my/my-unexam" class="unexam">
-      有
-      <text style="font-weight:bold">{{unexams}}</text> 份答题尚未完成，超过6小时将自动交卷
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-    </navigator>
-  </block>
+  <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
+    有 <text style="font-weight:bold">{{unexams}}</text> 份答题尚未完成，超过6小时将自动交卷
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
 
   <view class="weui-panel weui-panel_access" hidden="{{followSubjects == null}}">
     <view class="weui-panel__hd">最近关注</view>

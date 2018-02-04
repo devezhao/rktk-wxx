@@ -46,24 +46,6 @@
   margin-top: 3px;
 }
 
-.unexam {
-  margin: 0 14px;
-  background-color: #fefcec;
-  padding: 9px 12px;
-  margin-top: 10px;
-  color: #f87c3d;
-  font-size: 13px;
-  border-radius: 3px;
-  position: relative;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-.unexam .weui-cell__ft_in-access {
-  position: absolute;
-  right: 12px;
-  margin-top: -11px;
-}
-
 .weui-media-box__title.nodata-tips {
   margin: 14px 0;
   text-align: center;

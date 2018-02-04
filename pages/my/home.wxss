@@ -30,7 +30,7 @@
 .user-block .nick navigator {
   font-size: 13px;
   display: inline-block;
-  margin-top: 1px;
+  margin-top: 2px;
   color: rgba(0, 0, 0, 0.4);
 }
 
@@ -40,19 +40,36 @@
 
 .tags {
   position: absolute;
-  right: 14px;
-  top: 11px;
+  right: 8px;
+  top: 10px;
 }
 
-.tags text {
+.tags view {
   font-size: 11px;
   padding: 3px 6px;
   display: inline-block;
   line-height: 1;
   border-radius: 99px;
-  margin-left: 4px;
+  margin-left: 6px;
   background-color: #fff;
   color: #444;
+}
+
+.tags view:active {
+  opacity: 0.8;
+}
+
+.tags view.mobile {
+  background-color: transparent;
+  padding: 0;
+  padding-top: 4px;
+  position: absolute;
+  margin-left: -16px;
+}
+
+.tags view.mobile image {
+  width: 17px;
+  height: 17px;
 }
 
 .weui-cells {

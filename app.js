@@ -204,6 +204,9 @@ App({
   // 页面跳转
   gotoPage: function (url) {
     if (!!!url) return;
+    if (typeof url == 'object') {
+      url = url.currentTarget.dataset.url;
+    }
     if (url == '/pages/index/index' || url == '/pages/question/subject-list' || url == '/pages/my/home') {
       wx.switchTab({
         url: url

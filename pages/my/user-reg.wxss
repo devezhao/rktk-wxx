@@ -1,1 +1,8 @@
-/* pages/my/user-reg.wxss */
+.weui-cell {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.weui-vcode-btn {
+  width: 100px;
+}

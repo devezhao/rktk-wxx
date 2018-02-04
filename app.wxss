@@ -146,18 +146,21 @@ button, button::after, .weui-btn {
   border-radius: 2px;
 }
 
-button[type="primary"] {
-  background-color: #4b8ef9;
+button[type=primary] {
+  background-color: #4b8ef9 !important;
 }
 
-.button-hover[type="primary"] {
-  background-color: #4b8ef9;
-  opacity: 0.8;
+button[type=primary][disabled] {
+  opacity: 0.9;
 }
 
-button[type="default"] {
+button[type=default] {
   color: #000;
   background-color: #fff;
+}
+
+.button-hover {
+  opacity: 0.8;
 }
 
 button.T2 {
@@ -340,4 +343,22 @@ image.x24 {
   max-width: 100%;
   line-height: 1;
   filter: gray;
+}
+
+.highbar {
+  margin: 0 14px;
+  background-color: #fefcec;
+  padding: 9px 12px;
+  margin-top: 13px;
+  color: #f87c3d;
+  font-size: 14px;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.highbar .weui-cell__ft_in-access {
+  position: absolute;
+  right: 12px;
+  margin-top: -10.5px;
 }

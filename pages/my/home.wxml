@@ -6,13 +6,18 @@
       </view>
       <view class="pull-left nick">
         <view>{{nick}}</view>
-        <navigator class="weui-cell__ft_in-access min" url="../question/subject-choice?back=1">
+        <navigator class="weui-cell__ft_in-access min subject" url="../question/subject-choice?back=1">
           {{subject}}
         </navigator>
       </view>
       <view class="tags">
-        <text class="coin">{{coin}}学豆</text>
-        <text class="level" bindtap="goVip">{{level}}</text>
+        <block wx:if="{{bindMobile != 'N'}}">
+          <view bindtap="gotoPage" data-url="/pages/my/user-reg" class="mobile">
+            <image src="../../images/bind-mobile.png"></image>
+          </view>
+        </block>
+        <view bindtap="gotoPage" data-url="/pages/my/coin-records">{{coin}}学豆</view>
+        <view bindtap="gotoPage" data-url="/pages/my/vip-buy">{{level}}</view>
       </view>
       <view class="clearfix"></view>
     </view>
@@ -34,6 +39,12 @@
     </view>
   </view>
 
+  <navigator url="user-reg" class="highbar" hidden="{{bindMobile != 'N'}}">
+    <icon type="info_circle" size="15" color="#f87c3d"></icon>
+    首次绑定手机账号奖励20学豆
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+
   <view class="weui-cells rktk">
     <navigator url="vip-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
@@ -49,7 +60,7 @@
   <view class="weui-cells rktk">
     <navigator url="coin-records" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
-        <image src="../../images/icon-coin-bill.png"></image>
+        <image src="../../images/icon-coin-bill2.png"></image>
       </view>
       <view class="weui-cell__bd">学豆记录</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
