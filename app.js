@@ -218,10 +218,9 @@ App({
   // 上报分析数据
   // t=EXAM,EXPLAIN
   // s=相关题库（可选）
-  reportKpi: function (t, s) {
-    wx.reportAnalytics('kpi', {
-      type: t,
-      subject: s || '',
+  reportKpi: function (k, s) {
+    zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || ''), function (res) {
+      console.log('KPI Report: ' + res.data);
     });
   },
 

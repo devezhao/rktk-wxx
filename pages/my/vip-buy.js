@@ -22,7 +22,7 @@ Page({
         }
       });
     }
-    app.reportKpi('VIP', 'VIEW');
+    app.reportKpi('VIP.VIEW');
   },
 
   onShow: function (e) {
@@ -77,7 +77,7 @@ Page({
 
   buyNow: function () {
     if (!this.__buydata || !this.__buydata.subject) return;
-    app.reportKpi('VIP', 'CLICKBUY');
+    app.reportKpi('VIP.CLICKBUY');
 
     let that = this;
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt;

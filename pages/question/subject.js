@@ -111,7 +111,6 @@ Page({
   },
 
   __toExam: function (subject, e) {
-    app.reportKpi('EXAM', this.fullName);
     let that = this;
     zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (!!e ? (e.detail.formId || '') : ''), function (res) {
       app.followSubject(that.subjectId);
@@ -164,11 +163,11 @@ Page({
   },
 
   toExplain: function (e) {
-    app.reportKpi('EXPLAIN', this.fullName);
+    app.reportKpi('EXPLAIN', this.subjectId);
     app.followSubject(this.subjectId);
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
 
-    var _url = '../exam/explain?id=' + this.subjectId;
+    let _url = '../exam/explain?id=' + this.subjectId;
     if (this.data.subject_type == 11) _url = '../exam/explain-rich?id=' + this.subjectId;
     wx.redirectTo({
       url: _url
