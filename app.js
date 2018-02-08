@@ -223,7 +223,7 @@ App({
   // s=相关题库（可选）
   reportKpi: function (k, s) {
     zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || ''), function (res) {
-      console.log('KPI Report: ' + res.data);
+      console.log('KPI Report: ' + JSON.stringify(res.data));
     });
   },
 

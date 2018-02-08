@@ -6,8 +6,7 @@ Page({
     headimgUrl: '../../images/afo.png',
     nick: '游客',
     level: '普通会员',
-    subject: '选择考试类型',
-    bindMobile: 'N'
+    subject: '选择考试类型'
   },
   showTimes: 0,
 
@@ -60,7 +59,8 @@ Page({
         coin: _data.coin_balance,
         vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : '',
         vip_discount: _data.vip_discount || '',
-        bindMobile: _data.bindMobile || 'N'
+        bindMobile: _data.bindMobile || '',
+        bindMobileShow: !!!_data.bindMobile
       });
 
       if (that.data.vip == 'vip') {

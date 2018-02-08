@@ -4,7 +4,6 @@
     "pages/index/about",
     "pages/index/h5",
     "pages/index/tips",
-    "pages/index/share-guide",
     "pages/question/subject-choice",
     "pages/question/subject-list",
     "pages/question/subject",
@@ -14,15 +13,15 @@
     "pages/exam/explain-rich",
     "pages/my/home",
     "pages/my/my-exams",
+    "pages/my/my-unexam",
     "pages/my/my-favs",
     "pages/my/incorrects",
     "pages/my/coin-buy",
     "pages/my/coin-records",
-    "pages/my/my-unexam",
-    "pages/my/user-reg",
     "pages/my/vip-buy",
-    "pages/acts/keep-days",
-    "pages/acts/share-guide"
+    "pages/my/user-reg",
+    "pages/acts/share-guide",
+    "pages/acts/keep-days"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",

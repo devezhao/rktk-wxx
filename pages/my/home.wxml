@@ -11,11 +11,9 @@
         </navigator>
       </view>
       <view class="tags">
-        <block wx:if="{{bindMobile != 'N'}}">
-          <view bindtap="gotoPage" data-url="/pages/my/user-reg?bind={{bindMobile}}" class="mobile">
-            <image src="../../images/bind-mobile.png"></image>
-          </view>
-        </block>
+        <view bindtap="gotoPage" data-url="/pages/my/user-reg?bind={{bindMobile}}" class="mobile" wx:if="{{bindMobile}}">
+          <image src="../../images/bind-mobile.png"></image>
+        </view>
         <view bindtap="gotoPage" data-url="/pages/my/coin-records">{{coin}}学豆</view>
         <view bindtap="gotoPage" data-url="/pages/my/vip-buy">{{level}}</view>
       </view>
@@ -39,7 +37,7 @@
     </view>
   </view>
 
-  <navigator url="user-reg" class="highbar" hidden="{{bindMobile != 'N'}}">
+  <navigator url="user-reg" class="highbar" wx:if="{{bindMobileShow}}">
     <icon type="info_circle" size="15" color="#f87c3d"></icon>
     首次绑定手机账号奖励20学豆
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>

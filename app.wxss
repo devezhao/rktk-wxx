@@ -335,6 +335,8 @@ image.x24 {
   width: 6px;
 }
 
+/* 题目样式 START */
+
 .qimg-gray {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
@@ -344,6 +346,56 @@ image.x24 {
   line-height: 1;
   filter: gray;
 }
+
+.qa-space {
+  color: #333;
+  display: inline-block;
+}
+
+.qa-space .qa {
+  border-bottom: 1px solid #444;
+  min-width: 32px;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.qsubtitle {
+  margin: 0px 0;
+  font-size: 14px;
+  color: #777;
+  display: inline-block;
+}
+
+@font-face {
+  font-family: "codefont";
+  src: url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.eot");
+  src: url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.eot?#iefix") format("embedded-opentype"),
+         url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.woff") format("woff"),
+         url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.ttf") format("truetype"),
+         url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.svg#consola") format("svg");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.qcode-box {
+  font-family: 'codefont';
+  background-color: #eee;
+  padding: 6px;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 3px 0;
+}
+
+.qcode-box .em {
+  color: #aaa;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* 题目样式 END */
 
 .highbar {
   margin: 0 14px;

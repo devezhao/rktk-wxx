@@ -53,7 +53,10 @@ Page({
             });
           }
         }, 1000);
-
+        wx.showToast({
+          icon: 'none',
+          title: '验证码已发送'
+        });
       } else {
         wx.showToast({
           icon: 'none',

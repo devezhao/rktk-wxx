@@ -32,23 +32,23 @@
         </block>
       </view>
     </view>
-    <view class="page__hd" id="explain" hidden="{{explain == null}}">
+    <view class="page__hd" id="explain" hidden="{{source_subject == null}}">
       <view class="explain-source" bindtap="gotoSubject" data-subject="{{source_subject_id}}">
         <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}</view>
       <view class="explain-title">
         考题解析
       </view>
       <view class="explain-content" style="{{yourAnswer == null ? '' : 'padding-bottom:12px'}}">
-        <block wx:if="{{explain == 'VIP' || explain_freedom == 'VIP'}}">
+        <block wx:if="{{explain_freedom == 'VIP'}}">
           <view class="vip-upgrade">
-            <view class="tt">升级VIP查看考题解析</view>
+            <view class="tt">{{explain_adtxt || '升级VIP查看考题解析'}}</view>
             <button bindtap="goVip">立即升级</button>
           </view>
         </block>
         <block wx:if="{{explain_freedom == 'LIMIT'}}">
           <view class="vip-upgrade min">
             <view class="tt">
-              <text>考题解析限时免费中\n升级VIP可享无限答题与解析</text>
+              <text>{{explain_adtxt || '考题解析限时免费中\n升级VIP可享无限答题与解析'}}</text>
             </view>
             <button bindtap="goVip">立即升级</button>
             <view class="clearfix"></view>
