@@ -18,15 +18,17 @@ Page({
 
     var _url = e.url;
     _url = decodeURIComponent(_url);
-    console.log(_url);
     if (e.bgcolor) {
       wx.setNavigationBarColor({
         frontColor: (e.bgcolor == 'fff' || e.bgcolor == 'ffffff') ? '#000000' : '#ffffff',
         backgroundColor: '#' + e.bgcolor
       })
     }
+    //_url = 'https://rk.statuspage.cn/' + _url;
+    _url = 'https://rktk.qidapp.com/' + _url;
+    console.log('H5 - ' + _url);
     this.setData({
-      url: 'https://rk.statuspage.cn/' + _url
+      url: _url
     });
   },
 

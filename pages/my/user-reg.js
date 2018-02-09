@@ -53,6 +53,7 @@ Page({
             });
           }
         }, 1000);
+
         wx.showToast({
           icon: 'none',
           title: '验证码已发送'
@@ -67,6 +68,7 @@ Page({
   },
 
   bindMobile: function (e) {
+    if (this.data.inputBad == true) return;
     zutils.post(app, 'api/user/bind-mobile?formId=' + (e.detail.formId || ''), JSON.stringify(this.inputData), function (res) {
       if (res.data.error_code == 0) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];

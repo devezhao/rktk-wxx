@@ -40,7 +40,7 @@
 
 .tags {
   position: absolute;
-  right: 8px;
+  right: 9px;
   top: 10px;
 }
 
