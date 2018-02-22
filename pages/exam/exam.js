@@ -36,13 +36,12 @@ Page({
       delay: 50
     });
 
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/fav/ids?spec=' + this.subjectId, function (res) {
       that.favList = res.data.data;
     });
     this.loadQuestion();
 
-    var that = this;
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -52,7 +51,7 @@ Page({
       },
     });
 
-    this.__turningAnimation = wx.createAnimation({
+    this.turningAnimation = wx.createAnimation({
       duration: 200,
       timingFunction: 'ease',
       transformOrigin: '50% 50% 0'
@@ -60,7 +59,7 @@ Page({
   },
 
   onUnload: function () {
-    this.__clearCountdown();
+    this.__cleanCountdown();
   },
 
   loadQuestion: function () {
@@ -272,7 +271,7 @@ Page({
     });
     zutils.post(app, 'api/exam/finish?noloading&exam=' + that.examId, function (res) {
       if (res.data.error_code == 0) {
-        that.__clearCountdown();
+        that.__cleanCountdown();
         wx.redirectTo({
           url: 'exam-result?redirect=2&id=' + that.examId
         });
@@ -305,7 +304,7 @@ Page({
     }
   },
 
-  __clearCountdown: function () {
+  __cleanCountdown: function () {
     if (this._countdown) {
       clearInterval(this._countdown);
       this._countdown = null;
@@ -318,48 +317,91 @@ Page({
   // 翻页
 
   turningStart: function (e) {
-    this.__turningAnimation.opacity(0.8).step();
-    this.setData({
-      turningData: this.__turningAnimation.export()
-    });
     this.__turning_CX = e.touches[0].clientX;
+    this.__turning_CY = e.touches[0].clientY;
+    this.turningAnimation.opacity(0.666).step();
+    this.setData({
+      turningData: this.turningAnimation.export()
+    });
   },
 
   turningMove: function (e) {
-    if (this.__turning_CX == -9999) return;
-
-    let moveX = e.touches[0].clientX;
-    let leftX = moveX - this.__turning_CX;
-    this.__turningAnimation.translateX(leftX + 'px').step({ duration: 0 });
-    this.__turning_Left = leftX;
-    this.setData({
-      turningData: this.__turningAnimation.export()
-    });
-    console.log('leftX ' + leftX);
+    if (!this.__turning_CX || this.__turning_CX == -9999) return;
+    let isX = e.touches[0].clientX - this.__turning_CX;
+    let isY = e.touches[0].clientY - this.__turning_CY;
+    if (Math.abs(isX) > 30 && Math.abs(isX) > Math.abs(isY)) {
+      this.__turning = true;
+      this.__turningLeft = isX;
+    }
   },
 
   turningEnd: function (e) {
-    if (this.__turning_CX == -9999) return;
+    if (!this.__turning_CX) return;
     this.__turning_CX = -9999;
-
-    let left = this.__turning_Left;
-    let next = true;
-    if (left > 80) {
-      next = this.prevQuestion();
-    } else if (left < -80) {
-      next = this.nextQuestion();
-    }
-
-    if ((left > 80 || left < -80) && next === true) {
-      this.__turningAnimation.translateX(left > 80 ? '100%' : '-100%').step({ duration: 200 }).translateX('0px').opacity(1).step({ duration: 0 });
+    if (this.__turning !== true) {
+      this.turningAnimation.opacity(1).step({ duration: 100 });
       this.setData({
-        turningData: this.__turningAnimation.export()
+        turningData: this.turningAnimation.export()
       });
+      return;
+    }
+    this.__turning = false;
+
+    if (this.__turningLeft < 0) {
+      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.nextQuestion();
     } else {
-      this.__turningAnimation.translateX('0px').opacity(1).step({ duration: 200 });
-      this.setData({
-        turningData: this.__turningAnimation.export()
-      });
+      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.prevQuestion();
     }
+    this.setData({
+      turningData: this.turningAnimation.export()
+    });
   },
+
+  // turningStart: function (e) {
+  //   this.turningAnimation.opacity(0.8).step();
+  //   this.setData({
+  //     turningData: this.turningAnimation.export()
+  //   });
+  //   this.__turning_CX = e.touches[0].clientX;
+  // },
+
+  // turningMove: function (e) {
+  //   if (this.__turning_CX == -9999) return;
+
+  //   let moveX = e.touches[0].clientX;
+  //   let leftX = moveX - this.__turning_CX;
+  //   this.turningAnimation.translateX(leftX + 'px').step({ duration: 0 });
+  //   this.__turning_Left = leftX;
+  //   this.setData({
+  //     turningData: this.turningAnimation.export()
+  //   });
+  //   console.log('leftX ' + leftX);
+  // },
+
+  // turningEnd: function (e) {
+  //   if (this.__turning_CX == -9999) return;
+  //   this.__turning_CX = -9999;
+
+  //   let left = this.__turning_Left;
+  //   let next = true;
+  //   if (left > 80) {
+  //     next = this.prevQuestion();
+  //   } else if (left < -80) {
+  //     next = this.nextQuestion();
+  //   }
+
+  //   if ((left > 80 || left < -80) && next === true) {
+  //     this.turningAnimation.translateX(left > 80 ? '100%' : '-100%').step({ duration: 200 }).translateX('0px').opacity(1).step({ duration: 0 });
+  //     this.setData({
+  //       turningData: this.turningAnimation.export()
+  //     });
+  //   } else {
+  //     this.turningAnimation.translateX('0px').opacity(1).step({ duration: 200 });
+  //     this.setData({
+  //       turningData: this.turningAnimation.export()
+  //     });
+  //   }
+  // },
 });
