@@ -14,17 +14,14 @@ Page({
       that.listSubject();
     });
 
-    wx.getSystemInfo({
-      success: function (res) {
-        let w = res.windowWidth - 32
-        w /= 5;
-        if (w > 90) w = 90;
-        if (w < 60) w = 60;
-        that.setData({
-          fyWidth: w
-        })
-      }
-    })
+    let wwidth = app.GLOBAL_DATA.SYS_INFO.windowWidth - 32;
+    wwidth /= 5;
+    if (wwidth > 90) wwidth = 90;
+    if (wwidth < 60) wwidth = 60;
+    this.setData({
+      fyWidth: wwidth,
+      isAndroid: app.GLOBAL_DATA.IS_ANDROID
+    });
   },
 
   onShow: function () {

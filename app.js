@@ -12,7 +12,11 @@ App({
     // 自己分享的口令
     KT_TOKENS: [],
     // 最近关注题库
-    FOLLOW_SUBJECT: []
+    FOLLOW_SUBJECT: [],
+    // 系统信息
+    SYS_INFO: {},
+    IS_ANDROID: false,
+    IS_IOS: false,
   },
 
   onLaunch: function (e) {
@@ -29,6 +33,15 @@ App({
       complete: function () {
         that.__checkUserInfo(null, false);
       }
+    });
+
+    wx.getSystemInfo({
+      success: function (res) {
+        that.GLOBAL_DATA.IS_ANDROID = /Android/g.test(res.system);
+        that.GLOBAL_DATA.IS_IOS = /iOS/g.test(res.system);
+        that.GLOBAL_DATA.SYS_INFO = res;
+        console.log('系统信息: ' + JSON.stringify(that.GLOBAL_DATA.SYS_INFO));
+      },
     });
   },
 

@@ -59,9 +59,25 @@ Page({
     }
 
     var tips_content = '将进入答题页面，请做好准备';
-    if (this.data.coin > 0 && this.data.vip_free == false) {
-      tips_content = '本次答题将消耗' + this.data.coin + '学豆';
+    if (this.data.vip_free == false) {
+      if (this.data.coin == -2) {
+        wx.showModal({
+          title: '提示',
+          content: '本题库为VIP专享，开通VIP会员可立即答题',
+          confirmText: '立即开通',
+          success: function (res) {
+            if (res.confirm) {
+              app.gotoPage('/pages/my/vip-buy')
+            }
+          }
+        });
+        return;
+      }
+      else if (this.data.coin > 0) {
+        tips_content = '本次答题将消耗' + this.data.coin + '学豆';
+      }
     }
+
     var that = this;
     wx.showModal({
       title: '提示',
@@ -75,6 +91,7 @@ Page({
     });
   },
 
+  // 知识点答题
   toExam_Type2: function (e) {
     let that = this;
     wx.showActionSheet({
@@ -166,6 +183,20 @@ Page({
     app.reportKpi('EXPLAIN', this.subjectId);
     app.followSubject(this.subjectId);
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+
+    if (this.data.coin == -2) {
+      wx.showModal({
+        title: '提示',
+        content: '本题库为VIP专享，开通VIP会员可立即查看解析',
+        confirmText: '立即开通',
+        success: function (res) {
+          if (res.confirm) {
+            app.gotoPage('/pages/my/vip-buy')
+          }
+        }
+      });
+      return;
+    }
 
     let _url = '../exam/explain?id=' + this.subjectId;
     if (this.data.subject_type == 11) _url = '../exam/explain-rich?id=' + this.subjectId;

@@ -30,9 +30,14 @@
   color: #fff;
   width: 75%;
   margin: 0 auto;
-  border-radius: 99px;
-  line-height: 1.5;
+  border-radius: 999px;
   font-size: 10px;
+  line-height: 1.5;
+}
+
+.weui-media-box__thumb text.M.android {
+  line-height: 1.2;
+  padding-top: 3.5px;
 }
 
 .weui-media-box__thumb.T2 {

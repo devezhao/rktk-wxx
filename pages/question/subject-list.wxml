@@ -39,7 +39,7 @@
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <view class="weui-media-box__thumb {{item[12]}}">
                 <text class="Y">{{item[10]}}</text>
-                <text class="M">{{item[11]}}</text>
+                <text class="M {{isAndroid ? 'android' : ''}}">{{item[11]}}</text>
               </view>
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
@@ -57,15 +57,10 @@
                   </block>
                 </view>
                 <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
-                  <block wx:if="{{item[2] > 0}}">
-                    <text>{{item[2]}}学豆</text>
-                  </block>
-                  <block wx:if="{{item[2] == 0}}">
-                    <text class="color-base2">免费</text>
-                  </block>
-                  <block wx:if="{{item[2] < 0}}">
-                    <text class="color-base2">(限免)</text>
-                  </block>
+                  <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
+                  <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
+                  <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>
+                  <text wx:if="{{item[2] == -2}}" class="color-base2">(VIP专享)</text>
                 </view>
               </view>
             </view>
@@ -93,15 +88,10 @@
                   <text>{{item[3]}}</text>
                 </view>
                 <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
-                  <block wx:if="{{item[2] > 0}}">
-                    <text>{{item[2]}}学豆</text>
-                  </block>
-                  <block wx:if="{{item[2] == 0}}">
-                    <text class="color-base2">免费</text>
-                  </block>
-                  <block wx:if="{{item[2] < 0}}">
-                    <text class="color-base2">(限免)</text>
-                  </block>
+                  <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
+                  <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
+                  <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>
+                  <text wx:if="{{item[2] == -2}}" class="color-base2">(VIP专享)</text>
                 </view>
               </view>
             </view>
