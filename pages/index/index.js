@@ -194,7 +194,6 @@ Page({
   },
 
   bannerChange: function (e) {
-    console.log(e);
   },
 
   gotoPage: function (e) {

@@ -13,12 +13,13 @@
           <text>/</text> 满分 {{question_scope}}
         </block>
         <text>/</text>
-
         <block wx:if="{{vip_free == true}}">
           <text class="color-base2">(VIP免费)</text>
         </block>
+        <block wx:elif="{{coin > 0}}">
+          {{coin}}学豆
+        </block>
         <block wx:else>
-          <text wx:if="{{coin > 0}}">{{coin}}学豆</text>
           <text wx:if="{{coin == 0}}" class="color-base2">免费</text>
           <text wx:if="{{coin == -1}}" class="color-base2">(限免)</text>
           <text wx:if="{{coin == -2}}" class="color-base2">(VIP专享)</text>

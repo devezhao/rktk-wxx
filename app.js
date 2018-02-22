@@ -39,6 +39,8 @@ App({
       success: function (res) {
         that.GLOBAL_DATA.IS_ANDROID = /Android/g.test(res.system);
         that.GLOBAL_DATA.IS_IOS = /iOS/g.test(res.system);
+        
+        // 使用 windowHeight 会有问题，高度与页面获取的不一致
         that.GLOBAL_DATA.SYS_INFO = res;
         console.log('系统信息: ' + JSON.stringify(that.GLOBAL_DATA.SYS_INFO));
       },

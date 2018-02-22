@@ -7,7 +7,7 @@
     <view class="clearfix"></view>
   </view>
 
-  <view class="page__bd question-area" style="min-height:{{qareaHeight}}px;" animation="{{turningData}}" bindlongtap="turningStart" bindtouchmove="turningMove" bindtouchend="turningEnd">
+  <view class="page__bd question-area" style="min-height:{{qareaHeight}}px;" animation="{{turningData}}" bindlongpress="turningStart" bindtouchmove="turningMove" bindtouchend="turningEnd">
     <view class="question">
       <rich-text nodes="{{question}}"></rich-text>
     </view>

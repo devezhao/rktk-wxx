@@ -68,6 +68,12 @@ Page({
         })
       }
     });
+
+    this.turningAnimation = wx.createAnimation({
+      duration: 200,
+      timingFunction: 'ease',
+      transformOrigin: '50% 50% 0'
+    });
   },
 
   __loadQuestion: function (idx) {
@@ -176,5 +182,50 @@ Page({
     wx.navigateTo({
       url: '../my/vip-buy'
     })
-  }
+  },
+
+  // 翻页
+
+  turningStart: function (e) {
+    this.__turning_CX = e.touches[0].clientX;
+    this.__turning_CY = e.touches[0].clientY;
+    this.turningAnimation.opacity(0.666).step();
+    this.setData({
+      turningData: this.turningAnimation.export()
+    });
+  },
+
+  turningMove: function (e) {
+    if (!this.__turning_CX || this.__turning_CX == -9999) return;
+    let isX = e.touches[0].clientX - this.__turning_CX;
+    let isY = e.touches[0].clientY - this.__turning_CY;
+    if (Math.abs(isX) > 30 && Math.abs(isX) > Math.abs(isY)) {
+      this.__turning = true;
+      this.__turningLeft = isX;
+    }
+  },
+
+  turningEnd: function (e) {
+    if (!this.__turning_CX) return;
+    this.__turning_CX = -9999;
+    if (this.__turning !== true) {
+      this.turningAnimation.opacity(1).step({ duration: 100 });
+      this.setData({
+        turningData: this.turningAnimation.export()
+      });
+      return;
+    }
+    this.__turning = false;
+
+    if (this.__turningLeft < 0) {
+      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.goNext();
+    } else {
+      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.goPrev();
+    }
+    this.setData({
+      turningData: this.turningAnimation.export()
+    });
+  },
 });

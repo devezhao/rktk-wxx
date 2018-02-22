@@ -11,12 +11,13 @@
     </view>
   </view>
 
-  <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}" style="height:{{viewHeight}}px;margin-top:40px">
+  <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}" style="height:{{viewHeight}}px;margin-top:40px" animation="{{turningData}}" bindlongpress="turningStart" bindtouchmove="turningMove" bindtouchend="turningEnd">
     <view class="page__bd" id="question" style="padding-top:1px">
       <view class="question">
         <rich-text nodes="{{question}}"></rich-text>
       </view>
     </view>
+
     <view class="page__bd" id="answers" style="padding-top:1px">
       <view class="answer-list">
         <block wx:for="{{answer_list}}" wx:key="key_answer_list">
@@ -32,6 +33,7 @@
         </block>
       </view>
     </view>
+    
     <view class="page__hd" id="explain" hidden="{{source_subject == null}}">
       <view class="explain-source" bindtap="gotoSubject" data-subject="{{source_subject_id}}">
         <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}</view>
