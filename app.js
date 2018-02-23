@@ -45,6 +45,8 @@ App({
         console.log('系统信息: ' + JSON.stringify(that.GLOBAL_DATA.SYS_INFO));
       },
     });
+
+    // this.showReddot(2, 'Home180201NEWMY');
   },
 
   onShow: function (e) {
@@ -257,6 +259,7 @@ App({
     })
   },
 
+  // 基础库 1.9 支持
   // 显示红点
   showReddot: function (index, key) {
     wx.getStorage({
@@ -268,7 +271,7 @@ App({
       }
     })
   },
-  // 显示红点
+  // 隐藏红点
   hideReddot: function (index, key) {
     wx.setStorage({
       key: 'TapedReddot' + key,

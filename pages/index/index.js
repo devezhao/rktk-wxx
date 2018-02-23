@@ -19,8 +19,6 @@ Page({
           banners: _data.banners
         });
       }
-
-      //app.showReddot(2, 'Home180201NEWMY');
     });
 
     app.getUserInfo(function () {

@@ -21,7 +21,7 @@ Page({
       that.__onLoad();
     });
 
-    //app.hideReddot(2, 'Home180201NEWMY');
+    // app.hideReddot(2, 'Home180201NEWMY');
   },
 
   onPullDownRefresh: function () {

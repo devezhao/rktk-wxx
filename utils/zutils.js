@@ -25,6 +25,12 @@ function z_get(app, url, call) {
     header: { wxxuid: wxxuid },
     success: call || function (res) { },
     fail: function (res) {
+      if (res.errMsg && res.errMsg.indexOf('timeout') > -1) {
+        wx.showToast({
+          icon: 'none',
+          title: '请求超时，请检查网络'
+        })
+      }
       console.error('请求失败<GET:' + url + '> - ' + JSON.stringify(res || []));
     }, complete: function () {
       if (loading_timer) {
@@ -66,6 +72,12 @@ function z_post(app, url, data, call) {
     data: data,
     success: call || function (res) { },
     fail: function (res) {
+      if (res.errMsg && res.errMsg.indexOf('timeout') > -1) {
+        wx.showToast({
+          icon: 'none',
+          title: '请求超时，请检查网络'
+        })
+      }
       console.error('请求失败<POST:' + url + '> - ' + JSON.stringify(res || []));
     }, complete: function () {
       if (loading_timer) {

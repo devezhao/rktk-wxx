@@ -3,7 +3,7 @@
     将以下文字或链接发送给你的好友，邀请好友使用软考必备，每邀请一个好友可获得10学豆奖励，多邀多送！
   </view>
   <view class="page__hd">
-    <view class="weui-cells__title">点击复制分享文字</view>
+    <view class="weui-cells__title" bindtap="ccopy" data-type="1">点击复制分享文字</view>
     <view class="weui-panel" bindtap="ccopy" data-type="1">
       <view class="weui-panel__bd">
         <view class="weui-media-box rktk-record">
@@ -11,7 +11,7 @@
         </view>
       </view>
     </view>
-    <view class="weui-cells__title">点击复制分享链接</view>
+    <view class="weui-cells__title" bindtap="ccopy" data-type="2">点击复制分享链接</view>
     <view class="weui-panel" bindtap="ccopy" data-type="2">
       <view class="weui-panel__bd">
         <view class="weui-media-box rktk-record">
