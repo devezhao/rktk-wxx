@@ -10,6 +10,10 @@ Page({
     zutils.get(app, 'api/share/gen-texts', function (res) {
       that.setData(res.data.data)
     });
+    
+    // wx.showShareMenu({
+    //   withShareTicket: true
+    // });
   },
 
   ccopy: function (e) {

@@ -119,7 +119,7 @@ Page({
 
   goPrev: function (e) {
     let idx = this.data.qidsNo;
-    if (idx <= 1) return;
+    if (!this.__qids || idx <= 1) return;
     idx -= 1;
     this.setData({
       qidsNo: idx,
@@ -130,7 +130,7 @@ Page({
 
   goNext: function (e) {
     let idx = this.data.qidsNo;
-    if (idx >= this.__qids.length) return;
+    if (!this.__qids || idx >= this.__qids.length) return;
     idx += 1;
     this.setData({
       qidsNo: idx,
@@ -215,6 +215,7 @@ Page({
   // 翻页
 
   turningStart: function (e) {
+    if (!this.__qids) return;
     this.__turning_CX = e.touches[0].clientX;
     this.__turning_CY = e.touches[0].clientY;
     this.turningAnimation.opacity(0.666).step();

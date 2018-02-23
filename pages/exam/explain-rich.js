@@ -187,6 +187,7 @@ Page({
   // 翻页
 
   turningStart: function (e) {
+    if (!this.__qids) return;
     this.__turning_CX = e.touches[0].clientX;
     this.__turning_CY = e.touches[0].clientY;
     this.turningAnimation.opacity(0.666).step();

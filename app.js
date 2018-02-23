@@ -39,7 +39,7 @@ App({
       success: function (res) {
         that.GLOBAL_DATA.IS_ANDROID = /Android/g.test(res.system);
         that.GLOBAL_DATA.IS_IOS = /iOS/g.test(res.system);
-        
+
         // 使用 windowHeight 会有问题，高度与页面获取的不一致
         that.GLOBAL_DATA.SYS_INFO = res;
         console.log('系统信息: ' + JSON.stringify(that.GLOBAL_DATA.SYS_INFO));
@@ -137,13 +137,13 @@ App({
   },
 
   __checkUserInfo: function (cb, needLogin) {
-    console.log('检查授权 - cb=' + (cb == null ? 'N' : 'Y') + ', needLogin=' + (needLogin ? 'Y' : 'N'));
+    console.log('检查授权: cb=' + (cb == null ? 'N' : 'Y') + ', needLogin=' + (needLogin ? 'Y' : 'N'));
     var that = this;
     wx.checkSession({
-      fail: function () {
+      fail: function (res) {
         if (needLogin == true) that.getUserInfo(cb)
       },
-      success: function () {
+      success: function (res) {
         if (that.GLOBAL_DATA.USER_INFO) {
           typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO);
         } else {
@@ -164,20 +164,28 @@ App({
 
   __storeUserInfo: function (res, cb) {
     console.log('存储授权 - ' + JSON.stringify(res))
-    var that = this;
-    var _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
+    let that = this;
+    let _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
     _data.inviter = that.__enter_source.u || that.__enter_source._su;
     _data.inviter2 = that.__enter_source.query.q;
-
     zutils.post(that, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
-      typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO)
-    })
+      typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO);
+
+      // if (that.__enter_source.shareTicket) {
+      //   wx.getShareInfo({
+      //     shareTicket: that.__enter_source.shareTicket,
+      //     success: function (res) {
+      //       console.log('shareTicket - ' + JSON.stringify(res));
+      //     }
+      //   });
+      // }
+    });
   },
 
   __forceUserInfo: function (cb) {
-    var that = this;
+    let that = this;
     wx.getUserInfo({
       success: function (res) {
         that.__storeUserInfo(res, cb);
@@ -205,8 +213,8 @@ App({
     else url += '?';
     url += 'u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
     var d = {
-      title: '软考刷题必备利器', path: url, success: function (shareTickets) {
-        console.log(JSON.stringify(shareTickets || []));
+      title: '软考刷题必备利器', path: url, success: function (res) {
+        console.log('分享回调: ' + JSON.stringify(res));
       }
     };
     console.log(d);
