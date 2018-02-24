@@ -17,7 +17,7 @@
           <text class="color-base2">(VIP免费)</text>
         </block>
         <block wx:elif="{{coin > 0}}">
-          {{coin}}学豆
+          {{coin}}学豆<block wx:if="{{subject_type == 2}}">起</block>
         </block>
         <block wx:else>
           <text wx:if="{{coin == 0}}" class="color-base2">免费</text>

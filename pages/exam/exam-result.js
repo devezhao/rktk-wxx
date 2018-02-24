@@ -14,27 +14,8 @@ Page({
   onLoad: function (e) {
     this.examId = e.id;
     let that = this;
-    let __time = new Date().getTime();
     app.getUserInfo(function () {
-      that.loadResult();
-
-      // Keep
-      if (e.redirect == 2) {
-        zutils.get(app, 'api/acts/keep-days?noloading', function (res) {
-          let _data = res.data;
-          if (_data && _data.data && _data.data.days) {
-            _data = _data.data;
-            __time = new Date().getTime() - __time;
-            __time = 800 - __time;
-            if (__time < 200) __time = 200;
-            setTimeout(function(){
-              wx.navigateTo({
-                url: '/pages/acts/keep-days?days=' + _data.days + '&date=' + _data.date
-              })
-            }, __time);
-          }
-        });
-      }
+      that.loadResult(e.redirect == 2);
     });
 
     // PK
@@ -45,7 +26,7 @@ Page({
     }
   },
 
-  loadResult: function () {
+  loadResult: function (checkKeep) {
     var that = this;
     zutils.get(app, 'api/exam/result?exam=' + that.examId, function (res) {
       console.log(res);
@@ -65,6 +46,21 @@ Page({
         title: _data.subject_name
       });
       that.subjectId = _data.subject_id;
+
+      // Keep
+      if (checkKeep == true) {
+        zutils.get(app, 'api/acts/keep-days?noloading', function (res2) {
+          let _data2 = res2.data;
+          if (_data2 && _data2.data && _data2.data.days) {
+            _data2 = _data2.data;
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/acts/keep-days?days=' + _data2.days + '&date=' + _data2.date
+              })
+            }, 666);
+          }
+        });
+      }
     });
   },
 
