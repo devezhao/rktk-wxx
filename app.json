@@ -21,7 +21,10 @@
     "pages/my/vip-buy",
     "pages/my/user-reg",
     "pages/acts/share-guide",
-    "pages/acts/keep-days"
+    "pages/acts/keep-days",
+    "pages/pk/start",
+    "pages/pk/room-wait",
+    "pages/pk/room-pk"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",
@@ -47,6 +50,12 @@
         "text": "题库",
         "iconPath": "images/icon-subject.png",
         "selectedIconPath": "images/icon-subject-s.png"
+      },
+      {
+        "pagePath": "pages/pk/start",
+        "text": "PK",
+        "iconPath": "images/pk/icon-pk.png",
+        "selectedIconPath": "images/pk/icon-pk-s2.png"
       },
       {
         "pagePath": "pages/my/home",

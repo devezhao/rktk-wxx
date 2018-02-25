@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="page__hd act-users">
+    <view class="user foo animated slideInLeft">
+      <view class="headimg">
+        <image src="{{fooHeadimg}}"></image>
+      </view>
+      <view class="nick">{{fooNick}}</view>
+    </view>
+    <view class="user bar animated slideInRight">
+      <view class="headimg">
+        <image src="{{barHeadimg}}"></image>
+      </view>
+      <view class="nick">{{barNick}}</view>
+    </view>
+    <view class="state animated flash infinite d3s">
+      {{stateText}}
+    </view>
+  </view>
+
+  <view class="page__hd op-btns">
+    <view class="btn" bindtap="cancelPk">
+      <image src="../../images/pk/ic_logout.png"></image>
+      <view>放弃</view>
+    </view>
+    <view class="btn">
+      <image src="../../images/share-weixin.png"></image>
+      <view>邀请</view>
+      <button open-type="share" class="btn-mask"></button>
+    </view>
+    <view hidden="{{showConfirm == false}}" class="confirm">
+      <form bindsubmit="confirmPk" report-submit="true">
+        <button type="button" type="primary" formType="submit">开始对战</button>
+      </form>
+    </view>
+  </view>
+</view>

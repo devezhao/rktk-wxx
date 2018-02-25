@@ -1,0 +1,44 @@
+page, .page {
+  background-color: #2b6ba5;
+}
+
+.card {
+  border-radius: 6px;
+  background-color: #ee75aa;
+  margin: 10px 5px;
+  color: #fff;
+  font-size: 20px;
+  padding: 9px 12px;
+  position: relative;
+  overflow: hidden;
+  height: 70px;
+  z-index: 19;
+  line-height: 1;
+}
+
+.card.x1 {
+  height: 105px;
+}
+
+.card.x2 {
+  height: 140px;
+}
+
+.card:active {
+  opacity: 0.8;
+}
+
+.card .unactive {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+
+.card image {
+  width: 80px;
+  height: 80px;
+}

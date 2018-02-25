@@ -335,6 +335,15 @@ image.x24 {
   width: 6px;
 }
 
+button.btn-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  opacity: 0;
+}
+
 /* 题目样式 START */
 
 .qimg-gray {
