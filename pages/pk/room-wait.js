@@ -10,7 +10,7 @@ Page({
 
   onLoad: function (e) {
     this.roomId = e.id || e.pkroom;
-    if (!this.roomId) {
+    if (!this.roomId || !app.GLOBAL_DATA.USER_INFO) {
       app.gotoPage('/pages/pk/start');
       return;
     }
@@ -33,7 +33,7 @@ Page({
         });
         that.barEnter();
       }
-    })
+    });
   },
 
   barEnter: function () {
@@ -109,13 +109,13 @@ Page({
   },
 
   onUnload: function () {
-    console.log('onUnload')
+    wx.closeSocket({
+    })
   },
 
   confirmPk: function (e) {
     let that = this;
     let _url = 'api/pk/pk-start?room=' + this.roomId + '&bar=' + this.__barUid + '&formId=' + + (e.detail.formId || '');
-    console.log('pk-start url - ' + _url);
     zutils.post(app, _url, function (res) {
       let _data = res.data;
       if (_data.error_code != 0) {

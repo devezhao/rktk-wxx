@@ -8,9 +8,9 @@
     </view>
     <view class="user bar animated slideInRight">
       <view class="headimg">
-        <image src="{{barHeadimg}}"></image>
+        <image src="{{barHeadimg || ''}}"></image>
       </view>
-      <view class="nick">{{barNick}}</view>
+      <view class="nick">{{barNick || ''}}</view>
     </view>
     <view class="state animated flash infinite d3s">
       {{stateText}}

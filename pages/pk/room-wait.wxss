@@ -5,13 +5,17 @@ page, .page {
   color: #fff;
 }
 
+.page {
+  overflow: hidden;
+}
+
 .xxoo {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
 .act-users {
   position: relative;
-  height: 120px;
+  height: 110px;
 }
 
 .act-users .state {

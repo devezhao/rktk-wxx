@@ -6,10 +6,9 @@ var WSS = {
   reconnectTimes: 0,
 
   init: function (url, handle) {
-    // let wsUrl = zutils.baseUrl.replace('https:', 'wss:');
-    // if (zutils.baseUrl.substr(0, 5) == 'http:') wsUrl = zutils.baseUrl.replace('http:', 'ws:');
-    // wsUrl += url;
-    WSS.wsUrl = 'ws://192.168.0.159:8080/rktk/' + url;
+    let wsUrl = zutils.baseUrl.replace('https:', 'wss:');
+    if (zutils.baseUrl.substr(0, 5) == 'http:') wsUrl = zutils.baseUrl.replace('http:', 'ws:');
+    WSS.wsUrl = wsUrl + url;
 
     WSS.__connect();
     wx.onSocketOpen(function (res) {
@@ -33,11 +32,11 @@ var WSS = {
   },
 
   __connect: function () {
-    WSS.reconnectTimes++;
-    if (WSS.reconnectTimes % 12 == 0) {
+    WSS.__reconnect++;
+    if (WSS.__reconnect > 3 && WSS.__reconnect % 12 == 0) {
       wx.showToast({
         icon: 'none',
-        title: '当前网络较差'
+        title: '当前网络不稳定'
       })
     };
 
@@ -45,9 +44,6 @@ var WSS = {
       url: WSS.wsUrl,
       header: {
         'content-type': 'application/json'
-      },
-      complete: function (res) {
-        console.log('WSS connectSocket - ' + JSON.stringify(res))
       }
     });
   },

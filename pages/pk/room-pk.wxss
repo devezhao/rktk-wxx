@@ -1,1 +1,114 @@
 @import "room-wait.wxss";
+
+.act-users {
+  text-align: center;
+}
+
+.countdown {
+  border-radius: 50%;
+  border: 4px solid #fff;
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
+  margin: 0 auto;
+  margin-top: 9px;
+  display: inline-block;
+  font-size: 28px;
+  overflow: hidden;
+}
+
+.question {
+  padding: 30px;
+  font-size: 17px;
+  text-align: center;
+  overflow: hidden;
+  height: 90px;
+}
+
+.answers {
+  position: relative;
+  min-height: 280px;
+}
+
+.answers .scope {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.answers .scope .progress {
+  width: 8px;
+  height: 242px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: 99px;
+  display: inline-block;
+  position: relative;
+}
+
+.answers .scope .progress view {
+  width: 8px;
+  height: 0;
+  background-color: #4bbefd;
+  border-radius: 3.5px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: height 0.666s;
+}
+
+.answers .scope.bar .progress view {
+  background-color: #ed7baf;
+}
+
+.answers .scope .num {
+  font-size: 19px;
+  margin-bottom: 1px;
+}
+
+.answers .scope.foo {
+  left: 28px;
+}
+
+.answers .scope.bar {
+  right: 28px;
+}
+
+.answers .items {
+  margin: 0 78px;
+  padding-top: 28px;
+}
+
+.answers .items view.a {
+  background-color: #fff;
+  border-radius: 99px;
+  font-size: 16px;
+  color: #222;
+  text-align: center;
+  padding: 12px 0;
+  margin-top: 12px;
+}
+
+.answers .items view.a.select {
+  color: #fff;
+}
+
+.answers .items view.a.select.N {
+  background: #d9534f url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o6.png) no-repeat 6px 12px;
+  background-size: 24px 24px;
+}
+
+.answers .items view.a.select.Y, .answers .items view.a.Y {
+  background: #5cb85c url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o6.png) no-repeat 6px 12px;
+  background-size: 24px 24px;
+  color: #fff;
+}
+
+.q-source {
+  text-align: center;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+}

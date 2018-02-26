@@ -12,24 +12,42 @@
       </view>
       <view class="nick">{{barNick}}</view>
     </view>
-    <view class="countdown">
+    <view class="countdown" wx:if="{{countdown != null}}">
       {{countdown}}
     </view>
-  </view>
-
-  <view class="question">
-    9043290432
-  </view>
-
-  <view class="answers">
-    <view class="scope foo"></view>
-    <view class="scope bar"></view>
-    <view class="items">
-      <view>1</view>
-      <view>1</view>
-      <view>1</view>
-      <view>1</view>
+    <view class="state animated bounceIn" wx:if="{{stateText != null}}">
+      {{stateText}}
     </view>
   </view>
 
+  <view class="page__hd" hidden="{{showResult == true}}" wx:if="{{question}}">
+    <view class="question {{questionClazz}} {{showClazz}}" style="height:{{questionHeight}}px">
+      {{question}}
+    </view>
+    <view class="answers">
+      <view class="scope foo">
+        <view class="num">{{fooScope || 0}}</view>
+        <view class="progress">
+          <view style="height:{{fooScope * 100 / 120}}%"></view>
+        </view>
+      </view>
+      <view class="scope bar">
+        <view class="num">{{barScope || 0}}</view>
+        <view class="progress">
+          <view style="height:{{barScope * 100 / 120}}%"></view>
+        </view>
+      </view>
+      <view class="items {{showClazz}}" wx:if="{{!!answer}}">
+        <view class="a {{answer[0][0] == selectKey ? 'select' : ''}} {{answer[0][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[0][0]}}">{{answer[0][1] || 'A'}}</view>
+        <view class="a {{answer[1][0] == selectKey ? 'select' : ''}} {{answer[1][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[1][0]}}">{{answer[1][1] || 'B'}}</view>
+        <view class="a {{answer[2][0] == selectKey ? 'select' : ''}} {{answer[2][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[2][0]}}">{{answer[2][1] || 'C'}}</view>
+        <view class="a {{answer[3][0] == selectKey ? 'select' : ''}} {{answer[3][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[3][0]}}">{{answer[3][1] || 'D'}}</view>
+      </view>
+    </view>
+    <view class="q-source">{{source_subject || ''}}</view>
+  </view>
+
+  <view class="page__hd" hidden="{{showResult == false}}">
+    fooScope {{fooScope}} barScope {{barScope}}
+  </view>
 </view>
