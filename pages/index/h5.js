@@ -24,9 +24,10 @@ Page({
         backgroundColor: '#' + e.bgcolor
       })
     }
-    //_url = 'https://rk.statuspage.cn/' + _url;
-    _url = 'https://rktk.qidapp.com/' + _url;
-    console.log('H5 - ' + _url);
+    if (_url.substr(0, 4) != 'http') {
+      //_url = 'https://rk.statuspage.cn/' + _url;
+      _url = 'https://rktk.qidapp.com/' + _url;
+    }
     this.setData({
       url: _url
     });
