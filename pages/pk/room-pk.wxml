@@ -12,11 +12,18 @@
       </view>
       <view class="nick">{{barNick}}</view>
     </view>
+    <view wx:if="{{showResult}}" class="user foo r-scope animated slideInLeft">
+      <view class="headimg" style="width:{{fooScopeWidth}}px">
+        <text>{{fooScope || '0'}}</text>分
+      </view>
+    </view>
+    <view wx:if="{{showResult}}" class="user bar r-scope animated slideInRight">
+      <view class="headimg" style="width:{{barScopeWidth}}px">
+        <text>{{barScope || '0'}}</text>分
+      </view>
+    </view>
     <view class="countdown" wx:if="{{countdown != null}}">
       {{countdown}}
-    </view>
-    <view class="state animated bounceIn" wx:if="{{stateText != null}}">
-      {{stateText}}
     </view>
   </view>
 
@@ -26,28 +33,46 @@
     </view>
     <view class="answers">
       <view class="scope foo">
-        <view class="num">{{fooScope || 0}}</view>
+        <view class="num {{fooScopeClazz}}">{{fooScope || 0}}</view>
         <view class="progress">
           <view style="height:{{fooScope * 100 / 120}}%"></view>
         </view>
       </view>
       <view class="scope bar">
-        <view class="num">{{barScope || 0}}</view>
+        <view class="num {{barScopeClazz}}">{{barScope || 0}}</view>
         <view class="progress">
           <view style="height:{{barScope * 100 / 120}}%"></view>
         </view>
       </view>
       <view class="items {{showClazz}}" wx:if="{{!!answer}}">
-        <view class="a {{answer[0][0] == selectKey ? 'select' : ''}} {{answer[0][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[0][0]}}">{{answer[0][1] || 'A'}}</view>
-        <view class="a {{answer[1][0] == selectKey ? 'select' : ''}} {{answer[1][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[1][0]}}">{{answer[1][1] || 'B'}}</view>
-        <view class="a {{answer[2][0] == selectKey ? 'select' : ''}} {{answer[2][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[2][0]}}">{{answer[2][1] || 'C'}}</view>
-        <view class="a {{answer[3][0] == selectKey ? 'select' : ''}} {{answer[3][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[3][0]}}">{{answer[3][1] || 'D'}}</view>
+        <view class="a {{answer[0][0] == selectKey ? 'select' : ''}} {{answer[0][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[0][0]}}">
+          <view class="{{answer[0][0] == barSelectKey ? 'bar-select' : ''}} {{answer[0][0] == rightKey ? 'Y' : 'N'}}">{{answer[0][1] || 'A'}}</view>
+        </view>
+        <view class="a {{answer[1][0] == selectKey ? 'select' : ''}} {{answer[1][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[1][0]}}">
+          <view class="{{answer[1][0] == barSelectKey ? 'bar-select' : ''}} {{answer[1][0] == rightKey ? 'Y' : 'N'}}">{{answer[1][1] || 'B'}}</view>
+        </view>
+        <view class="a {{answer[2][0] == selectKey ? 'select' : ''}} {{answer[2][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[2][0]}}">
+          <view class="{{answer[2][0] == barSelectKey ? 'bar-select' : ''}} {{answer[2][0] == rightKey ? 'Y' : 'N'}}">{{answer[2][1] || 'C'}}</view>
+        </view>
+        <view class="a {{answer[3][0] == selectKey ? 'select' : ''}} {{answer[3][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[3][0]}}">
+          <view class="{{answer[3][0] == barSelectKey ? 'bar-select' : ''}} {{answer[3][0] == rightKey ? 'Y' : 'N'}}">{{answer[3][1] || 'D'}}</view>
+        </view>
       </view>
     </view>
     <view class="q-source">{{source_subject || ''}}</view>
   </view>
+</view>
 
-  <view class="page__hd" hidden="{{showResult == false}}">
-    fooScope {{fooScope}} barScope {{barScope}}
+<view hidden="{{showResult == false}}">
+  <view class="mask {{isWin ? 'win' : ''}}"></view>
+  <view class="win-img" style="z-index:999">
+    <image class="user" src="{{fooHeadimg}}"></image>
+    <view>
+      <image class="banner" src="../../images/pk/{{isWin ? 'result_win.png' : 'result_lost.png'}}"></image>
+    </view>
+  </view>
+  <view class="op-btns">
+    <button type="button" type="primary" open-type="share">分享战绩</button>
+    <button type="button" type="default" bindtap="beginPk">再来一局</button>
   </view>
 </view>

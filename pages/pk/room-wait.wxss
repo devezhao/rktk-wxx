@@ -15,7 +15,7 @@ page, .page {
 
 .act-users {
   position: relative;
-  height: 110px;
+  height: 130px;
 }
 
 .act-users .state {
@@ -112,7 +112,7 @@ page, .page {
   margin-top: 24px;
 }
 
-.confirm button {
+.op-btns button {
   width: 200px;
   border-radius: 99px;
   background-color: #1aad19 !important;

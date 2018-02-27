@@ -12,20 +12,23 @@ var WSS = {
 
     WSS.__connect();
     wx.onSocketOpen(function (res) {
-      console.log('WSS onSocketOpen - ' + JSON.stringify(res))
+      console.log('连接已建立 ... ' + JSON.stringify(res));
+      WSS.__connectReady = true;
     });
     wx.onSocketError(function (res) {
-      console.log('WSS onSocketError - ' + JSON.stringify(res))
+      console.log('onSocketError - ' + JSON.stringify(res))
+      WSS.__connectReady = false;
       WSS.__connect();
     });
     wx.onSocketClose(function (res) {
-      console.log('WSS onSocketClose - ' + JSON.stringify(res))
+      console.log('连接已断开 ... ' + JSON.stringify(res))
+      WSS.__connectReady = false;
       if (res.code != 1000) {
         WSS.__connect();
       }
     });
     wx.onSocketMessage(function (res) {
-      console.log('WSS onSocketMessage - ' + JSON.stringify(res))
+      console.log('收到消息 ... ' + JSON.stringify(res))
       let _data = JSON.parse(res.data);
       handle(_data);
     });
@@ -47,9 +50,36 @@ var WSS = {
       }
     });
   },
+
+  send: function (action, data) {
+    if (!WSS.__connectReady || WSS.__connectReady == false) {
+      console.warn('连接未就绪');
+      return;
+    }
+
+    let json = { action: action, data: data || '' };
+    json = JSON.stringify(json);
+    wx.sendSocketMessage({
+      data: json,
+      complete: function (res) {
+        console.log('sendSocketMessage - ' + json + ' >> ' + JSON.stringify(res));
+      }
+    })
+  },
+
+  close: function (reason) {
+    if (WSS.__connectReady == true) {
+      WSS.__connectReady = false;
+      wx.closeSocket({
+        reason: reason || ''
+      });
+    }
+  }
 };
 
 // API
 module.exports = {
-  init: WSS.init
+  init: WSS.init,
+  send: WSS.send,
+  close: WSS.close
 };

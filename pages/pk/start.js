@@ -10,16 +10,33 @@ Page({
     let that = this;
     app.getUserInfo(function (u) {
       if (e.pkroom) {
-        wx.navigateTo({
-          url: 'room-wait?pkroom=' + e.pkroom
-        });
+        zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
+          let _data = res.data.data;
+          if (!_data || _data.state != 1) {
+            wx.showModal({
+              title: '提示',
+              content: '房间已关闭',
+              showCancel: false
+            });
+          } else {
+            if (_data.isFoo) {
+              wx.navigateTo({
+                url: 'room-wait?id=' + e.pkroom
+              });
+            } else {
+              wx.navigateTo({
+                url: 'room-wait?pkroom=' + e.pkroom
+              });
+            }
+          }
+        })
       } else {
-        // zutils.get(app, 'api/pk/room-init', function (res) {
-        //   let _data = res.data.data;
-        //   if (_data && _data.roomid) {
-        //     that.roomId = _data.roomid;
-        //   }
-        // });
+        zutils.get(app, 'api/pk/room-init', function (res) {
+          let _data = res.data.data;
+          if (_data && _data.roomid) {
+            that.roomId = _data.roomid;
+          }
+        });
       }
     });
   },
