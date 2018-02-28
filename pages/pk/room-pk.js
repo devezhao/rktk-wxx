@@ -51,14 +51,16 @@ Page({
 
     // this.setData({
     //   fooScope: 240,
-    //   barScope: 140
+    //   barScope: 340
     // })
     // this.__complete();
   },
 
   renderQuestion: function () {
+    let qno = '第' + ['一', '二', '三', '四', '五'][this.questionIdx] + '题';
+    if (this.questionIdx == 4) qno = '最后一题<div style="margin-top:-2px;color:#ff0">分数加倍</div>';
     this.setData({
-      question: '第' + (this.questionIdx + 1) + '题',
+      question: qno,
       questionClazz: 'animated fadeInDown',
       showClazz: '',
       answer: null
@@ -66,14 +68,14 @@ Page({
 
     let that = this;
     setTimeout(function () {
-      that.playAudio('pk_begindown.wav');
+      that.__playAudio('pk_begindown.wav');
       that.__renderQuestion();
-    }, 1500);
+    }, 1600);
   },
 
   __renderQuestion: function () {
     let q = this.questions[this.questionIdx];
-    let countdown = 30;
+    let countdown = 20;
     this.setData({
       question: q.question,
       answer: q.answer,
@@ -105,8 +107,10 @@ Page({
     // 都回答了
     if (!!q.fooKey && !!q.barKey) {
       this.setData({
-        rightKey: q.rightKey
+        rightKey: q.rightKey,
+        countdown: null
       });
+      if (this.__countdownTimer) clearInterval(this.__countdownTimer);
 
       let that = this;
       setTimeout(function () {
@@ -116,8 +120,34 @@ Page({
           that.questionIdx++;
           that.renderQuestion();
         }
-      }, 1000 * 50);
+      }, 1500);
     }
+  },
+
+  selectAnswer: function (e) {
+    let q = this.questions[this.questionIdx];
+    if (!!q.fooKey) return;
+    q.fooKey = !!e ? e.currentTarget.dataset.key : 'N';
+    let scope = this.data.fooScope || 0;
+    let scopeNew = scope;
+    if (q.rightKey == q.fooKey) scopeNew += 20;
+
+    this.setData({
+      selectKey: q.fooKey,
+      rightKey: q.fooKey == q.rightKey ? q.fooKey : null,
+      fooScope: scopeNew,
+      fooScopeClazz: scope == scopeNew ? '' : 'animated bounceIn',
+    });
+    this.checkToNext();
+
+    if (q.fooKey == q.rightKey) {
+      this.__playAudio('select_right.wav');
+    } else {
+      this.__playAudio('select_wrong.wav');
+    }
+
+    let send = { qindex: this.questionIdx, scope: scopeNew, select: q.fooKey };
+    wss.send(1100, send);
   },
 
   __complete: function () {
@@ -153,36 +183,41 @@ Page({
       barScopeWidth: barScopeWidth - 30,
       isWin: isWin
     });
-    this.playAudio(isWin ? 'win.mp3' : 'lost.wav');
+    this.__playAudio(isWin ? 'win.mp3' : 'lost.wav');
     wss.close('PKEND');
   },
 
-  selectAnswer: function (e) {
+  __answerClazz: function () {
+    let a = ['', ''];
+    let b = ['', ''];
     let q = this.questions[this.questionIdx];
-    if (!!q.fooKey) return;
-    q.fooKey = !!e ? e.currentTarget.dataset.key : 'X';
-    let scope = this.data.fooScope || 0;
-    let scopeNew = scope;
-    if (q.rightKey == q.fooKey) scopeNew += 20;
-
-    if (this.__countdownTimer) clearInterval(this.__countdownTimer);
-    this.setData({
-      selectKey: q.fooKey,
-      rightKey: q.fooKey == q.rightKey ? q.fooKey : null,
-      fooScope: scopeNew,
-      fooScopeClazz: scope == scopeNew ? '' : 'animated bounceIn',
-      countdown: null
-    });
-    this.checkToNext();
-
-    if (q.fooKey == q.rightKey) {
-      this.playAudio('select_right.wav');
-    } else {
-      this.playAudio('select_wrong.wav');
+    let d = this.data;
+    if (d.selectKey) {
+      a[0] = 'select ' + (d.selectKey == q.rightKey ? 'Y' : 'N');
+    }
+    if (d.barSelectKey) {
+      if (d.selectKey != d.barSelectKey) {
+        b[0] = d.barSelectKey == q.rightKey ? 'Y' : 'N';
+      }
+      b[1] = 'bar-select ' + (d.barSelectKey == q.rightKey ? 'Y' : 'N');
     }
 
-    let send = { qindex: this.questionIdx, scope: scopeNew, select: q.fooKey };
-    wss.send(1100, send);
+    let clazz = {};
+    if (d.selectKey && !d.barSelectKey){
+      clazz[d.selectKey] = a;
+    } else if (d.barSelectKey && !d.selectKey) {
+      clazz[d.barSelectKey] = b;
+    } else {
+      clazz[d.selectKey] = a;
+      if (d.selectKey != d.barSelectKey) {
+        clazz[d.barSelectKey] = b;
+      }
+    }
+    
+    this.setData({
+      answerClazz: clazz
+    });
+    console.log(JSON.stringify(clazz));
   },
 
   initSocket: function () {
@@ -206,29 +241,30 @@ Page({
 
     switch (data.action) {
       case 1021:  // BAR已回答
-        that.setData({
+        this.setData({
           barScope: data.scope,
           barScopeClazz: data.scope == this.data.scope ? '' : 'animated bounceIn',
           barSelectKey: data.select
         });
         let q = this.questions[this.questionIdx];
         q.barKey = data.select;
-        that.checkToNext();
+        this.checkToNext();
         break;
       default:
         console.log('未知 Action ' + data.action);
     }
   },
 
-  playAudio: function (file, loop) {
+  beginPk: function () {
+    app.gotoPage('/pages/pk/start');
+  },
+
+  __playAudio: function (file, loop) {
+    return;
     this.__audioContext.stop();
     this.__audioContext.src = 'https://c.rktk.qidapp.com/a/wxx/pk/' + file;
     this.__audioContext.loop = loop == true ? true : false;
     this.__audioContext.play();
-  },
-
-  beginPk: function () {
-    app.gotoPage('/pages/pk/start');
   },
 
   onShareAppMessage: function () {

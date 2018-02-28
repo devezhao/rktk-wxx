@@ -29,7 +29,7 @@
 
   <view class="page__hd" hidden="{{showResult == true}}" wx:if="{{question}}">
     <view class="question {{questionClazz}} {{showClazz}}" style="height:{{questionHeight}}px">
-      {{question}}
+      <rich-text nodes="{{question}}"></rich-text>
     </view>
     <view class="answers">
       <view class="scope foo">
@@ -46,16 +46,16 @@
       </view>
       <view class="items {{showClazz}}" wx:if="{{!!answer}}">
         <view class="a {{answer[0][0] == selectKey ? 'select' : ''}} {{answer[0][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[0][0]}}">
-          <view class="{{answer[0][0] == barSelectKey ? 'bar-select' : ''}} {{answer[0][0] == rightKey ? 'Y' : 'N'}}">{{answer[0][1] || 'A'}}</view>
+          <view>{{answer[0][1] || 'A'}}</view>
         </view>
         <view class="a {{answer[1][0] == selectKey ? 'select' : ''}} {{answer[1][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[1][0]}}">
-          <view class="{{answer[1][0] == barSelectKey ? 'bar-select' : ''}} {{answer[1][0] == rightKey ? 'Y' : 'N'}}">{{answer[1][1] || 'B'}}</view>
+          <view>{{answer[1][1] || 'B'}}</view>
         </view>
         <view class="a {{answer[2][0] == selectKey ? 'select' : ''}} {{answer[2][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[2][0]}}">
-          <view class="{{answer[2][0] == barSelectKey ? 'bar-select' : ''}} {{answer[2][0] == rightKey ? 'Y' : 'N'}}">{{answer[2][1] || 'C'}}</view>
+          <view>{{answer[2][1] || 'C'}}</view>
         </view>
         <view class="a {{answer[3][0] == selectKey ? 'select' : ''}} {{answer[3][0] == rightKey ? 'Y' : 'N'}}" bindtap="selectAnswer" data-key="{{answer[3][0]}}">
-          <view class="{{answer[3][0] == barSelectKey ? 'bar-select' : ''}} {{answer[3][0] == rightKey ? 'Y' : 'N'}}">{{answer[3][1] || 'D'}}</view>
+          <view>{{answer[3][1] || 'D'}}</view>
         </view>
       </view>
     </view>
@@ -63,7 +63,7 @@
   </view>
 </view>
 
-<view hidden="{{showResult == false}}">
+<view hidden="{{showResult == false}}" style="margin-top:-16px" class="animated fadeIn">
   <view class="mask {{isWin ? 'win' : ''}}"></view>
   <view class="win-img" style="z-index:999">
     <image class="user" src="{{fooHeadimg}}"></image>

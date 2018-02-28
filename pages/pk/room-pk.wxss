@@ -121,13 +121,13 @@
 }
 
 .answers .items view.a.select.N {
-  background: #d9534f url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o6.png) no-repeat left 12px;
-  background-size: 24px 24px;
+  background: #d9534f url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o8.png) no-repeat left 12px;
+  background-size: 36px 24px;
 }
 
 .answers .items view.a.select.Y {
-  background: #5cb85c url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o6.png) no-repeat left 12px;
-  background-size: 24px 24px;
+  background: #5cb85c url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o8.png) no-repeat left 12px;
+  background-size: 36px 24px;
   color: #fff;
 }
 
@@ -137,12 +137,12 @@
 }
 
 .answers .items view.a view.bar-select {
-  background: url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o6.png) no-repeat right 12px;
-  background-size: 24px 24px;
+  background: url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o8.png) no-repeat right 12px;
+  background-size: 36px 24px;
 }
 
 .answers .items view.a view.bar-select.N {
-  background-image: url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o6.png);
+  background-image: url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o8.png);
 }
 
 .q-source {
@@ -172,17 +172,25 @@
   margin-top: -36px;
 }
 
+.mask {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .mask.win {
-  background: rgba(0, 0, 0, 0.1) url(https://c.rktk.qidapp.com/a/wxx/pk/result_framebg.png) no-repeat center -120px;
+  background: url(https://c.rktk.qidapp.com/a/wxx/pk/result_framebg.png) no-repeat center -136px;
   background-size: 600px 600px;
 }
 
 .op-btns {
   z-index: 99;
   position: relative;
+  margin-top: 36px;
 }
 
 .op-btns button[type=default] {
   background-color: #fff !important;
+}
+
+.op-btns button + button {
   margin-top: 12px;
 }

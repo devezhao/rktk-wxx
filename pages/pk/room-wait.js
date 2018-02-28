@@ -23,39 +23,66 @@ Page({
       });
 
       if (e.id) {
-        that.setData({
-          stateText: '等待对手加入'
-        });
-        that.initSocket();
+        that.fooReady();
       } else if (e.pkroom) {
-        that.setData({
-          stateText: '等待发起者开始'
-        });
         that.barEnter();
+      }
+    });
+  },
+
+  fooReady: function () {
+    let that = this;
+    zutils.post(app, 'api/pk/foo-ready?room=' + this.roomId, function (res) {
+      let _data = res.data;
+      if (_data.error_code != 0) {
+        that.__error(_data.error_msg);
+      } else {
+        that.initSocket();
+        setTimeout(function () {
+          that.setData({
+            showBtns: true,
+            stateText: '等待对手加入'
+          })
+        }, 1200);
       }
     });
   },
 
   barEnter: function () {
     let that = this;
-    zutils.post(app, 'api/pk/pk-enter?room=' + this.roomId, function (res) {
+    zutils.post(app, 'api/pk/bar-enter?room=' + this.roomId, function (res) {
       let _data = res.data;
       if (_data.error_code != 0) {
-        wx.showModal({
-          title: '提示',
-          content: _data.error_msg,
-          showCancel: false,
-          success: function () {
-            wx.navigateBack();
-          }
-        });
+        that.__error(_data.error_msg);
       } else {
+        that.initSocket();
         _data = _data.data;
         that.setData({
           barHeadimg: _data.fooHeadimg,
           barNick: _data.fooNick
         });
-        that.initSocket();
+        setTimeout(function () {
+          that.setData({
+            showBtns: true,
+            stateText: '等待发起者开始'
+          })
+        }, 1200);
+      }
+    });
+  },
+
+  confirmPk: function (e) {
+    let that = this;
+    let _url = 'api/pk/foo-start?room=' + this.roomId + '&formId=' + + (e.detail.formId || '');
+    zutils.post(app, _url, function (res) {
+      let _data = res.data;
+      if (_data.error_code != 0) {
+        that.__error(_data.error_msg);
+      } else {
+        wss.close('PKNEXT');
+        wx.redirectTo({
+          url: 'room-pk?id=' + that.roomId
+        });
       }
     });
   },
@@ -66,22 +93,20 @@ Page({
   },
 
   handleMessage: function (data) {
-    let that = this;
     switch (data.action) {
-      case 1010:  // BAR进入
+      case 1010:  // BAR 进入
         data.showConfirm = true;
         data.stateText = '请确认开始对战';
-        that.setData(data);
-        that.__barUid = data.barUid;
+        this.setData(data);
         break;
-      case 1011:  // FOO开始
+      case 1011:  // FOO 开始
         wss.close('PKNEXT');
         wx.redirectTo({
-          url: 'room-pk?id=' + that.roomId
+          url: 'room-pk?id=' + this.roomId
         });
         break;
-      case 1012:  // BAR放弃
-        that.setData({
+      case 1012:  // BAR 放弃
+        this.setData({
           showConfirm: false,
           barHeadimg: null,
           barNick: null,
@@ -89,14 +114,7 @@ Page({
         });
         break;
       case 1013:  // FOO 放弃
-        wx.showModal({
-          title: '提示',
-          content: '发起者已放弃',
-          showCancel: false,
-          success: function () {
-            wx.navigateBack();
-          }
-        })
+        this.__error('发起者已放弃');
         break;
       default:
         console.log('未知 Action ' + data.action);
@@ -116,44 +134,30 @@ Page({
     })
   },
 
-  onUnload: function () {
-    wss.close('PKWAIT');
+  // 显示错误并退出
+  __error: function (error_msg) {
+    wx.showModal({
+      title: '提示',
+      content: error_msg || '系统错误',
+      showCancel: false,
+      success: function () {
+        wx.navigateBack();
+      }
+    })
   },
 
-  confirmPk: function (e) {
-    let that = this;
-    let _url = 'api/pk/pk-start?room=' + this.roomId + '&bar=' + this.__barUid + '&formId=' + + (e.detail.formId || '');
-    zutils.post(app, _url, function (res) {
-      let _data = res.data;
-      if (_data.error_code != 0) {
-        wx.showModal({
-          title: '提示',
-          content: _data.error_msg,
-          showCancel: false,
-          success: function () {
-            wx.navigateBack();
-          }
-        })
-      } else {
-        wss.close('PKNEXT');
-        wx.redirectTo({
-          url: 'room-pk?id=' + that.roomId
-        });
-      }
-    });
+  onUnload: function () {
+    wss.close('PKWAIT');
   },
 
   onShareAppMessage: function () {
     let that = this;
     let d = {
       title: app.GLOBAL_DATA.USER_INFO.nick + '向你发起挑战',
-      path: '/pages/pk/start?pkroom=' + that.roomId,
+      path: '/pages/pk/start?pkroom=' + this.roomId,
       success: function (res) {
-        wx.navigateTo({
-          url: 'room-wait?id=' + that.roomId
-        });
       }
     }
     return d;
-  }
+  },
 })
