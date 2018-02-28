@@ -43,7 +43,7 @@ Page({
             showBtns: true,
             stateText: '等待对手加入'
           })
-        }, 1200);
+        }, 600);
       }
     });
   },
@@ -66,7 +66,7 @@ Page({
             showBtns: true,
             stateText: '等待发起者开始'
           })
-        }, 1200);
+        }, 600);
       }
     });
   },

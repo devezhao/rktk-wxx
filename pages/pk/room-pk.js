@@ -130,7 +130,9 @@ Page({
     q.fooKey = !!e ? e.currentTarget.dataset.key : 'N';
     let scope = this.data.fooScope || 0;
     let scopeNew = scope;
-    if (q.rightKey == q.fooKey) scopeNew += 20;
+    if (q.rightKey == q.fooKey) {
+      scopeNew += (this.questionIdx == 4 ? 40 : 20);
+    }
 
     this.setData({
       selectKey: q.fooKey,
@@ -203,7 +205,7 @@ Page({
     }
 
     let clazz = {};
-    if (d.selectKey && !d.barSelectKey){
+    if (d.selectKey && !d.barSelectKey) {
       clazz[d.selectKey] = a;
     } else if (d.barSelectKey && !d.selectKey) {
       clazz[d.barSelectKey] = b;
@@ -213,7 +215,7 @@ Page({
         clazz[d.barSelectKey] = b;
       }
     }
-    
+
     this.setData({
       answerClazz: clazz
     });
@@ -260,7 +262,6 @@ Page({
   },
 
   __playAudio: function (file, loop) {
-    return;
     this.__audioContext.stop();
     this.__audioContext.src = 'https://c.rktk.qidapp.com/a/wxx/pk/' + file;
     this.__audioContext.loop = loop == true ? true : false;

@@ -6,10 +6,12 @@ var WSS = {
   reconnectTimes: 0,
 
   init: function (url, handle) {
-    let wsUrl = zutils.baseUrl.replace('https:', 'wss:');
+    let wsUrl = zutils.baseUrl.replace('https://', 'wss://ws.');
     if (zutils.baseUrl.substr(0, 5) == 'http:') wsUrl = zutils.baseUrl.replace('http:', 'ws:');
     WSS.wsUrl = wsUrl + url;
-    
+    console.log('WSURL ' + WSS.wsUrl);
+
+    WSS.reconnectTimes = 0;
     WSS.__connect();
     wx.onSocketOpen(function (res) {
       console.log('连接已建立 ... ' + JSON.stringify(res));
@@ -35,13 +37,20 @@ var WSS = {
   },
 
   __connect: function () {
-    WSS.__reconnect++;
-    if (WSS.__reconnect > 3 && WSS.__reconnect % 12 == 0) {
+    WSS.reconnectTimes++;
+    if (WSS.reconnectTimes > 0 && WSS.reconnectTimes % 5 == 0) {
       wx.showToast({
         icon: 'none',
         title: '当前网络不稳定'
       })
     };
+    if (WSS.reconnectTimes > 50) {
+      wx.showToast({
+        icon: 'none',
+        title: '连接已断开'
+      })
+      return;
+    }
 
     wx.connectSocket({
       url: WSS.wsUrl,

@@ -23,10 +23,10 @@
           <view style="padding:8px 4px">排行榜</view>
           <image src="../../images/pk/ic_rank.png" style="position:absolute;left:5px;top:9px;"></image>
         </view>
-        <view class="card x1" style="background-color:#ED7BAF;text-align:center">
+        <view class="card x1" style="background-color:#ED7BAF;text-align:center" bindtap="checkReady">
           <image src="../../images/pk/ic_solo.png"></image>
           <view style="margin-top:-3px;">好友对战</view>
-          <button open-type="share" class="btn-mask"></button>
+          <button open-type="share" class="btn-mask" wx:if="{{isReady == true}}" ></button>
         </view>
       </view>
     </view>

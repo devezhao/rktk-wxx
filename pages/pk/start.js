@@ -3,8 +3,10 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    isReady: false
   },
   roomId: null,
+  onShowTimes: 0,
 
   onLoad: function (e) {
     let that = this;
@@ -33,7 +35,7 @@ Page({
       } else {
         setTimeout(function () {
           if (!that.roomId) {
-            that.onShow();
+            that.onShow('onLoad');
           }
         }, 100);
       }
@@ -42,14 +44,25 @@ Page({
 
   onShow: function (s) {
     if (!app.GLOBAL_DATA.USER_INFO) return;
+    this.onShowTimes++;
+    console.log('Fire on ' + (s || 'N') + ' ' + this.onShowTimes);
+
+    let tt = this.onShowTimes;
     let that = this;
     that.roomId = 'HOLD';
     zutils.get(app, 'api/pk/room-init', function (res) {
-      let _data = res.data.data;
-      if (_data && _data.roomid) {
-        that.roomId = _data.roomid;
+      let _data = res.data;
+      if (_data.error_code == 0) {
+        that.roomId = _data.data.roomid;
+        that.setData({
+          isReady: true
+        });
       } else {
-        that.roomId = null;
+        if (tt == 1) {
+          wx.navigateTo({
+            url: '../question/subject-choice?back=1'
+          });
+        }
       }
     });
   },
@@ -80,5 +93,20 @@ Page({
 
   sfid: function (e) {
     zutils.post(app, 'api/user/report-formid?formId=' + e.detail.formId);
+  },
+
+  checkReady: function () {
+    if (this.data.isReady == false && this.onShowTimes > 1) {
+      wx.showModal({
+        title: '提示',
+        content: '请先选择考试类型',
+        showCancel: false,
+        success: function () {
+          wx.navigateTo({
+            url: '../question/subject-choice?back=1'
+          });
+        }
+      });
+    }
   }
 });

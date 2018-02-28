@@ -161,7 +161,7 @@
 .win-img .user {
   width: 80px;
   height: 80px;
-  border: 4px solid #fff;
+  border: 5px solid #fff;
   border-radius: 99px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
@@ -184,7 +184,7 @@
 .op-btns {
   z-index: 99;
   position: relative;
-  margin-top: 42px;
+  margin-top: 48px;
 }
 
 .op-btns button[type=default] {
