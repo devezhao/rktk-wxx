@@ -31,36 +31,43 @@ Page({
           }
         })
       } else {
-        zutils.get(app, 'api/pk/room-init', function (res) {
-          let _data = res.data.data;
-          if (_data && _data.roomid) {
-            that.roomId = _data.roomid;
+        setTimeout(function () {
+          if (!that.roomId) {
+            that.onShow();
           }
-        });
+        }, 100);
       }
     });
   },
 
-  onShow: function () {
+  onShow: function (s) {
+    if (!app.GLOBAL_DATA.USER_INFO) return;
     let that = this;
+    that.roomId = 'HOLD';
     zutils.get(app, 'api/pk/room-init', function (res) {
       let _data = res.data.data;
       if (_data && _data.roomid) {
         that.roomId = _data.roomid;
+      } else {
+        that.roomId = null;
       }
     });
   },
 
-  onShareAppMessage: function () {
-    let that = this;
-    let d = {
-      title: app.GLOBAL_DATA.USER_INFO.nick + '向你发起挑战',
-      path: '/pages/pk/start?pkroom=' + that.roomId || '',
-      success: function (res) {
-        if (that.roomId) {
-          wx.navigateTo({
-            url: 'room-wait?id=' + that.roomId
-          });
+  onShareAppMessage: function (e) {
+    var d = app.warpShareData('/pages/pk/start');
+    d.title = '快来参加软考PK赛';
+    if (e.from == 'button') {
+      let that = this;
+      d = {
+        title: app.GLOBAL_DATA.USER_INFO.nick + '向你发起挑战',
+        path: '/pages/pk/start?pkroom=' + (that.roomId && that.roomId != 'HOLD' ? that.roomId : ''),
+        success: function (res) {
+          if (that.roomId) {
+            wx.navigateTo({
+              url: 'room-wait?id=' + that.roomId
+            });
+          }
         }
       }
     }
@@ -69,5 +76,9 @@ Page({
 
   gotoPage: function (e) {
     app.gotoPage(e);
+  },
+
+  sfid: function (e) {
+    zutils.post(app, 'api/user/report-formid?formId=' + e.detail.formId);
   }
 });

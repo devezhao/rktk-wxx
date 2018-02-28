@@ -184,7 +184,7 @@
 .op-btns {
   z-index: 99;
   position: relative;
-  margin-top: 36px;
+  margin-top: 42px;
 }
 
 .op-btns button[type=default] {

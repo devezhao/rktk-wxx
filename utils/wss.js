@@ -9,7 +9,7 @@ var WSS = {
     let wsUrl = zutils.baseUrl.replace('https:', 'wss:');
     if (zutils.baseUrl.substr(0, 5) == 'http:') wsUrl = zutils.baseUrl.replace('http:', 'ws:');
     WSS.wsUrl = wsUrl + url;
-
+    
     WSS.__connect();
     wx.onSocketOpen(function (res) {
       console.log('连接已建立 ... ' + JSON.stringify(res));

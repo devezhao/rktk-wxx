@@ -10,9 +10,11 @@
           <image src="../../images/pk/ic_arena.png" style="position:absolute;bottom:0px;right:6px;width:90px;height:90px"></image>
         </view>
         <view class="card" style="background-color:#4BBEFD;text-align:right" bindtap="gotoPage" data-url="/pages/question/subject-list">
-
           <view style="padding-top:22px">涨知识</view>
           <image src="../../images/pk/ic_kb.png" style="position:absolute;left:15px;top:9px;width:73px;height:73px"></image>
+          <form bindsubmit="sfid" report-submit="true">
+            <button class="btn-mask" formType="submit"></button>
+          </form>
         </view>
       </view>
       <view class="weui-flex__item">

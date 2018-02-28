@@ -63,7 +63,7 @@
   </view>
 </view>
 
-<view hidden="{{showResult == false}}" style="margin-top:-16px" class="animated fadeIn">
+<view hidden="{{showResult == false}}" style="margin-top:-12px" class="animated fadeIn">
   <view class="mask {{isWin ? 'win' : ''}}"></view>
   <view class="win-img" style="z-index:999">
     <image class="user" src="{{fooHeadimg}}"></image>
