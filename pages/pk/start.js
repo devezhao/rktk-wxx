@@ -3,12 +3,13 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    isReady: false
+    hasError: '等待初始化'
   },
   roomId: null,
   onShowTimes: 0,
 
   onLoad: function (e) {
+    if (!!e.pkroom) this.onShowTimes = 1;
     let that = this;
     app.getUserInfo(function (u) {
       if (e.pkroom) {
@@ -55,10 +56,13 @@ Page({
       if (_data.error_code == 0) {
         that.roomId = _data.data.roomid;
         that.setData({
-          isReady: true
+          hasError: null
         });
       } else {
-        if (tt == 1) {
+        that.setData({
+          hasError: _data.error_msg
+        });
+        if (tt == 1 && _data.error_msg.indexOf('考试类型') > -1) {
           wx.navigateTo({
             url: '../question/subject-choice?back=1'
           });
@@ -96,17 +100,22 @@ Page({
   },
 
   checkReady: function () {
-    if (this.data.isReady == false && this.onShowTimes > 1) {
-      wx.showModal({
-        title: '提示',
-        content: '请先选择考试类型',
-        showCancel: false,
-        success: function () {
+    if (this.data.hasError == null) {
+      return;
+    }
+
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: this.data.hasError,
+      showCancel: false,
+      success: function () {
+        if (that.data.hasError.indexOf('考试类型') > -1 && that.onShowTimes > 1) {
           wx.navigateTo({
             url: '../question/subject-choice?back=1'
           });
         }
-      });
-    }
+      }
+    });
   }
 });

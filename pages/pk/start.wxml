@@ -26,7 +26,7 @@
         <view class="card x1" style="background-color:#ED7BAF;text-align:center" bindtap="checkReady">
           <image src="../../images/pk/ic_solo.png"></image>
           <view style="margin-top:-3px;">好友对战</view>
-          <button open-type="share" class="btn-mask" wx:if="{{isReady == true}}" ></button>
+          <button open-type="share" class="btn-mask" wx:if="{{hasError == null}}" ></button>
         </view>
       </view>
     </view>

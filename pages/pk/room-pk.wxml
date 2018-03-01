@@ -59,7 +59,7 @@
         </view>
       </view>
     </view>
-    <view class="q-source">{{source_subject || ''}}</view>
+    <view class="q-source">{{sourceSubject || ''}}</view>
   </view>
 </view>
 

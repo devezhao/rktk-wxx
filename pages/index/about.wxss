@@ -7,8 +7,9 @@
   padding-top: 40px;
   color: #777;
 }
+
 .ver image {
   width: 100px;
   height: 100px;
-  border-radius: 9px;
+  border-radius: 50%;
 }

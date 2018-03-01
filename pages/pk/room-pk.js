@@ -79,7 +79,7 @@ Page({
     this.setData({
       question: q.question,
       answer: q.answer,
-      source_subject: q.source_subject,
+      sourceSubject: q.sourceSubject,
       countdown: countdown,
       selectKey: null,
       barSelectKey: null,
