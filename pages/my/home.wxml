@@ -37,6 +37,7 @@
     </view>
   </view>
 
+  <navigator url="user-reg" class="highbar icon" wx:if="{{bindMobileShow}}">
     <icon type="info_circle" size="15" color="#f87c3d"></icon>
     首次绑定手机账号奖励20学豆
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>

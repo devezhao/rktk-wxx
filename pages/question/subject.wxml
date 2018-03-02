@@ -27,28 +27,34 @@
       </view>
     </view>
   </view>
-
-  <view class="fix-foobar">
-    <view class="pull-left">
-      <form bindsubmit="toExplain" report-submit="true">
-        <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析
-          <text hidden="{{vip_free == true || coin == -2}}">(限免)</text>
-        </button>
-      </form>
+  <block wx:if="{{is_open == true}}">
+    <view class="fix-foobar">
+      <view class="pull-left">
+        <form bindsubmit="toExplain" report-submit="true">
+          <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析
+            <text hidden="{{vip_free == true || coin == -2}}">(限免)</text>
+          </button>
+        </form>
+      </view>
+      <view class="pull-left">
+        <form bindsubmit="toExam" report-submit="true">
+          <button class="weui-btn split" type="primary" formType="submit">开始答题</button>
+        </form>
+      </view>
     </view>
-    <view class="pull-left">
-      <form bindsubmit="toExam" report-submit="true">
-        <button class="weui-btn split" type="primary" formType="submit">开始答题</button>
-      </form>
+  </block>
+  <block wx:else>
+    <view>
+      <view class="highbar warn">本题库已下线</view>
     </view>
+  </block>
+</view>
+<block wx:if="{{is_open == true}}">
+  <view class="float-btns" style="bottom:51px">
+    <button class="zbtn" bindtap="shareboxOpen">
+      <image src="../../images/share.png" class="share"></image>
+    </button>
   </view>
-</view>
-
-<view class="float-btns" style="bottom:51px">
-  <button class="zbtn" bindtap="shareboxOpen">
-    <image src="../../images/share.png" class="share"></image>
-  </button>
-</view>
-
-<import src="../comps/z-sharebox.wxml" />
-<template is="z-sharebox" data="{{...shareboxData}}" />
+  <import src="../comps/z-sharebox.wxml" />
+  <template is="z-sharebox" data="{{...shareboxData}}" />
+</block>
