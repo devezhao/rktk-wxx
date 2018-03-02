@@ -21,7 +21,10 @@ Page({
       that.__onLoad();
     });
 
-    // app.hideReddot(2, 'Home180201NEWMY');
+    if (!!app.GLOBAL_DATA.RED_DOT[3]) {
+      let k = app.GLOBAL_DATA.RED_DOT[3];
+      app.hideReddot(3, k);
+    }
   },
 
   onPullDownRefresh: function () {

@@ -434,3 +434,13 @@ button.btn-mask {
   right: 12px;
   margin-top: -10.5px;
 }
+
+.highbar.icon {
+  padding-left: 32px;
+}
+
+.highbar.icon icon {
+  position: absolute;
+  top: 13px;
+  left: 12px;
+}

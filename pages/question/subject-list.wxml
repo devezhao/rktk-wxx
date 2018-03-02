@@ -26,8 +26,6 @@
     <view bindtap="doFilter" data-s="2014">2014</view>
     <view bindtap="doFilter" data-s="2013">2013</view>
     <view bindtap="doFilter" data-s="2012">2012</view>
-    <view bindtap="doFilter" data-s="2011">2011</view>
-    <view bindtap="doFilter" data-s="2010">2010</view>
   </view>
 
   <view class="page__hd">

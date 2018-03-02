@@ -18,6 +18,13 @@ Page({
         that.setData({
           banners: _data.banners
         });
+
+        // 红点
+        if (_data.reddot) {
+          for (let k in _data.reddot) {
+            app.showReddot(_data.reddot[k], k)
+          }
+        }
       }
     });
 

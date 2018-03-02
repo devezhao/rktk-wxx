@@ -22,3 +22,10 @@
   color: #ec5353;
   margin-left: 2px;
 }
+
+.highbar.warn {
+  box-shadow: 0 0 0 #fff;
+  background-color: #ebccd1;
+  color: #a94442;
+  text-align: center;
+}

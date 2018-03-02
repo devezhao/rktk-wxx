@@ -17,6 +17,8 @@ App({
     SYS_INFO: {},
     IS_ANDROID: false,
     IS_IOS: false,
+    // 红点
+    RED_DOT: {},
   },
 
   onLaunch: function (e) {
@@ -269,24 +271,33 @@ App({
 
   // 基础库 1.9 支持
   // 显示红点
-  showReddot: function (index, key) {
+  showReddot: function (tabIndex, key) {
+    if (!wx.showTabBarRedDot) return;
+    let that = this;
     wx.getStorage({
       key: 'TapedReddot' + key,
       fail: function (res) {
         wx.showTabBarRedDot({
-          index: index
+          index: tabIndex,
+          success: function (res) {
+            that.GLOBAL_DATA.RED_DOT[tabIndex] = key;
+          }
         });
       }
     })
   },
   // 隐藏红点
-  hideReddot: function (index, key) {
-    wx.setStorage({
-      key: 'TapedReddot' + key,
-      data: 'TAPED',
-    });
+  hideReddot: function (tabIndex, key) {
+    if (!wx.hideTabBarRedDot) return;
     wx.hideTabBarRedDot({
-      index: index
+      index: tabIndex,
+      complete: function (res) {
+        console.log('hideTabBarRedDot - ' + JSON.stringify(res));
+        wx.setStorage({
+          key: 'TapedReddot' + key,
+          data: 'TAPED'
+        });
+      }
     });
   }
 })
