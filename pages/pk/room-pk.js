@@ -34,33 +34,40 @@ Page({
         barHeadimg: isFoo ? _data.barHeadimg : _data.fooHeadimg,
         barNick: isFoo ? _data.barNick : _data.fooNick,
       });
-      that.renderQuestion();
-      that.initSocket();
+      that.__pkSubject = _data.pkSubject;
+
+      setTimeout(function () {
+        that.renderQuestion();
+        that.initSocket();
+      }, 999);
     });
 
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
+          pageHeight: res.windowHeight - 9,
           questionHeight: res.windowHeight - 510
         });
         that.sysInfo = res;
       },
     });
 
-    this.__audioContext = wx.createInnerAudioContext();
+    this.__audio = {};
+    this.__initAudio('pk_begindown.wav', false);
+    this.__initAudio('select_right.wav', false);
+    this.__initAudio('select_wrong.wav', false);
+    this.__initAudio('win.mp3', false);
+    this.__initAudio('lost.wav', false);
 
-    // this.setData({
-    //   fooScope: 240,
-    //   barScope: 340
-    // })
+    // this.setData({ fooScope: 240, barScope: 140 });
     // this.__complete();
   },
 
   renderQuestion: function () {
     let qno = '第' + ['一', '二', '三', '四', '五'][this.questionIdx] + '题';
-    if (this.questionIdx == 4) qno = '最后一题<div style="margin-top:-2px;color:#ff0">分数加倍</div>';
+    if (this.questionIdx == 4) qno = '最后一题<div style="margin-top:-4px;color:#ff0">分数加倍</div>';
     this.setData({
-      question: qno,
+      question: '<div style="font-size:20px">' + qno + '</div>',
       questionClazz: 'animated fadeInDown',
       showClazz: '',
       answer: null
@@ -138,8 +145,14 @@ Page({
       selectKey: q.fooKey,
       rightKey: q.fooKey == q.rightKey ? q.fooKey : null,
       fooScope: scopeNew,
-      fooScopeClazz: scope == scopeNew ? '' : 'animated bounceIn',
+      fooScopeClazz: scope == scopeNew ? '' : 'animated rubberBand',
     });
+    let that = this;
+    setTimeout(function () {
+      that.setData({
+        fooScopeClazz: '_'
+      });
+    }, 1000);
     this.checkToNext();
 
     if (q.fooKey == q.rightKey) {
@@ -185,41 +198,11 @@ Page({
       barScopeWidth: barScopeWidth - 30,
       isWin: isWin
     });
+    wx.setNavigationBarTitle({
+      title: isWin ? '对战成功' : '对战失败'
+    })
     this.__playAudio(isWin ? 'win.mp3' : 'lost.wav');
     wss.close('PKEND');
-  },
-
-  __answerClazz: function () {
-    let a = ['', ''];
-    let b = ['', ''];
-    let q = this.questions[this.questionIdx];
-    let d = this.data;
-    if (d.selectKey) {
-      a[0] = 'select ' + (d.selectKey == q.rightKey ? 'Y' : 'N');
-    }
-    if (d.barSelectKey) {
-      if (d.selectKey != d.barSelectKey) {
-        b[0] = d.barSelectKey == q.rightKey ? 'Y' : 'N';
-      }
-      b[1] = 'bar-select ' + (d.barSelectKey == q.rightKey ? 'Y' : 'N');
-    }
-
-    let clazz = {};
-    if (d.selectKey && !d.barSelectKey) {
-      clazz[d.selectKey] = a;
-    } else if (d.barSelectKey && !d.selectKey) {
-      clazz[d.barSelectKey] = b;
-    } else {
-      clazz[d.selectKey] = a;
-      if (d.selectKey != d.barSelectKey) {
-        clazz[d.barSelectKey] = b;
-      }
-    }
-
-    this.setData({
-      answerClazz: clazz
-    });
-    console.log(JSON.stringify(clazz));
   },
 
   initSocket: function () {
@@ -245,9 +228,16 @@ Page({
       case 1021:  // BAR已回答
         this.setData({
           barScope: data.scope,
-          barScopeClazz: data.scope == this.data.scope ? '' : 'animated bounceIn',
+          barScopeClazz: data.scope == this.data.scope ? '' : 'animated rubberBand',
           barSelectKey: data.select
         });
+        let that = this;
+        setTimeout(function () {
+          that.setData({
+            barScopeClazz: '_'
+          });
+        }, 1000);
+
         let q = this.questions[this.questionIdx];
         q.barKey = data.select;
         this.checkToNext();
@@ -260,12 +250,24 @@ Page({
   beginPk: function () {
     app.gotoPage('/pages/pk/start');
   },
+  explainGo: function () {
+    wx.redirectTo({
+      url: '../exam/explain?from=pk&id=' + this.__pkSubject,
+    })
+  },
 
-  __playAudio: function (file, loop) {
-    this.__audioContext.stop();
-    this.__audioContext.src = 'https://c.rktk.qidapp.com/a/wxx/pk/' + file;
-    this.__audioContext.loop = loop == true ? true : false;
-    this.__audioContext.play();
+  // 初始化音频
+  __initAudio: function (file, loop) {
+    this.__audio[file] = wx.createInnerAudioContext();
+    this.__audio[file].src = 'https://c.rktk.qidapp.com/a/wxx/pk/' + file;
+    this.__audio[file].loop = loop === true ? true : false;
+    this.__audio[file].autoplay = false;
+  },
+  // 播放音频
+  __playAudio: function (file) {
+    if (!this.__audio[file]) return;
+    this.__audio[file].stop();
+    this.__audio[file].play();
   },
 
   onShareAppMessage: function () {

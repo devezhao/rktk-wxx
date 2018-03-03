@@ -17,7 +17,7 @@
     </view>
   </view>
 
-  <view class="page__hd op-btns animated fadeIn" wx:if="{{showBtns == true}}">
+  <view class="page__hd op-btns animated fadeIn d2s" wx:if="{{showOp == true}}">
     <view class="btn" bindtap="cancelPk">
       <image src="../../images/pk/ic_logout.png"></image>
       <view>放弃</view>
@@ -32,5 +32,11 @@
         <button type="button" type="primary" formType="submit">开始对战</button>
       </form>
     </view>
+  </view>
+</view>
+
+<view class="room-uid" wx:if="{{roomUid}}">
+  <view>房间号
+    <text>{{roomUid}}</text>
   </view>
 </view>

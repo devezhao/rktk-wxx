@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page" style="height:{{pageHeight}}px">
   <view class="page__hd act-users">
     <view class="user foo animated slideInLeft">
       <view class="headimg">
@@ -23,7 +23,7 @@
       </view>
     </view>
     <view class="countdown" wx:if="{{countdown != null}}">
-      {{countdown}}
+      <text>{{countdown}}</text>
     </view>
   </view>
 
@@ -61,18 +61,21 @@
     </view>
     <view class="q-source">{{sourceSubject || ''}}</view>
   </view>
-</view>
 
-<view hidden="{{showResult == false}}" style="margin-top:-12px" class="animated fadeIn">
-  <view class="mask {{isWin ? 'win' : ''}}"></view>
-  <view class="win-img" style="z-index:999">
-    <image class="user" src="{{fooHeadimg}}"></image>
-    <view>
-      <image class="banner" src="../../images/pk/{{isWin ? 'result_win.png' : 'result_lost.png'}}"></image>
+  <view hidden="{{showResult == false}}" style="margin-top:-12px" class="animated fadeIn">
+    <view class="mask {{isWin ? 'win' : ''}}"></view>
+    <view class="win-img" style="z-index:999">
+      <image class="user" src="{{fooHeadimg}}"></image>
+      <view>
+        <image class="banner" src="../../images/pk/{{isWin ? 'result_win.png' : 'result_lost.png'}}"></image>
+      </view>
     </view>
-  </view>
-  <view class="op-btns">
-    <button type="button" type="primary" open-type="share">分享战绩</button>
-    <button type="button" type="default" bindtap="beginPk">再来一局</button>
+    <view class="op-btns">
+      <button type="button" type="primary" open-type="share">分享战绩</button>
+      <button type="button" type="default" bindtap="beginPk">再来一局</button>
+      <button type="button" type="default" bindtap="explainGo" class="exp">
+        <image src="../../images/pk/ic_txt2.png"></image> 查看题目解析
+      </button>
+    </view>
   </view>
 </view>

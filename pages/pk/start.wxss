@@ -1,9 +1,11 @@
+@import "../../libs/animate.wxss";
+
 page, .page {
   background-color: #2b6ba5;
 }
 
 .card {
-  border-radius: 6px;
+  border-radius: 2px;
   background-color: #ee75aa;
   margin: 10px 5px;
   color: #fff;
@@ -39,6 +41,16 @@ page, .page {
 }
 
 .card image {
+  width: 60px;
+  height: 60px;
+}
+
+.card image.x70 {
+  width: 70px;
+  height: 70px;
+}
+
+.card image.x80 {
   width: 80px;
   height: 80px;
 }

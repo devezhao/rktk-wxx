@@ -117,3 +117,26 @@ page, .page {
   border-radius: 99px;
   background-color: #1aad19 !important;
 }
+
+.room-uid {
+  position: fixed;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.room-uid {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 99px;
+  padding: 6px 0;
+  width: 130px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.room-uid text {
+  font-weight: bold;
+}

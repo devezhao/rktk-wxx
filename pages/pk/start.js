@@ -9,7 +9,13 @@ Page({
   onShowTimes: 0,
 
   onLoad: function (e) {
-    if (!!e.pkroom) this.onShowTimes = 1;
+    if (!!e.pkroom) {
+      this.onShowTimes = 1;
+    }
+    this.setData({
+      aClazz: e.pkroom ? '_' : 'animated zoomIn'
+    });
+
     let that = this;
     app.getUserInfo(function (u) {
       if (e.pkroom) {

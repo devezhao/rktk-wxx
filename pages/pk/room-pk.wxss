@@ -1,5 +1,10 @@
 @import "room-wait.wxss";
 
+/* .page {
+  background: #2b6ba5 url(https://c.rktk.qidapp.com/a/wxx/pk/bg3-o40.png) no-repeat center bottom;
+  background-size: 400px 245px;
+} */
+
 .act-users {
   text-align: center;
 }
@@ -17,6 +22,11 @@
   z-index: 99;
   position: relative;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.act-users .user.r-scope.bar .headimg {
+  text-align: right;
 }
 
 .act-users .user.r-scope .headimg text {
@@ -34,6 +44,7 @@
   display: inline-block;
   font-size: 28px;
   overflow: hidden;
+  text-align: center;
 }
 
 .question {
@@ -54,7 +65,7 @@
   position: absolute;
   top: 0;
   text-align: center;
-  width: 34px;
+  width: 42px;
 }
 
 .answers .scope .progress {
@@ -84,16 +95,16 @@
 }
 
 .answers .scope .num {
-  font-size: 19px;
+  font-size: 21px;
   margin-bottom: 1px;
 }
 
 .answers .scope.foo {
-  left: 28px;
+  left: 20px;
 }
 
 .answers .scope.bar {
-  right: 28px;
+  right: 20px;
 }
 
 .answers .items {
@@ -102,13 +113,14 @@
 }
 
 .answers .items view.a {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 99px;
   font-size: 16px;
   color: #222;
   text-align: center;
   padding-left: 12px;
   margin-top: 12px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
 .answers .items view.a.select {
@@ -193,4 +205,22 @@
 
 .op-btns button + button {
   margin-top: 12px;
+}
+
+.op-btns button.exp {
+  background-color: transparent !important;
+  color: #fff;
+  font-size: 15px;
+  padding: 0px;
+  margin-top: 6px;
+  position: relative;
+  padding-left: 18px;
+}
+
+.op-btns button.exp image {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 10.5px;
 }

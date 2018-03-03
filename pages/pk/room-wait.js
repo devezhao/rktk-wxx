@@ -40,10 +40,10 @@ Page({
         that.initSocket();
         setTimeout(function () {
           that.setData({
-            showBtns: true,
+            showOp: true,
             stateText: '等待对手加入'
           })
-        }, 600);
+        }, 999);
       }
     });
   },
@@ -63,10 +63,10 @@ Page({
         });
         setTimeout(function () {
           that.setData({
-            showBtns: true,
+            showOp: true,
             stateText: '等待发起者开始'
           })
-        }, 600);
+        }, 999);
       }
     });
   },
