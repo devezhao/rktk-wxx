@@ -15,6 +15,7 @@ Page({
   dtcardAnimation: null,
   favList: [],
   duration: 0,
+  examAutoNext: false,
 
   onLoad: function (e) {
     this.examId = e.exam;
@@ -71,6 +72,7 @@ Page({
         seqTotal: _data.total_result,
         seqCurrent: 1
       });
+      that.examAutoNext = _data.examAutoNext;
 
       that.questionList = {};
       for (var i = 0; i < _data.result_list.length; i++) {
@@ -181,8 +183,13 @@ Page({
 
     this.questionList[this.data.seqCurrent]._selected = _selected;
 
+    let canNext = _selected.length == q.answerNum && that.examAutoNext == true;
     zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.itemId + '&answer=' + _selected.join('/'), function (res) {
-      console.log(res);
+      if (canNext == true) {
+        setTimeout(function () {
+          that.nextQuestion();
+        }, 500);
+      }
     });
   },
 

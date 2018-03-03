@@ -63,7 +63,7 @@
 
 .fix-foobar .pull-left button {
   border-radius: 0;
-  border-top: 1rpx solid #eee;
+  border-top: 1rpx solid #d9d9d9;
 }
 
 .fix-foobar .pull-left button.split {
@@ -72,7 +72,7 @@
 
 .exp-tips {
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 
 .exp-tips view {
@@ -80,7 +80,7 @@
   font-size: 12px;
   background-color: #f7f7f9;
   display: inline-block;
-  padding: 3px 9px;
+  padding: 3px 7px;
   border-radius: 99px;
   line-height: 1;
 }

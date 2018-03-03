@@ -1,4 +1,4 @@
-<view class="page" style="{{hideFoobar ? '' : 'padding-bottom:54px;'}}">
+<view class="page" style="{{hideFoobar ? '' : 'padding-bottom:55px;'}}">
   <view class="page__hd">
     <view class="top-block">
       <canvas class="circle" canvas-id="circle-scope" hidden="{{pkimgUrl != null}}">

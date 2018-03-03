@@ -80,11 +80,11 @@
   </view>
 
   <view class="weui-cells rktk">
-    <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="settings" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
-        <image src="../../images/icon-feedback2.png"></image>
+        <image src="../../images/ic_settings.png"></image>
       </view>
-      <view class="weui-cell__bd">问题反馈</view>
+      <view class="weui-cell__bd">设置</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
     <navigator url="../index/about" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
