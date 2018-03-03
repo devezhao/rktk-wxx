@@ -87,5 +87,10 @@ Page({
         })
       }
     });
+  },
+
+  gotoPage: function (e) {
+    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+    app.gotoPage(e);
   }
 });

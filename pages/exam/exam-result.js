@@ -49,15 +49,15 @@ Page({
 
       // Keep
       if (checkKeep == true) {
-        zutils.get(app, 'api/acts/keep-days?noloading', function (res2) {
-          let _data2 = res2.data;
-          if (_data2 && _data2.data && _data2.data.days) {
-            _data2 = _data2.data;
+        zutils.get(app, 'api/acts/keep-days?noloading', function (res) {
+          let dd = res.data;
+          if (dd && dd.data && dd.data.days && dd.data.days > 1) {
+            dd = dd.data;
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/acts/keep-days?days=' + _data2.days + '&date=' + _data2.date
+                url: '/pages/acts/keep-days?days=' + dd.days + '&date=' + dd.date
               })
-            }, 999);
+            }, 888);
           }
         });
       }

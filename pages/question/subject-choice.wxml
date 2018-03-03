@@ -68,9 +68,9 @@
   </view>
 
   <view class="page__bd" style="padding-top:12px;" hidden="{{vipHide}}">
-    <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dNoSubject" class="color-link fs-15" style="display:inline-block;">
-      [ 没有需要的考试类型 ]
-    </navigator>
+    <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dNoSubject">
+      <button class="weui-btn link" type="default" formType="submit">[ 没有需要的考试类型 ]</button>
+    </form>
   </view>
 </view>
 

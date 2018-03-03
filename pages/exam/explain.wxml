@@ -33,7 +33,7 @@
         </block>
       </view>
     </view>
-    
+
     <view class="page__hd" id="explain" hidden="{{source_subject == null}}">
       <view class="explain-source" bindtap="gotoSubject" data-subject="{{source_subject_id}}">
         <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}</view>
@@ -71,12 +71,16 @@
 </view>
 
 <view class="float-btns">
-  <button class="zbtn" bindtap="shareboxOpen">
-    <image src="../../images/share.png" class="share"></image>
-  </button>
-  <button class="zbtn" bindtap="fav">
-    <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
-  </button>
+  <form bindsubmit="shareboxOpen" report-submit="true">
+    <button class="zbtn" formType="submit">
+      <image src="../../images/share.png" class="share"></image>
+    </button>
+  </form>
+  <form bindsubmit="fav" report-submit="true">
+    <button class="zbtn" formType="submit">
+      <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
+    </button>
+  </form>
 </view>
 
 <view class="fix-foobar answerkeys" hidden="{{yourAnswer == null}}">

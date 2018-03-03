@@ -17,7 +17,7 @@
         <rich-text nodes="{{question}}"></rich-text>
       </view>
     </view>
-    
+
     <view class="page__hd" id="answers" style="padding-top:1px">
       <view class="answer-list">
         <view class="rich-item" wx:for="{{answer_list}}" wx:key="{{*this}}">
@@ -60,12 +60,16 @@
 </view>
 
 <view class="float-btns">
-  <button class="zbtn" bindtap="shareboxOpen">
-    <image src="../../images/share.png" class="share"></image>
-  </button>
-  <button class="zbtn" bindtap="fav">
-    <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
-  </button>
+  <form bindsubmit="shareboxOpen" report-submit="true">
+    <button class="zbtn" formType="submit">
+      <image src="../../images/share.png" class="share"></image>
+    </button>
+  </form>
+  <form bindsubmit="fav" report-submit="true">
+    <button class="zbtn" formType="submit">
+      <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
+    </button>
+  </form>
 </view>
 
 <import src="../comps/z-sharebox.wxml" />

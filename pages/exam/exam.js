@@ -93,7 +93,7 @@ Page({
     });
   },
 
-  renderQuestion: function (s) {
+  renderQuestion: function (s, e) {
     var that = this;
     var seq = ~~this.data.seqCurrent + (s || 0);
     var q = that.questionList[seq];
@@ -106,10 +106,12 @@ Page({
       isFav: zutils.array.in(this.favList, q.questionId)
     };
 
+    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     if (q._answers) {
+      zutils.post(app, 'api/user/report-formid?formId=' + formId);
       that.setData(answers_data);
     } else {
-      zutils.get(app, 'api/question/get-answers?noloading&question=' + q.questionId, function (res) {
+      zutils.get(app, 'api/question/get-answers?noloading&question=' + q.questionId + '&formId=' + formId, function (res) {
         var data = res.data.data.result_list;
         var _selected = q._selected;
         for (var i = 0; i < data.length; i++) {
@@ -126,15 +128,15 @@ Page({
     }
   },
 
-  prevQuestion: function () {
+  prevQuestion: function (e) {
     if (this.data.seqCurrent == 1) return false;
-    this.renderQuestion(-1);
+    this.renderQuestion(-1, e);
     return true;
   },
 
-  nextQuestion: function () {
+  nextQuestion: function (e) {
     if (this.data.seqCurrent == this.data.seqTotal) return false;
-    this.renderQuestion(1);
+    this.renderQuestion(1, e);
     return true;
   },
 
@@ -184,7 +186,10 @@ Page({
     });
   },
 
-  showDtcard: function () {
+  showDtcard: function (e) {
+    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    zutils.post(app, 'api/user/report-formid?formId=' + formId);
+
     var that = this;
     var takes = [];
     for (var seq in this.questionList) {
@@ -210,7 +215,8 @@ Page({
   fav: function (e) {
     var that = this;
     var q = that.questionList[this.data.seqCurrent];
-    zutils.post(app, 'api/fav/toggle?question=' + q.questionId, function (res) {
+    let formId = e ? (e.detail.formId || '') : '';
+    zutils.post(app, 'api/fav/toggle?question=' + q.questionId + '&formId=' + formId, function (res) {
       var _data = res.data.data;
       that.setData({
         isFav: _data.is_fav
@@ -227,7 +233,7 @@ Page({
     });
   },
 
-  finish: function () {
+  finish: function (e) {
     var undo = 0;
     for (var k in this.questionList) {
       var q = this.questionList[k];
@@ -242,7 +248,7 @@ Page({
         confirmText: '交卷',
         success: function (res) {
           if (res.confirm) {
-            that.__finish();
+            that.__finish(e);
           }
         }
       })
@@ -253,23 +259,20 @@ Page({
         confirmText: '交卷',
         success: function (res) {
           if (res.confirm) {
-            that.__finish();
+            that.__finish(e);
           }
         }
       })
     }
   },
-  __finish: function () {
-    if (!this.examId) {
-      console.error('No exam?');
-      return;
-    }
-
-    var that = this;
+  __finish: function (e) {
     wx.showLoading({
       title: '正在判题...'
     });
-    zutils.post(app, 'api/exam/finish?noloading&exam=' + that.examId, function (res) {
+
+    let that = this;
+    let formId = e ? (e.detail.formId || '') : '';
+    zutils.post(app, 'api/exam/finish?noloading&exam=' + that.examId + '&formId=' + formId, function (res) {
       if (res.data.error_code == 0) {
         that.__cleanCountdown();
         wx.redirectTo({

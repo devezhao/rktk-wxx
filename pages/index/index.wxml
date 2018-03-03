@@ -1,5 +1,5 @@
 <view class="page">
-  <swiper class="home-swiper" hidden="{{hideBanners}}" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" bindchange="bannerChange">
+  <swiper class="home-swiper" hidden="{{hideBanners}}" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff">
     <swiper-item wx:for="{{banners}}" wx:key="*this">
       <view data-url="{{item[1]}}" bindtap="gotoPage">
         <image src="{{item[0]}}" />
@@ -53,7 +53,8 @@
   </view>
 
   <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
-    你有<text style="font-weight:bold">{{unexams}}</text>份答题尚未交卷，点击查看并继续答题
+    你有
+    <text style="font-weight:bold">{{unexams}}</text>份答题尚未交卷，点击查看并继续答题
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 
@@ -115,7 +116,11 @@
         <view class="weui-media-box rktk-record">
           <view class="weui-media-box__title nodata-tips">
             请先选择考试类型
-            <navigator url="../question/subject-choice?back=1">[ 点击选择 ]</navigator>
+            <view>
+              <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-choice?back=1">
+                <button class="weui-btn link" type="default" formType="submit">[ 点击选择 ]</button>
+              </form>
+            </view>
           </view>
         </view>
       </block>
@@ -149,7 +154,7 @@
       </block>
     </view>
     <view class="weui-panel__ft" hidden="{{!recommend_subjects || recommend_subjects.length == 0}}">
-      <view bindtap="goSubjectList" class="weui-cell weui-cell_access weui-cell_link">
+      <view bindtap="gotoPage" data-url="/pages/question/subject-list" class="weui-cell weui-cell_access weui-cell_link">
         <view class="weui-cell__bd">查看全部</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>

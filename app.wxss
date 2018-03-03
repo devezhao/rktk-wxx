@@ -444,3 +444,13 @@ button.btn-mask {
   top: 13px;
   left: 12px;
 }
+
+.weui-btn.link {
+  font-size: 15px;
+  color: #586c94;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  background-color: transparent;
+  line-height: 1.4;
+}

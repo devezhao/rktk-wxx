@@ -126,8 +126,9 @@ Page({
   },
 
   fav: function (e) {
-    var that = this;
-    zutils.post(app, 'api/fav/toggle?question=' + this.data.currentQuestionId, function (res) {
+    let that = this;
+    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    zutils.post(app, 'api/fav/toggle?question=' + this.data.currentQuestionId + '&formId=' + formId, function (res) {
       var _data = res.data.data;
       that.setData({
         isFav: _data.is_fav
@@ -156,7 +157,9 @@ Page({
     return d;
   },
 
-  shareboxOpen: function () {
+  shareboxOpen: function (e) {
+    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    zutils.post(app, 'api/user/report-formid?formId=' + formId);
     zsharebox.shareboxOpen(this);
   },
   shareboxClose: function () {

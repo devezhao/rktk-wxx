@@ -192,19 +192,10 @@ Page({
     });
   },
 
-  goSubjectList: function () {
-    wx.switchTab({
-      url: '/pages/question/subject-list'
-    })
-  },
-
-  bannerChange: function (e) {
-  },
-
   gotoPage: function (e) {
-    if (e.detail && e.detail.formId) {
-      zutils.post(app, 'api/user/report-formid?formId=' + e.detail.formId);
-    }
+    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    zutils.post(app, 'api/user/report-formid?formId=' + formId);
+    
     app.gotoPage(e.currentTarget.dataset.url);
   },
 
