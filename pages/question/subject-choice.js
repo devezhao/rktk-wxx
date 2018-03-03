@@ -76,7 +76,7 @@ Page({
       return;
     }
 
-    zutils.post(app, 'api/user/settings?key=MainSubject&value=' + that.data.selected + '&formId=' + (e.detail.formId || ''), function (res) {
+    zutils.post(app, 'api/subject/set-main?id=' + that.data.selected + '&formId=' + (e.detail.formId || ''), function (res) {
       app.GLOBAL_DATA.RELOAD_SUBJECT = ['Home', 'Subject', 'Index'];
       if (that.back == 1) {
         wx.navigateBack();
