@@ -42,8 +42,7 @@ Page({
     var _selected = e.detail.value;
     if (this.back == 'vip') {
       app.GLOBAL_DATA.__BuySubject = _selected;
-      wx.navigateBack({
-      });
+      wx.navigateBack();
       return;
     }
 

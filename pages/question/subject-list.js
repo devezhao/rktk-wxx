@@ -129,6 +129,11 @@ Page({
     }
   },
 
+  gotoPage: function (e) {
+    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+    app.gotoPage(e);
+  },
+
   onShareAppMessage: function (e) {
     var d = app.warpShareData('/pages/question/subject-list');
     if (this.data.subject) d.title = this.data.subject + '题库';

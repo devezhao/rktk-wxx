@@ -105,7 +105,11 @@
         <icon type="info" size="88"></icon>
         <view class="icon-box__title">
           请先选择考试类型
-          <navigator url="subject-choice?back=1" style="color:#586c94;font-size:16px;">[ 点击选择 ]</navigator>
+          <view>
+            <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-choice?back=1">
+              <button class="weui-btn link" type="default" formType="submit">[ 点击选择 ]</button>
+            </form>
+          </view>
         </view>
       </view>
     </view>
