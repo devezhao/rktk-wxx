@@ -23,7 +23,9 @@ Page({
 
     if (!!app.GLOBAL_DATA.RED_DOT[3]) {
       let k = app.GLOBAL_DATA.RED_DOT[3];
-      app.hideReddot(3, k);
+      setTimeout(function () {
+        app.hideReddot(3, k);
+      }, 500);
     }
   },
 

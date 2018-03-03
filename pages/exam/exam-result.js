@@ -41,7 +41,7 @@ Page({
         full_scope: _data.full_scope,
         exam_items: _data.exam_items
       });
-      that.__draw_circle(scope_percent);
+      that.__drawCircle(scope_percent);
       wx.setNavigationBarTitle({
         title: _data.subject_name
       });
@@ -57,14 +57,14 @@ Page({
               wx.navigateTo({
                 url: '/pages/acts/keep-days?days=' + _data2.days + '&date=' + _data2.date
               })
-            }, 666);
+            }, 999);
           }
         });
       }
     });
   },
 
-  __draw_circle: function (p) {
+  __drawCircle: function (p) {
     var ctx = wx.createCanvasContext('circle-scope');
     ctx.beginPath();
     ctx.arc(50, 50, 47, 0, 2 * Math.PI);
@@ -79,61 +79,17 @@ Page({
     ctx.draw();
   },
 
-  goHome: function () {
-    app.goHome();
+  gotoPk: function (e) {
+
+    app.gotoPage('/pages/pk/start');
+  },
+
+  shareScope: function (e) {
+    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
   },
 
   onShareAppMessage: function () {
-    return app.warpShareData();
+    let d = app.warpShareData();
+    return d;
   },
-
-  imgMax: function (e) {
-    wx.previewImage({
-      urls: [this.__pkimgUrl]
-    })
-  },
-
-  shareboxOpen: function () {
-    if (this.__pkimgUrl) {
-      this.setData({
-        pkimgUrl: this.__pkimgUrl
-      });
-      return;
-    }
-
-    var that = this;
-    zutils.get(app, 'api/share/gen-pkimg?exam=' + this.examId, function (res) {
-      if (res.data.error_code == 0) {
-        that.__pkimgUrl = res.data.data;
-        that.setData({
-          pkimgUrl: that.__pkimgUrl
-        });
-      } else {
-        zsharebox.shareboxOpen(that);
-      }
-    }, function () {
-      zsharebox.shareboxOpen(that);
-    });
-  },
-  shareboxClose: function () {
-    this.setData({
-      pkimgUrl: null
-    });
-    zsharebox.shareboxClose(this);
-  },
-  dialogOpen: function () {
-    zsharebox.dialogOpen(this);
-  },
-  dialogClose: function () {
-    zsharebox.dialogClose(this);
-  },
-  share2Frined: function () {
-    zsharebox.share2Frined(this);
-  },
-  share2QQ: function () {
-    zsharebox.share2QQ(this);
-  },
-  share2CopyLink: function () {
-    zsharebox.share2CopyLink(this);
-  }
 });

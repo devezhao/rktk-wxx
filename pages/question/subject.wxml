@@ -44,7 +44,7 @@
     </view>
   </block>
   <block wx:else>
-    <view>
+    <view wx:if="{{subject_name}}">
       <view class="highbar warn">本题库已下线</view>
     </view>
   </block>

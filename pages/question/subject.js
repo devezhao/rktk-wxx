@@ -6,7 +6,7 @@ zsharebox.data.typeName = '题库';
 
 Page({
   data: {
-    shareboxData: zsharebox.data
+    shareboxData: zsharebox.data,
   },
   subjectId: null,
 

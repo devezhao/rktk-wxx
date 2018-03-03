@@ -1,4 +1,4 @@
-<view class="page {{hideFoobar ? '' : 'has-foobar'}}">
+<view class="page" style="{{hideFoobar ? '' : 'padding-bottom:54px;'}}">
   <view class="page__hd">
     <view class="top-block">
       <canvas class="circle" canvas-id="circle-scope" hidden="{{pkimgUrl != null}}">
@@ -27,20 +27,21 @@
     </view>
   </view>
 </view>
-<view class="fix-foobar btns" hidden="{{hideFoobar}}">
-  <button class="weui-btn" type="default" bindtap="shareboxOpen">邀好友PK得学豆</button>
-</view>
 
-<import src="../comps/z-sharebox.wxml" />
-<template is="z-sharebox" data="{{...shareboxData}}" />
-
-<block wx:if="{{pkimgUrl != null}}">
-  <view class="mask" style="background-color: rgba(0, 0, 0, 0.6);"></view>
-  <view class="pkimg-show">
-    <image src="{{pkimgUrl}}" bindtap="imgMax"></image>
-    <view>
-      <text>点击图片放大长按保存并发送给好友</text>
-      <icon bindtap="shareboxClose" type="cancel" size="42" color="#fff"></icon>
-    </view>
+<view class="fix-foobar" hidden="{{hideFoobar == true}}">
+  <view class="exp-tips">
+    <view>点击题号可查看考题解析</view>
   </view>
-</block>
+
+  <view class="pull-left">
+    <form bindsubmit="shareScope" report-submit="true">
+      <button class="weui-btn" type="default" formType="submit" open-type="share">分享成绩</button>
+    </form>
+  </view>
+  <view class="pull-left">
+    <form bindsubmit="gotoPk" report-submit="true">
+      <button class="weui-btn split" type="default" formType="submit">好友对战</button>
+    </form>
+  </view>
+  <view class="clearfix"></view>
+</view>
