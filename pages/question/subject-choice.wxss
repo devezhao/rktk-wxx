@@ -1,11 +1,3 @@
-.weui-icon-radio {
-  margin-top: -2px;
-}
-
-.weui-cell__bd text {
-  color: #999;
-  float: right;
-  font-size: 13px;
-  padding-right: 3px;
-  padding-top: 3px;
+.weui-cell__ft_in-radio radio {
+  margin-right: -3px;
 }

@@ -13,7 +13,7 @@
           <input class="weui-input" type="number" placeholder="验证码" maxlength="6" bindinput="inputTake" data-id="vcode" />
         </view>
         <view class="weui-cell__ft">
-          <view class="weui-vcode-btn" bindtap="sendVcode">{{waitVcode || '获取验证码'}}</view>
+          <view class="weui-vcode-btn color-link" bindtap="sendVcode">{{waitVcode || '获取验证码'}}</view>
         </view>
       </view>
     </view>

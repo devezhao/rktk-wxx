@@ -5,28 +5,30 @@
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">自动跳转下一题</view>
         <view class="weui-cell__ft">
-          <switch data-id="examAutoNext" bindchange="setting" checked="{{examAutoNext}}" />
+          <switch color="#4b8ef9" data-id="examAutoNext" bindchange="setting" checked="{{examAutoNext}}" />
         </view>
       </view>
     </view>
   </view>
+
   <view class="page__hd">
     <view class="weui-cells__title">系统通知</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">题库更新</view>
         <view class="weui-cell__ft">
-          <switch data-id="tipsSubjectUpdate" bindchange="setting" checked="{{tipsSubjectUpdate}}" />
+          <switch color="#4b8ef9" data-id="tipsSubjectUpdate" bindchange="setting" checked="{{tipsSubjectUpdate}}" />
         </view>
       </view>
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">答题提醒</view>
         <view class="weui-cell__ft">
-          <switch data-id="tipsStudy" bindchange="setting" checked="{{tipsStudy}}" />
+          <switch color="#4b8ef9" data-id="tipsStudy" bindchange="setting" checked="{{tipsStudy}}" />
         </view>
       </view>
     </view>
   </view>
+
   <view class="page__hd">
     <view class="weui-cells__title">缓存</view>
     <view class="weui-cells weui-cells_after-title">

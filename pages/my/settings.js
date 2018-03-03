@@ -26,6 +26,7 @@ Page({
 
     wx.getStorageInfo({
       success: function (res) {
+        console.log(JSON.stringify(res));
         that.setData({
           cacheSize: res.currentSize + 'KB'
         })
@@ -47,6 +48,12 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.clearStorage();
+          
+          app.GLOBAL_DATA.FOLLOW_SUBJECT = [];
+          app.GLOBAL_DATA.USER_INFO = null;
+          app.getUserInfo(function (u) {
+            console.log('缓存清空重登录 - ' + JSON.stringify(u));
+          });
           wx.showToast({
             title: '缓存已清空'
           });

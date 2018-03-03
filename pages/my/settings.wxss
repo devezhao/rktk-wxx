@@ -1,0 +1,8 @@
+.weui-cell_switch {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.weui-cell__ft switch {
+  margin-right: -5px;
+}

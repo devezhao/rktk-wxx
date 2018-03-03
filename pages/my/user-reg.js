@@ -36,7 +36,7 @@ Page({
     let that = this;
     zutils.post(app, 'api/user/send-vcode?mobile=' + mobile, function (res) {
       if (res.data.error_code == 0) {
-        let countdown = 60;
+        let countdown = 30;
         that.setData({
           waitVcode: countdown + '秒后重发'
         });

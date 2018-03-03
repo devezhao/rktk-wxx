@@ -78,18 +78,21 @@ page, .page {
   width: 100%;
 }
 
+.fix-foobar button {
+  font-size: 17px;
+}
+
 .fix-foobar.btns {
-  border-top: 1rpx solid #d9d9d9;
   margin: 0;
 }
 
 .fix-foobar.btns button {
   border-radius: 0;
-  background-color: #fff;
 }
 
-.fix-foobar button {
-  font-size: 17px;
+.fix-foobar.btns button[type=default] {
+  border-top: 1rpx solid #d9d9d9;
+  background-color: #fff;
 }
 
 .float-btns {
@@ -274,16 +277,21 @@ image.x24 {
   height: 20px;
 }
 
-.color-base1 {
+.color-base1, .color-base {
   color: #4b8ef9 !important;
 }
 
-.color-base2 {
+.color-base2, .color-high {
   color: #ec5353 !important;
 }
 
 .color-link {
   color: #586c94;
+}
+
+.color-link:active {
+  color: #586c94;
+  opacity: 0.8;
 }
 
 .tipsbar {
