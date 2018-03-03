@@ -28,7 +28,7 @@
   </view>
 </view>
 
-<view class="fix-foobar" hidden="{{hideFoobar == true}}">
+<view class="fix-foobar btns" hidden="{{hideFoobar == true}}">
   <view class="exp-tips">
     <view>点击题号可查看考题解析</view>
   </view>

@@ -8,9 +8,5 @@
 }
 
 .highbar {
-  margin: 0;
-  box-shadow: 0 0 0 #fff;
-  border-bottom: 1rpx solid #f87c3d;
-  border-radius: 0;
-  font-size: 15px;
+ box-shadow: 0 0 0 #fff;
 }

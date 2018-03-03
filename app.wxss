@@ -92,7 +92,6 @@ page, .page {
 
 .fix-foobar.btns button[type=default] {
   border-top: 1rpx solid #d9d9d9;
-  background-color: #fff;
 }
 
 .float-btns {

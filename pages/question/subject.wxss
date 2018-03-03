@@ -6,6 +6,7 @@
 
 .fix-foobar .pull-left button {
   border-radius: 0;
+  border-top: 1px solid #4b8ef9;
 }
 
 .fix-foobar .pull-left button.split {

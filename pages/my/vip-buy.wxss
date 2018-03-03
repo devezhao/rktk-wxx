@@ -57,14 +57,18 @@ page, .page {
   color: #ec5353;
 }
 
+.fix-foobar.btns {
+  background-color: #555;
+  border: 0 none;
+  color: #fff;
+}
+
 .fix-foobar.btns .pull-right button {
   background-color: #a18d62;
   color: #fff;
   width: 140px;
-}
-
-.fix-foobar.btns {
-  border-color: #a18d62;
+  border: 0 none;
+  border-top: 1px solid #a18d62;
 }
 
 .fix-foobar.btns .pull-left {
@@ -73,7 +77,6 @@ page, .page {
 }
 
 .fix-foobar.btns .pull-left .T1 {
-  color: #ec5353;
   font-size: 18px;
   padding-top: 4px;
 }
@@ -84,11 +87,7 @@ page, .page {
 
 .fix-foobar.btns .pull-left .T2 {
   font-size: 11px;
-  color: #777;
-}
-
-.fix-foobar.btns .pull-left .T2 text {
-  color: #ec5353;
+  color: #eee;
 }
 
 .vip-level {
