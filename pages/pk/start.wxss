@@ -26,10 +26,6 @@ page, .page {
   height: 140px;
 }
 
-.card:active {
-  opacity: 0.8;
-}
-
 .card .unactive {
   position: absolute;
   top: 0;

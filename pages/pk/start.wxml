@@ -7,7 +7,7 @@
           <view style="padding:13px 10px">排位赛</view>
           <image src="../../images/pk/ic_cup.png" class="x80" style="position:absolute;bottom:0px;right:9px;"></image>
         </view>
-        <view class="card {{aClazz}}" style="background-color:#FBBF00;text-align:right" bindtap="gotoPage" data-url="/pages/question/subject-list">
+        <view class="card {{aClazz}}" hover-class="base-hover" style="background-color:#FBBF00;text-align:right" bindtap="gotoPage" data-url="/pages/question/subject-list">
           <view style="padding-top:23px;padding-right:6px;">涨知识</view>
           <image src="../../images/pk/ic_kb.png" class="x60" style="position:absolute;left:15px;top:15px;"></image>
           <form bindsubmit="sfid" report-submit="true">
@@ -21,7 +21,7 @@
           <view style="padding-top:39px;padding-right:4px">排行榜</view>
           <image src="../../images/pk/ic_rank.png" class="x70" style="position:absolute;left:15px;top:9px;"></image>
         </view>
-        <view class="card x1 {{aClazz}}" style="background-color:#ED7BAF;text-align:center" bindtap="checkReady">
+        <view class="card x1 {{aClazz}}" hover-class="base-hover" style="background-color:#ED7BAF;text-align:center" bindtap="checkReady">
           <image src="../../images/pk/ic_pk.png" class="x60" style="margin:8px 0"></image>
           <view style="margin-top:-3px;">好友对战</view>
           <button open-type="share" class="btn-mask" wx:if="{{hasError == null}}"></button>

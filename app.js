@@ -58,6 +58,26 @@ App({
     }
   },
 
+  onHide: function (e) {
+    console.log("小程序进入后台: " + JSON.stringify(e));
+
+    // 新版微信已取消
+    // try {
+    //   wx.setTopBarText({
+    //     text: '正在答题，点击继续',
+    //     complete: function (res) {
+    //       console.log("setTopBarText - " + JSON.stringify(res));
+    //     }
+    //   });
+    // } catch (error) {
+    //   console.error("setTopBarText error - " + JSON.stringify(error));
+    // }
+  },
+
+  onError: function (e) {
+    console.error("出现错误: " + JSON.stringify(e));
+  },
+
   // 解析口令
   __checkToken: function () {
     if (this.__checkToken_OK == true) return;
@@ -109,10 +129,6 @@ App({
         }
       }
     });
-  },
-
-  onError: function (e) {
-    console.error("出现错误: " + JSON.stringify(e));
   },
 
   // 需要授权才能访问的页面/资源先调用此方法
@@ -207,6 +223,8 @@ App({
       }
     })
   },
+
+  // ---- 助手类方法
 
   // 分享数据
   warpShareData: function (url) {

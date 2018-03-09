@@ -1,5 +1,5 @@
 page, .page {
-  background-color: #fff;
+  background-color: #f7f7f9;
 }
 
 .weui-cells__title {
@@ -17,8 +17,8 @@ page, .page {
 
 .num-warp view.c {
   display: inline-block;
-  border: 2px solid #f7f7f9;
-  background-color: #f7f7f9;
+  border: 2px solid #eee;
+  background-color: #eee;
   padding: 4px 0;
   font-size: 17px;
   width: 100%;

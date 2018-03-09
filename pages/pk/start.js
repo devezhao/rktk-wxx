@@ -15,8 +15,13 @@ Page({
     this.setData({
       aClazz: e.pkroom ? '_' : 'animated zoomIn'
     });
-
     let that = this;
+    setTimeout(function () {
+      that.setData({
+        aClazz: '_'
+      });
+    }, 1200);
+
     app.getUserInfo(function (u) {
       if (e.pkroom) {
         zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
