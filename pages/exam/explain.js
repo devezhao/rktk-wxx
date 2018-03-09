@@ -118,8 +118,9 @@ Page({
   },
 
   goPrev: function (e) {
+    if (!this.__qids) return;
     let idx = this.data.qidsNo;
-    if (!this.__qids || idx <= 1) return;
+    if (idx <= 1) idx = this.__qids.length + 1;
     idx -= 1;
     this.setData({
       qidsNo: idx,
@@ -129,8 +130,9 @@ Page({
   },
 
   goNext: function (e) {
+    if (!this.__qids) return;
     let idx = this.data.qidsNo;
-    if (!this.__qids || idx >= this.__qids.length) return;
+    if (idx >= this.__qids.length) idx = 0;
     idx += 1;
     this.setData({
       qidsNo: idx,

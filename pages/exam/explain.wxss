@@ -87,7 +87,7 @@ page, .page {
   font-size: 15px;
   padding: 14px;
   padding-top: 0;
-  padding-bottom: 15px;
+  padding-bottom: 26px;
 }
 
 .explain-source {
@@ -103,10 +103,6 @@ page, .page {
   position: absolute;
   margin-top: 2px;
   left: 14px;
-}
-
-.float-btns {
-  bottom: 51px;
 }
 
 .top-position {
@@ -155,6 +151,7 @@ page, .page {
   text-align: center;
   white-space: normal;
   overflow: hidden;
+  z-index: 9;
 }
 
 .page-nos view.el {
@@ -198,7 +195,7 @@ view.go-hover {
 }
 
 .vip-upgrade {
-  background-color: #fefcec;
+  background-color: #fff2e8;
   padding: 24px 14px;
   border-radius: 4px;
   margin-bottom: 9px;
@@ -208,12 +205,12 @@ view.go-hover {
 .vip-upgrade view.tt {
   font-size: 18px;
   margin-bottom: 3px;
-  color: #f87c3d;
+  color: #f40;
 }
 
 .vip-upgrade button {
   color: #a18d62;
-  border: 1px solid #a18d62;
+  border: 2px solid #a18d62;
   font-size: 16px;
   background-color: transparent;
   width: 160px;
@@ -222,8 +219,11 @@ view.go-hover {
 }
 
 .vip-upgrade.min {
-  padding: 9px 12px;
+  padding: 12px 12px;
   text-align: left;
+  margin-top: -18px;
+  z-index: 1;
+  position: relative;
 }
 
 .vip-upgrade.min view.tt {
@@ -236,7 +236,7 @@ view.go-hover {
 .vip-upgrade.min button {
   font-size: 15px;
   border-radius: 2px;
-  line-height: 1.95;
+  line-height: 1.85;
   width: 99px;
   padding: 0;
   float: right;
@@ -258,4 +258,22 @@ view.go-hover {
   vertical-align: top;
   padding: 5px 9px;
   text-align: left;
+}
+
+.explain-limit {
+  position: relative;
+  max-height: 128px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.explain-limit .gradual {
+  position: absolute;
+  background: transparent url(https://c.rktk.qidapp.com/a/wxx/bg-gradual.png) repeat-x center bottom;
+  background-size: 5px 75px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 75px;
+  z-index: 0;
 }

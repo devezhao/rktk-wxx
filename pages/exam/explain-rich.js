@@ -94,7 +94,7 @@ Page({
     zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
       var _data = res.data.data;
       _data.viewId = 'question';
-      let nos = ['一', '二', '三', '四', '五', '六', '七', '八'];
+      let nos = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
       for (let i = 0; i < _data.answer_list.length; i++) {
         _data.answer_list[i].no = nos[i];
       }
@@ -104,8 +104,9 @@ Page({
   },
 
   goPrev: function (e) {
+    if (!this.__qids) return;
     let idx = this.data.qidsNo;
-    if (idx <= 1) return;
+    if (idx <= 1) idx = this.__qids.length + 1;
     idx -= 1;
     this.setData({
       qidsNo: idx,
@@ -115,8 +116,9 @@ Page({
   },
 
   goNext: function (e) {
+    if (!this.__qids) return;
     let idx = this.data.qidsNo;
-    if (idx >= this.__qids.length) return;
+    if (idx >= this.__qids.length) idx = 0;
     idx += 1;
     this.setData({
       qidsNo: idx,

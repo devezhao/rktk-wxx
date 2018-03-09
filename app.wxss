@@ -95,9 +95,10 @@ page, .page {
 }
 
 .float-btns {
-  bottom: 14px;
+  bottom: 100px;
   right: 14px;
   position: fixed;
+  z-index: 19;
 }
 
 .zbtn {

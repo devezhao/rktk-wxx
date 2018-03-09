@@ -42,8 +42,23 @@
       <view class="explain-content">
         <block wx:if="{{explain_freedom == 'VIP'}}">
           <view class="vip-upgrade">
-            <view class="tt">{{explain_adtxt || '升级VIP查看考题解析'}}</view>
+            <view class="tt">
+              <text>{{explain_adtxt || '升级VIP查看考题解析'}}</text>
+            </view>
             <button bindtap="goVip">立即升级</button>
+          </view>
+        </block>
+        <block wx:if="{{explain_freedom == 'LIMIT'}}">
+          <view class="explain-limit">
+            <rich-text nodes="{{explain}}"></rich-text>
+            <view class="gradual"></view>
+          </view>
+          <view class="vip-upgrade min">
+            <view class="tt">
+              <text>{{explain_adtxt || '升级VIP会员查看完整解析\n更享免费无限答题哦~'}}</text>
+            </view>
+            <button bindtap="goVip">立即升级</button>
+            <view class="clearfix"></view>
           </view>
         </block>
         <block wx:else>
