@@ -90,6 +90,13 @@ page, .page {
   color: #eee;
 }
 
+.fix-foobar.btns .pull-left .del {
+  margin-left: 9px;
+  display: inline-block;
+  text-decoration: line-through;
+  font-size: 15px;
+}
+
 .vip-level {
   text-align: center;
   margin-bottom: 14px;
@@ -105,4 +112,36 @@ page, .page {
   margin: 3px 0;
   border-radius: 99px;
   font-size: 12px;
+}
+
+.coupon {
+  width: 100%;
+  background-color: #eee;
+  margin-bottom: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.coupon .money {
+  background-color: #ec961d;
+  width: 76px;
+  height: 70px;
+  color: #fff;
+  font-size: 25px;
+  text-align: center;
+  line-height: 68px;
+  border-right: 2px dotted #fff;
+}
+
+.coupon .ctext {
+  padding-left: 14px;
+  padding-top: 10px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.coupon .ctext view {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
 }

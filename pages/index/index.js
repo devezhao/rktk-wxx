@@ -3,7 +3,8 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    hideBanners: false
+    hideBanners: false,
+    hideCoupon: true
   },
 
   onLoad: function (e) {
@@ -32,7 +33,8 @@ Page({
       that.__loadRecent();
       that.__loadRecommend();
       that.__checkTwxx();
-      app.__checkToken();
+      that.__checkToken();
+      that.__checkCoupon();
     });
 
     wx.getStorage({
@@ -71,6 +73,73 @@ Page({
     }
   },
 
+  // 解析分享来源
+  __checkTwxx: function () {
+    var q = app.__enter_source.query.q || app.__enter_source.query.scene;
+    if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
+      zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
+        if (res.data.error_code == 0) {
+          wx.navigateTo({
+            url: res.data.data
+          })
+        }
+      });
+    }
+  },
+
+  // 解析口令
+  __checkToken: function () {
+    if (this.__checkToken_OK == true) return;
+    this.__checkToken_OK = true;
+
+    // 清除口令
+    var rktk_token = false;
+    setTimeout(function () {
+      if (rktk_token == true) {
+        wx.setClipboardData({
+          data: ''
+        });
+      }
+    }, 1500);
+
+    var that = this;
+    wx.getClipboardData({
+      success: function (res) {
+        if (res.data && res.data.substr(0, 6) == '#考题解析#') {
+          // 扫码进入，优先级高于粘贴板
+          if (that.__enter_source.scene == 1011 || that.__enter_source.scene == 1012 || that.__enter_source.scene == 1013) {
+            console.log('扫码进入' + that.__enter_source.scene + ': ' + res.data);
+            rktk_token = true;
+            return;
+          }
+          // 自己分享的
+          if (zutils.array.in(that.GLOBAL_DATA.KT_TOKENS, res.data)) {
+            return;
+          }
+
+          rktk_token = true;
+          zutils.get(app, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
+            if (res2.data.error_code == 0) {
+              var _data = res2.data.data;
+              wx.showModal({
+                title: _data.title,
+                confirmText: '立即查看',
+                content: _data.content,
+                success: function (res3) {
+                  if (res3.confirm) {
+                    wx.navigateTo({
+                      url: _data.page
+                    })
+                  }
+                }
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+
   // 最近关注题库
   __loadFollowSubject: function (fs) {
     if (!fs || fs.length < 3) return;
@@ -86,20 +155,6 @@ Page({
         });
       }
     });
-  },
-
-  // 解析分享来源
-  __checkTwxx: function () {
-    var q = app.__enter_source.query.q || app.__enter_source.query.scene;
-    if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
-      zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
-        if (res.data.error_code == 0) {
-          wx.navigateTo({
-            url: res.data.data
-          })
-        }
-      });
-    }
   },
 
   // 最近答题
@@ -195,11 +250,50 @@ Page({
   gotoPage: function (e) {
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     zutils.post(app, 'api/user/report-formid?formId=' + formId);
-    
+
     app.gotoPage(e.currentTarget.dataset.url);
   },
 
   onShareAppMessage: function () {
     return app.warpShareData();
+  },
+
+  // 优惠券
+
+  __checkCoupon: function () {
+    let that = this;
+    let today = zutils.formatDate('ONyyyyMMdd');
+    wx.getStorage({
+      key: 'LastCouponShow',
+      complete: function (res) {
+        if (!(res.data && res.data == today)) {
+          zutils.get(app, 'api/user/check-coupon', function (res) {
+            if (res.data.error_code == 0 && res.data.data) {
+              let _data = res.data.data;
+              _data.hideCoupon = false;
+              that.setData(_data);
+
+              wx.setStorage({
+                key: 'LastCouponShow',
+                data: today
+              });
+            }
+          });
+        }
+      }
+    });
+  },
+
+  hideCoupon: function () {
+    let that = this;
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '你可在VIP会员开通页选择使用',
+    //   showCancel: false,
+    //   confirmText: '知道了'
+    // })
+    this.setData({
+      hideCoupon: true
+    });
   }
 })

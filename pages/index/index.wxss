@@ -146,3 +146,75 @@
 .weui-panel {
   margin-top: 14px;
 }
+
+.coupon-warp {
+  width: 260px;
+  position: fixed;
+  left: 50%;
+  margin-left: -150px;
+  background-color: #f43a47;
+  border-radius: 6px;
+  top: 20%;
+  padding: 20px;
+  z-index: 99;
+}
+
+.coupon-warp .title {
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.coupon-warp .coupon {
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 12px;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.07);
+}
+
+.coupon-warp .coupon .money {
+  background-color: #ec961d;
+  width: 76px;
+  height: 70px;
+  color: #fff;
+  font-size: 25px;
+  text-align: center;
+  line-height: 68px;
+  border-right: 2px dotted #fff;
+}
+
+.coupon-warp .coupon .ctext {
+  padding-left: 14px;
+  padding-top: 10px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.coupon-warp .coupon .ctext view {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.coupon-warp .btns {
+  margin-top: 17px;
+}
+
+.coupon-warp .btns button {
+  border: 2px solid #ec961d;
+  font-size: 17px;
+  background-color: transparent;
+  color: #fff;
+  line-height: 2.4;
+}
+
+.coupon-warp .btns button.text {
+  border: 0 none;
+  line-height: 1.4;
+  font-size: 14px;
+  margin-top: 12px;
+  color: #ec961d;
+}

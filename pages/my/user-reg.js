@@ -8,6 +8,8 @@ Page({
   inputData: {},
 
   onLoad: function (options) {
+    if (!app.GLOBAL_DATA.USER_INFO) return;
+
     this.setData({
       bind: options.bind || null
     })

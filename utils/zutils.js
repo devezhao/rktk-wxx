@@ -1,6 +1,6 @@
-const baseUrl = 'https://rktk.qidapp.com/';
+//const baseUrl = 'https://rktk.qidapp.com/';
 //const baseUrl = 'https://rktk.statuspage.cn/';
-//const baseUrl = 'http://192.168.0.159:8080/rktk/';
+const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 // GET 方法
 function z_get(app, url, call) {
@@ -90,6 +90,7 @@ function z_post(app, url, data, call) {
   });
 };
 
+// 数组相关
 var z_array = {
   in: function (array, item) {
     var i = array.length;
@@ -113,6 +114,7 @@ var z_array = {
   }
 };
 
+// 对象扩展
 var z_extends = function (dest, source) {
   for (var prop in source) {
     if (prop.substr(0, 1) == '_') {
@@ -125,11 +127,35 @@ var z_extends = function (dest, source) {
   return dest;
 };
 
+// 日期格式
+var z_date_format = function (format, date) {
+  date = date || new Date();
+  var o = {
+    "M+": date.getMonth() + 1,
+    "d+": date.getDate(),
+    "h+": date.getHours(),
+    "m+": date.getMinutes(),
+    "s+": date.getSeconds(),
+    "q+": Math.floor((date.getMonth() + 3) / 3),
+    "S": date.getMilliseconds()
+  };
+  if (/(y+)/.test(format)) {
+    format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+  }
+  for (var k in o) {
+    if (new RegExp("(" + k + ")").test(format)) {
+      format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    }
+  }
+  return format;
+}
+
 // API
 module.exports = {
   get: z_get,
   post: z_post,
   baseUrl: baseUrl,
   array: z_array,
-  extends: z_extends
+  extends: z_extends,
+  formatDate: z_date_format
 };

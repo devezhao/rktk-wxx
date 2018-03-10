@@ -124,11 +124,11 @@
 }
 
 .weui-cell__ft-tag {
-  font-size: 14px;
+  font-size: 13px;
   position: absolute;
   right: 13px;
-  margin-top: -9px;
+  margin-top: -8px;
   color: #ec5353;
   text-align: right;
-  width: 60px;
+  width: 100px;
 }

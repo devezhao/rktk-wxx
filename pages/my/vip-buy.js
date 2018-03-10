@@ -4,25 +4,34 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {
     tt: 'vip',
-    vipLevel: null
+    vipLevel: null,
+    couponData: null,
   },
 
   onLoad: function (e) {
-    if (app.GLOBAL_DATA.USER_INFO) {
-      let that = this;
-      zutils.get(app, 'api/user/vip-info', function (res) {
-        let _data = res.data.data;
-        if (_data.level != 'N') {
-          let info = '已开通' + _data.subject + _data.level + '会员 ۰ ' + _data.expires;
-          if (_data.is_expired == true) info = _data.subject + _data.level + '会员 ۰ 已过期';
-          that.setData({
-            vipLevel: info,
-            expired: _data.is_expired
-          })
-        }
-      });
-    }
+    if (!app.GLOBAL_DATA.USER_INFO) return;
     app.reportKpi('VIP.VIEW');
+
+    let that = this;
+    zutils.get(app, 'api/user/vip-info', function (res) {
+      let _data = res.data.data;
+      if (_data.level != 'N') {
+        let info = '已开通' + _data.subject + _data.level + '会员 ۰ ' + _data.expires;
+        if (_data.is_expired == true) info = _data.subject + _data.level + '会员 ۰ 已过期';
+        that.setData({
+          vipLevel: info,
+          expired: _data.is_expired
+        })
+      }
+    });
+    zutils.get(app, 'api/user/check-coupon', function (res) {
+      if (res.data.error_code == 0 && res.data.data) {
+        that.setData({
+          couponData: res.data.data
+        });
+        that.__calcFee();
+      }
+    });
   },
 
   onShow: function (e) {
@@ -47,18 +56,33 @@ Page({
   },
 
   __calcFee: function () {
+    if (!this.__buydata || !this.__buydata.subject) return;
+    let coupon = this.data.couponData;
+    let coupon_fee = 0;
+    if (coupon) {
+      let tt = this.data.tt;
+      coupon_fee = coupon[tt + '_money'];
+      this.setData({
+        coupon_level: tt.toUpperCase(),
+        coupon_money: coupon_fee,
+        coupon_expdate: coupon[tt + '_expdate']
+      });
+    }
+
     let coin_fee = this.__buydata.coin_balance / 10;
     let fee = this.__buydata[this.data.tt + '_fee'] - coin_fee;
-    if (fee < 0.01) {
-      fee = 0.01;
-      coin_fee = this.__buydata[this.data.tt + '_fee'] - 0.01;
+    let feeOld = 0;
+    if (coupon_fee > 0) {
+      feeOld = fee.toFixed(1);
+      fee = fee - coupon_fee;
     }
-    fee = fee.toFixed(2).split('.');
+    fee = fee.toFixed(1).split('.');
     this.setData({
-      coinFee: coin_fee.toFixed(2),
+      coinFee: coin_fee.toFixed(1),
       fee: fee[0],
-      feeFix: fee[1]
-    })
+      feeFix: fee[1],
+      feeOld: feeOld
+    });
   },
 
   selectType: function (e) {
@@ -80,7 +104,7 @@ Page({
     app.reportKpi('VIP.CLICKBUY');
 
     let that = this;
-    let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt;
+    let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData);
     zutils.post(app, _url, function (res) {
       var _data = res.data;
       if (_data.error_code > 0) {

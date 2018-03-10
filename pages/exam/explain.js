@@ -85,11 +85,12 @@ Page({
       wx.setStorage({
         key: 'ExplainPageNo' + this.qosid,
         data: idx
-      })
+      });
     }
 
     if (this.qcached[this.data.currentQuestionId]) {
       this.setData(this.qcached[this.data.currentQuestionId]);
+      this.__checkExplainShow();
       return;
     }
 
@@ -114,7 +115,27 @@ Page({
       _data.viewId = 'question';
       that.setData(_data);
       that.qcached[that.data.currentQuestionId] = _data;
+      that.__checkExplainShow();
     });
+  },
+
+  __checkExplainShow: function () {
+    return;  // 暂时不用
+    if (this.data.explain_freedom != 'LIMIT') return;
+    let that = this;
+    that.setData({
+      hideGradual: false
+    })
+    setTimeout(() => {
+      wx.createSelectorQuery().select('.explain-content').fields({
+        size: true,
+      }, function (res) {
+        console.log(JSON.stringify(res));
+        that.setData({
+          hideGradual: res.height > 0 && res.height < 190
+        })
+      }).exec();
+    }, 100);
   },
 
   goPrev: function (e) {

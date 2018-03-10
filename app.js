@@ -78,59 +78,6 @@ App({
     console.error("出现错误: " + JSON.stringify(e));
   },
 
-  // 解析口令
-  __checkToken: function () {
-    if (this.__checkToken_OK == true) return;
-    this.__checkToken_OK = true;
-
-    // 清除口令
-    var rktk_token = false;
-    setTimeout(function () {
-      if (rktk_token == true) {
-        wx.setClipboardData({
-          data: ''
-        });
-      }
-    }, 1500);
-
-    var that = this;
-    wx.getClipboardData({
-      success: function (res) {
-        if (res.data && res.data.substr(0, 6) == '#考题解析#') {
-          // 扫码进入，优先级高于粘贴板
-          if (that.__enter_source.scene == 1011 || that.__enter_source.scene == 1012 || that.__enter_source.scene == 1013) {
-            console.log('扫码进入' + that.__enter_source.scene + ': ' + res.data);
-            rktk_token = true;
-            return;
-          }
-          // 自己分享的
-          if (zutils.array.in(that.GLOBAL_DATA.KT_TOKENS, res.data)) {
-            return;
-          }
-
-          rktk_token = true;
-          zutils.get(that, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
-            if (res2.data.error_code == 0) {
-              var _data = res2.data.data;
-              wx.showModal({
-                title: _data.title,
-                confirmText: '立即查看',
-                content: _data.content,
-                success: function (res3) {
-                  if (res3.confirm) {
-                    wx.navigateTo({
-                      url: _data.page
-                    })
-                  }
-                }
-              });
-            }
-          });
-        }
-      }
-    });
-  },
-
   // 需要授权才能访问的页面/资源先调用此方法
   // 在回调函数中执行实际的业务操作
   getUserInfo: function (cb) {
@@ -295,27 +242,31 @@ App({
     wx.getStorage({
       key: 'TapedReddot' + key,
       fail: function (res) {
-        wx.showTabBarRedDot({
-          index: tabIndex,
-          success: function (res) {
-            that.GLOBAL_DATA.RED_DOT[tabIndex] = key;
-          }
-        });
+        setTimeout(function () {
+          wx.showTabBarRedDot({
+            index: tabIndex,
+            success: function (res) {
+              that.GLOBAL_DATA.RED_DOT[tabIndex] = key;
+            }
+          });
+        }, 222);
       }
     })
   },
   // 隐藏红点
   hideReddot: function (tabIndex, key) {
     if (!wx.hideTabBarRedDot) return;
-    wx.hideTabBarRedDot({
-      index: tabIndex,
-      complete: function (res) {
-        console.log('hideTabBarRedDot - ' + JSON.stringify(res));
-        wx.setStorage({
-          key: 'TapedReddot' + key,
-          data: 'TAPED'
-        });
-      }
-    });
+    setTimeout(function () {
+      wx.hideTabBarRedDot({
+        index: tabIndex,
+        complete: function (res) {
+          console.log('hideTabBarRedDot - ' + JSON.stringify(res));
+          wx.setStorage({
+            key: 'TapedReddot' + key,
+            data: 'TAPED'
+          });
+        }
+      });
+    }, 222);
   }
 })

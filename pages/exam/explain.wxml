@@ -52,9 +52,9 @@
         <block wx:if="{{explain_freedom == 'LIMIT'}}">
           <view class="explain-limit">
             <rich-text nodes="{{explain}}"></rich-text>
-            <view class="gradual"></view>
+            <view hidden="{{hideGradual}}" class="gradual"></view>
           </view>
-          <view class="vip-upgrade min">
+          <view hidden="{{hideGradual}}" class="vip-upgrade min">
             <view class="tt">
               <text>{{explain_adtxt || '升级VIP会员查看完整解析\n更享免费无限答题哦~'}}</text>
             </view>
