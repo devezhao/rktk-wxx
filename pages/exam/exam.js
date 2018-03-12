@@ -182,6 +182,7 @@ Page({
     });
 
     this.questionList[this.data.seqCurrent]._selected = _selected;
+    console.log(JSON.stringify(_selected));
 
     let canNext = _selected.length == q.answerNum && that.examAutoNext == true;
     zutils.post(app, 'api/exam/record?exam=' + that.examId + '&question=' + q.itemId + '&answer=' + _selected.join('/'), function (res) {

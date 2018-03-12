@@ -50,7 +50,7 @@
   </block>
 </view>
 <block wx:if="{{is_open == true}}">
-  <view class="float-btns" style="bottom:54px">
+  <view class="float-btns">
     <button class="zbtn" bindtap="shareboxOpen">
       <image src="../../images/share.png" class="share"></image>
     </button>

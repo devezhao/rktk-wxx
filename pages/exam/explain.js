@@ -197,11 +197,6 @@ Page({
     })
   },
 
-  gotoSubject: function (e) {
-    var s = e.currentTarget.dataset.subject;
-    app.gotoPage('/pages/question/subject?id=' + s);
-  },
-
   onShareAppMessage: function () {
     var d = app.warpShareData('/pages/exam/explain?id=' + this.data.currentQuestionId);
     d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';
@@ -232,10 +227,8 @@ Page({
     zsharebox.share2CopyLink(this);
   },
 
-  goVip: function () {
-    wx.navigateTo({
-      url: '../my/vip-buy'
-    })
+  gotoPage: function (e) {
+    app.gotoPage(e);
   },
 
   // 翻页

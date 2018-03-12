@@ -87,7 +87,7 @@ page, .page {
   font-size: 15px;
   padding: 14px;
   padding-top: 0;
-  padding-bottom: 26px;
+  padding-bottom: 59px;
 }
 
 .explain-source {
@@ -243,6 +243,24 @@ view.go-hover {
   margin-top: 3px;
 }
 
+.explain-more {
+  text-align: center;
+  background-color: #fff;
+  margin-top: -22px;
+  margin-bottom: 3px;
+}
+
+.explain-more button {
+  font-size: 15px;
+  border-radius: 4px;
+  width: 160px;
+  display: inline-block;
+  color: #a18d62;
+  border: 1px solid #a18d62;
+  background-color: transparent;
+  line-height: 2;
+}
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -276,4 +294,10 @@ view.go-hover {
   left: 0;
   height: 75px;
   z-index: 0;
+}
+
+/* 有答案的情况 */
+
+.page.has-answer .explain-content {
+  padding-bottom: 6px;
 }

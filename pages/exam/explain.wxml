@@ -1,4 +1,4 @@
-<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '44px'}}">
+<view class="page {{yourAnswer == null ? '' : 'has-answer'}}">
   <view class="page__hd weui-flex top-position">
     <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
       <image src="../../images/icon-marker.png"></image> 考题
@@ -35,18 +35,18 @@
     </view>
 
     <view class="page__hd" id="explain" hidden="{{source_subject == null}}">
-      <view class="explain-source" bindtap="gotoSubject" data-subject="{{source_subject_id}}">
+      <view class="explain-source" bindtap="gotoPage" data-url="/pages/question/subject?id={{source_subject_id}}">
         <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}</view>
       <view class="explain-title">
         考题解析
       </view>
-      <view class="explain-content" style="{{yourAnswer == null ? '' : 'padding-bottom:15px'}}">
+      <view class="explain-content">
         <block wx:if="{{explain_freedom == 'VIP'}}">
           <view class="vip-upgrade">
             <view class="tt">
               <text>{{explain_adtxt || '升级VIP查看考题解析'}}</text>
             </view>
-            <button bindtap="goVip">立即升级</button>
+            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
           </view>
         </block>
         <block wx:if="{{explain_freedom == 'LIMIT'}}">
@@ -54,36 +54,30 @@
             <rich-text nodes="{{explain}}"></rich-text>
             <view hidden="{{hideGradual}}" class="gradual"></view>
           </view>
-          <view hidden="{{hideGradual}}" class="vip-upgrade min">
-            <view class="tt">
-              <text>{{explain_adtxt || '升级VIP会员查看完整解析\n更享免费无限答题哦~'}}</text>
-            </view>
-            <button bindtap="goVip">立即升级</button>
-            <view class="clearfix"></view>
+          <view hidden="{{hideGradual}}" class="explain-more">
+            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">点击查看完整解析</button>
           </view>
         </block>
         <block wx:else>
           <rich-text nodes="{{explain}}"></rich-text>
         </block>
-        <view style="padding-top:0;text-align:right;line-height:1">
-          <navigator url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}" class="color-link fs-14" style="display:inline-block;">
-            [ 考题纠错 ]
-          </navigator>
-        </view>
       </view>
     </view>
   </scroll-view>
 </view>
 
 <view class="float-btns">
-  <form bindsubmit="shareboxOpen" report-submit="true">
-    <button class="zbtn" formType="submit">
-      <image src="../../images/share.png" class="share"></image>
-    </button>
-  </form>
+  <view class="zbtn" bindtap="gotoPage" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
+    <text class="L2">考题\n纠错</text>
+  </view>
   <form bindsubmit="fav" report-submit="true">
     <button class="zbtn" formType="submit">
       <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
+    </button>
+  </form>
+  <form bindsubmit="shareboxOpen" report-submit="true">
+    <button class="zbtn" formType="submit">
+      <image src="../../images/share.png" class="share"></image>
     </button>
   </form>
 </view>

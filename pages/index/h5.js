@@ -28,6 +28,7 @@ Page({
       //_url = 'https://rk.statuspage.cn/' + _url;
       _url = 'https://rktk.qidapp.com/' + _url;
     }
+    console.log('H5 - ' + _url);
     this.setData({
       url: _url
     });
