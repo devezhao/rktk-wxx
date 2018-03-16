@@ -1,5 +1,5 @@
-const baseUrl = 'https://rktk.qidapp.com/';
-//const baseUrl = 'https://rktk.statuspage.cn/';
+//const baseUrl = 'https://rktk.qidapp.com/';
+const baseUrl = 'https://rktk.statuspage.cn/';
 //const baseUrl = 'http://192.168.0.159:8080/rktk/';
 
 // GET 方法

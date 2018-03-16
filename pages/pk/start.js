@@ -57,7 +57,6 @@ Page({
   onShow: function (s) {
     if (!app.GLOBAL_DATA.USER_INFO) return;
     this.onShowTimes++;
-    console.log('Fire on ' + (s || 'N') + ' ' + this.onShowTimes);
 
     let tt = this.onShowTimes;
     let that = this;
