@@ -131,25 +131,22 @@ Page({
     let that = this;
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     zutils.post(app, 'api/fav/toggle?question=' + this.data.currentQuestionId + '&formId=' + formId, function (res) {
-      var _data = res.data.data;
-      that.setData({
-        isFav: _data.is_fav
-      });
-      wx.showToast({
-        title: _data.is_fav ? '已加入收藏' : '已取消收藏'
-      });
+      let _data = res.data.data;
+      that.qcached[that.data.currentQuestionId].isFav = _data.is_fav;
+      that.setData({ isFav: _data.is_fav });
+      wx.showToast({ title: _data.is_fav ? '已加入收藏' : '已取消收藏' });
     });
   },
 
   position: function (e) {
-    var vid = e.currentTarget.dataset.vid;
+    let vid = e.currentTarget.dataset.vid;
     this.setData({
       viewId: vid,
     })
   },
 
   onShareAppMessage: function () {
-    var d = app.warpShareData('/pages/exam/explain-rich?id=' + this.data.currentQuestionId);
+    let d = app.warpShareData('/pages/exam/explain-rich?id=' + this.data.currentQuestionId);
     d.title = '#考题解析#' + this.data.question.replace('，', '').replace('（', '').replace('）', '').trim().substr(0, 30) + '...';
     return d;
   },

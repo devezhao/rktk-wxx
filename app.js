@@ -34,6 +34,7 @@ App({
       },
       complete: function () {
         that.__checkUserInfo(null, false);
+        that.reportKpi('LOGIN');
       }
     });
 
@@ -47,8 +48,6 @@ App({
         console.log('系统信息: ' + JSON.stringify(that.GLOBAL_DATA.SYS_INFO));
       },
     });
-
-    // this.showReddot(2, 'Home180201NEWMY');
   },
 
   onShow: function (e) {
@@ -211,7 +210,7 @@ App({
   },
 
   // 上报分析数据
-  // t=EXAM,EXPLAIN
+  // t=EXAM,EXPLAIN etc.
   // s=相关题库（可选）
   reportKpi: function (k, s) {
     zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || ''), function (res) {
