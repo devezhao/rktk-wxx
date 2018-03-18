@@ -49,7 +49,7 @@ Page({
 
       // Keep
       if (checkKeep == true) {
-        zutils.get(app, 'api/acts/keep-days?noloading', function (res) {
+        zutils.get(app, 'api/acts/keep-days-v2?noloading', function (res) {
           let dd = res.data;
           if (dd && dd.data && dd.data.days && dd.data.days > 1) {
             dd = dd.data;

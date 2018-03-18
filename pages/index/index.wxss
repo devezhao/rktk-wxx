@@ -24,6 +24,7 @@
   font-size: 14px;
   line-height: 1;
   background-color: #fff;
+  position: relative;
 }
 
 .top-column .weui-flex__item .icon-w:active {
@@ -44,6 +45,20 @@
   text-align: center;
   font-size: 13px;
   margin-top: 3px;
+}
+
+.top-column .weui-flex__item .icon-w text.bag {
+  position: absolute;
+  top: 3px;
+  right: 21px;
+  color: #fff;
+  background-color: #f00;
+  font-size: 10px;
+  min-width: 16px;
+  height: 14px;
+  line-height: 14px;
+  border-radius: 99px;
+  text-align: center;
 }
 
 .weui-media-box__title.nodata-tips {

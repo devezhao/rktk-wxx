@@ -25,8 +25,7 @@ Page({
       })
     }
     if (_url.substr(0, 4) != 'http') {
-      //_url = 'https://rk.statuspage.cn/' + _url;
-      _url = 'https://rktk.qidapp.com/' + _url;
+      _url = zutils.baseUrl + _url;
     }
     console.log('H5 - ' + _url);
     this.setData({

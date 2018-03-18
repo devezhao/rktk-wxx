@@ -3,7 +3,7 @@
     <text style="font-size:{{daysFs}}px;{{daysFs < 88 ? 'margin-top:35px' : ''}}">{{days}}</text>
   </view>
   <view class="text-days">
-    连续{{days}}天答题
+    累积{{days}}天答题
     <text>{{date}}</text>
   </view>
   <view class="line"></view>

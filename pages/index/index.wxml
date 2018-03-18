@@ -49,6 +49,17 @@
           </button>
         </form>
       </view>
+      <!-- <view class="weui-flex__item">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/study-report">
+          <button class="icon-w" formType="submit">
+            <view class="icon">
+              <image src="../../images/h-icon-study-report.png" class="x26"></image>
+            </view>
+            <text>学习报告</text>
+            <text class="bag">新</text>
+          </button>
+        </form>
+      </view> -->
     </view>
   </view>
 

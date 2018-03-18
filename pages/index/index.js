@@ -11,6 +11,10 @@ Page({
     let that = this;
     zutils.get(app, 'api/home/comdata', function (res) {
       let _data = res.data.data;
+      wx.setNavigationBarTitle({
+        title: _data.title || '软考必备',
+      });
+
       if (!_data.banners || _data.banners.length == 0) {
         that.setData({
           hideBanners: true
@@ -250,7 +254,6 @@ Page({
   gotoPage: function (e) {
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     zutils.post(app, 'api/user/report-formid?formId=' + formId);
-
     app.gotoPage(e.currentTarget.dataset.url);
   },
 
@@ -272,7 +275,6 @@ Page({
               let _data = res.data.data;
               _data.hideCoupon = false;
               that.setData(_data);
-
               wx.setStorage({
                 key: 'LastCouponShow',
                 data: today
@@ -286,14 +288,23 @@ Page({
 
   hideCoupon: function () {
     let that = this;
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '你可在VIP会员开通页选择使用',
-    //   showCancel: false,
-    //   confirmText: '知道了'
-    // })
-    this.setData({
-      hideCoupon: true
+    wx.getStorage({
+      key: 'LastCouponShowTips',
+      complete: function (res) {
+        that.setData({ hideCoupon: true });
+        if (!res.data) {
+          wx.setStorage({
+            key: 'LastCouponShowTips',
+            data: '1',
+          });
+          wx.showModal({
+            title: '提示',
+            content: '你可在VIP会员开通页选择使用',
+            showCancel: false,
+            confirmText: '知道了'
+          });
+        }
+      }
     });
   }
-})
+});

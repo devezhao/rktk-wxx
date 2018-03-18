@@ -25,7 +25,8 @@
     "pages/acts/keep-days",
     "pages/pk/start",
     "pages/pk/room-wait",
-    "pages/pk/room-pk"
+    "pages/pk/room-pk",
+    "pages/my/study-report"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",
