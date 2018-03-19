@@ -11,7 +11,7 @@ function z_get(app, url, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 200);
+    }, 400);
   }
 
   let wxxuid = null;
@@ -57,7 +57,7 @@ function z_post(app, url, data, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 200);
+    }, 400);
   }
 
   let wxxuid = null;

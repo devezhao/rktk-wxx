@@ -44,7 +44,7 @@
     </view>
   </block>
   <block wx:else>
-    <view class="highbar warn" wx:if="{{subject_name}}">此题库已下线</view>
+    <view class="highbar warn" wx:if="{{subject_name}}">本题库已下线</view>
   </block>
 </view>
 <block wx:if="{{is_open == true}}">

@@ -48,7 +48,7 @@ Page({
     if (this.data.subject_type == 11) {
       wx.showModal({
         title: '提示',
-        content: '此题库不支持答题',
+        content: '本题库不支持答题',
         showCancel: false
       });
       return;
@@ -184,7 +184,7 @@ Page({
     app.followSubject(this.subjectId);
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
 
-    if (this.data.coin == -2) {
+    if (this.data.vip_free == false && this.data.coin == -2) {
       wx.showModal({
         title: '提示',
         content: '本题库为VIP专享，开通VIP会员可立即查看解析',
