@@ -56,7 +56,7 @@ Page({
   },
 
   __calcFee: function () {
-    if (!this.__buydata || !this.__buydata.subject) return;
+    if (!this.__buydata) return;
     let coupon = this.data.couponData;
     let coupon_fee = 0;
     if (coupon) {
@@ -100,7 +100,11 @@ Page({
   },
 
   buyNow: function () {
-    if (!this.__buydata || !this.__buydata.subject) return;
+    if (!this.__buydata) return;
+    if (!this.__buydata.subject) {
+      app.alert('请选择考试类型');
+      return;
+    }
     app.reportKpi('VIP.CLICKBUY');
 
     let that = this;

@@ -2,7 +2,7 @@
   <view class="page__hd">
     <view class="user-block {{vip}}">
       <view class="pull-left headimg">
-        <image src="{{headimgUrl}}"></image>
+        <image src="{{headimgUrl}}" alt="头像"></image>
       </view>
       <view class="pull-left nick">
         <view>{{nick}}</view>

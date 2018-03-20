@@ -59,7 +59,7 @@ Page({
       _data.success = function (res) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.redirectTo({
-          url: '../index/tips?msg=充值成功',
+          url: '../index/tips?msg=学豆充值成功',
         });
       };
       _data.fail = function (res) {

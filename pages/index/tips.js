@@ -3,7 +3,8 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    btnText: '返回首页'
+    btnText: '返回首页',
+    hideBtn: true
   },
   fromCoinBuy: false,
 
@@ -19,14 +20,8 @@ Page({
     this.fromCoinBuy = msg.indexOf('充值成功') > -1;
     if (this.fromCoinBuy) {
       this.setData({
-        btnText: '查看充值记录'
-      });
-    }
-
-    let hideBtn = msg.indexOf('绑定成功') > -1 || msg.indexOf('开通成功') > -1;
-    if (hideBtn) {
-      this.setData({
-        hideBtn: true
+        btnText: '查看充值记录',
+        hideBtn: !false
       });
     }
   },

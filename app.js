@@ -267,5 +267,14 @@ App({
         }
       });
     }, 222);
+  },
+
+  // 简单 alert
+  alert: function(msg) {
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      showCancel: false
+    });
   }
 })
