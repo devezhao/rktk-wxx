@@ -12,17 +12,15 @@ Page({
     if (!!e.pkroom) {
       this.onShowTimes = 1;
     }
-    this.setData({
-      aClazz: e.pkroom ? '_' : 'animated zoomIn'
-    });
-    let that = this;
-    setTimeout(function () {
-      that.setData({
-        aClazz: '_'
-      });
-    }, 1200);
 
+    let that = this;
     app.getUserInfo(function (u) {
+      that.setData({
+        headimgUrl: u.headimgUrl,
+        nick: u.nick
+      });
+      that.__loadMeta();
+
       if (e.pkroom) {
         zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
           let _data = res.data.data;
@@ -43,7 +41,7 @@ Page({
               });
             }
           }
-        })
+        });
       } else {
         setTimeout(function () {
           if (!that.roomId) {
@@ -81,6 +79,18 @@ Page({
     });
   },
 
+  __loadMeta: function () {
+    let that = this;
+    zutils.get(app, 'api/pkrank/my-pkinfo', function (res) {
+      that.setData(res.data);
+    });
+    zutils.get(app, 'api/pkrank/rank-list?top=3', function (res) {
+      that.setData({
+        rankList: res.data
+      })
+    });
+  },
+
   onShareAppMessage: function (e) {
     var d = app.warpShareData('/pages/pk/start');
     d.title = '快来参加软考PK赛';
@@ -101,14 +111,6 @@ Page({
     return d;
   },
 
-  gotoPage: function (e) {
-    app.gotoPage(e);
-  },
-
-  sfid: function (e) {
-    zutils.post(app, 'api/user/report-formid?formId=' + e.detail.formId);
-  },
-
   checkReady: function () {
     if (this.data.hasError == null) {
       return;
@@ -127,5 +129,9 @@ Page({
         }
       }
     });
+  },
+
+  startPk: function () {
+    app.alert('本功能即将开放');
   }
 });

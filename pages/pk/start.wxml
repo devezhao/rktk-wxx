@@ -1,32 +1,75 @@
 <view class="page">
-  <view class="page__hd" wx:if="{{aClazz}}">
-    <view class="weui-flex" style="margin:0 9px;">
+  <view class="page__bd user-meta">
+    <view class="headimg">
+      <image src="{{headimgUrl}}" alt="头像"></image>
+    </view>
+    <view class="nick">
+      {{nick}}
+    </view>
+  </view>
+  <view class="page__bd user-scope">
+    <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="card x1 {{aClazz}}" style="background-color:#B15CDB">
-          <view class="unactive"></view>
-          <view style="padding:13px 10px">排位赛</view>
-          <image src="../../images/pk/ic_cup.png" class="x80" style="position:absolute;bottom:0px;right:9px;"></image>
-        </view>
-        <view class="card {{aClazz}}" hover-class="base-hover" style="background-color:#FBBF00;text-align:right" bindtap="gotoPage" data-url="/pages/question/subject-list">
-          <view style="padding-top:23px;padding-right:6px;">涨知识</view>
-          <image src="../../images/pk/ic_kb.png" class="x60" style="position:absolute;left:15px;top:15px;"></image>
-          <form bindsubmit="sfid" report-submit="true">
-            <button class="btn-mask" formType="submit"></button>
-          </form>
+        <view>{{scope || 0}}</view>
+        <text>总分数</text>
+        <view class="line"></view>
+      </view>
+      <view class="weui-flex__item">
+        <view>{{pk_times || 0}}</view>
+        <text>PK次数</text>
+        <view class="line"></view>
+      </view>
+      <view class="weui-flex__item">
+        <view>{{win_rate || '0'}}<text>%</text></view>
+        <text>胜率</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd" style="padding:9px 0;">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="card" bindtap="startPk">
+          <view>随机匹配对手</view>
+          <text>即将开放</text>
         </view>
       </view>
       <view class="weui-flex__item">
-        <view class="card {{aClazz}}" style="background-color:#33B8CB;text-align:right">
-          <view class="unactive"></view>
-          <view style="padding-top:39px;padding-right:4px">排行榜</view>
-          <image src="../../images/pk/ic_rank.png" class="x70" style="position:absolute;left:15px;top:9px;"></image>
-        </view>
-        <view class="card x1 {{aClazz}}" hover-class="base-hover" style="background-color:#ED7BAF;text-align:center" bindtap="checkReady">
-          <image src="../../images/pk/ic_pk.png" class="x60" style="margin:8px 0"></image>
-          <view style="margin-top:-3px;">好友对战</view>
+        <view class="card" style="background-color:#33B8CB;" bindtap="checkReady">
+          <view>邀好友PK</view>
+          <text>{{subject}}</text>
           <button open-type="share" class="btn-mask" wx:if="{{hasError == null}}"></button>
         </view>
       </view>
+    </view>
+  </view>
+
+  <view class="page__bd" wx:if="{{rankList}}" style="margin-top:32px">
+    <view class="rank_title">本周排行榜</view>
+    <view class="sline"></view>
+    <view class="rank_subtitle">我的排行第 {{rank_my || '-'}} 位</view>
+    <view class="rank_item" wx:for="{{rankList}}" wx:key="{{rankList*}}">
+      <view class="pull-left icon">
+        <image wx:if="{{item[3] == 1}}" src="/images/pk/live_reward_1.png"></image>
+        <image wx:if="{{item[3] == 2}}" src="/images/pk/live_reward_2.png"></image>
+        <image wx:if="{{item[3] == 3}}" src="/images/pk/live_reward_3.png"></image>
+        <view wx:if="{{item[3] > 3}}">{{item[3]}}</view>
+      </view>
+      <view class="pull-left headimg">
+        <image src="{{item[0]}}"></image>
+      </view>
+      <view class="pull-left user">
+        <view>{{item[1]}}</view>
+        <text>{{item[2]}}</text>
+      </view>
+      <view class="pull-right scope">{{item[4]}}</view>
+      <view class="clearfix"></view>
+    </view>
+    <view style="text-align:center;margin-top:14px;" wx:if="{{rankList && rankList.length > 2}}">
+      <navigator url="rank">[ 查看完整榜单 ]</navigator>
+    </view>
+    <view class="rank_item" wx:if="{{rankList && rankList.length == 0}}">
+      <view style="text-align:center;padding-top:18px">榜单计算中</view>
     </view>
   </view>
 </view>

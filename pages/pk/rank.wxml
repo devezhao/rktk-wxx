@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="page__bd" wx:if="{{rankList}}">
+    <view class="rank_item" wx:for="{{rankList}}" wx:key="{{rankList*}}">
+      <view class="pull-left icon">
+        <image wx:if="{{item[3] == 1}}" src="/images/pk/live_reward_1.png"></image>
+        <image wx:if="{{item[3] == 2}}" src="/images/pk/live_reward_2.png"></image>
+        <image wx:if="{{item[3] == 3}}" src="/images/pk/live_reward_3.png"></image>
+        <view wx:if="{{item[3] > 3}}">{{item[3]}}</view>
+      </view>
+      <view class="pull-left headimg">
+        <image src="{{item[0]}}"></image>
+      </view>
+      <view class="pull-left user">
+        <view>{{item[1]}}</view>
+        <text>{{item[2]}}</text>
+      </view>
+      <view class="pull-right scope">{{item[4]}}</view>
+      <view class="clearfix"></view>
+    </view>
+  </view>
+</view>

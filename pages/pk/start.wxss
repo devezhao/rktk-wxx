@@ -2,51 +2,112 @@
 
 page, .page {
   background-color: #2b6ba5;
+  color: #fff;
+}
+
+.page {
+  padding-bottom: 14px;
+}
+
+.user-meta {
+  text-align: center;
+}
+
+.user-meta .headimg, .user-meta .headimg image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.user-meta .headimg image {
+  border: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.user-meta .nick {
+  font-size: 15px;
+}
+
+.user-scope {
+  text-align: center;
+  margin: 12px 0;
+}
+
+.user-scope .weui-flex__item {
+  position: relative;
+  line-height: 1.3;
+}
+
+.user-scope .weui-flex__item .line {
+  position: absolute;
+  height: 21px;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.4);
+  right: 0;
+  top: 13px;
+}
+
+.user-scope .weui-flex__item view {
+  font-size: 21px;
+}
+
+.user-scope .weui-flex__item view text {
+  color: #fff;
+}
+
+.user-scope .weui-flex__item text {
+  font-size: 13px;
+  color: #eee;
 }
 
 .card {
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #ee75aa;
-  margin: 10px 5px;
+  margin: 7px 7px;
   color: #fff;
-  font-size: 20px;
   padding: 9px 12px;
   position: relative;
   overflow: hidden;
-  height: 70px;
+  height: 60px;
   z-index: 19;
+  text-align: center;
+}
+
+.card view {
+  font-size: 18px;
+  margin-top: 13px;
   line-height: 1;
 }
 
-.card.x1 {
-  height: 105px;
+.card text {
+  font-size: 13px;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.card.x2 {
-  height: 140px;
+.card:active {
+  opacity: 0.8;
+}
+@import "rank.wxss";
+
+.rank_title {
+  font-size: 17px;
+  text-align: center;
+  line-height: 1.3;
 }
 
-.card .unactive {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 20;
+.rank_subtitle {
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 14px;
 }
 
-.card image {
-  width: 60px;
-  height: 60px;
-}
-
-.card image.x70 {
-  width: 70px;
-  height: 70px;
-}
-
-.card image.x80 {
-  width: 80px;
-  height: 80px;
+.sline {
+  height: 3px;
+  line-height: 1;
+  width: 90px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 6px auto;
+  border-radius: 99px;
 }
