@@ -29,13 +29,13 @@
   <view class="page__bd" style="padding:9px 0;">
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="card" bindtap="startPk">
+        <view class="card" style="background-color:#4bbefd" bindtap="startPk">
           <view>随机匹配对手</view>
           <text>即将开放</text>
         </view>
       </view>
       <view class="weui-flex__item">
-        <view class="card" style="background-color:#33B8CB;" bindtap="checkReady">
+        <view class="card" style="background-color:#ed7baf;" bindtap="checkReady">
           <view>邀好友PK</view>
           <text>{{subject}}</text>
           <button open-type="share" class="btn-mask" wx:if="{{hasError == null}}"></button>
@@ -44,16 +44,20 @@
     </view>
   </view>
 
+  <view style="text-align:center;">
+    <navigator url="/pages/index/h5?url=m%2ffaq.htm%3fk%3dpk-gift" style="color:#fb0;display:inline-block;font-size:14px">[ 软考PK赛奖励规则 ]</navigator>
+  </view>
+
   <view class="page__bd" wx:if="{{rankList}}" style="margin-top:32px">
     <view class="rank_title">本周排行榜</view>
     <view class="sline"></view>
-    <view class="rank_subtitle">我的排行第 {{rank_my || '-'}} 位</view>
+    <view class="rank_subtitle">我的本周得分 {{week_rank[1] || 0}} 排行 {{week_rank[0] || 9999}}</view>
     <view class="rank_item" wx:for="{{rankList}}" wx:key="{{rankList*}}">
       <view class="pull-left icon">
         <image wx:if="{{item[3] == 1}}" src="/images/pk/live_reward_1.png"></image>
-        <image wx:if="{{item[3] == 2}}" src="/images/pk/live_reward_2.png"></image>
-        <image wx:if="{{item[3] == 3}}" src="/images/pk/live_reward_3.png"></image>
-        <view wx:if="{{item[3] > 3}}">{{item[3]}}</view>
+        <image wx:elif="{{item[3] == 2}}" src="/images/pk/live_reward_2.png"></image>
+        <image wx:elif="{{item[3] == 3}}" src="/images/pk/live_reward_3.png"></image>
+        <view wx:else>{{item[3]}}</view>
       </view>
       <view class="pull-left headimg">
         <image src="{{item[0]}}"></image>

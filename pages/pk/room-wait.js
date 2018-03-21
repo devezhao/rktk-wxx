@@ -93,11 +93,14 @@ Page({
   },
 
   handleMessage: function (data) {
+    let that = this;
     switch (data.action) {
       case 1010:  // BAR 进入
         data.showConfirm = true;
         data.stateText = '请确认开始对战';
-        this.setData(data);
+        this.__barEnterActionTimer = setTimeout(function () {
+          that.setData(data);
+        }, 1500);
         break;
       case 1011:  // FOO 开始
         wss.close('PKNEXT');
@@ -106,6 +109,10 @@ Page({
         });
         break;
       case 1012:  // BAR 放弃
+        if (this.__barEnterActionTimer) {
+          clearTimeout(this.__barEnterActionTimer);
+          this.__barEnterActionTimer = null;
+        }
         this.setData({
           showConfirm: false,
           barHeadimg: null,

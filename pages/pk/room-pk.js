@@ -45,7 +45,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          pageHeight: res.windowHeight - 9,
+          pageHeight: res.windowHeight - 0,
           questionHeight: res.windowHeight - 510
         });
         that.sysInfo = res;
@@ -59,8 +59,9 @@ Page({
     this.__initAudio('win.mp3', false);
     this.__initAudio('lost.wav', false);
 
-    // this.setData({ fooScope: 240, barScope: 140 });
-    // this.__complete();
+    // test result
+    //this.setData({ fooScope: 20, barScope: 140 });
+    //this.__complete();
   },
 
   renderQuestion: function () {

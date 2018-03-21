@@ -19,8 +19,7 @@ Page({
         headimgUrl: u.headimgUrl,
         nick: u.nick
       });
-      that.__loadMeta();
-
+      
       if (e.pkroom) {
         zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
           let _data = res.data.data;
@@ -76,6 +75,9 @@ Page({
           });
         }
       }
+
+      that.__loadMeta();
+      if (s == 'onPullDownRefresh') wx.stopPullDownRefresh();
     });
   },
 
@@ -89,6 +91,10 @@ Page({
         rankList: res.data
       })
     });
+  },
+
+  onPullDownRefresh: function () {
+    this.onShow('onPullDownRefresh');
   },
 
   onShareAppMessage: function (e) {
