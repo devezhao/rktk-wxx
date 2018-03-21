@@ -9,6 +9,10 @@ Page({
   onShowTimes: 0,
 
   onLoad: function (e) {
+    if (!!app.GLOBAL_DATA.RED_DOT[2]) {
+      app.hideReddot(2, app.GLOBAL_DATA.RED_DOT[2]);
+    }
+
     if (!!e.pkroom) {
       this.onShowTimes = 1;
     }
@@ -89,7 +93,7 @@ Page({
     zutils.get(app, 'api/pkrank/rank-list?top=3', function (res) {
       that.setData({
         rankList: res.data
-      })
+      });
     });
   },
 

@@ -11,6 +11,10 @@ Page({
   showTimes: 0,
 
   onLoad: function (e) {
+    if (!!app.GLOBAL_DATA.RED_DOT[3]) {
+      app.hideReddot(2, app.GLOBAL_DATA.RED_DOT[3]);
+    }
+
     let that = this;
     app.getUserInfo(function (u) {
       that.setData({
@@ -20,11 +24,6 @@ Page({
       });
       that.__onLoad();
     });
-
-    if (!!app.GLOBAL_DATA.RED_DOT[3]) {
-      let k = app.GLOBAL_DATA.RED_DOT[3];
-      app.hideReddot(3, k);
-    }
   },
 
   onPullDownRefresh: function () {
