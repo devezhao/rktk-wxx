@@ -29,7 +29,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          viewHeight: res.windowHeight - 40 - (!!that.answerKey ? 44 : 0)
+          viewHeight: res.windowHeight - 40,
         });
       }
     });

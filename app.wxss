@@ -391,6 +391,7 @@ button.btn-mask {
   color: #333;
   display: inline-block;
   font-style: normal;
+  white-space: nowrap;
 }
 
 .qa-space .qa {
@@ -435,6 +436,31 @@ button.btn-mask {
   font-weight: normal;
   font-style: italic;
 }
+
+.table-warp {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.table {
+  min-width: 100%;
+  border: 1px solid #d9d9d9;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 3px 0;
+  margin-bottom: 5px;
+}
+
+.td {
+  border: 1px solid #d9d9d9;
+  vertical-align: top;
+  padding: 3px 6px;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
 
 /* 题目样式 END */
 

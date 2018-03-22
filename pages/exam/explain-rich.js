@@ -22,7 +22,16 @@ Page({
     }
 
     this.qosid = e.id;
-    var that = this;
+
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          viewHeight: res.windowHeight - 40
+        });
+      }
+    });
+
     app.getUserInfo(function (u) {
       that.setData({
         user: u.uid
@@ -58,14 +67,6 @@ Page({
           });
           that.__loadQuestion();
         });
-      }
-    });
-
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          viewHeight: res.windowHeight - 40 - (!!that.answerKey ? 44 : 0)
-        })
       }
     });
 

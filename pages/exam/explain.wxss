@@ -4,6 +4,10 @@ page, .page {
   background-color: #fff;
 }
 
+.page.has-btm .explain-content {
+  margin-bottom: 44px;
+}
+
 .question {
   margin: 14px 0;
   line-height: 1.7;
@@ -87,7 +91,7 @@ page, .page {
   font-size: 15px;
   padding: 14px;
   padding-top: 0;
-  padding-bottom: 59px;
+  padding-bottom: 9px;
 }
 
 .explain-source {
@@ -261,23 +265,6 @@ view.go-hover {
   line-height: 2;
 }
 
-.table {
-  width: 100%;
-  max-width: 100%;
-  border: 1rpx solid #d9d9d9;
-  border-spacing: 0;
-  border-collapse: collapse;
-  margin: 3px 0;
-  margin-bottom: 5px;
-}
-
-.td {
-  border: 1rpx solid #d9d9d9;
-  vertical-align: top;
-  padding: 5px 9px;
-  text-align: left;
-}
-
 .explain-limit {
   position: relative;
   max-height: 128px;
@@ -294,10 +281,4 @@ view.go-hover {
   left: 0;
   height: 75px;
   z-index: 0;
-}
-
-/* 有答案的情况 */
-
-.page.has-answer .explain-content {
-  padding-bottom: 6px;
 }

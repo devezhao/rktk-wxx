@@ -1,4 +1,4 @@
-<view class="page" style="margin-bottom:{{yourAnswer == null ? '0px' : '44px'}}">
+<view class="page {{hideNos == false ? 'has-btm' : ''}}">
   <view class="page__hd weui-flex top-position">
     <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
       <image src="../../images/icon-marker.png"></image> 考题
