@@ -11,6 +11,7 @@ Page({
   onLoad: function (e) {
     if (!app.GLOBAL_DATA.USER_INFO) return;
     app.reportKpi('VIP.VIEW');
+    if (e.s == 'coupon') app.reportKpi('COUPON.CLICK');
 
     let that = this;
     zutils.get(app, 'api/user/vip-info', function (res) {

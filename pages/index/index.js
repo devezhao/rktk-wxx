@@ -269,12 +269,14 @@ Page({
     wx.getStorage({
       key: 'LastCouponShow',
       complete: function (res) {
+        // 今日未显示
         if (!(res.data && res.data == today)) {
           zutils.get(app, 'api/user/check-coupon', function (res) {
             if (res.data.error_code == 0 && res.data.data) {
               let _data = res.data.data;
               _data.hideCoupon = false;
               that.setData(_data);
+              app.reportKpi('COUPON.SHOW');
               wx.setStorage({
                 key: 'LastCouponShow',
                 data: today
@@ -288,23 +290,25 @@ Page({
 
   hideCoupon: function () {
     let that = this;
-    wx.getStorage({
-      key: 'LastCouponShowTips',
-      complete: function (res) {
-        that.setData({ hideCoupon: true });
-        if (!res.data) {
-          wx.setStorage({
-            key: 'LastCouponShowTips',
-            data: '1',
-          });
-          wx.showModal({
-            title: '提示',
-            content: '你可在VIP会员开通页选择使用',
-            showCancel: false,
-            confirmText: '知道了'
-          });
-        }
-      }
-    });
+    that.setData({ hideCoupon: true });
+    app.reportKpi('COUPON.CLOSE');
+    // wx.getStorage({
+    //   key: 'LastCouponShowTips',
+    //   complete: function (res) {
+    //     that.setData({ hideCoupon: true });
+    //     if (!res.data) {
+    //       wx.setStorage({
+    //         key: 'LastCouponShowTips',
+    //         data: '1',
+    //       });
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '你可在VIP会员开通页选择使用',
+    //         showCancel: false,
+    //         confirmText: '知道了'
+    //       });
+    //     }
+    //   }
+    // });
   }
 });
