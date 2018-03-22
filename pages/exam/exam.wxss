@@ -152,3 +152,11 @@ page, .page {
   width: 100%;
   border-radius: 0;
 }
+
+.zbtn.done {
+  background-color: #4b8ef9;
+}
+
+.zbtn.done text {
+  color: #fff;
+}

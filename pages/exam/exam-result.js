@@ -4,7 +4,6 @@ const zutils = require('../../utils/zutils.js');
 import { zsharebox } from '../comps/z-sharebox.js';
 Page({
   data: {
-    hideFoobar: true,
     shareboxData: zsharebox.data,
     pkimgUrl: null
   },
@@ -15,15 +14,11 @@ Page({
     this.examId = e.id;
     let that = this;
     app.getUserInfo(function () {
-      that.loadResult(e.redirect == 2);
+      that.loadResult(e.s == 'exam');
     });
-
-    // PK
-    if (e.redirect == 1 || e.redirect == 2) {
-      this.setData({
-        hideFoobar: false
-      })
-    }
+    this.setData({
+      showPk: e.s == 'exam'
+    });
   },
 
   loadResult: function (checkKeep) {
@@ -80,8 +75,11 @@ Page({
   },
 
   gotoPk: function (e) {
-
     app.gotoPage('/pages/pk/start');
+  },
+
+  gotoSubject: function () {
+    app.gotoPage('/pages/question/subject?id=' + this.subjectId);
   },
 
   shareScope: function (e) {

@@ -137,13 +137,6 @@ page, .page {
   height: 28px;
 }
 
-.zbtn.htxt {
-  color: #fff;
-  background-color: #4b8ef9;
-  line-height: 42px;
-  font-size: 15px;
-}
-
 .zbtn text {
   display: inline-block;
   font-size: 15px;
@@ -460,7 +453,6 @@ button.btn-mask {
   white-space: nowrap;
   font-size: 15px;
 }
-
 
 /* 题目样式 END */
 

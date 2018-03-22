@@ -64,13 +64,12 @@
   </view>
 
   <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
-    你有
-    <text style="font-weight:bold">{{unexams}}</text>份答题尚未交卷，点击查看并继续答题
+    你有<text style="font-weight:bold">{{unexams}}</text>份答题尚未交卷，点击查看并继续答题
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 
   <view class="weui-panel weui-panel_access" hidden="{{followSubjects == null}}">
-    <view class="weui-panel__hd">最近关注</view>
+    <view class="weui-panel__hd">最近使用题库</view>
     <view class="weui-panel__bd">
       <scroll-view scroll-x="true" class="weui-media-box rktk-record follow-subjects">
         <navigator url="../question/subject?id={{item[0]}}" wx:for="{{followSubjects}}" wx:key="*this">
@@ -89,7 +88,7 @@
   <view class="weui-panel weui-panel_access recent_exams" hidden="{{!recent_exams || recent_exams.length == 0}}">
     <view class="weui-panel__hd">最近答题</view>
     <view class="weui-panel__bd">
-      <navigator url="../exam/exam-result?id={{item[0]}}&redirect=1" class="weui-media-box rktk-record" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
+      <navigator url="../exam/exam-result?id={{item[0]}}&s=home" class="weui-media-box rktk-record" hover-class="weui-cell_active" wx:for="{{recent_exams}}" wx:key="*this">
         <view class="weui-media-box__title">{{item[2]}}{{item[1]}}</view>
         <view class="weui-media-box__info">
           <view class="weui-media-box__info__meta">
@@ -176,6 +175,7 @@
 <view hidden="{{hideCoupon == true}}">
   <view class="mask"></view>
   <view class="coupon-warp">
+    <view class="close" bindtap="hideCoupon">×</view>
     <view class="title">优惠券即将过期</view>
     <view class="coupon">
       <view class="pull-left money">¥{{vip_money || 50}}</view>

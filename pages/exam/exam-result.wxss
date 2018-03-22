@@ -1,5 +1,9 @@
 @import "../comps/z-sharebox.wxss";
 
+.page {
+  padding-bottom: 55px;
+}
+
 .circle, .circle-scope {
   width: 100px;
   height: 100px;

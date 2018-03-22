@@ -4,7 +4,7 @@
       <image src="{{headimgUrl}}" alt="头像"></image>
     </view>
     <view class="nick">
-      {{nick}}
+      {{nick || '-'}}
     </view>
   </view>
   <view class="page__bd user-scope">
@@ -20,7 +20,7 @@
         <view class="line"></view>
       </view>
       <view class="weui-flex__item">
-        <view>{{win_rate || '0'}}<text>%</text></view>
+        <view>{{win_rate || 0}}<text>%</text></view>
         <text>胜率</text>
       </view>
     </view>

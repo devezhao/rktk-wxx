@@ -56,7 +56,7 @@
           </button>
         </form>
         <form bindsubmit="finish" report-submit="true" hidden="{{!isLast}}">
-          <button class="zbtn {{isLast ? 'htxt' : ''}}" formType="submit">
+          <button class="zbtn done" formType="submit">
             <text>交卷</text>
           </button>
         </form>
