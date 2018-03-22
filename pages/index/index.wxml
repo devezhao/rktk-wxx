@@ -73,7 +73,7 @@
     <view class="weui-panel__hd">最近关注</view>
     <view class="weui-panel__bd">
       <scroll-view scroll-x="true" class="weui-media-box rktk-record follow-subjects">
-        <navigator url="../question/subject?id={{item[0]}}" wx:for="{{followSubjects}}" wx:key="{{*this}}">
+        <navigator url="../question/subject?id={{item[0]}}" wx:for="{{followSubjects}}" wx:key="*this">
           <view class="book {{item[12]}}">
             <block wx:if="{{item[11] != null}}">
               <text>{{item[11]}}</text>

@@ -78,11 +78,7 @@ Page({
           url: '../index/tips?msg=手机账号绑定成功'
         });
       } else {
-        wx.showModal({
-          title: '提示',
-          content: res.data.error_msg,
-          showCancel: false
-        })
+        app.alert(res.data.error_msg);
       }
     });
   }

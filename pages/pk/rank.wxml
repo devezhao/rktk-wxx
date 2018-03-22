@@ -1,6 +1,6 @@
 <view class="page">
   <view class="page__bd" wx:if="{{rankList}}">
-    <view class="rank_item" wx:for="{{rankList}}" wx:key="{{rankList*}}">
+    <view class="rank_item" wx:for="{{rankList}}" wx:key="*this">
       <view class="pull-left icon">
         <image wx:if="{{item[3] == 1}}" src="/images/pk/live_reward_1.png"></image>
         <image wx:if="{{item[3] == 2}}" src="/images/pk/live_reward_2.png"></image>

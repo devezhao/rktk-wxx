@@ -171,11 +171,7 @@ Page({
         }
       });
     } else {
-      wx.showModal({
-        title: '提示',
-        content: error_msg,
-        showCancel: false
-      });
+      app.alert(error_msg);
     }
   },
 

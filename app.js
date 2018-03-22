@@ -273,7 +273,7 @@ App({
   alert: function(msg) {
     wx.showModal({
       title: '提示',
-      content: msg,
+      content: msg || '系统繁忙请重试',
       showCancel: false
     });
   }

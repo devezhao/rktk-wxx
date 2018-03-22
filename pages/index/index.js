@@ -222,11 +222,7 @@ Page({
             url: '../question/subject-choice?back=1'
           });
         } else {
-          wx.showModal({
-            title: '提示',
-            content: error_msg,
-            showCancel: false
-          });
+          app.alert(error_msg);
         }
       }
     });
@@ -242,11 +238,7 @@ Page({
           icon: 'success'
         });
       } else {
-        wx.showModal({
-          title: '提示',
-          content: _data.error_msg || '系统错误',
-          showCancel: false
-        })
+        app.alert(_data.error_msg);
       }
     });
   },

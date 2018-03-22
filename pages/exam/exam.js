@@ -287,12 +287,7 @@ Page({
           url: 'exam-result?redirect=2&id=' + that.examId
         });
       } else {
-        wx.hideLoading()
-        wx.showModal({
-          title: '提示',
-          showCancel: false,
-          content: res.data.error_msg || '系统错误'
-        })
+        wx.hideLoading();
       }
     });
   },

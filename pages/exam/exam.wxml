@@ -12,7 +12,7 @@
       <rich-text nodes="{{question}}"></rich-text>
     </view>
     <view class="answer-list">
-      <block wx:for="{{answerList}}" wx:key="key_answerList">
+      <block wx:for="{{answerList}}" wx:key="*this">
         <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
         </view>
         <view class="item {{item.clazz}}" bindtap="answer" data-key="{{item.key}}">
@@ -66,7 +66,7 @@
 
   <view class="dt-card" animation="{{dtcardAnimation}}">
     <view class="seqs" style="height:{{seqsHeight}}px">
-      <view wx:for="{{questionTakes}}" wx:key="key_questionTakes" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
+      <view wx:for="{{questionTakes}}" wx:key="*this" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
         {{item.seq}}
       </view>
     </view>

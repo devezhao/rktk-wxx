@@ -3,19 +3,6 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   onLoad: function (e) {
-    if (!wx.canIUse('web-view')) {
-      wx.showModal({
-        title: '提示',
-        content: '你的微信版本不支持此功能，请升级最新版微信',
-        showCancel: false,
-        success: function (res) {
-          wx.navigateBack({
-          });
-        }
-      });
-      return;
-    }
-
     var _url = e.url;
     _url = decodeURIComponent(_url);
     if (e.bgcolor) {

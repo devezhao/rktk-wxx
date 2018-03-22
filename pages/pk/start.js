@@ -28,11 +28,7 @@ Page({
         zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
           let _data = res.data.data;
           if (!_data || _data.state != 1) {
-            wx.showModal({
-              title: '提示',
-              content: '房间已关闭',
-              showCancel: false
-            });
+            app.alert('房间已关闭');
           } else {
             if (_data.isFoo) {
               wx.navigateTo({

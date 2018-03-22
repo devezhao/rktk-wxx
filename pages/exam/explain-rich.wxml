@@ -20,7 +20,7 @@
 
     <view class="page__hd" id="answers" style="padding-top:1px">
       <view class="answer-list">
-        <view class="rich-item" wx:for="{{answer_list}}" wx:key="{{*this}}">
+        <view class="rich-item" wx:for="{{answer_list}}" wx:key="*this">
           <view class="q">
             <view class="k">问题{{item.no}} ({{item.s}}分)</view>
             <rich-text nodes="{{item.q}}"></rich-text>

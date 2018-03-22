@@ -113,11 +113,7 @@ Page({
     zutils.post(app, _url, function (res) {
       var _data = res.data;
       if (_data.error_code > 0) {
-        wx.showModal({
-          title: '提示',
-          content: _data.error_msg || '系统错误',
-          showCancel: false
-        })
+        app.alert(_data.error_msg);
         return;
       }
 
