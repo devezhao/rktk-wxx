@@ -288,6 +288,7 @@ Page({
         });
       } else {
         wx.hideLoading();
+        app.alert(res.data.error_msg);
       }
     });
   },
