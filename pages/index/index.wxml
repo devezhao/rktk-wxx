@@ -176,7 +176,7 @@
   <view class="mask"></view>
   <view class="coupon-warp">
     <view class="close" bindtap="hideCoupon">×</view>
-    <view class="title">优惠券即将过期</view>
+    <view class="title">{{coupon_title || '优惠券即将过期'}}</view>
     <view class="coupon">
       <view class="pull-left money">¥{{vip_money || 50}}</view>
       <view class="pull-left ctext">
@@ -199,7 +199,7 @@
     </view>
     <view class="btns">
       <button type="default" bindtap="gotoPage" data-url="/pages/my/vip-buy?s=coupon">立即使用</button>
-      <button type="default" class="text" bindtap="hideCoupon">暂不使用</button>
+      <button type="default" class="text" bindtap="hideCoupon">放弃使用</button>
     </view>
   </view>
 </view>
