@@ -2,7 +2,6 @@ const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
 import { zsharebox } from '../comps/z-sharebox.js';
-zsharebox.data.typeName = '题库';
 
 Page({
   data: {

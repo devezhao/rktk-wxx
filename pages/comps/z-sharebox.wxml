@@ -1,7 +1,7 @@
 <template name="z-sharebox">
-  <view id="sharebox" hidden="{{shareboxHide}}">
-    <view class="mask" bindtap="shareboxClose"></view>
-    <view class="sharebox">
+  <view id="sharebox">
+    <view class="mask" bindtap="shareboxClose" hidden="{{shareboxHide}}"></view>
+    <view class="sharebox" animation="{{shareboxAnimation}}">
       <view class="title">分享得学豆</view>
       <view class="weui-flex">
         <view class="weui-flex__item">
@@ -36,7 +36,7 @@
     <view class="mask" bindtap="dialogClose"></view>
     <view class="dialog">
       <view class="text">
-        <text class="token-title">{{typeName}}口令已复制，请发送给QQ好友</text>
+        <text class="token-title">口令已复制，请发送给QQ好友</text>
         <view class="token-text">
           {{typeTokenText}}
         </view>

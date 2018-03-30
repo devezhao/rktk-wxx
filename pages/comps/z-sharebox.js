@@ -5,12 +5,21 @@ var z_sharebox = {
   data: {
     shareboxHide: true,
     dialogHide: true,
-    typeName: '考题',
     typeTokenText: 'Token'
   },
 
   shareboxOpen: function (page) {
+    if (!this.shareboxAnimation) {
+      this.shareboxAnimation = wx.createAnimation({
+        duration: 200,
+        timingFunction: 'ease',
+        delay: 50
+      });
+    }
+
     this.data.shareboxHide = false;
+    this.shareboxAnimation.translateY(0).step();
+    this.data.shareboxAnimation = this.shareboxAnimation.export();
     page.setData({
       shareboxData: this.data
     });
@@ -18,6 +27,8 @@ var z_sharebox = {
 
   shareboxClose: function (page) {
     this.data.shareboxHide = true;
+    this.shareboxAnimation.translateY('100%').step({ duration: 100 });
+    this.data.shareboxAnimation = this.shareboxAnimation.export();
     page.setData({
       shareboxData: this.data
     })
@@ -52,7 +63,10 @@ var z_sharebox = {
         shareboxData: that.data
       });
       wx.setClipboardData({
-        data: text
+        data: text,
+        success: function () {
+          that.shareboxClose(page);
+        }
       });
       app.GLOBAL_DATA.KT_TOKENS.push(text);
     });
