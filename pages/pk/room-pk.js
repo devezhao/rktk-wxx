@@ -44,11 +44,14 @@ Page({
 
     wx.getSystemInfo({
       success: function (res) {
+        let miniScreen = res.windowHeight < 550;
         that.setData({
           pageHeight: res.windowHeight - 0,
-          questionHeight: res.windowHeight - 510
+          questionHeight: res.windowHeight - (miniScreen ? 420 : 480),
+          miniScreen: miniScreen ? 'mini-screen' : ''
         });
         that.sysInfo = res;
+        console.log(res.windowHeight);
       },
     });
 
@@ -60,8 +63,8 @@ Page({
     this.__initAudio('lost.wav', false);
 
     // test result
-    //this.setData({ fooScope: 20, barScope: 140 });
-    //this.__complete();
+    // this.setData({ fooScope: 220, barScope: 140 });
+    // this.__complete();
   },
 
   renderQuestion: function () {
@@ -71,7 +74,8 @@ Page({
       question: '<div style="font-size:20px">' + qno + '</div>',
       questionClazz: 'animated fadeInDown',
       showClazz: '',
-      answer: null
+      answer: null,
+      sourceSubject: null
     });
 
     let that = this;

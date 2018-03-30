@@ -41,6 +41,6 @@
 
 <view class="fix-foobar btns">
   <form bindsubmit="inviteList" report-submit="true">
-    <button class="weui-btn" type="default" formType="submit">查看已邀请好友</button>
+    <button class="weui-btn" type="default" formType="submit">查看奖励</button>
   </form>
 </view>

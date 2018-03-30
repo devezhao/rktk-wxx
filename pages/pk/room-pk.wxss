@@ -48,17 +48,15 @@
 }
 
 .question {
-  padding: 30px;
-  padding-top: 6px;
+  padding: 6px 30px;
   font-size: 17px;
   text-align: center;
-  overflow: hidden;
   height: 90px;
+  overflow: hidden;
 }
 
 .answers {
   position: relative;
-  min-height: 280px;
 }
 
 .answers .scope {
@@ -109,18 +107,16 @@
 
 .answers .items {
   margin: 0 78px;
-  padding-top: 28px;
+  padding-top: 32px;
 }
 
 .answers .items view.a {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 99px;
-  font-size: 16px;
-  color: #222;
   text-align: center;
-  padding-left: 12px;
   margin-top: 12px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  color: #222;
 }
 
 .answers .items view.a.select {
@@ -144,8 +140,9 @@
 }
 
 .answers .items view.a view {
-  padding: 12px;
-  padding-left: 0;
+  padding: 12px 0;
+  white-space: nowrap;
+  font-size: 16px;
 }
 
 .answers .items view.a view.bar-select {
@@ -159,7 +156,7 @@
 
 .q-source {
   text-align: center;
-  margin-top: 24px;
+  margin-top: 22px;
   color: rgba(255, 255, 255, 0.4);
   font-size: 12px;
 }
@@ -223,4 +220,34 @@
   position: absolute;
   margin-left: -20px;
   margin-top: 10.5px;
+}
+
+/* 小尺寸屏幕 */
+
+.page.mini-screen .answers {
+  min-height: 200px;
+}
+
+.page.mini-screen .answers .scope .progress {
+  height: 202px;
+}
+
+.page.mini-screen .answers .items view.a view {
+  padding: 7.5px 0;
+  font-size: 15px;
+}
+
+.page.mini-screen .answers .items view.a.select.N,
+.page.mini-screen .answers .items view.a.select.Y {
+  background-position-y: 8.3px;
+  background-size: 30px 20px;
+}
+
+.page.mini-screen .q-source {
+  margin-top: 18px;
+}
+
+.page.mini-screen .question {
+  font-size: 16px;
+  line-height: 1.4;
 }

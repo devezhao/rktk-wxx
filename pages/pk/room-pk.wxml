@@ -1,4 +1,4 @@
-<view class="page" style="height:{{pageHeight}}px">
+<view class="page {{miniScreen}}" style="height:{{pageHeight}}px">
   <view class="page__hd act-users">
     <view class="user foo animated slideInLeft">
       <view class="headimg">
