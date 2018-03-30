@@ -3,11 +3,17 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
+    hideCoupon: true,
     hideBanners: false,
-    hideCoupon: true
   },
 
   onLoad: function (e) {
+    let osi = app.GLOBAL_DATA.SYS_INFO;
+    if (osi && osi.screenWidth != 375) {
+      let swiperHeight = 'height:' + (osi.screenWidth / 2.5) + 'px';
+      this.setData({ swiperHeight: swiperHeight });
+    }
+
     let that = this;
     zutils.get(app, 'api/home/comdata', function (res) {
       let _data = res.data.data;
@@ -16,14 +22,9 @@ Page({
       });
 
       if (!_data.banners || _data.banners.length == 0) {
-        that.setData({
-          hideBanners: true
-        });
+        that.setData({ hideBanners: true });
       } else {
-        that.setData({
-          banners: _data.banners
-        });
-
+        that.setData({ banners: _data.banners });
         // 红点
         if (_data.reddot) {
           for (let k in _data.reddot) {
@@ -50,7 +51,7 @@ Page({
           that.__loadFollowSubject(fs);
         }
       }
-    })
+    });
   },
 
   onPullDownRefresh: function () {

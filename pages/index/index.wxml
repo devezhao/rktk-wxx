@@ -1,5 +1,5 @@
 <view class="page">
-  <swiper class="home-swiper" hidden="{{hideBanners}}" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff">
+  <swiper class="home-swiper" style="{{swiperHeight}}" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" hidden="{{hideBanners}}">
     <swiper-item wx:for="{{banners}}" wx:key="*this">
       <view data-url="{{item[1]}}" bindtap="gotoPage">
         <image src="{{item[0]}}" />
@@ -64,7 +64,8 @@
   </view>
 
   <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
-    你有<text style="font-weight:bold">{{unexams}}</text>份答题尚未交卷，点击查看并继续答题
+    你有
+    <text style="font-weight:bold">{{unexams}}</text>份答题尚未交卷，点击查看并继续答题
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 

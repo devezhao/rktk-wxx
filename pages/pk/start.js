@@ -23,7 +23,7 @@ Page({
         headimgUrl: u.headimgUrl,
         nick: u.nick
       });
-      
+
       if (e.pkroom) {
         zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
           let _data = res.data.data;
@@ -87,9 +87,7 @@ Page({
       that.setData(res.data);
     });
     zutils.get(app, 'api/pkrank/rank-list?top=3', function (res) {
-      that.setData({
-        rankList: res.data
-      });
+      that.setData({ rankList: res.data });
     });
   },
 

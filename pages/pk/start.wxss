@@ -74,8 +74,8 @@ page, .page {
 }
 
 .card view {
-  font-size: 18px;
-  margin-top: 13px;
+  font-size: 17px;
+  margin-top: 14px;
   line-height: 1;
 }
 
