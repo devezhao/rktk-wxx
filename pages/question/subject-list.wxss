@@ -89,7 +89,7 @@
   color: #555;
   font-size: 14px;
   line-height: 1;
-  padding: 6px 9px;
+  padding: 6px 0;
   text-align: center;
   margin-top: 9px;
 }

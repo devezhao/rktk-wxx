@@ -1,7 +1,7 @@
 <view class="page" bindtap="doHideYears">
   <view class="filter-hold" hidden="{{filterHold == false}}"></view>
   <view class="filter {{filterHold == false ? '' : 'fixed'}}">
-    <view class="weui-flex top-column">
+    <view class="weui-flex">
       <view class="weui-flex__item">
         <view bindtap="doFilter" class="s {{filter == 0 ? 'active' : ''}}" data-s="0">全部</view>
       </view>

@@ -3,21 +3,15 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   onLoad: function (e) {
-    var _url = e.url;
-    _url = decodeURIComponent(_url);
     if (e.bgcolor) {
       wx.setNavigationBarColor({
         frontColor: (e.bgcolor == 'fff' || e.bgcolor == 'ffffff') ? '#000000' : '#ffffff',
         backgroundColor: '#' + e.bgcolor
       })
     }
-    if (_url.substr(0, 4) != 'http') {
-      _url = zutils.baseUrl + _url;
-    }
-    console.log('H5 - ' + _url);
-    this.setData({
-      url: _url
-    });
+
+    let url = decodeURIComponent(e.url);
+    if (url.substr(0, 4) != 'http') url = zutils.baseUrl + url;
   },
 
   onShareAppMessage: function () {
