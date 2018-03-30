@@ -5,6 +5,7 @@
   right: 0;
   background-color: #eee;
   z-index: 99;
+  transform: translate(0, 100%);
 }
 
 .sharebox .title {
@@ -95,7 +96,7 @@
 }
 
 .token-title {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .token-text {
