@@ -80,7 +80,6 @@ Page({
 
   // 解析分享来源
   __checkTwxx: function () {
-    var q = app.__enter_source.query.q || app.__enter_source.query.scene;
     if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
       zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
         if (res.data.error_code == 0) {
@@ -112,8 +111,6 @@ Page({
       success: function (res) {
         if (res.data && res.data.substr(0, 6) == '#考题解析#') {
           // 扫码进入，优先级高于粘贴板
-          if (that.__enter_source.scene == 1011 || that.__enter_source.scene == 1012 || that.__enter_source.scene == 1013) {
-            console.log('扫码进入' + that.__enter_source.scene + ': ' + res.data);
             rktk_token = true;
             return;
           }

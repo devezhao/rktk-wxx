@@ -20,10 +20,10 @@ App({
     // 红点
     RED_DOT: {},
   },
-
+  
   onLaunch: function (e) {
-    console.log("小程序初始化: " + JSON.stringify(e));
-    this.__enter_source = e;
+    this.enterSource = e;
+    console.log("小程序初始化: " + JSON.stringify(this.enterSource));
 
     let that = this;
     wx.getStorage({
@@ -130,21 +130,12 @@ App({
     console.log('存储授权 - ' + JSON.stringify(res))
     let that = this;
     let _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
-    _data.inviter = that.__enter_source.u || that.__enter_source._su;
-    _data.inviter2 = that.__enter_source.query.q;
+    _data.inviter = that.enterSource.u || that.enterSource._su;
+    _data.inviter2 = that.enterSource.query.q;
     zutils.post(that, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
       typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO);
-
-      // if (that.__enter_source.shareTicket) {
-      //   wx.getShareInfo({
-      //     shareTicket: that.__enter_source.shareTicket,
-      //     success: function (res) {
-      //       console.log('shareTicket - ' + JSON.stringify(res));
-      //     }
-      //   });
-      // }
     });
   },
 
