@@ -11,7 +11,7 @@ var z_sharebox = {
   shareboxOpen: function (page) {
     if (!this.shareboxAnimation) {
       this.shareboxAnimation = wx.createAnimation({
-        duration: 200,
+        duration: 160,
         timingFunction: 'ease',
         delay: 50
       });
@@ -49,7 +49,7 @@ var z_sharebox = {
   },
 
   share2Frined: function (page) {
-    this.shareboxClose(page);
+    // this.shareboxClose(page);
   },
 
   share2QQ: function (page) {

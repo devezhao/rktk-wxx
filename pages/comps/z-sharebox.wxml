@@ -27,7 +27,7 @@
         </view>
       </view>
       <view>
-        <button class="weui-btn" type="default" bindtap="shareboxClose">取消</button>
+        <button class="weui-btn" type="default" bindtap="shareboxClose">关闭</button>
       </view>
     </view>
   </view>
