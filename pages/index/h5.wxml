@@ -1,4 +1,4 @@
 <view class="page">
-  <web-view src="{{url}}">
+  <web-view src="{{url}}" bindmessage="h5Message">
   </web-view>
 </view>
