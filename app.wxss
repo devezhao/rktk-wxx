@@ -102,7 +102,7 @@ page, .page {
 }
 
 .zbtn {
-  border: 1rpx solid #4b8ef9;
+  border: 1px solid #4b8ef9;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -148,6 +148,18 @@ page, .page {
   font-size: 13px;
   line-height: 14px;
   margin-top: 9px;
+}
+
+.zbtn.active {
+  background-color: #4b8ef9;
+}
+
+.zbtn.active, .zbtn.active text {
+  color: #fff;
+}
+
+.zbtn.active:active {
+  opacity: 0.8;
 }
 
 button, button::after, .weui-btn {

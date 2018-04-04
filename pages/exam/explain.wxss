@@ -5,7 +5,7 @@ page, .page {
 }
 
 .page.has-btm .explain-content {
-  margin-bottom: 44px;
+  padding-bottom: 60px;
 }
 
 .question {
@@ -32,24 +32,33 @@ page, .page {
 .answer-list .item .text {
   padding: 9px 9px;
   margin-left: 32px;
-  border-left: 1rpx solid #ddd;
   background-color: #fff;
+  border-left: 1rpx solid #ddd;
+  word-wrap: break-word;
 }
 
-.answer-list .item.selected {
+.answer-list .item.selected, .answer-list .item.right {
   background-color: #d9534f;
-}
-
-.answer-list .item.selected .key {
-  color: #fff;
+  border-width: 0;
 }
 
 .answer-list .item.right {
   background-color: #4cae4c;
 }
 
-.answer-list .item.right .key {
+.answer-list .item.selected .key, .answer-list .item.right .key {
   color: #fff;
+  width: 33px;
+}
+
+.answer-list .item.selected .text, .answer-list .item.right .text {
+  border: 1rpx solid #ddd;
+  border-left: 1rpx solid #d9534f;
+  margin-left: 33px;
+}
+
+.answer-list .item.right .text {
+  border-left-color: #4cae4c;
 }
 
 .answer-list .split-line {
@@ -281,4 +290,10 @@ view.go-hover {
   left: 0;
   height: 75px;
   z-index: 0;
+}
+
+.explain-content.interactive {
+  color: #aaa;
+  font-size: 13px;
+  font-style: italic;
 }

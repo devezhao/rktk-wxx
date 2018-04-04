@@ -1,4 +1,4 @@
-<view class="page {{yourAnswer != null || hideNos == false ? 'has-btm' : ''}}">
+<view class="page {{pageClazz}}">
   <view class="page__hd weui-flex top-position">
     <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
       <image src="../../images/icon-marker.png"></image> 考题
@@ -23,7 +23,7 @@
         <block wx:for="{{answer_list}}" wx:key="*this">
           <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
           </view>
-          <view class="item {{item[10]}}">
+          <view class="item {{item[10]}}" bindtap="interactiveAnswer" data-key="{{item[0]}}">
             <view class="key">{{item[11]}}</view>
             <view class="text">
               <rich-text nodes="{{item[1]}}"></rich-text>
@@ -40,7 +40,7 @@
       <view class="explain-title">
         考题解析
       </view>
-      <view class="explain-content">
+      <view class="explain-content" wx:if="{{showExplain == true}}">
         <block wx:if="{{explain_freedom == 'VIP'}}">
           <view class="vip-upgrade">
             <view class="tt">
@@ -62,11 +62,17 @@
           <rich-text nodes="{{explain}}"></rich-text>
         </block>
       </view>
+      <view class="explain-content interactive" wx:else>
+        <view>已启用交互模式，解析将在选择答案后显示。</view>
+      </view>
     </view>
   </scroll-view>
 </view>
 
 <view class="float-btns">
+  <view class="zbtn {{interactiveMode == true ? 'active' : ''}}" bindtap="toggleInteractive" hidden="{{hideInteractiveMode}}">
+    <text class="L2">交互\n模式</text>
+  </view>
   <view class="zbtn" bindtap="gotoPage" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
     <text class="L2">考题\n纠错</text>
   </view>

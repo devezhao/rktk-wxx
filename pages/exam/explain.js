@@ -8,7 +8,9 @@ Page({
     shareboxData: zsharebox.data,
     viewId: 'question',
     currentQuestionId: null,
-    hideNos: true
+    hideNos: true,
+    hideInteractiveMode: true,
+    interactiveMode: false
   },
   questionId: null,  // for share
   qcached: {},
@@ -33,15 +35,28 @@ Page({
       }
     });
 
+    // 从题库解析
+    let viewSubject = this.qosid.substr(0, 3) == '110';
+    if (viewSubject == true) {
+      wx.getStorage({
+        key: 'Explain_InteractiveMode',
+        success: function (res) {
+          that.setData({ interactiveMode: res.data == true });
+        }
+      });
+      this.setData({ hideInteractiveMode: false });
+    }
+    if (!!this.answerKey || viewSubject == true) {
+      this.setData({ pageClazz: 'has-btm' });
+    }
+
     app.getUserInfo(function (u) {
       that.setData({
         user: u.uid
       });
 
-      if (that.qosid.substr(0, 3) == '112') {
-        that.setData({
-          currentQuestionId: that.qosid
-        });
+      if (viewSubject == false) {
+        that.setData({ currentQuestionId: that.qosid });
         that.__loadQuestion(e);
       } else {
         zutils.get(app, 'api/subject/subject-qids?subject=' + that.qosid, function (res) {
@@ -58,6 +73,7 @@ Page({
               idx = 1;
             }
           } catch (e) {
+            console.error(e);
           }
 
           that.setData({
@@ -79,6 +95,7 @@ Page({
   },
 
   __loadQuestion: function (idx) {
+    this.__selectAnswer = null;
     this.questionId = this.data.currentQuestionId;
     if (idx && typeof idx == 'number') {
       wx.setStorage({
@@ -87,35 +104,40 @@ Page({
       });
     }
 
-    if (this.qcached[this.data.currentQuestionId]) {
-      this.setData(this.qcached[this.data.currentQuestionId]);
-      this.__checkExplainShow();
+    let _data = this.qcached[this.data.currentQuestionId];
+    if (_data) {
+      this.__loadQuestionAfter(_data);
       return;
     }
 
     let that = this;
     zutils.get(app, 'api/question/details?id=' + this.data.currentQuestionId, function (res) {
       let _data = res.data.data;
-      for (let i = 0; i < _data.answer_list.length; i++) {
-        let item = _data.answer_list[i];
-        let clazz = _data.answer_key.indexOf(item[0]) > -1 ? 'right' : '';
-        if (that.answerKey && that.answerKey.indexOf(item[0]) > -1) {
-          clazz += ' selected';
-        }
-        item[10] = clazz;
-        item[11] = item[0].substr(1);
-        _data.answer_list[i] = item;
-      }
-
-      if (that.answerKey) {
-        _data.rightAnswer = that.__formatAnswerKey(_data.answer_key);
-        _data.yourAnswer = that.__formatAnswerKey(that.answerKey);
-      }
-      _data.viewId = 'question';
-      that.setData(_data);
       that.qcached[that.data.currentQuestionId] = _data;
-      that.__checkExplainShow();
+      that.__loadQuestionAfter(_data);
     });
+  },
+
+  __loadQuestionAfter: function (_data) {
+    _data.viewId = 'question';
+    if (this.data.interactiveMode == true) _data.showExplain = false;
+    else _data.showExplain = true;
+
+    for (let i = 0; i < _data.answer_list.length; i++) {
+      let item = _data.answer_list[i];
+      let clazz = _data.answer_key.indexOf(item[0]) > -1 ? 'right' : '';
+      if (this.answerKey && this.answerKey.indexOf(item[0]) > -1) clazz += ' selected';
+      item[10] = clazz;
+      if (this.data.interactiveMode == true) item[10] = null;
+      item[11] = item[0].substr(1);
+      _data.answer_list[i] = item;
+    }
+
+    if (this.answerKey) {
+      _data.rightAnswer = this.__formatAnswerKey(_data.answer_key);
+      _data.yourAnswer = this.__formatAnswerKey(this.answerKey);
+    }
+    this.setData(_data);
   },
 
   __checkExplainShow: function () {
@@ -129,7 +151,6 @@ Page({
       wx.createSelectorQuery().select('.explain-content').fields({
         size: true,
       }, function (res) {
-        console.log(JSON.stringify(res));
         that.setData({
           hideGradual: res.height > 0 && res.height < 190
         })
@@ -159,6 +180,48 @@ Page({
       currentQuestionId: this.__qids[idx - 1]
     });
     this.__loadQuestion(idx);
+  },
+
+  // 交互模式
+  interactiveAnswer: function (res) {
+    if (this.data.interactiveMode == false) return;
+    let key = res.currentTarget.dataset.key;
+    let keyIndex = key.substr(0, 1);
+    if (this.__selectAnswer && zutils.array.in(this.__selectAnswer, keyIndex)) {
+      return;
+    }
+    this.__selectAnswer = this.__selectAnswer || [];
+    this.__selectAnswer.push(keyIndex);
+
+    let answer_list = this.data.answer_list;
+    let answer_key = this.data.answer_key;
+    for (let i = 0; i < answer_list.length; i++) {
+      let ak = answer_list[i][0];
+      if (ak.substr(0, 1) != keyIndex) continue;
+      let clazz = '';
+      if (ak == key) clazz = 'selected';
+      if (answer_key.indexOf(ak) > -1) clazz += ' right';
+      if (clazz != '') {
+        answer_list[i][10] = clazz;
+      }
+    }
+    this.setData({
+      answer_list: answer_list,
+      showExplain: this.__selectAnswer.length == answer_list.length / 4,  // 显示解析
+    });
+  },
+
+  toggleInteractive: function () {
+    let toggle = this.data.interactiveMode == false;
+    this.setData({ interactiveMode: toggle });
+    wx.setStorage({
+      key: 'Explain_InteractiveMode',
+      data: toggle
+    });
+    this.__loadQuestion(this.data.qidsNo);
+    wx.showToast({
+      title: '交互模式' + (toggle ? '启用' : '关闭')
+    })
   },
 
   __formatAnswerKey: function (ak) {
