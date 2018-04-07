@@ -49,6 +49,7 @@ page, .page {
 .answer-list .item.selected .key, .answer-list .item.right .key {
   color: #fff;
   width: 33px;
+  padding-top: 10px;
 }
 
 .answer-list .item.selected .text, .answer-list .item.right .text {
@@ -296,4 +297,18 @@ view.go-hover {
   color: #aaa;
   font-size: 13px;
   font-style: italic;
+}
+
+.zbtn .N {
+  position: absolute;
+  background-color: #f00;
+  font-size: 10px;
+  margin-top: -44px;
+  margin-left: 33px;
+  width: 14px;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 99px;
+  color: #fff;
+  border: 1px solid #fff;
 }

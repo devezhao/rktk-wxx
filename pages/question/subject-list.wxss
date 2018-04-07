@@ -123,3 +123,10 @@
   background-color: #4b8ef9;
   color: #fff;
 }
+
+.count {
+  text-align: center;
+  color: #aaa;
+  font-size: 14px;
+  padding: 12px 0;
+}

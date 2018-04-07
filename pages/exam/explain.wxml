@@ -63,7 +63,7 @@
         </block>
       </view>
       <view class="explain-content interactive" wx:else>
-        <view>已启用交互模式，解析将在选择答案后显示。</view>
+        <view>已开启练习模式，解析及参考答案将在答题后显示。</view>
       </view>
     </view>
   </scroll-view>
@@ -71,7 +71,8 @@
 
 <view class="float-btns">
   <view class="zbtn {{interactiveMode == true ? 'active' : ''}}" bindtap="toggleInteractive" hidden="{{hideInteractiveMode}}">
-    <text class="L2">交互\n模式</text>
+    <text class="L2">练习\n模式</text>
+    <view class="N">新</view>
   </view>
   <view class="zbtn" bindtap="gotoPage" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
     <text class="L2">考题\n纠错</text>

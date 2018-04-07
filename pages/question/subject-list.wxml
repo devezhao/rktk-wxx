@@ -99,25 +99,24 @@
     </block>
   </view>
 
-  <block wx:if="{{showNosubject}}">
-    <view class="page__bd" style="text-align:center;">
-      <view class="icon-box">
-        <icon type="info" size="88"></icon>
-        <view class="icon-box__title">
-          请先选择考试类型
-          <view>
-            <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-choice?back=1">
-              <button class="weui-btn link" type="default" formType="submit">[ 点击选择 ]</button>
-            </form>
-          </view>
+  <view wx:if="{{showNosubject}}" class="page__bd" style="text-align:center;">
+    <view class="icon-box">
+      <icon type="info" size="88"></icon>
+      <view class="icon-box__title">
+        请先选择考试类型
+        <view>
+          <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-choice?back=1">
+            <button class="weui-btn link" type="default" formType="submit">[ 点击选择 ]</button>
+          </form>
         </view>
       </view>
     </view>
-  </block>
-  <block wx:if="{{showNodata}}">
-    <view class="icon-box">
-      <icon type="info" size="88" color="#ccc"></icon>
-      <view class="icon-box__title">未找到相关题库</view>
-    </view>
-  </block>
+  </view>
+  <view wx:elif="{{showNodata}}" class="icon-box">
+    <icon type="info" size="88" color="#ccc"></icon>
+    <view class="icon-box__title">未找到相关题库</view>
+  </view>
+  <view wx:elif="{{count_subject && count_question}}" class="count">
+    {{count_subject}}个题库共包含{{count_question}}道题
+  </view>
 </view>

@@ -16,6 +16,7 @@ Page({
   qcached: {},
   qosid: null,
   answerKey: null,
+  canInteractive: false,
 
   onLoad: function (e) {
     if (!e.id && e.id.length != 20) {
@@ -38,14 +39,21 @@ Page({
     // 从题库解析
     let viewSubject = this.qosid.substr(0, 3) == '110';
     if (viewSubject == true) {
+      this.setData({ hideInteractiveMode: false });
       wx.getStorage({
-        key: 'Explain_InteractiveMode',
+        key: 'ExplainInteractiveMode',
         success: function (res) {
           that.setData({ interactiveMode: res.data == true });
         }
       });
-      this.setData({ hideInteractiveMode: false });
+      zutils.get(app, 'api/user/can-interactive?subject=' + this.qosid, function (res) {
+        that.canInteractive = res.data.data != 'NO';
+        if (that.data.interactiveMode == true && that.canInteractive == false) {
+          that.setData({ interactiveMode: false });
+        }
+      });
     }
+
     if (!!this.answerKey || viewSubject == true) {
       this.setData({ pageClazz: 'has-btm' });
     }
@@ -182,7 +190,7 @@ Page({
     this.__loadQuestion(idx);
   },
 
-  // 交互模式
+  // 练习模式
   interactiveAnswer: function (res) {
     if (this.data.interactiveMode == false) return;
     let key = res.currentTarget.dataset.key;
@@ -212,16 +220,31 @@ Page({
   },
 
   toggleInteractive: function () {
+    if (this.canInteractive == false) {
+      wx.showModal({
+        title: '提示',
+        content: '非VIP会员仅可对免费题库启用练习模式',
+        confirmText: '立即开通',
+        success: function (res) {
+          if (res.confirm) {
+            app.gotoPage('/pages/my/vip-buy')
+          }
+        }
+      });
+      return;
+    }
+
     let toggle = this.data.interactiveMode == false;
     this.setData({ interactiveMode: toggle });
     wx.setStorage({
-      key: 'Explain_InteractiveMode',
+      key: 'ExplainInteractiveMode',
       data: toggle
     });
-    this.__loadQuestion(this.data.qidsNo);
     wx.showToast({
-      title: '交互模式' + (toggle ? '启用' : '关闭')
-    })
+      icon: 'none',
+      title: '练习模式已' + (toggle ? '开启' : '关闭')
+    });
+    this.__loadQuestion(this.data.qidsNo);
   },
 
   __formatAnswerKey: function (ak) {
