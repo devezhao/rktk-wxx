@@ -3,7 +3,8 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    hasError: '等待初始化'
+    hasError: '等待初始化',
+    dialogHide: true,
   },
   roomId: null,
   onShowTimes: 0,
@@ -25,22 +26,7 @@ Page({
       });
 
       if (e.pkroom) {
-        zutils.get(app, 'api/pk/room-check?room=' + e.pkroom, function (res) {
-          let _data = res.data.data;
-          if (!_data || _data.state != 1) {
-            app.alert('房间已关闭');
-          } else {
-            if (_data.isFoo) {
-              wx.navigateTo({
-                url: 'room-wait?id=' + e.pkroom
-              });
-            } else {
-              wx.navigateTo({
-                url: 'room-wait?pkroom=' + e.pkroom
-              });
-            }
-          }
-        });
+        that.__checkRoom(e.pkroom);
       } else {
         setTimeout(function () {
           if (!that.roomId) {
@@ -78,6 +64,25 @@ Page({
 
       that.__loadMeta();
       if (s == 'onPullDownRefresh') wx.stopPullDownRefresh();
+    });
+  },
+
+  __checkRoom: function (pkroom) {
+    zutils.get(app, 'api/pk/room-check?room=' + pkroom, function (res) {
+      let _data = res.data.data;
+      if (!_data || _data.state != 1) {
+        app.alert('房间已关闭');
+      } else {
+        if (_data.isFoo) {
+          wx.navigateTo({
+            url: 'room-wait?id=' + pkroom
+          });
+        } else {
+          wx.navigateTo({
+            url: 'room-wait?pkroom=' + pkroom
+          });
+        }
+      }
     });
   },
 
@@ -135,7 +140,45 @@ Page({
     });
   },
 
-  startPk: function () {
-    app.alert('本功能即将开放');
+  dialogOpen: function () {
+    this.setData({
+      dialogHide: false,
+      inputFocus: true
+    });
+  },
+
+  dialogClose: function () {
+    this.setData({
+      dialogHide: true
+    });
+  },
+
+  inputData: {},
+  inputTake: function (e) {
+    this.inputData[e.currentTarget.dataset.id] = e.detail.value;
+  },
+
+  enterRoom: function () {
+    let no = this.inputData['roomNo'];
+    if (!no || ~~no < 100000) {
+      wx.showToast({
+        icon: 'none',
+        title: '请输入6位数字房间号'
+      });
+      return;
+    }
+
+    let that = this;
+    zutils.get(app, 'api/pk/room-query?roomNo=' + no, function (res) {
+      if (res.data.error_code == 0) {
+        that.dialogClose();
+        that.__checkRoom(res.data.data.roomid);
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: res.data.error_msg
+        });
+      }
+    });
   }
 });

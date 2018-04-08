@@ -35,8 +35,7 @@
   </view>
 </view>
 
-<view class="room-uid" wx:if="{{roomUid}}">
-  <view>房间号
-    <text>{{roomUid}}</text>
-  </view>
+<view class="room-no" wx:if="{{roomNo}}">
+  <view class="no" bindtap="copyRoomNo">{{roomNo}}</view>
+  <view class="tips">邀好友输入以上房间号开始对战</view>
 </view>

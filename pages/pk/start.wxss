@@ -62,7 +62,7 @@ page, .page {
 
 .card {
   border-radius: 4px;
-  background-color: #ee75aa;
+  background-color: rgba(75, 190, 253, 1);
   margin: 7px 7px;
   color: #fff;
   padding: 9px 12px;
@@ -86,8 +86,18 @@ page, .page {
 }
 
 .card:active {
-  opacity: 0.8;
+  background-color: rgba(75, 190, 253, 0.8);
 }
+
+.card.bg-red {
+  background-color: rgba(237, 123, 175, 1);
+}
+
+.card.bg-red:active {
+  background-color: rgba(237, 123, 175, 0.8);
+}
+
+/* rank */
 @import "rank.wxss";
 
 .rank_title {
@@ -110,4 +120,37 @@ page, .page {
   background-color: rgba(255, 255, 255, 0.9);
   margin: 8px auto;
   border-radius: 99px;
+}
+
+/* dialog */
+@import "../comps/z-sharebox.wxss";
+
+.dialog .btns .pull-left, .dialog .btns .pull-right {
+  width: 50%;
+  border-top: 1rpx solid #d9d9d9;
+}
+
+.dialog .btns button {
+  border: 0 none;
+  border-radius: 0 !important;
+}
+
+.dialog .btns .pull-left button {
+  border-right: 1rpx solid #d9d9d9;
+}
+
+.dialog .weui-input {
+  border: 0 none;
+  border-bottom: 2px solid #2B6BA5;
+  font-size: 22px;
+  color: #000;
+  width: 120px;
+  margin: 0 auto;
+  height: 2em;
+  min-height: 2em;
+  text-align: center;
+}
+
+.dialog .weui-input-placeholder {
+  font-size: 16px;
 }

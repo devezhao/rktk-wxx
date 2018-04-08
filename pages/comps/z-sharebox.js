@@ -81,6 +81,7 @@ var z_sharebox = {
         success: function () {
           that.shareboxClose(page);
           wx.showToast({
+            icon: 'none',
             title: '链接已复制'
           });
         }

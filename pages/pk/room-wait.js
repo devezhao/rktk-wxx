@@ -44,6 +44,9 @@ Page({
             stateText: '等待对手加入'
           })
         }, 999);
+        that.setData({
+          roomNo: _data.data.roomNo
+        })
       }
     });
   },
@@ -167,4 +170,16 @@ Page({
     }
     return d;
   },
+
+  copyRoomNo: function () {
+    wx.setClipboardData({
+      data: this.data.roomNo + '',
+      success: function () {
+        wx.showToast({
+          icon: 'none',
+          title: '房间号已复制'
+        });
+      }
+    });
+  }
 })

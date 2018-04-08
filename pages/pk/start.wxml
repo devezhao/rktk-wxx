@@ -29,13 +29,13 @@
   <view class="page__bd" style="padding:9px 0;">
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="card animated fadeInLeft d1s" style="background-color:#4bbefd" bindtap="startPk">
-          <view>随机匹配对手</view>
-          <text>即将开放</text>
+        <view class="card animated fadeInLeft d1s" hover-class="base-hover" bindtap="dialogOpen">
+          <view>进入房间</view>
+          <text>输入房间号开始对战</text>
         </view>
       </view>
       <view class="weui-flex__item">
-        <view class="card animated fadeInRight d1s" style="background-color:#ed7baf;" bindtap="checkReady">
+        <view class="card animated fadeInRight d1s bg-red" hover-class="base-hover" bindtap="checkReady">
           <view>点击邀好友PK</view>
           <text>{{subject}}</text>
           <button open-type="share" class="btn-mask" wx:if="{{hasError == null}}"></button>
@@ -74,6 +74,24 @@
     </view>
     <view class="rank_item" wx:if="{{rankList && rankList.length == 0}}">
       <view style="text-align:center;padding-top:18px">榜单计算中</view>
+    </view>
+  </view>
+</view>
+
+<view id="dialog" hidden="{{dialogHide}}">
+  <view class="mask"></view>
+  <view class="dialog">
+    <view class="text" style="padding-bottom:28px">
+      <input class="weui-input" placeholder-class="weui-input-placeholder" type="number" maxlength="6" placeholder="输入房间号" focus="{{inputFocus}}" bindinput="inputTake" data-id="roomNo" />
+    </view>
+    <view class="btns">
+      <view class="pull-left">
+        <button class="weui-btn" bindtap="dialogClose" style="color:#222">取消</button>
+      </view>
+      <view class="pull-right">
+        <button class="weui-btn" bindtap="enterRoom">进入房间</button>
+      </view>
+      <view class="clearfix"></view>
     </view>
   </view>
 </view>

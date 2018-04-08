@@ -118,25 +118,35 @@ page, .page {
   background-color: #1aad19 !important;
 }
 
-.room-uid {
+.room-no {
   position: fixed;
   bottom: 32px;
   left: 0;
   right: 0;
   width: 100%;
-}
-
-.room-uid {
-  background-color: rgba(0, 0, 0, 0.2);
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 99px;
-  padding: 6px 0;
-  width: 130px;
-  margin: 0 auto;
   text-align: center;
 }
 
-.room-uid text {
+.room-no .no {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  font-size: 17px;
+  border-radius: 99px;
+  padding: 9px 0;
+  line-height: 1;
+  width: 118px;
+  margin: 0 auto;
+  text-align: center;
   font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.room-no .no:active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.room-no .tips {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  margin-top: 5px;
 }
