@@ -118,7 +118,7 @@ Page({
             return;
           }
           // 自己分享的
-          if (zutils.array.in(that.GLOBAL_DATA.KT_TOKENS, res.data)) {
+          if (zutils.array.in(app.GLOBAL_DATA.KT_TOKENS, res.data)) {
             return;
           }
 
