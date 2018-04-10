@@ -2,7 +2,7 @@
   <view class="ver">
     <image src="/images/logo200.png"></image>
     <view bindtap="enableDebug">
-      软考必备 V0.8.10
+      软考必备 V0.8.11
     </view>
   </view>
   <view class="weui-cells rktk">

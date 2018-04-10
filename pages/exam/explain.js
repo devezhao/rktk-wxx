@@ -19,14 +19,9 @@ Page({
   canInteractive: false,
 
   onLoad: function (e) {
-    if (!e.id && e.id.length != 20) {
-      app.goHome();
-      return;
-    }
-
     this.answerKey = e.a;
     this.qosid = e.id;
-
+    
     let that = this;
     wx.getSystemInfo({
       success: function (res) {

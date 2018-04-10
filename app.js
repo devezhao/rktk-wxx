@@ -20,7 +20,7 @@ App({
     // 红点
     RED_DOT: {},
   },
-  
+
   onLaunch: function (e) {
     this.enterSource = e;
     console.log("小程序初始化: " + JSON.stringify(this.enterSource));
@@ -72,6 +72,12 @@ App({
 
   onError: function (e) {
     console.error("出现错误: " + JSON.stringify(e));
+  },
+
+  // 基础库 1.9.90 支持
+  onPageNotFound: function (e) {
+    console.error("页面不存在: " + JSON.stringify(e));
+    this.gotoPage('/pages/index/index');
   },
 
   // 需要授权才能访问的页面/资源先调用此方法
@@ -176,11 +182,6 @@ App({
     return d;
   },
 
-  // 到首页
-  goHome: function () {
-    this.gotoPage('/pages/index/index');
-  },
-
   // 页面跳转
   gotoPage: function (url) {
     if (!!!url) return;
@@ -201,6 +202,7 @@ App({
   // 上报分析数据
   // t=EXAM,EXPLAIN etc.
   // s=相关题库（可选）
+  // ext=附加信息（可选）
   reportKpi: function (k, s, ext) {
     zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || '') + '&ext=' + encodeURIComponent(ext || ''), function (res) {
       console.log('KPI Report: ' + JSON.stringify(res.data));
@@ -259,7 +261,7 @@ App({
   },
 
   // 简单 alert
-  alert: function(msg) {
+  alert: function (msg) {
     wx.showModal({
       title: '提示',
       content: msg || '系统繁忙请重试',
