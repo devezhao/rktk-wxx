@@ -34,7 +34,7 @@ App({
       },
       complete: function () {
         that.__checkUserInfo(null, false);
-        that.reportKpi('LOGIN');
+        that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
       }
     });
 
@@ -52,9 +52,6 @@ App({
 
   onShow: function (e) {
     console.log("小程序进入前台: " + JSON.stringify(e));
-    if (this.USER_INFO) {
-      this.__checkToken();
-    }
   },
 
   onHide: function (e) {
@@ -83,7 +80,7 @@ App({
     if (this.GLOBAL_DATA.USER_INFO) {
       typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
     } else {
-      var that = this;
+      let that = this;
       wx.login({
         success: function (res) {
           that.login_code = res.code;
@@ -102,7 +99,7 @@ App({
 
   __checkUserInfo: function (cb, needLogin) {
     console.log('检查授权: cb=' + (cb == null ? 'N' : 'Y') + ', needLogin=' + (needLogin ? 'Y' : 'N'));
-    var that = this;
+    let that = this;
     wx.checkSession({
       fail: function (res) {
         if (needLogin == true) that.getUserInfo(cb)
@@ -130,8 +127,9 @@ App({
     console.log('存储授权 - ' + JSON.stringify(res))
     let that = this;
     let _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
-    _data.inviter = that.enterSource.u || that.enterSource._su;
-    _data.inviter2 = that.enterSource.query.q;
+    // _data.inviter = that.enterSource.u || that.enterSource._su;
+    // _data.inviter2 = that.enterSource.query.q;
+    _data.enterSource = that.enterSource;
     zutils.post(that, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
       wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
@@ -203,8 +201,8 @@ App({
   // 上报分析数据
   // t=EXAM,EXPLAIN etc.
   // s=相关题库（可选）
-  reportKpi: function (k, s) {
-    zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || ''), function (res) {
+  reportKpi: function (k, s, ext) {
+    zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || '') + '&ext=' + encodeURIComponent(ext || ''), function (res) {
       console.log('KPI Report: ' + JSON.stringify(res.data));
     });
   },

@@ -10,17 +10,17 @@ Page({
   subjectId: null,
 
   onLoad: function (e) {
-    var that = this;
+    let that = this;
     app.getUserInfo(function () {
       that.__onLoad(e);
     });
   },
 
   __onLoad: function (e) {
-    var that = this;
+    let that = this;
     that.subjectId = e.id;
     zutils.get(app, 'api/subject/details?id=' + that.subjectId, function (res) {
-      var _data = res.data;
+      let _data = res.data;
       if (_data.error_code > 0) {
         wx.showModal({
           title: '提示',
@@ -57,7 +57,7 @@ Page({
       return;
     }
 
-    var tips_content = '将进入答题页面，请做好准备';
+    let tips_content = '将进入答题页面，请做好准备';
     if (this.data.vip_free == false) {
       if (this.data.coin == -2) {
         wx.showModal({
@@ -77,7 +77,7 @@ Page({
       }
     }
 
-    var that = this;
+    let that = this;
     wx.showModal({
       title: '提示',
       content: tips_content,
@@ -130,7 +130,7 @@ Page({
     let that = this;
     zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (!!e ? (e.detail.formId || '') : ''), function (res) {
       app.followSubject(that.subjectId);
-      var _data = res.data;
+      let _data = res.data;
       if (_data.error_code == 0) {
         wx.redirectTo({
           url: '../exam/exam?subject=' + subject + '&exam=' + _data.data.exam_id
@@ -201,7 +201,7 @@ Page({
   },
 
   onShareAppMessage: function () {
-    var d = app.warpShareData('/pages/question/subject?id=' + this.subjectId);
+    let d = app.warpShareData('/pages/question/subject?id=' + this.subjectId);
     if (this.fullName) d.title = this.fullName;
     console.log(d);
     return d;

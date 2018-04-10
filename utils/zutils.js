@@ -3,8 +3,8 @@ const baseUrl = 'https://rktk.statuspage.cn/';
 
 // GET 方法
 function z_get(app, url, call) {
-  var loading_timer;
-  var loading_show = false;
+  let loading_timer;
+  let loading_show = false;
   if (url.indexOf('noloading') == -1) {
     loading_timer = setTimeout(function () {
       wx.showLoading({
@@ -49,8 +49,8 @@ function z_post(app, url, data, call) {
     data = null;
   }
 
-  var loading_timer;
-  var loading_show = false;
+  let loading_timer;
+  let loading_show = false;
   if (url.indexOf('noloading') == -1) {
     loading_timer = setTimeout(function () {
       wx.showLoading({
@@ -92,7 +92,7 @@ function z_post(app, url, data, call) {
 // 数组相关
 var z_array = {
   in: function (array, item) {
-    var i = array.length;
+    let i = array.length;
     while (i--) {
       if (array[i] === item) {
         return true;
@@ -101,7 +101,7 @@ var z_array = {
     return false;
   },
   erase: function (array, item) {
-    for (var i = array.length; i--;) {
+    for (let i = array.length; i--;) {
       if (array[i] === item) array.splice(i, 1);
     }
     return array;
@@ -115,21 +115,21 @@ var z_array = {
 
 // 对象扩展
 var z_extends = function (dest, source) {
-  for (var prop in source) {
+  for (let prop in source) {
     if (prop.substr(0, 1) == '_') {
       // No copy
     } else {
       dest[prop] = source[prop];
     }
   }
-  for (var prop in dest) console.log(prop);
+  for (let prop in dest) console.log(prop);
   return dest;
 };
 
 // 日期格式
 var z_date_format = function (format, date) {
   date = date || new Date();
-  var o = {
+  let o = {
     "M+": date.getMonth() + 1,
     "d+": date.getDate(),
     "h+": date.getHours(),
@@ -141,7 +141,7 @@ var z_date_format = function (format, date) {
   if (/(y+)/.test(format)) {
     format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
   }
-  for (var k in o) {
+  for (let k in o) {
     if (new RegExp("(" + k + ")").test(format)) {
       format = format.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     }
