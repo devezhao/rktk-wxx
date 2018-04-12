@@ -123,7 +123,7 @@ page, .page {
 }
 
 .coupon .money {
-  background-color: #ec961d;
+  background-color: #f76260;
   width: 76px;
   height: 70px;
   color: #fff;

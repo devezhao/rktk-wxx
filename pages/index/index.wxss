@@ -241,3 +241,12 @@
   margin-top: 12px;
   color: #ec961d;
 }
+
+.highbar.coupon {
+  background-color: #f76260;
+  color: #fff;
+}
+
+.highbar.coupon .weui-cell__ft_in-access:after {
+  border-color: rgba(255, 255, 255, 0.6);
+}

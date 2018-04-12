@@ -261,32 +261,42 @@ Page({
 
   __checkCoupon: function () {
     let that = this;
-    let today = zutils.formatDate('ONyyyyMMdd');
-    wx.getStorage({
-      key: 'LastCouponShow',
-      complete: function (res) {
-        // 今日未显示
-        if (!(res.data && res.data == today)) {
-          zutils.get(app, 'api/user/check-coupon', function (res) {
-            if (res.data.error_code == 0 && res.data.data) {
-              let _data = res.data.data;
-              _data.hideCoupon = false;
-              that.setData(_data);
-              app.reportKpi('COUPON.SHOW');
-              wx.setStorage({
-                key: 'LastCouponShow',
-                data: today
-              });
-            }
-          });
-        }
+    zutils.get(app, 'api/user/check-coupon?noloading', function (res) {
+      if (res.data.error_code == 0 && res.data.data) {
+        let _data = res.data.data;
+        _data.hideCoupon = false;
+        that.setData(_data);
+        app.reportKpi('COUPON.SHOW');
       }
     });
+
+    // let that = this;
+    // let today = zutils.formatDate('ONyyyyMMdd');
+    // wx.getStorage({
+    //   key: 'LastCouponShow',
+    //   complete: function (res) {
+    //     // 今日未显示
+    //     if (!(res.data && res.data == today)) {
+    //       zutils.get(app, 'api/user/check-coupon', function (res) {
+    //         if (res.data.error_code == 0 && res.data.data) {
+    //           let _data = res.data.data;
+    //           _data.hideCoupon = false;
+    //           that.setData(_data);
+    //           app.reportKpi('COUPON.SHOW');
+    //           wx.setStorage({
+    //             key: 'LastCouponShow',
+    //             data: today
+    //           });
+    //         }
+    //       });
+    //     }
+    //   }
+    // });
   },
 
   hideCoupon: function () {
     let that = this;
-    that.setData({ hideCoupon: true });
+    that.setData({ hideCoupon: true, showConponHighbar: true });
     app.reportKpi('COUPON.CLOSE');
     // wx.getStorage({
     //   key: 'LastCouponShowTips',
