@@ -182,12 +182,21 @@ Page({
     if (this.data.vip_free == false && this.data.coin == -2) {
       wx.showModal({
         title: '提示',
-        content: '本题库为VIP专享，开通VIP会员可立即查看解析',
+        content: '本题库为VIP专享，开通VIP会员可立即免费使用',
         confirmText: '立即开通',
         success: function (res) {
-          if (res.confirm) {
-            app.gotoPage('/pages/my/vip-buy')
-          }
+          if (res.confirm) app.gotoPage('/pages/my/vip-buy')
+        }
+      });
+      return;
+    }
+    if (this.data.vip_free == false && this.data.explain_free == false) {
+      wx.showModal({
+        title: '提示',
+        content: '本题库解析仅对VIP会员开放，开通VIP可立即免费使用',
+        confirmText: '立即开通',
+        success: function (res) {
+          if (res.confirm) app.gotoPage('/pages/my/vip-buy')
         }
       });
       return;
@@ -195,9 +204,7 @@ Page({
 
     let _url = '../exam/explain?id=' + this.subjectId;
     if (this.data.subject_type == 11) _url = '../exam/explain-rich?id=' + this.subjectId;
-    wx.redirectTo({
-      url: _url
-    });
+    wx.redirectTo({ url: _url });
   },
 
   onShareAppMessage: function () {

@@ -32,7 +32,7 @@
       <view class="pull-left">
         <form bindsubmit="toExplain" report-submit="true">
           <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析
-            <text hidden="{{vip_free == true || coin == -2 || coin == 0}}">(限免)</text>
+            <text hidden="{{vip_free == true || explain_free == false || coin == -2}}">(限免)</text>
           </button>
         </form>
       </view>

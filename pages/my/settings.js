@@ -27,9 +27,7 @@ Page({
     wx.getStorageInfo({
       success: function (res) {
         console.log(JSON.stringify(res));
-        that.setData({
-          cacheSize: res.currentSize + 'KB'
-        })
+        that.setData({ cacheSize: res.currentSize + 'KB' })
       },
     });
   },
@@ -43,19 +41,21 @@ Page({
   },
 
   cleanCache: function () {
+    let that = this;
     wx.showModal({
       content: '确认清空缓存？',
       success: function (res) {
         if (res.confirm) {
           wx.clearStorage();
-          
+
           app.GLOBAL_DATA.FOLLOW_SUBJECT = [];
           app.GLOBAL_DATA.USER_INFO = null;
+          // 缓存清空重登录
           app.getUserInfo(function (u) {
-            console.log('缓存清空重登录 - ' + JSON.stringify(u));
-          });
-          wx.showToast({
-            title: '缓存已清空'
+            wx.showToast({
+              title: '缓存已清空'
+            });
+            that.setData({ cacheSize: '0KB' })
           });
         }
       }
