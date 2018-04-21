@@ -36,12 +36,15 @@ Page({
       }
     });
 
+    let nextpage = e.nextpage;
     app.getUserInfo(function (u) {
       that.__loadRecent();
       that.__loadRecommend();
       that.__checkTwxx();
       that.__checkToken();
       that.__checkCoupon();
+      // 跳转页面
+      if (nextpage) app.gotoPage(decodeURIComponent(nextpage));
     });
 
     wx.getStorage({

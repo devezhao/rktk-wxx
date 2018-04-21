@@ -36,16 +36,16 @@ Page({
   },
 
   onShow: function (e) {
-    var that = this;
+    let that = this;
     app.getUserInfo(function () {
       that.__loadBuy(app.GLOBAL_DATA.__BuySubject);
     });
   },
 
   __loadBuy: function (s) {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/user/buy-vip-pre?subject=' + (s || ''), function (res) {
-      var _data = res.data.data;
+      let _data = res.data.data;
       that.__buydata = _data;
       that.setData({
         subjectName: _data.subject_name,
@@ -111,7 +111,7 @@ Page({
     let that = this;
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData);
     zutils.post(app, _url, function (res) {
-      var _data = res.data;
+      let _data = res.data;
       if (_data.error_code > 0) {
         app.alert(_data.error_msg);
         return;
