@@ -91,7 +91,7 @@ Page({
     zutils.get(app, 'api/pkrank/my-pkinfo', function (res) {
       that.setData(res.data);
     });
-    zutils.get(app, 'api/pkrank/rank-list?top=3', function (res) {
+    zutils.get(app, 'api/pkrank/rank-list?top=10', function (res) {
       that.setData({ rankList: res.data });
     });
   },

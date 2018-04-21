@@ -70,7 +70,7 @@
       <view class="clearfix"></view>
     </view>
     <view style="text-align:center;margin-top:14px;" wx:if="{{rankList && rankList.length > 2}}">
-      <navigator url="rank">[ 查看 TOP100 榜单 ]</navigator>
+      <navigator url="rank">[ 查看更多榜单 ]</navigator>
     </view>
     <view class="rank_item" wx:if="{{rankList && rankList.length == 0}}">
       <view style="text-align:center;padding-top:18px">榜单计算中</view>
