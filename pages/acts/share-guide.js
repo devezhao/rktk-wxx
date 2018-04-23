@@ -6,26 +6,74 @@ Page({
   },
 
   onLoad: function (e) {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/share/gen-texts', function (res) {
       that.setData(res.data.data)
     });
-    
+
     // wx.showShareMenu({
     //   withShareTicket: true
     // });
   },
 
   ccopy: function (e) {
-    var t = e.currentTarget.dataset.type;
-    var ccdata = this.data.text;
-    if (t == 2) ccdata = this.data.link;
+    let ccdata = this.data.text;
     wx.setClipboardData({
       data: ccdata,
       success: function () {
         wx.showToast({
-          title: (t == 2 ? '链接' : '文字') + '已复制'
+          title: '已复制'
         })
+      }
+    })
+  },
+
+  csave: function (e) {
+    if (this.__inProgress && this.__inProgress == true) return;
+    this.__inProgress = true;
+    wx.showLoading({ title: '请稍后' });
+
+    let that = this;
+    zutils.get(app, 'api/acts/aqrcode?noloading', function (res) {
+      if (res.data.data) {
+        wx.downloadFile({
+          url: res.data.data,
+          success: function (res) {
+            that.__inProgress = false;
+            wx.hideLoading();
+            that.__saveImageToPhotosAlbum(res.tempFilePath)
+          }
+        })
+      }
+    });
+  },
+
+  // 保存图片至相册
+  __saveImageToPhotosAlbum: function (path) {
+    let that = this;
+    wx.saveImageToPhotosAlbum({
+      filePath: path,
+      success: function (res) {
+        wx.showToast({
+          title: '已保存到相册'
+        })
+      }, fail: function (res) {
+        if (res.errMsg && res.errMsg.indexOf('fail auth deny') > -1) {
+          wx.showModal({
+            title: '提示',
+            content: '请允许小程序保存图片到相册',
+            success: function (res) {
+              if (res.confirm) {
+                wx.openSetting({
+                  success: function (res) {
+                    console.log(JSON.stringify(res));
+                    that.__saveImageToPhotosAlbum(path);
+                  }
+                });
+              }
+            }
+          });
+        }
       }
     })
   },
@@ -37,7 +85,7 @@ Page({
   },
 
   onShareAppMessage: function () {
-    var d = app.warpShareData();
+    let d = app.warpShareData();
     d.imageUrl = 'https://c.rktk.qidapp.com/a/wxx/share-img.png?v2';
     return d;
   }

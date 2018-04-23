@@ -29,11 +29,19 @@ App({
     wx.getStorage({
       key: 'USER_INFO',
       success: function (res) {
-        console.log('Launch checkUserInfo - ' + JSON.stringify(res));
+        console.log('获取用户信息: ' + JSON.stringify(res));
         that.GLOBAL_DATA.USER_INFO = res.data;
       },
       complete: function () {
-        that.__checkUserInfo(null, false);
+        that.__checkUserInfo(function () {
+          wx.getSetting({
+            success: function (res) {
+              if (res.authSetting['scope.userInfo'] != true) {
+                that.__forceAuth(false);
+              }
+            }
+          });
+        }, false);
         that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
       }
     });
@@ -104,7 +112,7 @@ App({
   },
 
   __checkUserInfo: function (cb, needLogin) {
-    console.log('检查授权: cb=' + (cb == null ? 'N' : 'Y') + ', needLogin=' + (needLogin ? 'Y' : 'N'));
+    console.log('检查授权状态: cb=' + (cb == null ? 'N' : 'Y') + ', needLogin=' + (needLogin ? 'Y' : 'N'));
     let that = this;
     wx.checkSession({
       fail: function (res) {
@@ -163,6 +171,26 @@ App({
         });
       }
     })
+  },
+
+  __forceAuth: function (force, cb) {
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '请允许小程序使用你的用户信息',
+      showCancel: false,
+      success: function () {
+        wx.openSetting({
+          success: function (res) {
+            if (res.authSetting['scope.userInfo'] == true) {
+              typeof cb == 'function' && cb();
+            } else if (force == true) {
+              that.__forceAuth(force, cb);
+            }
+          }
+        })
+      }
+    });
   },
 
   // ---- 助手类方法
@@ -250,7 +278,7 @@ App({
       wx.hideTabBarRedDot({
         index: tabIndex,
         complete: function (res) {
-          console.log('hideTabBarRedDot - ' + JSON.stringify(res));
+          // console.log('hideTabBarRedDot - ' + JSON.stringify(res));
           wx.setStorage({
             key: 'TapedReddot' + key,
             data: 'TAPED'

@@ -8,11 +8,11 @@
   white-space: normal;
 }
 
-button.weui-btn.share {
+.weui-cell__bd button.weui-btn {
   padding: 4px 0;
   padding-bottom: 6px;
   text-align: left;
   font-size: 16px;
   line-height: 1;
-  background-color: #fff !important;
+  background-color: transparent !important;
 }

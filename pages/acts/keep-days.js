@@ -17,7 +17,7 @@ Page({
       daysFs: ~~days > 99 ? 66 : 88
     });
 
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/acts/aqrcode?noloading', function (res) {
       if (res.data.data) {
         that.setData({

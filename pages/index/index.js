@@ -36,7 +36,7 @@ Page({
       }
     });
 
-    let nextpage = e.nextpage;
+    let nextpage = (e || {}).nextpage;
     app.getUserInfo(function (u) {
       that.__loadRecent();
       that.__loadRecommend();
