@@ -1,2 +1,14 @@
-<!--pages/my/study-report.wxml-->
-<text>pages/my/study-report.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view class="wave">
+    </view>
+    <view class="wave-top">
+      <canvas class="circle" canvas-id="circle-rate">
+        <view class="circle-scope">
+          43<text>%</text>
+          <view>正确率</view>
+        </view>
+      </canvas>
+    </view>
+  </view>
+</view>
