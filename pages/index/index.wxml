@@ -28,7 +28,7 @@
               <image wx:else src="../../images/h-icon-incorrect.png" class="x26"></image>
             </view>
             <text>错题练习</text>
-            <text class="bag" wx:if="{{incorrect_count}}" style="font-size:11px">{{incorrect_count}}</text>
+            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}" style="font-size:11px">{{incorrect_count}}</text>
           </button>
         </form>
       </view>

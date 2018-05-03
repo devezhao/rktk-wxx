@@ -64,10 +64,11 @@ Page({
   explainAll: function () {
     let subjectId = '110-000000000000FA01';
     app.reportKpi('EXPLAIN', subjectId);
+    // wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
+    
     zutils.get(app, 'api/user/isvip', function (res) {
       if (res.data.isVip == true) {
         wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
-        // wx/wx.redirectTo()
       } else {
         wx.showModal({
           title: '提示',

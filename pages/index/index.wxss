@@ -54,7 +54,8 @@
   color: #fff;
   background-color: #f00;
   font-size: 10px;
-  min-width: 16px;
+  min-width: 12px;
+  padding: 0 2px;
   height: 16px;
   line-height: 16px;
   border-radius: 99px;
