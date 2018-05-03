@@ -1,8 +1,8 @@
 <view class="page">
-  <view class="page__hd">
+  <view class="page__hd weui-panel__compact" style="padding-bottom:71px;">
     <view class="weui-panel" wx:for="{{listData}}" wx:key="*this">
       <view class="weui-panel__bd">
-        <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">
+        <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record" hover-class="weui-cell_active">
           <view class="weui-media-box__title has-btn-more">{{item[1]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">
@@ -21,6 +21,14 @@
         </navigator>
       </view>
     </view>
+    <view wx:if="{{listData && listData.length > 0}}" class="foot-count">
+      连续答对2次自动移出错题本
+    </view>
+  </view>
+  <view class="fix-foobar" style="background-color:#fff;" wx:if="{{listData && listData.length > 0}}">
+    <view style="margin:14px;">
+      <button class="weui-btn" type="primary" bindtap="explainAll">练习全部错题</button>
+    </view>
   </view>
 
   <view class="page__bd">
@@ -28,7 +36,7 @@
       <icon type="info" size="88"></icon>
       <view class="icon-box__title">暂无错题</view>
       <view class="icon-box__desc">
-        <text>答错的题会自动加入错题本\n连续答对3次自动移出</text>
+        <text>答错的题会自动加入错题本\n连续答对2次自动移出</text>
       </view>
     </view>
   </view>

@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="page__hd">
+  <view class="page__hd weui-panel__compact">
     <view class="weui-panel" wx:for="{{listData}}" wx:key="*this">
       <view class="weui-panel__bd">
         <navigator url="../exam/{{item[5] == 1 ? 'explain' : 'explain-rich'}}?id={{item[0]}}" class="weui-media-box rktk-record">

@@ -8,17 +8,17 @@ Page({
   pageNo: 1,
 
   onLoad: function (e) {
-    var that = this;
+    let that = this;
     app.getUserInfo(function () {
       that.list();
     })
   },
 
   list: function () {
-    var that = this;
+    let that = this;
     zutils.get(app, 'api/fav/incorrect-list?page=' + this.pageNo, function (res) {
-      var _data = res.data.data || [];;
-      var _listData = that.data.listData;
+      let _data = res.data.data || [];;
+      let _listData = that.data.listData;
       if (that.pageNo == 1) _listData = [];
       if (_data && _data.length > 0) _listData = _listData.concat(_data);
       else that.pageNo = -1;
@@ -31,8 +31,8 @@ Page({
   },
 
   moreAction: function (e) {
-    var _id = e.currentTarget.dataset.qid;
-    var that = this;
+    let _id = e.currentTarget.dataset.qid;
+    let that = this;
     wx.showActionSheet({
       itemList: ['忽略此题', '加入收藏'],
       success: function (res) {
@@ -59,5 +59,11 @@ Page({
     if (this.pageNo == -1) return;
     this.pageNo++;
     this.list();
+  },
+
+  explainAll: function () {
+    let subjectId = '110-000000000000FA01';
+    app.reportKpi('EXPLAIN', subjectId);
+    wx.redirectTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
   }
 });

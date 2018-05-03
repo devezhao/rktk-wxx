@@ -8,6 +8,7 @@ Page({
   },
 
   onLoad: function (e) {
+    e = e || {};
     let osi = app.GLOBAL_DATA.SYS_INFO;
     if (osi && osi.screenWidth != 375) {
       let swiperHeight = 'height:' + (osi.screenWidth / 2.5) + 'px';
@@ -36,7 +37,6 @@ Page({
       }
     });
 
-    let nextpage = (e || {}).nextpage;
     app.getUserInfo(function (u) {
       that.__loadRecent();
       that.__loadRecommend();
@@ -44,7 +44,7 @@ Page({
       that.__checkToken();
       that.__checkCoupon();
       // 跳转页面
-      if (nextpage) app.gotoPage(decodeURIComponent(nextpage));
+      if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage));
     });
 
     wx.getStorage({
@@ -174,6 +174,11 @@ Page({
     zutils.get(app, 'api/home/recent-exams', function (res) {
       that.setData(res.data.data);
     });
+    
+    // 错题数量在此加载/刷新
+    zutils.get(app, 'api/fav/incorrect-stats', function (res) {
+      that.setData(res.data.data);
+    });
   },
 
   // 推荐题库
@@ -236,7 +241,7 @@ Page({
   },
 
   signin: function (e) {
-    zutils.post(app, 'api/home/signin?noloading&formId=' + (e.detail.formId || ''), function (res) {
+    zutils.post(app, 'api/home/signin?formId=' + (e.detail.formId || ''), function (res) {
       let _data = res.data;
       if (_data.error_code == 0) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
@@ -252,7 +257,7 @@ Page({
 
   gotoPage: function (e) {
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
-    zutils.post(app, 'api/user/report-formid?formId=' + formId);
+    zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId);
     app.gotoPage(e.currentTarget.dataset.url);
   },
 

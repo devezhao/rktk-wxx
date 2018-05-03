@@ -21,7 +21,7 @@ Page({
   onLoad: function (e) {
     this.answerKey = e.a;
     this.qosid = e.id;
-    
+
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -34,19 +34,25 @@ Page({
     // 从题库解析
     let viewSubject = this.qosid.substr(0, 3) == '110';
     if (viewSubject == true) {
-      this.setData({ hideInteractiveMode: false });
-      wx.getStorage({
-        key: 'ExplainInteractiveMode',
-        success: function (res) {
-          that.setData({ interactiveMode: res.data == true });
-        }
-      });
-      zutils.get(app, 'api/user/can-interactive?subject=' + this.qosid, function (res) {
-        that.canInteractive = res.data.data != 'NO';
-        if (that.data.interactiveMode == true && that.canInteractive == false) {
-          that.setData({ interactiveMode: false });
-        }
-      });
+      // 强制练习模式
+      if (e.interactive == 1) {
+        this.canInteractive = true;
+        this.setData({ hideInteractiveMode: false, interactiveMode: true });
+      } else {
+        this.setData({ hideInteractiveMode: false });
+        wx.getStorage({
+          key: 'ExplainInteractiveMode',
+          success: function (res) {
+            that.setData({ interactiveMode: res.data == true });
+          }
+        });
+        zutils.get(app, 'api/user/can-interactive?subject=' + this.qosid, function (res) {
+          that.canInteractive = res.data.data != 'NO';
+          if (that.data.interactiveMode == true && that.canInteractive == false) {
+            that.setData({ interactiveMode: false });
+          }
+        });
+      }
     }
 
     if (!!this.answerKey || viewSubject == true) {

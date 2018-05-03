@@ -105,7 +105,11 @@
   padding: 16px 0;
 }
 
-.study-info .weui-flex__item  view {
+.study-info .weui-flex__item:active {
+  background-color: #ececec;
+}
+
+.study-info .weui-flex__item view {
   border-left: 1rpx solid #d9d9d9;
   border-right: 1rpx solid #d9d9d9;
 }

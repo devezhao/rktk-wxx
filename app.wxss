@@ -505,3 +505,18 @@ button.btn-mask {
   background-color: transparent;
   line-height: 1.4;
 }
+
+.foot-count {
+  text-align: center;
+  color: #aaa;
+  font-size: 14px;
+  padding: 12px 0;
+}
+
+.weui-panel__compact .weui-panel {
+  margin-top: 6px;
+}
+
+.weui-panel__compact .weui-panel:first-child {
+  margin-top: 0;
+}

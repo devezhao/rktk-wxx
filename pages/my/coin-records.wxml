@@ -9,7 +9,7 @@
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
-      <view class="weui-tab__panel">
+      <view class="weui-tab__panel weui-panel__compact">
         <view class="weui-panel" wx:for="{{records}}" wx:key="*this">
           <view class="weui-panel__bd">
             <view class="weui-media-box rktk-record">

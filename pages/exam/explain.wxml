@@ -72,7 +72,7 @@
 <view class="float-btns">
   <view class="zbtn {{interactiveMode == true ? 'active' : ''}}" bindtap="toggleInteractive" hidden="{{hideInteractiveMode}}">
     <text class="L2">练习\n模式</text>
-    <view class="N">新</view>
+    <view class="N hide">新</view>
   </view>
   <view class="zbtn" bindtap="gotoPage" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
     <text class="L2">考题\n纠错</text>
