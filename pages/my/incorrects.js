@@ -64,6 +64,22 @@ Page({
   explainAll: function () {
     let subjectId = '110-000000000000FA01';
     app.reportKpi('EXPLAIN', subjectId);
-    wx.redirectTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
+    zutils.get(app, 'api/user/isvip', function (res) {
+      if (res.data.isVip == true) {
+        wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
+        // wx/wx.redirectTo()
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '本功能为VIP专享，开通VIP会员可立即使用',
+          confirmText: '立即开通',
+          success: function (res) {
+            if (res.confirm) {
+              app.gotoPage('/pages/my/vip-buy')
+            }
+          }
+        });
+      }
+    });
   }
 });
