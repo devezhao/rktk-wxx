@@ -1,40 +1,66 @@
-const app = app || getApp();
-const zutils = require('../../utils/zutils.js');
-
+// pages/my/study-report.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
+  
   },
 
-  onLoad: function (e) {
-    let that = this;
-    that.__drawCircle(0.1);
-
-    // let x = 0;
-    // let x_timer = setInterval(function () {
-    //   x += 0.01;
-    //   that.__drawCircle(x);
-    //   if (x >= 0.5) clearInterval(x_timer)
-    // }, 50);
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+  
   },
 
-  __drawCircle: function (p) {
-    let ctx = wx.createContext();
-    // 内
-    ctx.beginPath(0);
-    ctx.arc(50, 50, 48, 0.8 * Math.PI, 2.2 * Math.PI);
-    ctx.setStrokeStyle('#eeeeee');
-    ctx.setLineWidth(2);
-    ctx.stroke();
-    // 外
-    ctx.beginPath(0);
-    ctx.arc(50, 50, 48, 0.8 * Math.PI, p * (2.2 * Math.PI));
-    ctx.setStrokeStyle('#4cae4c');
-    ctx.setLineWidth(2);
-    ctx.stroke();
-    wx.drawCanvas({
-      canvasId: 'circle-rate',
-      actions: ctx.getActions()
-    })
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
   },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+  
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
 })
