@@ -31,7 +31,7 @@ page, .page {
 
 .circle-scope {
   position: absolute;
-  color: #4cae4c;
+  color: #09bb07;
   font-size: 34px;
   text-align: center;
   line-height: 1.25;
@@ -74,4 +74,49 @@ page, .page {
   color: #333;
   font-size: 21px;
   margin-bottom: 4px;
+}
+
+.weui-navbar {
+  border-bottom: 0 none;
+  width: 300px;
+  margin-left: -150px;
+  left: 50%;
+}
+
+.weui-navbar__item {
+  padding: 8px 0;
+}
+
+.weui-media-box__title {
+  font-size: 15px;
+}
+
+.btn-tabs {
+  text-align: center;
+}
+
+.btn-tabs .tab {
+  width: 100px;
+  background-color: #eee;
+  border-radius: 99px;
+  display: inline-block;
+  padding: 6px;
+  margin: 4px 4px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.btn-tabs .tab.on {
+  background-color: #4b8ef9;
+  color: #fff;
+}
+
+.weui-media-box__info__meta {
+  padding-right: 8px;
+}
+
+.weui-media-box.rktk-record .weui-media-box__info {
+  margin-top: 4px;
+  color: #999;
+  font-size: 13px;
 }

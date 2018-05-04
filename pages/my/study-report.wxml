@@ -1,7 +1,6 @@
 <view class="page">
   <view class="page__hd">
-    <view class="wave">
-    </view>
+    <view class="wave"></view>
     <view class="wave-top">
       <canvas class="circle" canvas-id="circle-rate">
         <view class="circle-scope">
@@ -11,18 +10,49 @@
       </canvas>
       <view class="weui-flex exam-info">
         <view class="weui-flex__item">
-          <text class="s">{{examTimes || 0}}</text>
+          <text class="s">{{examCount || 0}}</text>
           <text class="p">答题次数</text>
         </view>
         <view class="weui-flex__item">
-          <text class="s">{{questionNum || 0}}</text>
+          <text class="s">{{answerCount || 0}}</text>
           <text class="p">题目总数</text>
         </view>
         <view class="weui-flex__item">
-          <text class="s">{{countTime || "00:00"}}</text>
-          <text class="p">总计时间</text>
+          <text class="s">{{examDuration || "00:00"}}</text>
+          <text class="p">总计耗時</text>
         </view>
       </view>
     </view>
   </view>
+
+  <view class="page__hd">
+    <view class="btn-tabs">
+      <view class="tab {{tabIndex == 1 ? 'on' : ''}}" data-index="1" bindtap="loadExams">按年份</view>
+      <view class="tab {{tabIndex == 2 ? 'on' : ''}}" data-index="2" bindtap="loadExams">按知识点</view>
+    </view>
+    <view class="weui-panel">
+      <view class="weui-panel__bd">
+        <navigator url="../question1/subject?id={{item[0]}}" class="weui-media-box rktk-record" wx:for="{{exams}}" wx:key="*this">
+          <view class="weui-media-box__title">{{item[1]}}</view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta" style="width:90px">
+              <progress percent="{{item[3] * 100 / item[2]}}" stroke-width="4" activeColor="#4b8ef9" style="margin-top:5px" />
+            </view>
+            <view class="weui-media-box__info__meta" style="min-width:83px">
+              已答
+              <text style="color:#4b8ef9">{{item[3]}}</text>/{{item[2]}} 题
+            </view>
+            <view class="weui-media-box__info__meta">
+              正确率
+              <text style="color:{{item[6] < 60 ? '#E64340' : '#09bb07'}}">{{item[6]}}%</text>
+            </view>
+            <view class="weui-media-box__info__meta pull-right" style="padding-right:0">
+              {{item[5] || ''}}
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
 </view>

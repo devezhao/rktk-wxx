@@ -12,9 +12,7 @@ Page({
 
   onLoad: function (e) {
     if (e.type && e.type == 'invite') {
-      this.setData({
-        activeIndex: 2
-      })
+      this.setData({ activeIndex: 2 })
     }
     var that = this;
     wx.getSystemInfo({
