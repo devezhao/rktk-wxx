@@ -7,34 +7,45 @@ Page({
 
   onLoad: function (e) {
     let that = this;
-    that.__drawCircle(0.1);
 
-    // let x = 0;
-    // let x_timer = setInterval(function () {
-    //   x += 0.01;
+    let x = 0.1;
+    that.__drawCircle(x);
+    // let ttt = setInterval(function(){
     //   that.__drawCircle(x);
-    //   if (x >= 0.5) clearInterval(x_timer)
-    // }, 50);
+    //   x += 0.1;
+    //   if (x > 0.5) clearInterval(ttt)
+    // }, 1000);
+
   },
 
   __drawCircle: function (p) {
     let ctx = wx.createContext();
+    let sAngle = 0.8 * Math.PI,
+      eAngle = 0.2 * Math.PI;
     // 内
-    ctx.beginPath(0);
-    ctx.arc(50, 50, 48, 0.8 * Math.PI, 2.2 * Math.PI);
+    ctx.beginPath();
+    ctx.arc(50, 50, 48, sAngle, eAngle);
     ctx.setStrokeStyle('#eeeeee');
     ctx.setLineWidth(2);
     ctx.stroke();
     // 外
-    ctx.beginPath(0);
-    ctx.arc(50, 50, 48, 0.8 * Math.PI, p * (2.2 * Math.PI));
+    ctx.beginPath();
+    if (p <= 0.1) eAngle = sAngle + (0.7 * Math.PI / 5 * 1);
+    if (p <= 0.2) eAngle = sAngle + (0.7 * Math.PI / 5 * 2);
+    if (p <= 0.3) eAngle = sAngle + (0.7 * Math.PI / 5 * 3);
+    if (p <= 0.4) eAngle = sAngle + (0.7 * Math.PI / 5 * 4);
+    if (p <= 0.5) eAngle = sAngle + (0.7 * Math.PI / 5 * 5);
+    console.log(eAngle)
+    ctx.arc(50, 50, 48, sAngle, eAngle);
     ctx.setStrokeStyle('#4cae4c');
     ctx.setLineWidth(2);
     ctx.stroke();
     wx.drawCanvas({
       canvasId: 'circle-rate',
       actions: ctx.getActions()
-    })
+    });
+
+    
   },
 
 })

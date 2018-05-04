@@ -5,10 +5,24 @@
     <view class="wave-top">
       <canvas class="circle" canvas-id="circle-rate">
         <view class="circle-scope">
-          43<text>%</text>
+          {{rightRate || 0}}<text>%</text>
           <view>正确率</view>
         </view>
       </canvas>
+      <view class="weui-flex exam-info">
+        <view class="weui-flex__item">
+          <text class="s">{{examTimes || 0}}</text>
+          <text class="p">答题次数</text>
+        </view>
+        <view class="weui-flex__item">
+          <text class="s">{{questionNum || 0}}</text>
+          <text class="p">题目总数</text>
+        </view>
+        <view class="weui-flex__item">
+          <text class="s">{{countTime || "00:00"}}</text>
+          <text class="p">总计时间</text>
+        </view>
+      </view>
     </view>
   </view>
 </view>
