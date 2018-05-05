@@ -7,9 +7,7 @@ Page({
   },
 
   onLoad: function (e) {
-    this.setData({
-      isAndroid: app.GLOBAL_DATA.IS_ANDROID
-    });
+    
 
     this.__drawCircle(0);
 

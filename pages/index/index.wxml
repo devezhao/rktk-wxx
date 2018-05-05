@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page {{isAndroid ? 'android' : ''}}">
   <swiper class="home-swiper" style="{{swiperHeight}}" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" hidden="{{hideBanners}}">
     <swiper-item wx:for="{{banners}}" wx:key="*this">
       <view data-url="{{item[1]}}" bindtap="gotoPage">
@@ -28,7 +28,7 @@
               <image wx:else src="../../images/h-icon-incorrect.png" class="x26"></image>
             </view>
             <text>错题练习</text>
-            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}" style="font-size:11px;background-color:#eee;color:#555;">{{incorrect_count}}</text>
+            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}" style="font-size:11px;background-color:#eee;color:#333;">{{incorrect_count}}</text>
           </button>
         </form>
       </view>

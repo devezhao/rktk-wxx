@@ -56,12 +56,15 @@
   font-size: 10px;
   min-width: 12px;
   padding: 0 2px;
-  height: 12px;
-  line-height: 1;
+  height: 16px;
+  line-height: 16px;
   border-radius: 99px;
   text-align: center;
   overflow: hidden;
-  padding-top: 3px;
+}
+
+.android .top-column .weui-flex__item .icon-w text.bag {
+  line-height: 18px;
 }
 
 .weui-media-box__title.nodata-tips {

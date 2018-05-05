@@ -14,6 +14,9 @@ Page({
       let swiperHeight = 'height:' + (osi.screenWidth / 2.5) + 'px';
       this.setData({ swiperHeight: swiperHeight });
     }
+    this.setData({
+      isAndroid: app.GLOBAL_DATA.IS_ANDROID
+    });
 
     let that = this;
     zutils.get(app, 'api/home/comdata', function (res) {
