@@ -22,7 +22,8 @@
       </view>
     </view>
     <view wx:if="{{listData && listData.length > 0}}" class="foot-count">
-      连续答对2次自动移出错题本
+      <icon type="info" size="14" color="#aaa"></icon>
+      <text>连续答对2次自动移出错题本</text>
     </view>
   </view>
   <view class="fix-foobar" style="background-color:#fff;" wx:if="{{listData && listData.length > 0}}">

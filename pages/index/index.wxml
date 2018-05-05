@@ -28,7 +28,7 @@
               <image wx:else src="../../images/h-icon-incorrect.png" class="x26"></image>
             </view>
             <text>错题练习</text>
-            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}" style="font-size:11px">{{incorrect_count}}</text>
+            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}" style="font-size:11px;background-color:#eee;color:#555;">{{incorrect_count}}</text>
           </button>
         </form>
       </view>
@@ -43,7 +43,7 @@
           </button>
         </form>
       </view>
-      <view class="weui-flex__item">
+      <!-- <view class="weui-flex__item">
         <form bindsubmit="signin" report-submit="true">
           <button class="icon-w" formType="submit">
             <view class="icon">
@@ -53,18 +53,18 @@
             <text>签到</text>
           </button>
         </form>
-      </view>
-      <!-- <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/study-report">
+      </view> -->
+      <view class="weui-flex__item">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/exam/exam-report">
           <button class="icon-w" formType="submit">
             <view class="icon">
               <image src="../../images/h-icon-study-report.png" class="x26"></image>
             </view>
-            <text>学习报告</text>
+            <text>答题报告</text>
             <text class="bag">新</text>
           </button>
         </form>
-      </view> -->
+      </view>
     </view>
   </view>
 

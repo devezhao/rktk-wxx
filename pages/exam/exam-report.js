@@ -7,6 +7,10 @@ Page({
   },
 
   onLoad: function (e) {
+    this.setData({
+      isAndroid: app.GLOBAL_DATA.IS_ANDROID
+    });
+
     this.__drawCircle(0);
 
     let that = this;
@@ -59,7 +63,7 @@ Page({
     ctx.beginPath();
     eAngle = sAngle + (p * 1.4 * Math.PI);
     ctx.arc(50, 50, 48, sAngle, eAngle);
-    ctx.setStrokeStyle('#09bb07');
+    ctx.setStrokeStyle(this.data.circleColor || '#09bb07');
     ctx.setLineWidth(2);
     ctx.stroke();
     wx.drawCanvas({
@@ -71,6 +75,8 @@ Page({
 
   __drawCircleAnimate: function (p) {
     if (p <= 0) return;
+    if (p < 0.6) this.setData({ circleColor: '#E64340' })
+
     let that = this;
     let t = 1000 / (p * 100);
     let s = 0;
@@ -79,5 +85,10 @@ Page({
       that.__drawCircle(s);
       if (s >= p) clearInterval(ttt);
     }, t);
+  },
+
+  onShareAppMessage: function () {
+    let d = app.warpShareData();
+    return d;
   },
 })

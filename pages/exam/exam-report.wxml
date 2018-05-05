@@ -1,9 +1,9 @@
-<view class="page">
+<view class="page {{isAndroid ? 'android' : ''}}">
   <view class="page__hd">
     <view class="wave"></view>
     <view class="wave-top">
       <canvas class="circle" canvas-id="circle-rate">
-        <view class="circle-scope">
+        <view class="circle-scope" style="color:{{circleColor}}">
           {{rightRate || 0}}<text>%</text>
           <view>正确率</view>
         </view>
@@ -18,21 +18,21 @@
           <text class="p">题目总数</text>
         </view>
         <view class="weui-flex__item">
-          <text class="s">{{examDuration || "00:00"}}</text>
-          <text class="p">总计耗時</text>
+          <text class="s">{{examDuration || "0H"}}</text>
+          <text class="p">答题时间</text>
         </view>
       </view>
     </view>
   </view>
 
-  <view class="page__hd">
+  <view class="page__hd" wx:if="{{exams && exams.length > 0}}">
     <view class="btn-tabs">
       <view class="tab {{tabIndex == 1 ? 'on' : ''}}" data-index="1" bindtap="loadExams">按年份</view>
       <view class="tab {{tabIndex == 2 ? 'on' : ''}}" data-index="2" bindtap="loadExams">按知识点</view>
     </view>
     <view class="weui-panel">
       <view class="weui-panel__bd">
-        <navigator url="../question1/subject?id={{item[0]}}" class="weui-media-box rktk-record" wx:for="{{exams}}" wx:key="*this">
+        <navigator url="../question/subject?id={{item[0]}}" class="weui-media-box rktk-record" wx:for="{{exams}}" wx:key="*this" hover-class="weui-cell_active">
           <view class="weui-media-box__title">{{item[1]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta" style="width:90px">
@@ -53,6 +53,16 @@
         </navigator>
       </view>
     </view>
+    <view class="foot-count">
+      <icon type="info" size="14" color="#aaa"></icon>
+      <text>建议根据正确率做针对练习</text>
+    </view>
   </view>
 
+  <view class="page__bd" wx:if="{{exams && exams.length == 0}}">
+    <view class="icon-box" style="margin-top:30%">
+      <icon type="info" size="88"></icon>
+      <view class="icon-box__title">暂无答题</view>
+    </view>
+  </view>
 </view>

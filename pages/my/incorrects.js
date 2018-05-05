@@ -67,7 +67,8 @@ Page({
     // wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
     
     zutils.get(app, 'api/user/isvip', function (res) {
-      if (res.data.isVip == true) {
+      let _data = res.data.data || res.data;
+      if (_data.isVip == true) {
         wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
       } else {
         wx.showModal({
