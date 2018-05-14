@@ -95,33 +95,35 @@ App({
       typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
     } else {
       // 老版授权
-      // let that = this;
-      // wx.login({
-      //   success: function (res) {
-      //     that.login_code = res.code;
-      //     wx.getUserInfo({
-      //       success: function (res2) {
-      //         res2.code = res.code;
-      //         that.__storeUserInfo(res2, cb);
-      //       }, fail: function (res2) {
-      //         that.__forceUserInfo(cb);
-      //       }
-      //     })
-      //   }
-      // })
-
-      // 20180514: 新版授权
-      let cp = getCurrentPages()[getCurrentPages().length - 1];
-      let url = cp.route;
-      if (cp.options && Object.keys(cp.options).length > 0) {
-        let args = [];
-        for (let k in cp.options) {
-          args.push(k + '=' + cp.options[k]);
+      let that = this;
+      wx.login({
+        success: function (res) {
+          that.login_code = res.code;
+          wx.getUserInfo({
+            success: function (res2) {
+              res2.code = res.code;
+              that.__storeUserInfo(res2, cb);
+            }, fail: function (res2) {
+              that.__forceUserInfo(cb);
+            }
+          })
         }
-        url += '?' + args.join('&');
-      }
-      wx.redirectTo({ url: '/pages/index/auth?nexturl=' + encodeURIComponent('/' + url) });
+      })
     }
+  },
+  // 20180514: 新版授权
+  __getUserInfoV2: function () {
+    console.log('使用新版授权 20180514');
+    let cp = getCurrentPages()[getCurrentPages().length - 1];
+    let url = cp.route;
+    if (cp.options && Object.keys(cp.options).length > 0) {
+      let args = [];
+      for (let k in cp.options) {
+        args.push(k + '=' + cp.options[k]);
+      }
+      url += '?' + args.join('&');
+    }
+    wx.redirectTo({ url: '/pages/index/auth?nexturl=' + encodeURIComponent('/' + url) });
   },
 
   __checkUserInfo: function (cb, needLogin) {
@@ -168,6 +170,11 @@ App({
       success: function (res) {
         that.__storeUserInfo(res, cb);
       }, fail: function (res) {
+        if (res.errMsg == 'getUserInfo:fail scope unauthorized') {
+          that.__getUserInfoV2();
+          return;
+        }
+
         wx.showModal({
           title: '提示',
           content: '请允许小程序使用你的用户信息',

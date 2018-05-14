@@ -4,8 +4,7 @@
     <view class="wave-top">
       <canvas class="circle" canvas-id="circle-rate">
         <view class="circle-scope" style="color:{{circleColor}}">
-          {{rightRate || 0}}
-          <text>%</text>
+          {{rightRate || 0}}<text>%</text>
           <view>正确率</view>
         </view>
       </canvas>
