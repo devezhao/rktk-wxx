@@ -7,14 +7,14 @@ Page({
   },
 
   onLoad: function (e) {
-    
-
     this.__drawCircle(0);
-
     let that = this;
     app.getUserInfo(function (u) {
-      that.loadStats();
-      that.loadExams();
+      zutils.get(app, 'api/user/isvip', function (res) {
+        that.setData({ isVip: !res.data.isVip });
+        that.loadStats();
+        that.loadExams();
+      });
     });
   },
 
@@ -32,18 +32,20 @@ Page({
 
   loadExams: function (e) {
     let t = e ? e.currentTarget.dataset.index : 1;
+    if (t == 2) {
+      this.buyVip();
+      return;
+    }
+
     this.setData({ tabIndex: t });
 
     let that = this;
     zutils.get(app, 'api/exam/report/exam-by?type=' + t, function (res) {
       let _data = res.data.data;
-      console.log(JSON.stringify(res.data.data));
       for (let i = 0; i < _data.length; i++) {
         _data[i][6] = ~~(_data[i][4] * 100 / _data[i][3]);
       }
-      that.setData({
-        exams: _data
-      });
+      that.setData({ exams: _data });
     });
   },
 
@@ -83,6 +85,19 @@ Page({
       that.__drawCircle(s);
       if (s >= p) clearInterval(ttt);
     }, t);
+  },
+
+  buyVip: function () {
+    wx.showModal({
+      title: '提示',
+      content: '本功能为VIP专享，开通VIP会员可立即查看',
+      confirmText: '立即开通',
+      success: function (res) {
+        if (res.confirm) {
+          app.gotoPage('/pages/my/vip-buy')
+        }
+      }
+    });
   },
 
   onShareAppMessage: function () {

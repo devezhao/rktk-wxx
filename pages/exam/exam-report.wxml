@@ -4,7 +4,8 @@
     <view class="wave-top">
       <canvas class="circle" canvas-id="circle-rate">
         <view class="circle-scope" style="color:{{circleColor}}">
-          {{rightRate || 0}}<text>%</text>
+          {{rightRate || 0}}
+          <text>%</text>
           <view>正确率</view>
         </view>
       </canvas>
@@ -43,8 +44,13 @@
               <text style="color:#4b8ef9">{{item[3]}}</text>/{{item[2]}} 题
             </view>
             <view class="weui-media-box__info__meta">
-              正确率
-              <text style="color:{{item[6] < 60 ? '#E64340' : '#09bb07'}}">{{item[6]}}%</text>
+              <block wx:if="{{isVip}}">
+                正确率
+                <text style="color:{{item[6] < 60 ? '#E64340' : '#09bb07'}}">{{item[6]}}%</text>
+              </block>
+              <block wx:else>
+                <view style="color:#586c94" catchtap="buyVip">查看正确率</view>
+              </block>
             </view>
             <view class="weui-media-box__info__meta pull-right" style="padding-right:0">
               {{item[5] || ''}}
