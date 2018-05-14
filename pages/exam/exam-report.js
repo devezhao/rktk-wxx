@@ -11,7 +11,7 @@ Page({
     let that = this;
     app.getUserInfo(function (u) {
       zutils.get(app, 'api/user/isvip', function (res) {
-        that.setData({ isVip: !res.data.isVip });
+        that.setData({ isVip: res.data.isVip });
         that.loadStats();
         that.loadExams();
       });
@@ -84,7 +84,7 @@ Page({
       s += 0.01;
       that.__drawCircle(s);
       if (s >= p) clearInterval(ttt);
-    }, t);
+    }, 40);
   },
 
   buyVip: function () {

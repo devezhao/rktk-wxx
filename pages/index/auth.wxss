@@ -4,5 +4,5 @@
 
 .btn-warp button {
   width: 60%;
-  border: 1rpx solid #eee;
+  border: 1px solid #d9d9d9;
 }
