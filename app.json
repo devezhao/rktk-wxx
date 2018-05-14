@@ -4,6 +4,7 @@
     "pages/index/about",
     "pages/index/h5",
     "pages/index/tips",
+    "pages/index/auth",
     "pages/question/subject-choice",
     "pages/question/subject-list",
     "pages/question/subject",

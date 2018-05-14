@@ -1,0 +1,8 @@
+.btn-warp {
+  margin-top: 5%;
+}
+
+.btn-warp button {
+  width: 60%;
+  border: 1rpx solid #eee;
+}

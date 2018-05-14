@@ -94,20 +94,33 @@ App({
     if (this.GLOBAL_DATA.USER_INFO) {
       typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
     } else {
-      let that = this;
-      wx.login({
-        success: function (res) {
-          that.login_code = res.code;
-          wx.getUserInfo({
-            success: function (res2) {
-              res2.code = res.code;
-              that.__storeUserInfo(res2, cb);
-            }, fail: function (res2) {
-              that.__forceUserInfo(cb);
-            }
-          })
+      // 老版授权
+      // let that = this;
+      // wx.login({
+      //   success: function (res) {
+      //     that.login_code = res.code;
+      //     wx.getUserInfo({
+      //       success: function (res2) {
+      //         res2.code = res.code;
+      //         that.__storeUserInfo(res2, cb);
+      //       }, fail: function (res2) {
+      //         that.__forceUserInfo(cb);
+      //       }
+      //     })
+      //   }
+      // })
+
+      // 20180514: 新版授权
+      let cp = getCurrentPages()[getCurrentPages().length - 1];
+      let url = cp.route;
+      if (cp.options && Object.keys(cp.options).length > 0) {
+        let args = [];
+        for (let k in cp.options) {
+          args.push(k + '=' + cp.options[k]);
         }
-      })
+        url += '?' + args.join('&');
+      }
+      wx.redirectTo({ url: '/pages/index/auth?nexturl=' + encodeURIComponent('/' + url) });
     }
   },
 
@@ -141,8 +154,6 @@ App({
     console.log('存储授权 - ' + JSON.stringify(res))
     let that = this;
     let _data = { code: (res.code || that.login_code), iv: res.iv, data: res.encryptedData };
-    // _data.inviter = that.enterSource.u || that.enterSource._su;
-    // _data.inviter2 = that.enterSource.query.q;
     _data.enterSource = that.enterSource;
     zutils.post(that, 'api/user/wxx-login', _data, function (res2) {
       that.GLOBAL_DATA.USER_INFO = res2.data.data;
