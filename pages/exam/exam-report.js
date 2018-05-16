@@ -32,11 +32,10 @@ Page({
 
   loadExams: function (e) {
     let t = e ? e.currentTarget.dataset.index : 1;
-    if (t == 2) {
+    if (t == 2 && this.data.isVip == false) {
       this.buyVip();
       return;
     }
-
     this.setData({ tabIndex: t });
 
     let that = this;
@@ -74,17 +73,18 @@ Page({
   },
 
   __drawCircleAnimate: function (p) {
+    console.log('Render Circle: ' + p);
     if (p <= 0) return;
     if (p < 0.6) this.setData({ circleColor: '#E64340' })
 
     let that = this;
-    let t = 1000 / (p * 100);
     let s = 0;
     let ttt = setInterval(function () {
-      s += 0.01;
+      s += 0.03;
+      if (s > p) s = p;
       that.__drawCircle(s);
-      if (s >= p) clearInterval(ttt);
-    }, 40);
+      if (s == p) clearInterval(ttt);
+    }, 50);
   },
 
   buyVip: function () {

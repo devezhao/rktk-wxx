@@ -75,9 +75,8 @@
               <view class="weui-media-box__title">{{item[1]}}</view>
               <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
               <view class="weui-media-box__info">
-                <view class="weui-media-box__info__meta">
-                  考题数
-                  <text>{{item[3]}}</text>
+                <view class="weui-media-box__info__meta">考题数
+                 <text>{{item[3]}}</text>
                 </view>
                 <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>

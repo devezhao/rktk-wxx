@@ -190,8 +190,7 @@
     <view class="title">{{coupon_title || '优惠券即将过期'}}</view>
     <view class="coupon">
       <view class="pull-left money">¥{{vip_money || 50}}</view>
-      <view class="pull-left ctext">
-        限购买VIP会员
+      <view class="pull-left ctext">限购买VIP会员
         <view>
           <text>有效期\n{{vip_expdate || '今日到期'}}</text>
         </view>
@@ -200,8 +199,7 @@
     </view>
     <view class="coupon">
       <view class="pull-left money">¥{{svip_money || 100}}</view>
-      <view class="pull-left ctext">
-        限购买SVIP会员
+      <view class="pull-left ctext">限购买SVIP会员
         <view>
           <text>有效期\n{{svip_expdate || '今日到期'}}</text>
         </view>

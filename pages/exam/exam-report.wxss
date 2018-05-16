@@ -107,6 +107,10 @@ page, .page {
   line-height: 1;
 }
 
+.btn-tabs .tab:active {
+  background-color: #ddd;
+}
+
 .btn-tabs .tab.on {
   background-color: #4b8ef9;
   color: #fff;
