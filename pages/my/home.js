@@ -17,6 +17,10 @@ Page({
 
     let that = this;
     app.getUserInfo(function (u) {
+      if (/^U[0-9]{5,10}$/.test(u.nick)) {
+        app.getUserInfoForce();
+      }
+
       that.setData({
         headimgUrl: u.headimgUrl,
         nick: u.nick,
@@ -48,6 +52,14 @@ Page({
         that.setData(res.data.data);
       });
     }
+
+    let that = this;
+    app.getUserInfo(function (u) {
+      that.setData({
+        headimgUrl: u.headimgUrl,
+        nick: u.nick,
+      });
+    });
   },
 
   __onLoad: function (cb) {
