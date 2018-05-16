@@ -53,13 +53,13 @@ Page({
       });
     }
 
-    let that = this;
-    app.getUserInfo(function (u) {
-      that.setData({
+    let u = app.GLOBAL_DATA.USER_INFO;
+    if (u && this.data.nick != u.nick) {
+      this.setData({
         headimgUrl: u.headimgUrl,
-        nick: u.nick,
+        nick: u.nick
       });
-    });
+    }
   },
 
   __onLoad: function (cb) {

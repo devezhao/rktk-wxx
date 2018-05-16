@@ -32,10 +32,13 @@ Page({
     let _data = { code: that.__loginCode, iv: res.iv, data: res.encryptedData };
     zutils.post(app, 'api/user/wxx-login?noloading', _data, function (res) {
       app.GLOBAL_DATA.USER_INFO = res.data.data;
-      wx.setStorage({ key: 'USER_INFO', data: app.GLOBAL_DATA.USER_INFO });
-      
-      if (that.nexturl == 'back') wx.navigateBack()
-      else app.gotoPage(that.nexturl, true)
+      wx.setStorage({
+        key: 'USER_INFO', data: app.GLOBAL_DATA.USER_INFO,
+        success: function () {
+          if (that.nexturl == 'back') wx.navigateBack()
+          else app.gotoPage(that.nexturl, true)
+        }
+      });
     });
   }
 })
