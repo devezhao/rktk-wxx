@@ -175,8 +175,6 @@ Page({
   },
 
   toExplain: function (e) {
-    app.reportKpi('EXPLAIN', this.subjectId);
-    app.followSubject(this.subjectId);
     zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
 
     if (this.data.vip_free == false && this.data.coin == -2) {
@@ -201,6 +199,9 @@ Page({
       });
       return;
     }
+
+    app.reportKpi('EXPLAIN', this.subjectId);
+    app.followSubject(this.subjectId);
 
     let _url = '../exam/explain?id=' + this.subjectId;
     if (this.data.subject_type == 11) _url = '../exam/explain-rich?id=' + this.subjectId;

@@ -63,12 +63,10 @@ Page({
 
   explainAll: function () {
     let subjectId = '110-000000000000FA01';
-    app.reportKpi('EXPLAIN', subjectId);
-    // wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
-    
     zutils.get(app, 'api/user/isvip', function (res) {
       let _data = res.data.data || res.data;
       if (_data.isVip == true) {
+        app.reportKpi('EXPLAIN', subjectId);
         wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
       } else {
         wx.showModal({
