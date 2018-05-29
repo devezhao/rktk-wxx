@@ -17,6 +17,10 @@ Page({
 
     let that = this;
     app.getUserInfo(function (u) {
+      if (/^U[0-9]{5,10}$/.test(u.nick)) {
+        app.getUserInfoForce();
+      }
+
       that.setData({
         headimgUrl: u.headimgUrl,
         nick: u.nick,
@@ -46,6 +50,14 @@ Page({
       let that = this;
       zutils.get(app, 'api/user/study-infos?noloading', function (res) {
         that.setData(res.data.data);
+      });
+    }
+
+    let u = app.GLOBAL_DATA.USER_INFO;
+    if (u && this.data.nick != u.nick) {
+      this.setData({
+        headimgUrl: u.headimgUrl,
+        nick: u.nick
       });
     }
   },

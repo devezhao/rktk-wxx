@@ -65,6 +65,14 @@ Page({
       that.__loadMeta();
       if (s == 'onPullDownRefresh') wx.stopPullDownRefresh();
     });
+
+    let u = app.GLOBAL_DATA.USER_INFO;
+    if (u && this.data.nick != u.nick) {
+      this.setData({
+        headimgUrl: u.headimgUrl,
+        nick: u.nick
+      });
+    }
   },
 
   __checkRoom: function (pkroom) {

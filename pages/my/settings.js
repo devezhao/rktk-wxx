@@ -43,6 +43,7 @@ Page({
   cleanCache: function () {
     let that = this;
     wx.showModal({
+      title: '提示',
       content: '确认清空缓存？',
       success: function (res) {
         if (res.confirm) {
@@ -52,10 +53,8 @@ Page({
           app.GLOBAL_DATA.USER_INFO = null;
           // 缓存清空重登录
           app.getUserInfo(function (u) {
-            wx.showToast({
-              title: '缓存已清空'
-            });
             that.setData({ cacheSize: '0KB' })
+            app.getUserInfoForce(true)
           });
         }
       }
