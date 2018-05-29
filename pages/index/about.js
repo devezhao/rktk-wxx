@@ -33,5 +33,9 @@ Page({
         title: 'DEBUG 模式已开启'
       })
     }
+  },
+
+  github: function () {
+    app.alert('Fork me on GitHub. https://github.com/devezhao/rktk-wxx/');
   }
 })
