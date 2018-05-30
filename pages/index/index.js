@@ -179,7 +179,7 @@ Page({
     });
     
     // 错题数量在此加载/刷新
-    zutils.get(app, 'api/fav/incorrect-stats', function (res) {
+    zutils.get(app, 'api/fav/incorrect-stats?d=3', function (res) {
       that.setData(res.data.data);
     });
   },
@@ -239,21 +239,6 @@ Page({
         } else {
           app.alert(error_msg);
         }
-      }
-    });
-  },
-
-  signin: function (e) {
-    zutils.post(app, 'api/home/signin?formId=' + (e.detail.formId || ''), function (res) {
-      let _data = res.data;
-      if (_data.error_code == 0) {
-        app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
-        wx.showToast({
-          title: _data.data || '签到成功',
-          icon: 'success'
-        });
-      } else {
-        app.alert(_data.error_msg);
       }
     });
   },

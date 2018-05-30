@@ -28,7 +28,7 @@
               <image wx:else src="../../images/h-icon-incorrect.png" class="x26"></image>
             </view>
             <text>错题练习</text>
-            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}" style="font-size:11px;background-color:#eee;color:#333;">{{incorrect_count}}</text>
+            <text class="bag incorrect" wx:if="{{incorrect_count && incorrect_count > 0}}">3日({{incorrect_count}})</text>
           </button>
         </form>
       </view>
@@ -43,17 +43,6 @@
           </button>
         </form>
       </view>
-      <!-- <view class="weui-flex__item">
-        <form bindsubmit="signin" report-submit="true">
-          <button class="icon-w" formType="submit">
-            <view class="icon">
-              <image wx:if="{{homeicon && homeicon[3]}}" class="x32" src="{{homeicon[3]}}"></image>
-              <image wx:else src="../../images/h-icon-signin.png" class="x24" style="margin-top:2px"></image>
-            </view>
-            <text>签到</text>
-          </button>
-        </form>
-      </view> -->
       <view class="weui-flex__item">
         <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/exam/exam-report">
           <button class="icon-w" formType="submit">
