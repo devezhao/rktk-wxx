@@ -63,7 +63,7 @@
       <view class="weui-cell__bd">学豆记录</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <navigator url="coin-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <navigator url="coin-buy" class="weui-cell weui-cell_access hide" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="../../images/icon-coin-buy.png"></image>
       </view>

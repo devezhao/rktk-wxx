@@ -21,6 +21,11 @@ Page({
     let that = this;
     zutils.get(app, 'api/home/comdata', function (res) {
       let _data = res.data.data;
+      // if (res.data.error_code > 1000) {
+      //   wx.redirectTo({ url: '/pages/index/tips?msg=' + res.data.error_msg });
+      //   return;
+      // }
+
       wx.setNavigationBarTitle({ title: _data.title || '软考必备' });
 
       if (!_data.banners || _data.banners.length == 0) {
