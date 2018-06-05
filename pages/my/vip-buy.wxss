@@ -26,12 +26,6 @@ page, .page {
   background-color: #f7f7f9;
 }
 
-.tt .right {
-  position: absolute;
-  right: 9px;
-  top: 7px;
-}
-
 .tt + .tt {
   border-top-width: 0;
   border-radius: 0 0 2px 2px;
@@ -44,17 +38,6 @@ page, .page {
 .tt .weui-cell__ft_in-access:after {
   border-color: #a18d62;
   margin-top: -16px;
-}
-
-.tt view text.p {
-  float: right;
-  padding-right: 28px;
-}
-
-.tt view text.p.del {
-  padding-right: 8px;
-  text-decoration: line-through;
-  color: #ec5353;
 }
 
 .fix-foobar.btns {
@@ -144,4 +127,35 @@ page, .page {
   font-size: 12px;
   color: #999;
   margin-top: 5px;
+}
+
+.tt {
+  position: relative;
+}
+
+.tt .level text, .tt .price text {
+  display: block;
+  font-size: 11px;
+  margin-top: -4px;
+}
+
+.tt .price {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.tt .price text {
+  text-decoration: line-through;
+  color: #ec5353;
+}
+
+.tt .o {
+  position: absolute;
+  background-color: #a18d62;
+  width: 18px;
+  height: 18px;
+  right: 0;
+  top: 0;
+  line-height: 1;
+  text-align: center;
 }

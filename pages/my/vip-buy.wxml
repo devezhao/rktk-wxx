@@ -18,22 +18,32 @@
 
     <view class="weui-cells__title">开通会员等级</view>
     <view class="tt L1" data-tt="vip" bindtap="selectType">
-      <view>VIP会员
-        <text class="p">{{feeVip}}</text>
-        <text class="p {{feeVip ? 'del' : ''}}">{{feeVip ? '原价 ' : ''}}¥199</text>
+      <view class="level pull-left">
+        VIP会员
+        <text>有效期至 {{vipExpires}}</text>
       </view>
-      <view class="right" hidden="{{tt == 'svip'}}">
-        <icon type="success_no_circle" color="#a18d62" size="18"></icon>
+      <view class="price pull-right">
+        ¥{{feeVip || 199}}
+        <text wx:if="{{feeVip}}">原价 199</text>
       </view>
+      <view class="o" wx:if="{{tt == 'vip'}}">
+        <icon type="success_no_circle" color="#fff" size="12" />
+      </view>
+      <view class="clearfix"></view>
     </view>
     <view class="tt" data-tt="svip" bindtap="selectType">
-      <view>SVIP会员
-        <text class="p">{{feeSVip}}</text>
-        <text class="p {{feeSVip ? 'del' : ''}}">{{feeSVip ? '原价 ' : ''}}¥299</text>
+      <view class="level pull-left">
+        SVIP会员
+        <text>永久有效</text>
       </view>
-      <view class="right" hidden="{{tt == 'vip'}}">
-        <icon type="success_no_circle" color="#a18d62" size="18"></icon>
+      <view class="price pull-right">
+        ¥{{feeSVip || 299}}
+        <text wx:if="{{feeSVip}}">原价 299</text>
       </view>
+      <view class="o" wx:if="{{tt == 'svip'}}">
+        <icon type="success_no_circle" color="#fff" size="12" />
+      </view>
+      <view class="clearfix"></view>
     </view>
     <view class="clearfix"></view>
     <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-terms" class="color-link fs-14" style="display:inline-block;margin-top:6px;">
@@ -58,11 +68,13 @@
 
 <view class="fix-foobar btns">
   <view class="pull-left">
-    <view class="T1">¥{{fee || 199}}<text>.{{feeFix || 0}}</text>
+    <view class="T1">¥{{fee || 199}}
+      <text>.{{feeFix || 0}}</text>
       <text wx:if="{{feeOld > 0}}" class="del color-high">{{feeOld}}</text>
     </view>
     <view class="T2">
-      已使用学豆余额抵扣<text>{{coinFee || 0}}</text>元
+      已使用学豆余额抵扣
+      <text>{{coinFee || 0}}</text>元
     </view>
   </view>
   <view class="pull-right">
