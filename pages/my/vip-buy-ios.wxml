@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-form-preview">
+      <view class="weui-form-preview__hd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">支付金额</view>
+          <view class="weui-form-preview__value_in-hd">¥{{fee || '0'}}</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__bd">
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">开通会员</view>
+          <view class="weui-form-preview__value">{{userNick || '-'}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">开通类型</view>
+          <view class="weui-form-preview__value">{{subject || '-'}}</view>
+        </view>
+        <view class="weui-form-preview__item">
+          <view class="weui-form-preview__label">状态</view>
+          <view class="weui-form-preview__value">未支付</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="page__bd pay-btns">
+    <block wx:if="{{isIOS}}">
+      <button type="button" type="primary" open-type="share" class="T2" disabled="{{btnDisabled}}">邀好友代付</button>
+      <view class="highbar icon">
+        <icon type="warn" size="14" color="#f87c3d" style="top:12px"></icon>
+        受苹果/微信支付政策影响，暂不支持 iOS 设备支付，你可邀请好友通过其他手机（如安卓）支付。
+      </view>
+    </block>
+    <block wx:else>
+      <button type="button" type="primary" bindtap="payNow" class="T2" disabled="{{btnDisabled}}">立即支付</button>
+    </block>
+    <navigator class="color-link" url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dBuyVip">[ 支付遇到问题 ]</navigator>
+  </view>
+</view>

@@ -50,7 +50,8 @@ Page({
       that.setData({
         subjectName: _data.subject_name,
         feeVip: _data.vip_fee < 199 ? ('¥' + _data.vip_fee) : '',
-        feeSVip: _data.svip_fee < 299 ? ('¥' + _data.svip_fee) : ''
+        feeSVip: _data.svip_fee < 299 ? ('¥' + _data.svip_fee) : '',
+        vipExpires: _data.vip_expires || ''
       });
       that.__calcFee();
     });
@@ -118,6 +119,11 @@ Page({
       }
 
       _data = _data.data;
+      if (app.GLOBAL_DATA.IS_IOS === true) {
+        wx.redirectTo({ url: './vip-buy-ios?id=' + _data.__id });
+        return;
+      }
+
       _data.success = function (res) {
         app.GLOBAL_DATA.RELOAD_VIP = ['Home'];
         wx.redirectTo({

@@ -6,7 +6,8 @@ Page({
     headimgUrl: '../../images/afo.png',
     nick: '游客',
     level: '普通会员',
-    subject: '选择考试类型'
+    subject: '选择考试类型',
+    isIOS: true
   },
   showTimes: 0,
 
@@ -15,18 +16,20 @@ Page({
       app.hideReddot(2, app.GLOBAL_DATA.RED_DOT[3]);
     }
 
+    this.setData({ isIOS: app.GLOBAL_DATA.IS_IOS });
+
     let that = this;
     app.getUserInfo(function (u) {
-      if (/^U[0-9]{5,10}$/.test(u.nick)) {
-        app.getUserInfoForce();
-      }
-
       that.setData({
         headimgUrl: u.headimgUrl,
         nick: u.nick,
         user: u.uid
       });
       that.__onLoad();
+
+      if (/^U[0-9]{5,10}$/.test(u.nick)) {
+        app.getUserInfoForce();
+      }
     });
   },
 

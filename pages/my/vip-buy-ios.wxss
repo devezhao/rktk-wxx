@@ -1,0 +1,26 @@
+.pay-btns {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.pay-btns navigator {
+  margin-top: 12px;
+  font-size: 15px;
+  display: inline-block;
+}
+
+.pay-btns .highbar {
+  margin: 0;
+  margin-top: 15px;
+  text-align: left;
+  font-size: 13px;
+  box-shadow: 0 0 0 #000;
+}
+
+.weui-form-preview__label {
+  font-size: 14px;
+}
+
+.weui-form-preview__value {
+  font-size: 15px;
+}

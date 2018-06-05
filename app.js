@@ -222,11 +222,12 @@ App({
   },
 
   // 简单 alert
-  alert: function (msg) {
+  alert: function (msg, fn) {
     wx.showModal({
       title: '提示',
       content: msg || '系统繁忙请重试',
-      showCancel: false
+      showCancel: false,
+      success: fn || function(){}
     });
   }
 })

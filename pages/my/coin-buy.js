@@ -2,7 +2,6 @@ const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
 Page({
-
   data: {
     numHold: 100,
     fee: '10.0'
@@ -10,7 +9,7 @@ Page({
   num: 100,
 
   onLoad: function (e) {
-    var that = this;
+    let that = this;
     app.getUserInfo(function (u) {
       that.setData({
         user: u.uid
@@ -19,7 +18,7 @@ Page({
   },
 
   selectNum: function (e) {
-    var n = ~~e.currentTarget.dataset.num;
+    let n = ~~e.currentTarget.dataset.num;
     if (n == 999999 && this.__inputHold) {
       this.num = this.__inputHold;
     } else {
@@ -32,7 +31,7 @@ Page({
   },
 
   inputNum: function (e) {
-    var n = ~~(e.detail.value || this.num);
+    let n = ~~(e.detail.value || this.num);
     this.num = n;
     this.setData({
       fee: (this.num / 10).toFixed(1)
@@ -41,11 +40,14 @@ Page({
   },
 
   buyNow: function (e) {
-    var that = this;
-    if (this.num <= 0) this.num = 100;
+    if (app.GLOBAL_DATA.IS_IOS === true) {
+      app.alert('受苹果/微信支付政策影响，iOS平台暂不支持充值'); return;
+    }
 
+    let that = this;
+    if (this.num <= 0) this.num = 100;
     zutils.get(app, 'api/pay/create-buycoin?num=' + this.num + '&formId=' + (e.detail.formId || ''), function (res) {
-      var _data = res.data;
+      let _data = res.data;
       if (_data.error_code > 0) {
         app.alert(_data.error_msg);
         return;
