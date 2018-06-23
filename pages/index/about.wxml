@@ -3,6 +3,7 @@
     <image src="/images/logo200.png"></image>
     <view bindtap="enableDebug">
       软考必备 V1.0.4
+      <view style="color:#888;font-size:13px">服务支持 rktksupport@sina.com</view>
     </view>
   </view>
   <view class="weui-cells rktk">

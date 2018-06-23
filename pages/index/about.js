@@ -36,6 +36,6 @@ Page({
   },
 
   github: function () {
-    app.alert('Fork me on GitHub. https://github.com/devezhao/rktk-wxx/');
+    app.alert('Fork on GitHub. https://github.com/devezhao/rktk-wxx/');
   }
 })
