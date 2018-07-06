@@ -44,11 +44,11 @@
     </view>
   </view>
 
-  <view style="text-align:center;" wx:if="{{hdStart}}">
-    <navigator url="/pages/index/h5?url=m%2ffaq.htm%3fk%3dpk-gift" style="color:#fb0;display:inline-block;font-size:14px">[ 软考PK赛奖励规则 ]</navigator>
+  <view style="text-align:center;" wx:if="{{hdTitle}}">
+    <navigator url="/pages/index/h5?url=m%2ffaq.htm%3fk%3dpk-gift" style="color:#fb0;display:inline-block;font-size:14px">[ {{hdTitle || '软考PK赛奖励规则'}} ]</navigator>
   </view>
 
-  <view class="page__bd" wx:if="{{hdStart && rankList}}" style="margin-top:32px">
+  <view class="page__bd" wx:if="{{rankList}}" style="margin-top:32px">
     <view class="rank_title">本周排行榜</view>
     <view class="sline"></view>
     <view class="rank_subtitle">我的本周得分 {{week_rank[1] || 0}} 排行 {{week_rank[0] || 9999}}</view>

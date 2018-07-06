@@ -24,3 +24,41 @@
 .weui-form-preview__value {
   font-size: 15px;
 }
+
+.pay-qrcode {
+  position: absolute;
+  width: 220px;
+  left: 50%;
+  margin-left: -110px;
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: 99;
+  top: 30%;
+  padding: 0;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.pay-qrcode view {
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.pay-qrcode view image {
+  width: 230px;
+  height: 230px;
+  margin-left: -5px;
+  margin-top: -5px;
+  display: block;
+}
+
+.color-link.scan {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 15px;
+  background: url(https://c.rktk.qidapp.com/a/wxx/ic_scan2.png) no-repeat 0 1px;
+  background-size: 20px 20px;
+  padding-left: 24px;
+}

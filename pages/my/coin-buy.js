@@ -40,10 +40,6 @@ Page({
   },
 
   buyNow: function (e) {
-    if (app.GLOBAL_DATA.IS_IOS === true) {
-      app.alert('受苹果/微信支付政策影响，iOS平台暂不支持充值'); return;
-    }
-
     let that = this;
     if (this.num <= 0) this.num = 100;
     zutils.get(app, 'api/pay/create-buycoin?num=' + this.num + '&formId=' + (e.detail.formId || ''), function (res) {

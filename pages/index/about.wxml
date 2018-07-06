@@ -2,8 +2,7 @@
   <view class="ver">
     <image src="/images/logo200.png"></image>
     <view bindtap="enableDebug">
-      软考必备 V1.0.4
-      <view style="color:#888;font-size:13px">服务支持 rktksupport@sina.com</view>
+      软考必备 V1.0.6
     </view>
   </view>
   <view class="weui-cells rktk">
@@ -41,4 +40,8 @@
 </view>
 <view class="tipsbar" hidden="{{tipsbarHide}}">
   <view>{{tips}}</view>
+</view>
+
+<view class="fix-foobar">
+<view style="color:#888;font-size:13px;text-align:center;padding:12px">联系我们 rktksupport@sina.com</view>
 </view>
