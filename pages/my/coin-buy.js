@@ -42,6 +42,10 @@ Page({
   buyNow: function (e) {
     let that = this;
     if (this.num <= 0) this.num = 100;
+    if (this.num < 100){
+      app.alert('最低100学豆起充');
+      return;
+    }
     zutils.get(app, 'api/pay/create-buycoin?num=' + this.num + '&formId=' + (e.detail.formId || ''), function (res) {
       let _data = res.data;
       if (_data.error_code > 0) {

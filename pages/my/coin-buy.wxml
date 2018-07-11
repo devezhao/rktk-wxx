@@ -3,19 +3,8 @@
     <view class="weui-cells__title">选择充值数量</view>
     <view class="weui-flex num-warp">
       <view class="weui-flex__item">
-        <view class="c {{numHold == 30 ? 'active' : ''}}" bindtap="selectNum" data-num="30">30</view>
-      </view>
-      <view class="weui-flex__item">
-        <view class="c {{numHold == 50 ? 'active' : ''}}" bindtap="selectNum" data-num="50">50</view>
-      </view>
-      <view class="weui-flex__item">
         <view class="c {{numHold == 100 ? 'active' : ''}}" bindtap="selectNum" data-num="100">100</view>
       </view>
-      <view class="weui-flex__item">
-        <view class="c {{numHold == 200 ? 'active' : ''}}" bindtap="selectNum" data-num="200">200</view>
-      </view>
-    </view>
-    <view class="weui-flex num-warp">
       <view class="weui-flex__item">
         <view class="c {{numHold == 300 ? 'active' : ''}}" bindtap="selectNum" data-num="300">300</view>
       </view>
@@ -23,13 +12,20 @@
         <view class="c {{numHold == 500 ? 'active' : ''}}" bindtap="selectNum" data-num="500">500</view>
       </view>
       <view class="weui-flex__item">
-        <view class="c {{numHold == 800 ? 'active' : ''}}" bindtap="selectNum" data-num="800">800</view>
+        <view class="c {{numHold == 1000 ? 'active' : ''}}" bindtap="selectNum" data-num="1000">1000</view>
+      </view>
+    </view>
+    <view class="weui-flex num-warp">
+      <view class="weui-flex__item">
+        <view class="c {{numHold == 2000 ? 'active' : ''}}" bindtap="selectNum" data-num="2000">2000</view>
       </view>
       <view class="weui-flex__item">
         <view class="c input {{numHold == 999999 ? 'active' : ''}}" bindtap="selectNum" data-num="999999">
           <input type="number" maxlength="4" bindinput="inputNum" placeholder="其它" style="text-align:center"></input>
         </view>
       </view>
+      <view class="weui-flex__item"></view>
+      <view class="weui-flex__item"></view>
     </view>
   </view>
 
