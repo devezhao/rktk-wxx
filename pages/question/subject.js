@@ -200,6 +200,12 @@ Page({
       return;
     }
 
+    let userNick = app.GLOBAL_DATA.USER_INFO.nick;
+    if (/^U[0-9]{5,10}$/.test(userNick)) {
+      app.getUserInfoForce(true);
+      return;
+    }
+
     app.reportKpi('EXPLAIN', this.subjectId);
     app.followSubject(this.subjectId);
 

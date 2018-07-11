@@ -50,7 +50,9 @@ Page({
       that.__loadRecommend();
       that.__checkTwxx();
       that.__checkToken();
-      that.__checkCoupon();
+      setTimeout(function(){
+        that.__checkCoupon();
+      }, 666)
       // 跳转页面
       if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage));
     });

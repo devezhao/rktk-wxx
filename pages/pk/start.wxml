@@ -48,7 +48,7 @@
     <navigator url="/pages/index/h5?url=m%2ffaq.htm%3fk%3dpk-gift" style="color:#fb0;display:inline-block;font-size:14px">[ {{hdTitle || '软考PK赛奖励规则'}} ]</navigator>
   </view>
 
-  <view class="page__bd" wx:if="{{rankList}}" style="margin-top:32px">
+  <view class="page__bd" wx:if="{{rankList}}" style="margin-top:15px">
     <view class="rank_title">本周排行榜</view>
     <view class="sline"></view>
     <view class="rank_subtitle">我的本周得分 {{week_rank[1] || 0}} 排行 {{week_rank[0] || 9999}}</view>
@@ -70,7 +70,7 @@
       <view class="clearfix"></view>
     </view>
     <view style="text-align:center;margin-top:14px;" wx:if="{{rankList && rankList.length > 2}}">
-      <navigator url="rank">[ 查看更多榜单 ]</navigator>
+      <navigator url="rank">[ 查看更多 ]</navigator>
     </view>
     <view class="rank_item" wx:if="{{rankList && rankList.length == 0}}">
       <view style="text-align:center;padding-top:18px">榜单计算中</view>
