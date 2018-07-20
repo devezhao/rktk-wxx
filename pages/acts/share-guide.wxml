@@ -25,7 +25,8 @@
   <view class="weui-cells rktk">
     <view class="weui-cell weui-cell_access" bindtap="csave" hover-class="weui-cell_active">
       <view class="weui-cell__bd">
-        <button class="weui-btn share" type="default">点击获取</button>
+        <button wx:if="{{openSettingNeed == true}}" class="weui-btn share" type="default" open-type="openSetting" bindopensetting="openSettingAfter">点击获取</button>
+        <button wx:else class="weui-btn share" type="default">点击获取</button>
       </view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>

@@ -196,7 +196,7 @@
       <view class="clearfix"></view>
     </view>
     <view class="btns">
-      <button type="default" bindtap="gotoPage" data-url="/pages/my/vip-buy?s=coupon">立即使用</button>
+      <button type="default" bindtap="gotoPage" hover-class="button-hover" data-url="/pages/my/vip-buy?s=coupon">立即使用</button>
       <button type="default" class="text" bindtap="hideCoupon">稍后使用</button>
     </view>
   </view>

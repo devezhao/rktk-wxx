@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page" style="padding-bottom:{{vipHide ? 0 : 50}}px">
   <view class="page__hd">
     <block wx:if="{{subjectList_1.length > 0}}">
       <view class="weui-cells__title">高级</view>
