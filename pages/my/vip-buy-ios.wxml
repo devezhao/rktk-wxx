@@ -44,6 +44,6 @@
   <view bindtap="hidePayQrcode" class="mask"></view>
   <view class="pay-qrcode">
     <view><image src="{{qrcodeUrl}}"></image></view>
-    <view style="margin-top:-10px">请使用微信扫码二维码支付</view>
+    <view style="margin-top:-10px">请使用安卓版微信扫码支付</view>
   </view>
 </view>

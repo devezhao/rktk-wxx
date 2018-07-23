@@ -33,7 +33,7 @@
   background-color: #fff;
   border-radius: 4px;
   z-index: 99;
-  top: 30%;
+  top: 22%;
   padding: 0;
   overflow: hidden;
   padding-bottom: 20px;

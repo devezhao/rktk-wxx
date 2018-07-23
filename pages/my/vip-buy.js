@@ -120,7 +120,7 @@ Page({
 
       _data = _data.data;
       if (app.GLOBAL_DATA.IS_IOS === true) {
-        wx.redirectTo({ url: './vip-buy-ios?id=' + _data.__id });
+        wx.navigateTo({ url: './vip-buy-ios?id=' + _data.__id });
         return;
       }
 
