@@ -27,7 +27,10 @@
           </view>
           <view class="a">
             <view class="k">参考答案</view>
-            <rich-text nodes="{{item.a}}"></rich-text>
+            <view wx:if="{{item.a == 'VIP'}}" style="color:#777;font-size:15px">
+              仅限VIP用户查看。<navigator class="color-link" style="display:inline-block" url="/pages/my/vip-buy">[ 立即开通 ]</navigator>
+            </view>
+            <rich-text wx:else nodes="{{item.a}}"></rich-text>
           </view>
         </view>
       </view>
@@ -43,7 +46,7 @@
         <block wx:if="{{explain_freedom == 'VIP'}}">
           <view class="vip-upgrade">
             <view class="tt">
-              <text>{{explain_adtxt || '升级VIP查看考题解析'}}</text>
+              <text>{{explain_adtxt || '升级VIP可查看解析'}}</text>
             </view>
             <button bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
           </view>

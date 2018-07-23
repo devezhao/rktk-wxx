@@ -297,7 +297,10 @@ Page({
     // });
   },
 
-  hideCoupon: function () {
+  hideCoupon: function (e) {
+    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    if (formId) zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId);
+
     let that = this;
     that.setData({ hideCoupon: true, showConponHighbar: true });
     app.reportKpi('COUPON.CLOSE');
