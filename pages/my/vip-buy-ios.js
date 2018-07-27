@@ -20,7 +20,6 @@ Page({
     });
 
     let qrcodeUrl = 'http://wbs.dev.wisecrm.com/qrcode/gen?w=400&t=' + encodeURIComponent('https://rktk.statuspage.cn/t/wxx/' + this.__id);
-    console.log(qrcodeUrl);
     this.setData({
       isIOS: app.GLOBAL_DATA.IS_IOS,
       qrcodeUrl: qrcodeUrl

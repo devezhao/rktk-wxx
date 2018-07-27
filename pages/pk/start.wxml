@@ -49,7 +49,7 @@
   </view>
 
   <view class="page__bd" wx:if="{{rankList}}" style="margin-top:15px">
-    <view class="rank_title">本周排行榜</view>
+    <view class="rank_title">本周排名</view>
     <view class="sline"></view>
     <view class="rank_subtitle">我的本周得分 {{week_rank[1] || 0}} 排行 {{week_rank[0] || 9999}}</view>
     <view class="rank_item" wx:for="{{rankList}}" wx:key="*this">

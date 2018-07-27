@@ -41,21 +41,13 @@
         考题解析
       </view>
       <view class="explain-content" wx:if="{{showExplain == true}}">
-        <block wx:if="{{explain_freedom == 'VIP'}}">
-          <view class="vip-upgrade">
-            <view class="tt">
-              <text>{{explain_adtxt || '升级VIP查看考题解析'}}</text>
-            </view>
-            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
-          </view>
-        </block>
         <block wx:if="{{explain_freedom == 'LIMIT'}}">
           <view class="explain-limit">
             <rich-text nodes="{{explain}}"></rich-text>
             <view hidden="{{hideGradual}}" class="gradual"></view>
           </view>
           <view hidden="{{hideGradual}}" class="explain-more">
-            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">点击查看完整解析</button>
+            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">查看完整解析</button>
           </view>
         </block>
         <block wx:else>

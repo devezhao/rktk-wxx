@@ -58,9 +58,9 @@
       },
       {
         "pagePath": "pages/pk/start",
-        "text": "PK",
-        "iconPath": "images/pk/icon-pk.png",
-        "selectedIconPath": "images/pk/icon-pk-s2.png"
+        "text": "PK榜",
+        "iconPath": "images/pk/icon-pk2.png",
+        "selectedIconPath": "images/pk/icon-pk2-s.png"
       },
       {
         "pagePath": "pages/my/home",
