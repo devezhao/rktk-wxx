@@ -48,7 +48,7 @@
             <view class="tt">
               <text>{{explain_adtxt || '升级VIP可查看解析'}}</text>
             </view>
-            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
+            <button wx:if="{{isIOS==false}}" bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
           </view>
         </block>
         <block wx:if="{{explain_freedom == 'LIMIT'}}">
@@ -60,7 +60,7 @@
             <view class="tt">
               <text>{{explain_adtxt || '升级VIP会员查看完整解析\n更享免费无限答题哦~'}}</text>
             </view>
-            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
+            <button wx:if="{{isIOS==false}}" bindtap="gotoPage" data-url="/pages/my/vip-buy">立即升级</button>
             <view class="clearfix"></view>
           </view>
         </block>

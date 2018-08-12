@@ -15,7 +15,7 @@
           <image src="../../images/bind-mobile.png"></image>
         </view>
         <view bindtap="gotoPage" data-url="/pages/my/coin-records">{{coin}}学豆</view>
-        <view bindtap="gotoPage" data-url="/pages/my/vip-buy">{{level}}</view>
+        <view>{{level}}</view>
       </view>
       <view class="clearfix"></view>
     </view>
@@ -44,7 +44,13 @@
   </navigator>
 
   <view class="weui-cells rktk">
-    <navigator url="vip-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view wx:if="{{iosNoVip}}" class="weui-cell weui-cell_access">
+      <view class="weui-cell__hd">
+        <image src="../../images/vip-gold.png"></image>
+      </view>
+      <view class="weui-cell__bd">你还不是VIP会员</view>
+    </view>
+    <navigator wx:else url="vip-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="../../images/vip-gold.png"></image>
       </view>

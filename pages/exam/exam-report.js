@@ -33,7 +33,7 @@ Page({
   loadExams: function (e) {
     let t = e ? e.currentTarget.dataset.index : 1;
     if (t == 2 && this.data.isVip == false) {
-      this.buyVip();
+      this.gotoVipBuy();
       return;
     }
     this.setData({ tabIndex: t });
@@ -87,17 +87,8 @@ Page({
     }, 50);
   },
 
-  buyVip: function () {
-    wx.showModal({
-      title: '提示',
-      content: '本功能为VIP专享，开通VIP会员可立即查看',
-      confirmText: '立即开通',
-      success: function (res) {
-        if (res.confirm) {
-          app.gotoPage('/pages/my/vip-buy')
-        }
-      }
-    });
+  gotoVipBuy: function () {
+    app.gotoVipBuy('本功能为VIP专享，开通VIP会员可立即查看')
   },
 
   onShareAppMessage: function () {

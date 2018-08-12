@@ -222,16 +222,7 @@ Page({
 
   toggleInteractive: function () {
     if (this.canInteractive == false) {
-      wx.showModal({
-        title: '提示',
-        content: '非VIP会员仅可对免费题库启用练习模式',
-        confirmText: '立即开通',
-        success: function (res) {
-          if (res.confirm) {
-            app.gotoPage('/pages/my/vip-buy')
-          }
-        }
-      });
+      app.gotoVipBuy('非VIP会员仅可对免费题库启用练习模式');
       return;
     }
 
@@ -312,6 +303,10 @@ Page({
 
   gotoPage: function (e) {
     app.gotoPage(e);
+  },
+
+  gotoVipBuy: function() {
+    app.gotoVipBuy();
   },
 
   // 翻页

@@ -47,7 +47,7 @@
             <view hidden="{{hideGradual}}" class="gradual"></view>
           </view>
           <view hidden="{{hideGradual}}" class="explain-more">
-            <button bindtap="gotoPage" data-url="/pages/my/vip-buy">查看完整解析</button>
+            <button bindtap="gotoVipBuy">查看完整解析</button>
           </view>
         </block>
         <block wx:else>

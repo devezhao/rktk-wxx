@@ -7,7 +7,8 @@ Page({
     nick: '游客',
     level: '普通会员',
     subject: '选择考试类型',
-    isIOS: true
+    isIOS: true,
+    iosNoVip: true
   },
   showTimes: 0,
 
@@ -17,6 +18,9 @@ Page({
     }
 
     this.setData({ isIOS: app.GLOBAL_DATA.IS_IOS });
+    if (app.GLOBAL_DATA.IS_IOS == false) {
+      this.setData({ iosNoVip: false });
+    }
 
     let that = this;
     app.getUserInfo(function (u) {
@@ -91,6 +95,8 @@ Page({
             vipLevelFull: '已开通' + _data.subject + _data.level + '会员'
           })
         });
+
+        that.setData({ iosNoVip: false })
       }
     });
     zutils.get(app, 'api/user/study-infos', function (res) {
@@ -101,4 +107,8 @@ Page({
   gotoPage: function (e) {
     app.gotoPage(e);
   },
+
+  gotoVipBuy: function(){
+    app.gotoVipBuy();
+  }
 });

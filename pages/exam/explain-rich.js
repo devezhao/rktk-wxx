@@ -8,7 +8,8 @@ Page({
     shareboxData: zsharebox.data,
     viewId: 'question',
     currentQuestionId: null,
-    hideNos: true
+    hideNos: true,
+    isIOS: false
   },
   questionId: null,  // for share
   qcached: {},
@@ -93,6 +94,12 @@ Page({
       for (let i = 0; i < _data.answer_list.length; i++) {
         _data.answer_list[i].no = nos[i];
       }
+
+      if (app.GLOBAL_DATA.IS_IOS === true) {
+        _data.explain_adtxt = '你还不是VIP会员';
+        _data.isIOS = true;
+      }
+
       that.setData(_data);
       that.qcached[that.data.currentQuestionId] = _data;
     });

@@ -48,7 +48,7 @@
                 <text style="color:{{item[6] < 60 ? '#E64340' : '#09bb07'}}">{{item[6]}}%</text>
               </block>
               <block wx:else>
-                <view style="color:#586c94" catchtap="buyVip">查看正确率 [?]</view>
+                <view style="color:#586c94" catchtap="gotoVipBuy">查看正确率 [?]</view>
               </block>
             </view>
             <view class="weui-media-box__info__meta pull-right" style="padding-right:0">

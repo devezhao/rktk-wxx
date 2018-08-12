@@ -161,6 +161,23 @@ App({
     }
   },
 
+  gotoVipBuy: function(msg) {
+    if (this.GLOBAL_DATA.IS_IOS) {
+      this.alert('你还不是VIP会员');
+      return;
+    }
+
+    msg = msg || '本题库/功能仅VIP会员可用';
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      confirmText: '立即开通',
+      success: function (res) {
+        if (res.confirm) this.gotoPage('/pages/my/vip-buy')
+      }
+    });
+  },
+
   // 上报分析数据
   // t=EXAM,EXPLAIN etc.
   // s=相关题库（可选）

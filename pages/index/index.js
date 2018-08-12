@@ -263,6 +263,7 @@ Page({
   // 优惠券
 
   __checkCoupon: function () {
+    if (app.GLOBAL_DATA.IS_IOS === true) return;
     let that = this;
     zutils.get(app, 'api/user/check-coupon?noloading', function (res) {
       if (res.data.error_code == 0 && res.data.data) {
@@ -272,29 +273,6 @@ Page({
         app.reportKpi('COUPON.SHOW');
       }
     });
-
-    // let that = this;
-    // let today = zutils.formatDate('ONyyyyMMdd');
-    // wx.getStorage({
-    //   key: 'LastCouponShow',
-    //   complete: function (res) {
-    //     // 今日未显示
-    //     if (!(res.data && res.data == today)) {
-    //       zutils.get(app, 'api/user/check-coupon', function (res) {
-    //         if (res.data.error_code == 0 && res.data.data) {
-    //           let _data = res.data.data;
-    //           _data.hideCoupon = false;
-    //           that.setData(_data);
-    //           app.reportKpi('COUPON.SHOW');
-    //           wx.setStorage({
-    //             key: 'LastCouponShow',
-    //             data: today
-    //           });
-    //         }
-    //       });
-    //     }
-    //   }
-    // });
   },
 
   hideCoupon: function (e) {
