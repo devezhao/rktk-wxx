@@ -33,6 +33,10 @@ Page({
         that.__calcFee();
       }
     });
+
+    if (e.msg) {
+      this.setData({ urlMsg: e.msg });
+    }
   },
 
   onShow: function (e) {

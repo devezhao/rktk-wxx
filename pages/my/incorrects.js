@@ -69,16 +69,7 @@ Page({
         app.reportKpi('EXPLAIN', subjectId);
         wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
       } else {
-        wx.showModal({
-          title: '提示',
-          content: '本功能为VIP专享，开通VIP会员可立即使用',
-          confirmText: '立即开通',
-          success: function (res) {
-            if (res.confirm) {
-              app.gotoPage('/pages/my/vip-buy')
-            }
-          }
-        });
+        app.gotoVipBuy('本功能为VIP专享，开通VIP会员可立即使用');
       }
     });
   }

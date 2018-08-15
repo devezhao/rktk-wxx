@@ -21,27 +21,27 @@ App({
     RED_DOT: {},
   },
 
-  onLaunch: function (e) {
+  onLaunch: function(e) {
     this.enterSource = e;
     console.log("小程序初始化: " + JSON.stringify(this.enterSource));
 
     let that = this;
     wx.getStorage({
       key: 'USER_INFO',
-      success: function (res) {
+      success: function(res) {
         console.log('用户信息: ' + JSON.stringify(res));
         that.GLOBAL_DATA.USER_INFO = res.data;
       },
-      fail: function () {
+      fail: function() {
         that.getUserInfo()
       },
-      complete: function () {
+      complete: function() {
         that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
       }
     });
 
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.GLOBAL_DATA.IS_ANDROID = /Android/g.test(res.system);
         that.GLOBAL_DATA.IS_IOS = /iOS/g.test(res.system);
 
@@ -52,11 +52,11 @@ App({
     });
   },
 
-  onShow: function (e) {
+  onShow: function(e) {
     console.log("小程序进入前台: " + JSON.stringify(e));
   },
 
-  onHide: function (e) {
+  onHide: function(e) {
     console.log("小程序进入后台: " + JSON.stringify(e));
 
     // 新版微信已取消
@@ -72,49 +72,58 @@ App({
     // }
   },
 
-  onError: function (e) {
+  onError: function(e) {
     console.error("出现错误: " + JSON.stringify(e));
   },
 
   // 基础库 1.9.90 支持
-  onPageNotFound: function (e) {
+  onPageNotFound: function(e) {
     console.error("页面不存在: " + JSON.stringify(e));
     this.gotoPage('/pages/index/index');
   },
 
   // 需要授权才能访问的页面/资源先调用此方法
   // 在回调函数中执行实际的业务操作
-  getUserInfo: function (cb) {
+  getUserInfo: function(cb) {
     if (this.GLOBAL_DATA.USER_INFO) {
       typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
     } else {
       // 老版授权
       let that = this;
       wx.login({
-        success: function (res) {
+        success: function(res) {
           that.__storeUserInfo(res, cb);
         }
       })
     }
   },
   // 存储授权
-  __storeUserInfo: function (res, cb) {
+  __storeUserInfo: function(res, cb) {
     console.log('存储授权 - ' + JSON.stringify(res))
     let that = this;
-    let _data = { code: res.code, iv: res.iv || '', data: res.encryptedData || '' };
+    let _data = {
+      code: res.code,
+      iv: res.iv || '',
+      data: res.encryptedData || ''
+    };
     _data.enterSource = that.enterSource;
-    zutils.post(that, 'api/user/wxx-login', _data, function (res) {
+    zutils.post(that, 'api/user/wxx-login', _data, function(res) {
       that.GLOBAL_DATA.USER_INFO = res.data.data;
-      wx.setStorage({ key: 'USER_INFO', data: that.GLOBAL_DATA.USER_INFO })
+      wx.setStorage({
+        key: 'USER_INFO',
+        data: that.GLOBAL_DATA.USER_INFO
+      })
       typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO);
     });
   },
 
   // 20180514: 新版授权。授权成功后返回当前页面，因此不具备回调方法执行能力
   // @back 页面回退
-  getUserInfoForce: function (back) {
+  getUserInfoForce: function(back) {
     if (back === true) {
-      wx.navigateTo({ url: '/pages/index/auth?nexturl=back' });
+      wx.navigateTo({
+        url: '/pages/index/auth?nexturl=back'
+      });
       return;
     }
 
@@ -127,19 +136,23 @@ App({
       }
       url += '?' + args.join('&');
     }
-    wx.navigateTo({ url: '/pages/index/auth?nexturl=' + encodeURIComponent('/' + url) });
+    wx.navigateTo({
+      url: '/pages/index/auth?nexturl=' + encodeURIComponent('/' + url)
+    });
   },
 
   // ---- 助手类方法
 
   // 分享数据
-  warpShareData: function (url) {
+  warpShareData: function(url) {
     url = url || '/pages/index/index';
     if (url.indexOf('?') > -1) url += '&';
     else url += '?';
     url += 'u=' + (this.GLOBAL_DATA.USER_INFO ? this.GLOBAL_DATA.USER_INFO.uid : '');
     let d = {
-      title: '软考刷题必备利器', path: url, success: function (res) {
+      title: '软考刷题必备利器',
+      path: url,
+      success: function(res) {
         console.log('分享回调: ' + JSON.stringify(res));
       }
     };
@@ -148,48 +161,58 @@ App({
   },
 
   // 页面跳转
-  gotoPage: function (url, redirect) {
+  gotoPage: function(url, redirect) {
     if (!!!url) return;
     if (typeof url == 'object') {
       url = url.currentTarget.dataset.url;
     }
     if (url == '/pages/index/index' || url == '/pages/question/subject-list' || url == '/pages/my/home' || url == '/pages/pk/start') {
-      wx.switchTab({ url: url })
+      wx.switchTab({
+        url: url
+      })
     } else {
-      if (redirect == true) wx.redirectTo({ url: url })
-      else wx.navigateTo({ url: url })
+      if (redirect == true) wx.redirectTo({
+        url: url
+      })
+      else wx.navigateTo({
+        url: url
+      })
     }
   },
 
-  gotoVipBuy: function(msg) {
+  gotoVipBuy: function(msg, forceTips) {
     if (this.GLOBAL_DATA.IS_IOS) {
       this.alert('你还不是VIP会员');
       return;
     }
 
     msg = msg || '本题库/功能仅VIP会员可用';
-    wx.showModal({
-      title: '提示',
-      content: msg,
-      confirmText: '立即开通',
-      success: function (res) {
-        if (res.confirm) this.gotoPage('/pages/my/vip-buy')
-      }
-    });
+    if (forceTips === true) {
+      wx.showModal({
+        title: '提示',
+        content: msg,
+        confirmText: '立即开通',
+        success: function(res) {
+          if (res.confirm) this.gotoPage('/pages/my/vip-buy')
+        }
+      });
+    } else {
+      this.gotoPage('/pages/my/vip-buy?msg=' + msg)
+    }
   },
 
   // 上报分析数据
   // t=EXAM,EXPLAIN etc.
   // s=相关题库（可选）
   // ext=附加信息（可选）
-  reportKpi: function (k, s, ext) {
-    zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || '') + '&ext=' + encodeURIComponent(ext || ''), function (res) {
+  reportKpi: function(k, s, ext) {
+    zutils.post(this, 'api/kpi/report?noloading&kpi=' + k + '&subject=' + (s || '') + '&ext=' + encodeURIComponent(ext || ''), function(res) {
       console.log('KPI Report: ' + JSON.stringify(res.data));
     });
   },
 
   // 添加关注题库（答题或解析的）
-  followSubject: function (id) {
+  followSubject: function(id) {
     if (!id || !this.GLOBAL_DATA.FOLLOW_SUBJECT) return;
     let fs = this.GLOBAL_DATA.FOLLOW_SUBJECT;
     zutils.array.erase(fs, id);
@@ -205,16 +228,16 @@ App({
 
   // 基础库 1.9 支持
   // 显示红点
-  showReddot: function (tabIndex, key) {
+  showReddot: function(tabIndex, key) {
     if (!wx.showTabBarRedDot) return;
     let that = this;
     wx.getStorage({
       key: 'TapedReddot' + key,
-      fail: function (res) {
-        setTimeout(function () {
+      fail: function(res) {
+        setTimeout(function() {
           wx.showTabBarRedDot({
             index: tabIndex,
-            success: function (res) {
+            success: function(res) {
               that.GLOBAL_DATA.RED_DOT[tabIndex] = key;
             }
           });
@@ -223,12 +246,12 @@ App({
     })
   },
   // 隐藏红点
-  hideReddot: function (tabIndex, key) {
+  hideReddot: function(tabIndex, key) {
     if (!wx.hideTabBarRedDot) return;
-    setTimeout(function () {
+    setTimeout(function() {
       wx.hideTabBarRedDot({
         index: tabIndex,
-        complete: function (res) {
+        complete: function(res) {
           wx.setStorage({
             key: 'TapedReddot' + key,
             data: 'TAPED'
@@ -239,12 +262,12 @@ App({
   },
 
   // 简单 alert
-  alert: function (msg, fn) {
+  alert: function(msg, fn) {
     wx.showModal({
       title: '提示',
       content: msg || '系统繁忙请重试',
       showCancel: false,
-      success: fn || function(){}
+      success: fn || function() {}
     });
   }
 })

@@ -40,7 +40,7 @@
             </view>
             <view class="weui-media-box__info__meta" style="min-width:83px">
               已答
-              <text style="color:#4b8ef9">{{item[3]}}</text>/{{item[2]}} 题
+              <text style="color:#4b8ef9;font-size:16px">{{item[3]}}</text>/{{item[2]}} 题
             </view>
             <view class="weui-media-box__info__meta">
               <block wx:if="{{isVip}}">

@@ -7,31 +7,39 @@ Page({
     hideBanners: false,
   },
 
-  onLoad: function (e) {
+  onLoad: function(e) {
     e = e || {};
     let osi = app.GLOBAL_DATA.SYS_INFO;
     if (osi && osi.screenWidth != 375) {
       let swiperHeight = 'height:' + (osi.screenWidth / 2.5) + 'px';
-      this.setData({ swiperHeight: swiperHeight });
+      this.setData({
+        swiperHeight: swiperHeight
+      });
     }
     this.setData({
       isAndroid: app.GLOBAL_DATA.IS_ANDROID
     });
 
     let that = this;
-    zutils.get(app, 'api/home/comdata', function (res) {
+    zutils.get(app, 'api/home/comdata', function(res) {
       let _data = res.data.data;
       // if (res.data.error_code > 1000) {
       //   wx.redirectTo({ url: '/pages/index/tips?msg=' + res.data.error_msg });
       //   return;
       // }
 
-      wx.setNavigationBarTitle({ title: _data.title || '软考必备' });
+      wx.setNavigationBarTitle({
+        title: _data.title || '软考必备'
+      });
 
       if (!_data.banners || _data.banners.length == 0) {
-        that.setData({ hideBanners: true });
+        that.setData({
+          hideBanners: true
+        });
       } else {
-        that.setData({ banners: _data.banners });
+        that.setData({
+          banners: _data.banners
+        });
       }
       // 红点
       if (_data.reddot) {
@@ -41,16 +49,18 @@ Page({
       }
       // ICON
       if (_data.homeicon) {
-        that.setData({ homeicon: _data.homeicon });
+        that.setData({
+          homeicon: _data.homeicon
+        });
       }
     });
 
-    app.getUserInfo(function (u) {
+    app.getUserInfo(function(u) {
       that.__loadRecent();
       that.__loadRecommend();
       that.__checkTwxx();
       that.__checkToken();
-      setTimeout(function(){
+      setTimeout(function() {
         that.__checkCoupon();
       }, 666)
       // 跳转页面
@@ -59,7 +69,7 @@ Page({
 
     wx.getStorage({
       key: 'FOLLOW_SUBJECT',
-      success: function (res) {
+      success: function(res) {
         let fs = res.data.split(',');
         app.GLOBAL_DATA.FOLLOW_SUBJECT = fs;
         if (fs.length > 0) {
@@ -69,14 +79,14 @@ Page({
     });
   },
 
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.onLoad();
-    setTimeout(function () {
+    setTimeout(function() {
       wx.stopPullDownRefresh();
     }, 800);
   },
 
-  onShow: function () {
+  onShow: function() {
     if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_EXAM, 'Index')) {
       this.__loadRecent();
     }
@@ -94,10 +104,10 @@ Page({
   },
 
   // 解析分享（扫码进入）
-  __checkTwxx: function () {
+  __checkTwxx: function() {
     let q = app.enterSource.query.q;
     if (q && decodeURIComponent(q).indexOf('/t/wxx/') > -1) {
-      zutils.get(app, 'api/share/parse-twxx?q=' + q, function (res) {
+      zutils.get(app, 'api/share/parse-twxx?q=' + q, function(res) {
         if (res.data.error_code == 0) {
           wx.navigateTo({
             url: res.data.data
@@ -108,13 +118,13 @@ Page({
   },
 
   // 解析分享口令
-  __checkToken: function () {
+  __checkToken: function() {
     if (this.__checkToken_OK == true) return;
     this.__checkToken_OK = true;
 
     // 清除口令
     var rktk_token = false;
-    setTimeout(function () {
+    setTimeout(function() {
       if (rktk_token == true) {
         wx.setClipboardData({
           data: ''
@@ -124,7 +134,7 @@ Page({
 
     let that = this;
     wx.getClipboardData({
-      success: function (res) {
+      success: function(res) {
         if (res.data && res.data.substr(0, 6) == '#考题解析#') {
           // 扫码进入的优先级高于粘贴板
           let scene = app.enterSource.scene;
@@ -139,14 +149,14 @@ Page({
           }
 
           rktk_token = true;
-          zutils.get(app, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function (res2) {
+          zutils.get(app, 'api/share/token-parse?text=' + encodeURIComponent(res.data), function(res2) {
             if (res2.data.error_code == 0) {
               let _data = res2.data.data;
               wx.showModal({
                 title: _data.title,
                 confirmText: '立即查看',
                 content: _data.content,
-                success: function (res3) {
+                success: function(res3) {
                   if (res3.confirm) {
                     wx.navigateTo({
                       url: _data.page
@@ -162,11 +172,11 @@ Page({
   },
 
   // 最近关注题库
-  __loadFollowSubject: function (fs) {
+  __loadFollowSubject: function(fs) {
     if (!fs || fs.length < 3) return;
     this.__lastFs = fs[fs.length - 1];
     let that = this;
-    zutils.get(app, 'api/home/subject-names?ids=' + fs.join(','), function (res) {
+    zutils.get(app, 'api/home/subject-names?ids=' + fs.join(','), function(res) {
       if (res.data && res.data.data && res.data.data.length > 0) {
         let _subjects = res.data.data;
         _subjects.reverse();
@@ -179,22 +189,22 @@ Page({
   },
 
   // 最近答题
-  __loadRecent: function () {
+  __loadRecent: function() {
     let that = this;
-    zutils.get(app, 'api/home/recent-exams', function (res) {
+    zutils.get(app, 'api/home/recent-exams', function(res) {
       that.setData(res.data.data);
     });
-    
+
     // 错题数量在此加载/刷新
-    zutils.get(app, 'api/fav/incorrect-stats?d=3', function (res) {
+    zutils.get(app, 'api/fav/incorrect-stats?d=3', function(res) {
       that.setData(res.data.data);
     });
   },
 
   // 推荐题库
-  __loadRecommend: function () {
+  __loadRecommend: function() {
     let that = this;
-    zutils.get(app, 'api/home/recommend-subjects', function (res) {
+    zutils.get(app, 'api/home/recommend-subjects', function(res) {
       let _data = res.data.data;
       if (!_data) return;
       let _subjects = _data.recommend_subjects;
@@ -209,7 +219,7 @@ Page({
     });
   },
 
-  __formatSubject: function (_subjects) {
+  __formatSubject: function(_subjects) {
     for (let i = 0; i < _subjects.length; i++) {
       let sname = _subjects[i][1];
       _subjects[i][10] = sname.substr(0, 7);
@@ -229,9 +239,9 @@ Page({
     }
   },
 
-  todayExam: function (e) {
+  todayExam: function(e) {
     let that = this;
-    zutils.post(app, 'api/exam/today-exam?formId=' + (e.detail.formId || ''), function (res) {
+    zutils.post(app, 'api/exam/today-exam?formId=' + (e.detail.formId || ''), function(res) {
       if (res.data.error_code == 0) {
         let _data = res.data.data;
         wx.navigateTo({
@@ -250,55 +260,56 @@ Page({
     });
   },
 
-  gotoPage: function (e) {
+  gotoPage: function(e) {
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId);
     app.gotoPage(e.currentTarget.dataset.url);
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return app.warpShareData();
   },
 
   // 优惠券
 
-  __checkCoupon: function () {
+  __checkCoupon: function() {
     if (app.GLOBAL_DATA.IS_IOS === true) return;
     let that = this;
-    zutils.get(app, 'api/user/check-coupon?noloading', function (res) {
+    zutils.get(app, 'api/user/check-coupon?noloading', function(res) {
       if (res.data.error_code == 0 && res.data.data) {
         let _data = res.data.data;
-        _data.hideCoupon = false;
+        _data.hideCoupon = true;
+        _data.showConponHighbar = true;
         that.setData(_data);
-        app.reportKpi('COUPON.SHOW');
+
+        let tdshow_key = 'COUPONSHOW' + zutils.formatDate('yyMMdd');
+        wx.getStorage({
+          key: tdshow_key,
+          success: function(res) {
+            // 今日显示过
+          },
+          fail: function() {
+            wx.setStorage({
+              key: tdshow_key,
+              data: '1',
+            });
+            that.setData({
+              hideCoupon: false
+            });
+          }
+        })
       }
     });
   },
 
-  hideCoupon: function (e) {
+  hideCoupon: function(e) {
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     if (formId) zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId);
 
     let that = this;
-    that.setData({ hideCoupon: true, showConponHighbar: true });
+    that.setData({
+      hideCoupon: true
+    });
     app.reportKpi('COUPON.CLOSE');
-    // wx.getStorage({
-    //   key: 'LastCouponShowTips',
-    //   complete: function (res) {
-    //     that.setData({ hideCoupon: true });
-    //     if (!res.data) {
-    //       wx.setStorage({
-    //         key: 'LastCouponShowTips',
-    //         data: '1',
-    //       });
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: '你可在VIP会员开通页选择使用',
-    //         showCancel: false,
-    //         confirmText: '知道了'
-    //       });
-    //     }
-    //   }
-    // });
   }
 });

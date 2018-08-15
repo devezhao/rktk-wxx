@@ -222,7 +222,7 @@ Page({
 
   toggleInteractive: function () {
     if (this.canInteractive == false) {
-      app.gotoVipBuy('非VIP会员仅可对免费题库启用练习模式');
+      app.gotoVipBuy('非VIP会员仅可对免费题库启用练习模式', true);
       return;
     }
 

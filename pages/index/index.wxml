@@ -59,7 +59,6 @@
 
   <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
     你有<text style="font-weight:bold">{{unexams}}</text>份答题未交卷，点击查看并继续答题
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 
   <navigator url="/pages/my/vip-buy?s=coupon" class="highbar coupon icon" wx:if="{{showConponHighbar}}">
