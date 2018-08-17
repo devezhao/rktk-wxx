@@ -6,21 +6,28 @@ Page({
     tabIndex: 1
   },
 
-  onLoad: function (e) {
+  onLoad: function(e) {
     this.__drawCircle(0);
     let that = this;
-    app.getUserInfo(function (u) {
-      zutils.get(app, 'api/user/isvip', function (res) {
-        that.setData({ isVip: res.data.isVip });
+    app.getUserInfo(function(u) {
+      zutils.get(app, 'api/user/isvip', function(res) {
+        that.setData({
+          isVip: res.data.isVip
+        });
         that.loadStats();
         that.loadExams();
+      });
+      zutils.get(app, 'api/user/infos', function(res) {
+        wx.setNavigationBarTitle({
+          title: (res.data.data.subject || '') + '答题报告'
+        })
       });
     });
   },
 
-  loadStats: function () {
+  loadStats: function() {
     let that = this;
-    zutils.get(app, 'api/exam/report/stats', function (res) {
+    zutils.get(app, 'api/exam/report/stats', function(res) {
       let _data = res.data.data;
       if (_data.examCount > 0) {
         that.setData(_data);
@@ -30,25 +37,29 @@ Page({
     })
   },
 
-  loadExams: function (e) {
+  loadExams: function(e) {
     let t = e ? e.currentTarget.dataset.index : 1;
     if (t == 2 && this.data.isVip == false) {
       this.gotoVipBuy();
       return;
     }
-    this.setData({ tabIndex: t });
+    this.setData({
+      tabIndex: t
+    });
 
     let that = this;
-    zutils.get(app, 'api/exam/report/exam-by?type=' + t, function (res) {
+    zutils.get(app, 'api/exam/report/exam-by?type=' + t, function(res) {
       let _data = res.data.data;
       for (let i = 0; i < _data.length; i++) {
         _data[i][6] = ~~(_data[i][4] * 100 / _data[i][3]);
       }
-      that.setData({ exams: _data });
+      that.setData({
+        exams: _data
+      });
     });
   },
 
-  __drawCircle: function (p) {
+  __drawCircle: function(p) {
     let ctx = wx.createContext();
     let sAngle = 0.8 * Math.PI,
       eAngle = 0.2 * Math.PI;
@@ -69,17 +80,20 @@ Page({
       canvasId: 'circle-rate',
       actions: ctx.getActions()
     });
-    this.setData({ rightRate: ~~(p * 100) });
+    this.setData({
+      rightRate: ~~(p * 100)
+    });
   },
 
-  __drawCircleAnimate: function (p) {
-    console.log('Render Circle: ' + p);
+  __drawCircleAnimate: function(p) {
     if (p <= 0) return;
-    if (p < 0.6) this.setData({ circleColor: '#E64340' })
+    if (p < 0.6) this.setData({
+      circleColor: '#E64340'
+    })
 
     let that = this;
     let s = 0;
-    let ttt = setInterval(function () {
+    let ttt = setInterval(function() {
       s += 0.03;
       if (s > p) s = p;
       that.__drawCircle(s);
@@ -87,11 +101,11 @@ Page({
     }, 50);
   },
 
-  gotoVipBuy: function () {
+  gotoVipBuy: function() {
     app.gotoVipBuy('本功能为VIP专享，开通VIP会员可立即查看')
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     let d = app.warpShareData();
     return d;
   },

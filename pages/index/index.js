@@ -196,7 +196,7 @@ Page({
     });
 
     // 错题数量在此加载/刷新
-    zutils.get(app, 'api/fav/incorrect-stats?d=3', function(res) {
+    zutils.get(app, 'api/fav/incorrect-stats?d=1', function(res) {
       that.setData(res.data.data);
     });
   },

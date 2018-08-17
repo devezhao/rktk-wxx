@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="page__hd weui-panel__compact" style="padding-bottom:71px;">
+  <view class="page__hd weui-panel__compact" style="padding-bottom:71px;" wx:if="{{listData && listData.length > 0}}">
     <view class="weui-panel" wx:for="{{listData}}" wx:key="*this">
       <view class="weui-panel__bd">
         <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">

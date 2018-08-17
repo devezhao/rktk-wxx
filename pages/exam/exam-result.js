@@ -24,7 +24,6 @@ Page({
   loadResult: function (checkKeep) {
     var that = this;
     zutils.get(app, 'api/exam/result?exam=' + that.examId, function (res) {
-      console.log(res);
       let _data = res.data.data;
       var scope_percent = _data.scope / _data.full_scope;
       that.setData({
@@ -52,7 +51,7 @@ Page({
               wx.navigateTo({
                 url: '/pages/acts/keep-days?days=' + dd.days + '&date=' + dd.date
               })
-            }, 888);
+            }, 1000);
           }
         });
       }
