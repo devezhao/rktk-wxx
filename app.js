@@ -31,12 +31,13 @@ App({
       success: function(res) {
         console.log('用户信息: ' + JSON.stringify(res));
         that.GLOBAL_DATA.USER_INFO = res.data;
+        that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
       },
       fail: function() {
         that.getUserInfo()
       },
       complete: function() {
-        that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
+        //that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
       }
     });
 
@@ -84,12 +85,21 @@ App({
 
   // 需要授权才能访问的页面/资源先调用此方法
   // 在回调函数中执行实际的业务操作
-  getUserInfo: function(cb) {
+  getUserInfo: function(cb, _retry) {
     if (this.GLOBAL_DATA.USER_INFO) {
       typeof cb == 'function' && cb(this.GLOBAL_DATA.USER_INFO)
     } else {
-      // 老版授权
       let that = this;
+      _retry = _retry || 1;
+      if (that.__inLogin == true && _retry <= 10) {
+        console.log('已在登陆中 WAIT-' + _retry + ' ...')
+        setTimeout(function() {
+          that.getUserInfo(cb, _retry + 1);
+        }, 200 + (_retry * 20));
+        return;
+      }
+
+      that.__inLogin = true;
       wx.login({
         success: function(res) {
           that.__storeUserInfo(res, cb);
@@ -111,8 +121,13 @@ App({
       that.GLOBAL_DATA.USER_INFO = res.data.data;
       wx.setStorage({
         key: 'USER_INFO',
-        data: that.GLOBAL_DATA.USER_INFO
+        data: that.GLOBAL_DATA.USER_INFO,
+        success: function() {
+          that.__inLogin = false;
+          that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
+        }
       })
+
       typeof cb == 'function' && cb(that.GLOBAL_DATA.USER_INFO);
     });
   },

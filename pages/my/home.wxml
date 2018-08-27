@@ -61,7 +61,7 @@
           <text class="weui-cell__ft-tag">{{vip_discount || ''}}</text>
         </view>
       </navigator>
-      <navigator url="vip-buy-gift" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator wx:if="{{isIOS == false}}" url="vip-buy-gift" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="../../images/ic_gift-vip.png"></image>
         </view>

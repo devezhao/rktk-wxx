@@ -63,9 +63,10 @@ Page({
       setTimeout(function() {
         that.__checkCoupon();
       }, 666)
-      // 跳转页面
-      if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage));
     });
+
+    // 跳转页面
+    if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage));
 
     wx.getStorage({
       key: 'FOLLOW_SUBJECT',

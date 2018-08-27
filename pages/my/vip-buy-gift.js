@@ -33,8 +33,8 @@ Page({
       that.__buydata = _data;
       that.setData({
         subjectName: _data.subject_name,
-        feeVip: _data.vip_fee < 199 ? ('¥' + _data.vip_fee) : '',
-        feeSVip: _data.svip_fee < 299 ? ('¥' + _data.svip_fee) : '',
+        feeVip: _data.vip_fee < 199 ? ('' + _data.vip_fee) : '',
+        feeSVip: _data.svip_fee < 299 ? ('' + _data.svip_fee) : '',
         vipExpires: _data.vip_expires || ''
       });
       that.__calcFee();

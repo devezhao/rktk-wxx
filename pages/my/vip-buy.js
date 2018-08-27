@@ -38,6 +38,7 @@ Page({
     if (e.msg) {
       this.setData({ urlMsg: e.msg });
     }
+    
     if (app.GLOBAL_DATA.IS_IOS === true) {
       app.alert('由于相关政策，你暂时无法在这里开通会员。', function(){
         app.gotoPage('/pages/index/index');
@@ -59,8 +60,8 @@ Page({
       that.__buydata = _data;
       that.setData({
         subjectName: _data.subject_name,
-        feeVip: _data.vip_fee < 199 ? ('¥' + _data.vip_fee) : '',
-        feeSVip: _data.svip_fee < 299 ? ('¥' + _data.svip_fee) : '',
+        feeVip: _data.vip_fee < 199 ? ('' + _data.vip_fee) : '',
+        feeSVip: _data.svip_fee < 299 ? ('' + _data.svip_fee) : '',
         vipExpires: _data.vip_expires || ''
       });
       that.__calcFee();

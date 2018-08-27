@@ -31,7 +31,7 @@
   font-size: 13px;
   display: inline-block;
   margin-top: 4px;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .user-block .nick navigator:after {
