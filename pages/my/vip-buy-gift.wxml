@@ -1,0 +1,87 @@
+<view class="page" style="padding-bottom:50px">
+  <view class="highbar" wx:if="{{urlMsg}}" style="text-align:center;font-size:12px">
+    {{urlMsg}}
+  </view>
+
+  <view class="page__bd">
+    <view class="weui-cells__title">好友</view>
+    <view class="tt">
+      <view>
+        <input type="number" placeholder="输入好友UID或手机" maxlength="10" bindinput="inputTake" data-id="friendUid" />
+      </view>
+    </view>
+    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-gift" class="color-link fs-14" style="display:inline-block;margin-top:6px;">
+      [ 哪里可以看到UID ]
+    </navigator>
+
+    <view class="weui-cells__title">开通考试类型</view>
+    <view class="tt" bindtap="selectSubject">
+      <view>{{subjectName || '选择考试类型'}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+
+    <view class="weui-cells__title">开通会员等级</view>
+    <view class="tt L1" data-tt="vip" bindtap="selectType">
+      <view class="level pull-left">
+        VIP会员
+        <text>{{vipExpires && '有效期至'}} {{vipExpires || ''}}</text>
+      </view>
+      <view class="price pull-right">
+        ¥{{feeVip || 199}}
+        <text wx:if="{{feeVip}}">原价 199</text>
+      </view>
+      <view class="o" wx:if="{{tt == 'vip'}}">
+        <icon type="success_no_circle" color="#fff" size="12" />
+      </view>
+      <view class="clearfix"></view>
+    </view>
+    <view class="tt" data-tt="svip" bindtap="selectType">
+      <view class="level pull-left">
+        SVIP会员
+        <text>永久有效</text>
+      </view>
+      <view class="price pull-right">
+        ¥{{feeSVip || 299}}
+        <text wx:if="{{feeSVip}}">原价 299</text>
+      </view>
+      <view class="o" wx:if="{{tt == 'svip'}}">
+        <icon type="success_no_circle" color="#fff" size="12" />
+      </view>
+      <view class="clearfix"></view>
+    </view>
+    <view class="clearfix"></view>
+    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-terms" class="color-link fs-14" style="display:inline-block;margin-top:6px;">
+      [ VIP/SVIP有什么不同 ]
+    </navigator>
+  </view>
+
+  <view class="page__bd" wx:if="{{couponData}}">
+    <view class="weui-cells__title">可用优惠券</view>
+    <view class="coupon">
+      <view class="pull-left money">¥{{coupon_money || 100}}</view>
+      <view class="pull-left ctext">
+        限购买{{coupon_level || 'VIP'}}会员
+        <view>
+          <text>有效期\n{{coupon_expdate || '今日到期'}}</text>
+        </view>
+      </view>
+      <view class="clearfix"></view>
+    </view>
+  </view>
+</view>
+
+<view class="fix-foobar btns">
+  <view class="pull-left">
+    <view class="T1">¥{{fee || 199}}
+      <text>.{{feeFix || 0}}</text>
+      <text wx:if="{{feeOld > 0}}" class="del color-high">{{feeOld}}</text>
+    </view>
+    <view class="T2">
+      已使用学豆余额抵扣
+      <text>{{coinFee || 0}}</text>元
+    </view>
+  </view>
+  <view class="pull-right">
+    <button class="weui-btn" type="default" bindtap="buyNow">立即开通</button>
+  </view>
+</view>

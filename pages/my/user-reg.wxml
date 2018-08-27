@@ -1,11 +1,11 @@
 <view class="page">
   <view class="highbar" wx:if="{{bind}}">当前已绑定 {{bind}}</view>
   <view class="page__hd">
-    <view class="weui-cells__title">{{bind ? '换绑' : '绑定'}}手机账号</view>
+    <view class="weui-cells__title">{{bind ? '换绑' : '绑定'}}手机</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__bd">
-          <input class="weui-input" type="number" placeholder="手机号" maxlength="11" bindinput="inputTake" data-id="mobile" />
+          <input class="weui-input" type="number" placeholder="手机号码" maxlength="11" bindinput="inputTake" data-id="mobile" />
         </view>
       </view>
       <view class="weui-cell weui-cell_input weui-cell_vcode">

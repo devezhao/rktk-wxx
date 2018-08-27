@@ -10,8 +10,15 @@ Page({
 
   onLoad: function(e) {
     let that = this;
-    app.getUserInfo(function() {
+    app.getUserInfo(function(u) {
       that.__onLoad(e);
+
+      // setTimeout(function(){
+      //   if (/^U[0-9]{5,10}$/.test(u.nick)) {
+      //     app.getUserInfoForce(true);
+      //     return;
+      //   }
+      // }, 666);
     });
   },
 
@@ -21,14 +28,9 @@ Page({
     zutils.get(app, 'api/subject/details?id=' + that.subjectId, function(res) {
       let _data = res.data;
       if (_data.error_code > 0) {
-        wx.showModal({
-          title: '提示',
-          content: _data.error_msg,
-          showCancel: false,
-          success: function() {
-            app.gotoPage('/pages/index/index');
-          }
-        });
+        app.alert(_data.error_msg, function(){
+          app.gotoPage('/pages/index/index');
+        })
         return;
       }
 
@@ -44,11 +46,7 @@ Page({
 
   toExam: function(e) {
     if (this.data.subject_type == 11) {
-      wx.showModal({
-        title: '提示',
-        content: '本题库不支持答题',
-        showCancel: false
-      });
+      app.alert('本题库不支持答题');
       return;
     }
     if (this.data.subject_type == 2) {
@@ -172,12 +170,6 @@ Page({
     }
     if (this.data.vip_free == false && this.data.explain_free == false) {
       app.gotoVipBuy('本题库解析仅对VIP会员开放，开通VIP可立即免费使用');
-      return;
-    }
-
-    let userNick = app.GLOBAL_DATA.USER_INFO.nick;
-    if (/^U[0-9]{5,10}$/.test(userNick)) {
-      app.getUserInfoForce(true);
       return;
     }
 

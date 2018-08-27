@@ -23,14 +23,14 @@
 .user-block .nick {
   font-size: 16px;
   margin-left: 9px;
-  padding-top: 11px;
+  padding-top: 10px;
   line-height: 1.2;
 }
 
 .user-block .nick navigator {
   font-size: 13px;
   display: inline-block;
-  margin-top: 2px;
+  margin-top: 4px;
   color: rgba(0, 0, 0, 0.4);
 }
 

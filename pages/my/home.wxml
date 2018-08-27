@@ -1,11 +1,12 @@
 <view class="page">
   <view class="page__hd">
     <view class="user-block {{vip}}">
-      <view class="pull-left headimg">
+      <view class="pull-left headimg" bindtap="userInfo">
         <image src="{{headimgUrl}}" alt="头像"></image>
       </view>
       <view class="pull-left nick">
-        <view>{{nick}}</view>
+        <view bindtap="userInfo">{{nick}}</view>
+        <view wx:if="{{longUid}}" style="font-size:12px;color:#eee;margin-bottom:-2px;margin-top:-1px">UID {{longUid}}</view>
         <navigator class="weui-cell__ft_in-access min subject" url="../question/subject-choice?back=1">
           {{subject}}
         </navigator>
@@ -39,7 +40,7 @@
 
   <navigator url="user-reg" class="highbar icon" wx:if="{{bindMobileShow}}">
     <icon type="info_circle" size="15" color="#f87c3d"></icon>
-    首次绑定手机账号奖励20学豆
+    首次绑定手机奖励20学豆
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 
@@ -50,15 +51,26 @@
       </view>
       <view class="weui-cell__bd">你还不是VIP会员</view>
     </view>
-    <navigator wx:else url="vip-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__hd">
-        <image src="../../images/vip-gold.png"></image>
-      </view>
-      <view class="weui-cell__bd">{{vipLevelFull || '开通VIP会员'}}</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access">
-        <text class="weui-cell__ft-tag">{{vip_discount || ''}}</text>
-      </view>
-    </navigator>
+    <block wx:else>
+      <navigator url="vip-buy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image src="../../images/vip-gold.png"></image>
+        </view>
+        <view class="weui-cell__bd">{{vipLevelFull || '开通VIP会员'}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+          <text class="weui-cell__ft-tag">{{vip_discount || ''}}</text>
+        </view>
+      </navigator>
+      <navigator url="vip-buy-gift" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image src="../../images/ic_gift-vip.png"></image>
+        </view>
+        <view class="weui-cell__bd">为好友开通</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+          <text class="weui-cell__ft-tag">{{vip2_discount || ''}}</text>
+        </view>
+      </navigator>
+    </block>
   </view>
 
   <view class="weui-cells rktk">

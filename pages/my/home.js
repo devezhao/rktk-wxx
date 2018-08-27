@@ -27,7 +27,7 @@ Page({
       that.setData({
         headimgUrl: u.headimgUrl,
         nick: u.nick,
-        user: u.uid
+        user: u.uid,
       });
       that.__onLoad();
 
@@ -64,7 +64,7 @@ Page({
     if (u && this.data.nick != u.nick) {
       this.setData({
         headimgUrl: u.headimgUrl,
-        nick: u.nick
+        nick: u.nick,
       });
     }
   },
@@ -80,9 +80,11 @@ Page({
         coin: _data.coin_balance,
         vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : '',
         vip_discount: _data.vip_discount || '',
+        vip2_discount: _data.vip2_discount || '',
         bindMobile: _data.bindMobile || '',
         bindMobileShow: !!!_data.bindMobile
       });
+      that.__UID = _data.longUid;
 
       if (that.data.vip == 'vip') {
         wx.setNavigationBarColor({
@@ -110,5 +112,10 @@ Page({
 
   gotoVipBuy: function(){
     app.gotoVipBuy();
+  },
+
+  userInfo: function() {
+    if (this.data.longUid) this.setData({ longUid: 0 })
+    else this.setData({ longUid: this.__UID || 0 })
   }
 });

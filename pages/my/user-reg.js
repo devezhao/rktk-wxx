@@ -30,7 +30,7 @@ Page({
     if (!mobile || mobile.length != 11) {
       wx.showToast({
         icon: 'none',
-        title: '请输入正确的手机号'
+        title: '请输入正确的手机号码'
       });
       return;
     }
@@ -75,7 +75,7 @@ Page({
       if (res.data.error_code == 0) {
         app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
         wx.redirectTo({
-          url: '../index/tips?msg=手机账号绑定成功'
+          url: '../index/tips?msg=手机绑定成功'
         });
       } else {
         app.alert(res.data.error_msg);
