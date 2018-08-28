@@ -5,12 +5,24 @@ Page({
   data: {
     tt: 'vip',
     vipLevel: null,
+    couponData: null,
+    buyNowProgress: false,
   },
   inputData: {},
 
   onLoad: function (e) {
     if (!app.GLOBAL_DATA.USER_INFO) return;
     app.reportKpi('VIP2.VIEW');
+
+    let that = this;
+    zutils.get(app, 'api/user/check-coupon?gift=true', function (res) {
+      if (res.data.error_code == 0 && res.data.data) {
+        that.setData({
+          couponData: res.data.data
+        });
+        that.__calcFee();
+      }
+    });
 
     if (app.GLOBAL_DATA.IS_IOS === true) {
       app.alert('由于相关政策，你暂时无法在这里开通会员。', function(){
@@ -28,7 +40,7 @@ Page({
 
   __loadBuy: function (s) {
     let that = this;
-    zutils.get(app, 'api/user/buy-vip-pre?subject=' + (s || ''), function (res) {
+    zutils.get(app, 'api/user/buy-vip-pre?gift=true&subject=' + (s || ''), function (res) {
       let _data = res.data.data;
       that.__buydata = _data;
       that.setData({
@@ -43,10 +55,25 @@ Page({
 
   __calcFee: function () {
     if (!this.__buydata) return;
+    let coupon = this.data.couponData;
+    let coupon_fee = 0;
+    if (coupon) {
+      let tt = this.data.tt;
+      coupon_fee = coupon[tt + '_money'];
+      this.setData({
+        coupon_level: tt.toUpperCase(),
+        coupon_money: coupon_fee,
+        coupon_expdate: coupon[tt + '_expdate']
+      });
+    }
 
     let coin_fee = this.__buydata.coin_balance / 10;
     let fee = this.__buydata[this.data.tt + '_fee'] - coin_fee;
     let feeOld = 0;
+    if (coupon_fee > 0) {
+      feeOld = fee.toFixed(1);
+      fee = fee - coupon_fee;
+    }
     fee = fee.toFixed(1).split('.');
     this.setData({
       coinFee: coin_fee.toFixed(1),
@@ -83,8 +110,11 @@ Page({
     app.reportKpi('VIP2.CLICKBUY');
 
     let that = this;
-    let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&friendUid=' + that.inputData.friendUid;
+    that.setData({ buyNowProgress: true });
+    let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData);
+    _url += '&friendUid=' + that.inputData.friendUid;
     zutils.post(app, _url, function (res) {
+      that.setData({ buyNowProgress: false });
       let _data = res.data;
       if (_data.error_code > 0) {
         app.alert(_data.error_msg);

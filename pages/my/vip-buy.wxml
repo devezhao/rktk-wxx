@@ -58,9 +58,8 @@
   <view class="page__bd" wx:if="{{couponData}}">
     <view class="weui-cells__title">可用优惠券</view>
     <view class="coupon">
-      <view class="pull-left money">¥{{coupon_money || 100}}</view>
-      <view class="pull-left ctext">
-        限购买{{coupon_level || 'VIP'}}会员
+      <view class="pull-left money">¥{{coupon_money || 0}}</view>
+      <view class="pull-left ctext">限购买{{coupon_level || 'VIP'}}会员
         <view>
           <text>有效期\n{{coupon_expdate || '今日到期'}}</text>
         </view>
@@ -72,16 +71,14 @@
 
 <view class="fix-foobar btns">
   <view class="pull-left">
-    <view class="T1">¥{{fee || 199}}
-      <text>.{{feeFix || 0}}</text>
-      <text wx:if="{{feeOld > 0}}" class="del color-high">{{feeOld}}</text>
+    <view class="T1">
+      ¥{{fee || 199}}<text>.{{feeFix || 0}}</text><text wx:if="{{feeOld > 0}}" class="del color-high">{{feeOld}}</text>
     </view>
     <view class="T2">
-      已使用学豆余额抵扣
-      <text>{{coinFee || 0}}</text>元
+      已使用学豆余额抵扣<text>{{coinFee || 0}}</text>元
     </view>
   </view>
   <view class="pull-right">
-    <button class="weui-btn" type="default" bindtap="buyNow">立即开通</button>
+    <button class="weui-btn" type="default" bindtap="buyNow" disabled="{{buyNowProgress}}">立即开通</button>
   </view>
 </view>

@@ -159,3 +159,7 @@ page, .page {
   line-height: 1;
   text-align: center;
 }
+
+button[type=default][disabled] {
+  opacity: 0.9;
+}

@@ -6,6 +6,7 @@ Page({
     tt: 'vip',
     vipLevel: null,
     couponData: null,
+    buyNowProgress: false,
   },
 
   onLoad: function (e) {
@@ -121,8 +122,10 @@ Page({
     app.reportKpi('VIP.CLICKBUY');
 
     let that = this;
+    that.setData({ buyNowProgress:true });
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData);
     zutils.post(app, _url, function (res) {
+      that.setData({ buyNowProgress: false });
       let _data = res.data;
       if (_data.error_code > 0) {
         app.alert(_data.error_msg);
