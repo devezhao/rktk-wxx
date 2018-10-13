@@ -45,7 +45,7 @@
   </navigator>
 
   <view class="weui-cells rktk">
-    <view wx:if="{{iosNoVip}}" class="weui-cell weui-cell_access">
+    <view wx:if="{{iosNoVip}}" class="weui-cell weui-cell_access" bindtap="iosBuyVip">
       <view class="weui-cell__hd">
         <image src="../../images/vip-gold.png"></image>
       </view>

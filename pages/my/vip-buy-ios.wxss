@@ -47,11 +47,11 @@
 }
 
 .pay-qrcode view image {
-  width: 230px;
-  height: 230px;
-  margin-left: -5px;
-  margin-top: -5px;
+  width: 180px;
+  height: 180px;
   display: block;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 .color-link.scan {

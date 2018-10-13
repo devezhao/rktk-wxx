@@ -10,37 +10,35 @@ Page({
   },
   inputData: {},
 
-  onLoad: function (e) {
+  onLoad: function(e) {
     if (!app.GLOBAL_DATA.USER_INFO) return;
     app.reportKpi('VIP2.VIEW');
 
     let that = this;
-    zutils.get(app, 'api/user/check-coupon?gift=true', function (res) {
+    zutils.get(app, 'api/user/check-coupon?gift=true', function(res) {
       if (res.data.error_code == 0 && res.data.data) {
-        that.setData({
-          couponData: res.data.data
-        });
+        that.setData({ couponData: res.data.data });
         that.__calcFee();
       }
     });
 
     if (app.GLOBAL_DATA.IS_IOS === true) {
-      app.alert('由于相关政策，你暂时无法在这里开通会员。', function(){
+      app.alert('由于相关政策，你暂时无法在这里开通会员。', function() {
         app.gotoPage('/pages/index/index');
       });
     }
   },
 
-  onShow: function (e) {
+  onShow: function(e) {
     let that = this;
-    app.getUserInfo(function () {
+    app.getUserInfo(function() {
       that.__loadBuy(app.GLOBAL_DATA.__BuySubject);
     });
   },
 
-  __loadBuy: function (s) {
+  __loadBuy: function(s) {
     let that = this;
-    zutils.get(app, 'api/user/buy-vip-pre?gift=true&subject=' + (s || ''), function (res) {
+    zutils.get(app, 'api/user/buy-vip-pre?gift=true&subject=' + (s || ''), function(res) {
       let _data = res.data.data;
       that.__buydata = _data;
       that.setData({
@@ -53,7 +51,7 @@ Page({
     });
   },
 
-  __calcFee: function () {
+  __calcFee: function() {
     if (!this.__buydata) return;
     let coupon = this.data.couponData;
     let coupon_fee = 0;
@@ -83,7 +81,7 @@ Page({
     });
   },
 
-  selectType: function (e) {
+  selectType: function(e) {
     let tt = e.currentTarget.dataset.tt;
     this.setData({
       tt: tt
@@ -91,13 +89,13 @@ Page({
     this.__calcFee();
   },
 
-  selectSubject: function (e) {
+  selectSubject: function(e) {
     wx.navigateTo({
       url: '../question/subject-choice?back=vip',
     })
   },
 
-  buyNow: function () {
+  buyNow: function() {
     if (!this.__buydata) return;
     if (!this.__buydata.subject) {
       app.alert('请选择考试类型');
@@ -110,11 +108,15 @@ Page({
     app.reportKpi('VIP2.CLICKBUY');
 
     let that = this;
-    that.setData({ buyNowProgress: true });
+    that.setData({
+      buyNowProgress: true
+    });
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData);
     _url += '&friendUid=' + that.inputData.friendUid;
-    zutils.post(app, _url, function (res) {
-      that.setData({ buyNowProgress: false });
+    zutils.post(app, _url, function(res) {
+      that.setData({
+        buyNowProgress: false
+      });
       let _data = res.data;
       if (_data.error_code > 0) {
         app.alert(_data.error_msg);
@@ -122,20 +124,20 @@ Page({
       }
 
       _data = _data.data;
-      _data.success = function (res) {
+      _data.success = function(res) {
         app.GLOBAL_DATA.RELOAD_VIP = ['Home'];
         wx.redirectTo({
           url: '../index/tips?msg=' + that.data.tt.toUpperCase() + '会员开通成功',
         });
       };
-      _data.fail = function (res) {
+      _data.fail = function(res) {
         console.log('会员开通失败: ' + JSON.stringify(res));
       };
 
       wx.showModal({
         title: '提示',
         content: '将为好友 ' + that.inputData.friendUid + ' 开通' + that.data.subjectName + that.data.tt.toUpperCase() + '会员。是否确认？',
-        success: function(res){
+        success: function(res) {
           if (res.confirm) {
             wx.requestPayment(_data);
           }
@@ -144,12 +146,22 @@ Page({
     });
   },
 
-  inputTake: function (e) {
-    this.inputData[e.currentTarget.dataset.id] = e.detail.value;
-    let mobile = this.inputData.mobile;
-    let vcode = this.inputData.vcode;
-    this.setData({
-      inputBad: !(mobile && mobile.length == 11 && vcode && vcode.length == 6)
-    });
+  inputTake: function(e) {
+    let id = e.currentTarget.dataset.id;
+    let val = e.detail.value;
+    this.inputData[id] = val;
+
+    if (id == 'friendUid' && val.length == 8 || val.length == 11) {
+      let that = this;
+      zutils.get(app, 'api/user/userinfo?uid=' + val, function(res) {
+        if (res.data && res.data.error_code == 0) {
+          that.setData({ friendInfo: res.data.data })
+        } else {
+          that.setData({ friendInfo: null })
+        }
+      })
+    } else {
+      this.setData({ friendInfo: null })
+    }
   },
 })

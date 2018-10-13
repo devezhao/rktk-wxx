@@ -1,1 +1,26 @@
-@import "vip-buy.wxss"
+@import "vip-buy.wxss";
+
+.friend-input {
+  position: relative;
+}
+
+.friend-info {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  height: 28px;
+}
+
+.friend-info > image {
+  float: left;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+}
+
+.friend-info > view {
+  display: inline-block;
+  margin-left: 6px;
+  margin-top: 3px;
+  font-size: 13px;
+}

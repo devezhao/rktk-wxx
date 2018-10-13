@@ -117,5 +117,13 @@ Page({
   userInfo: function() {
     if (this.data.longUid) this.setData({ longUid: 0 })
     else this.setData({ longUid: this.__UID || 0 })
+  },
+
+  iosBuyVipClick: 0,
+  iosBuyVip: function() {
+    this.iosBuyVipClick++;
+    if (this.iosBuyVipClick >= 6) {
+      app.gotoPage('/pages/my/vip-buy')
+    }
   }
 });

@@ -12,10 +12,6 @@ Page({
     zutils.get(app, 'api/share/gen-texts', function(res) {
       that.setData(res.data.data)
     });
-
-    // wx.showShareMenu({
-    //   withShareTicket: true
-    // });
   },
 
   ccopy: function(e) {
@@ -84,7 +80,7 @@ Page({
       },
       fail: function(res) {
         console.log('saveImageToPhotosAlbum - ' + JSON.stringify(res))
-        app.alert('操作未被允许。请再次点击获取并允许小程序保存到相册', function () {
+        app.alert('操作未被允许。请再次点击获取并允许小程序保存到相册', function() {
           that.setData({
             openSettingNeed: true
           })

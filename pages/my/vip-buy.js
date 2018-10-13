@@ -40,11 +40,11 @@ Page({
       this.setData({ urlMsg: e.msg });
     }
     
-    if (app.GLOBAL_DATA.IS_IOS === true) {
-      app.alert('由于相关政策，你暂时无法在这里开通会员。', function(){
-        app.gotoPage('/pages/index/index');
-      });
-    }
+    // if (app.GLOBAL_DATA.IS_IOS === true) {
+    //   app.alert('由于相关政策，你暂时无法在这里开通会员。', function(){
+    //     app.gotoPage('/pages/index/index');
+    //   });
+    // }
   },
 
   onShow: function (e) {
@@ -146,6 +146,12 @@ Page({
       };
       _data.fail = function (res) {
         console.log('会员开通失败: ' + JSON.stringify(res));
+        if ((res.errMsg || '').indexOf(' cancel') > -1) {
+          wx.showToast({
+            icon: 'none',
+            title: '用户取消支付'
+          })
+        }
       };
       wx.requestPayment(_data);
     });

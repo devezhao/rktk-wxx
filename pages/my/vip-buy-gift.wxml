@@ -6,8 +6,12 @@
   <view class="page__bd">
     <view class="weui-cells__title">好友</view>
     <view class="tt">
-      <view>
-        <input type="number" placeholder="输入好友UID或手机" maxlength="10" bindinput="inputTake" data-id="friendUid" />
+      <view class="friend-input">
+        <input type="number" placeholder="输入好友UID或手机" maxlength="11" bindinput="inputTake" data-id="friendUid" />
+        <view wx:if="{{friendInfo}}" class="friend-info">
+          <image src="{{friendInfo.headimgUrl}}"></image>
+          <view>{{friendInfo.nick}}</view>
+        </view>
       </view>
     </view>
     <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-gift" class="color-link fs-14" style="display:inline-block;margin-top:6px;">
