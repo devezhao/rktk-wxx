@@ -98,6 +98,7 @@ Page({
   onShareAppMessage: function() {
     let d = app.warpShareData();
     d.imageUrl = 'https://c.rktk.qidapp.com/a/wxx/share-img.png?v2';
+    d.imageUrl = 'https://c.rktk.qidapp.com/a/wxx/share-img-txtk.png';
     return d;
   }
 })
