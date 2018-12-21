@@ -483,7 +483,7 @@ button.btn-mask {
 .highbar .weui-cell__ft_in-access {
   position: absolute;
   right: 12px;
-  margin-top: -10.5px;
+  margin-top: -11px;
 }
 
 .highbar.icon {
