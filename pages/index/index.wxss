@@ -147,6 +147,7 @@
   white-space: nowrap;
   overflow: hidden;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .follow-subjects navigator {

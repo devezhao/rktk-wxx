@@ -110,6 +110,7 @@ page, .page {
   padding: 18px;
   overflow: auto;
   height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dt-card .seqs view {
