@@ -416,11 +416,11 @@ button.btn-mask {
 
 @font-face {
   font-family: "codefont";
-  src: url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.eot");
-  src: url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.eot?#iefix") format("embedded-opentype"),
-         url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.woff") format("woff"),
-         url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.ttf") format("truetype"),
-         url("https://c.rktk.qidapp.com/a/fonts/consola-v3/consola.svg#consola") format("svg");
+  src: url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.eot");
+  src: url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.eot?#iefix") format("embedded-opentype"),
+         url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.woff") format("woff"),
+         url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.ttf") format("truetype"),
+         url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.svg#consola") format("svg");
   font-style: normal;
   font-weight: normal;
 }

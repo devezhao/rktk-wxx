@@ -1,7 +1,7 @@
 @import "room-wait.wxss";
 
 /* .page {
-  background: #2b6ba5 url(https://c.rktk.qidapp.com/a/wxx/pk/bg3-o40.png) no-repeat center bottom;
+  background: #2b6ba5 url(https://cdn.chinaruankao.com/a/wxx/pk/bg3-o40.png) no-repeat center bottom;
   background-size: 400px 245px;
 } */
 
@@ -129,12 +129,12 @@
 }
 
 .answers .items view.a.select.N {
-  background: #d9534f url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o8.png) no-repeat left 12px;
+  background: #d9534f url(https://cdn.chinaruankao.com/a/wxx/pk/ic_wrong_o8.png) no-repeat left 12px;
   background-size: 36px 24px;
 }
 
 .answers .items view.a.select.Y {
-  background: #5cb85c url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o8.png) no-repeat left 12px;
+  background: #5cb85c url(https://cdn.chinaruankao.com/a/wxx/pk/ic_right_o8.png) no-repeat left 12px;
   background-size: 36px 24px;
   color: #fff;
 }
@@ -146,12 +146,12 @@
 }
 
 .answers .items view.a view.bar-select {
-  background: url(https://c.rktk.qidapp.com/a/wxx/pk/ic_right_o8.png) no-repeat right 12px;
+  background: url(https://cdn.chinaruankao.com/a/wxx/pk/ic_right_o8.png) no-repeat right 12px;
   background-size: 36px 24px;
 }
 
 .answers .items view.a view.bar-select.N {
-  background-image: url(https://c.rktk.qidapp.com/a/wxx/pk/ic_wrong_o8.png);
+  background-image: url(https://cdn.chinaruankao.com/a/wxx/pk/ic_wrong_o8.png);
 }
 
 .q-source {
@@ -186,7 +186,7 @@
 }
 
 .mask.win {
-  background: url(https://c.rktk.qidapp.com/a/wxx/pk/result_framebg.png) no-repeat center -136px;
+  background: url(https://cdn.chinaruankao.com/a/wxx/pk/result_framebg.png) no-repeat center -136px;
   background-size: 600px 600px;
 }
 

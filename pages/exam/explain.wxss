@@ -284,7 +284,7 @@ view.go-hover {
 
 .explain-limit .gradual {
   position: absolute;
-  background: transparent url(https://c.rktk.qidapp.com/a/wxx/bg-gradual.png) repeat-x center bottom;
+  background: transparent url(https://cdn.chinaruankao.com/a/wxx/bg-gradual.png) repeat-x center bottom;
   background-size: 5px 75px;
   bottom: 0;
   right: 0;

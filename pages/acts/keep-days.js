@@ -3,7 +3,7 @@ const zutils = require('../../utils/zutils.js');
 
 Page({
   data: {
-    aqrUrl: 'https://c.rktk.qidapp.com/a/rkbb-qr.jpg',
+    aqrUrl: 'https://cdn.chinaruankao.com/a/rkbb-qr.jpg',
     slogen: '积跬步以至千里，请继续坚持'
   },
   __slogen: ['积跬步以至千里，请继续坚持', '驽马十驾功在不舍，请继续坚持', '锲而不舍金石可镂，请继续坚持', '大吉大利今晚吃鸡，请继续坚持'],

@@ -264,7 +264,7 @@ Page({
   // 初始化音频
   __initAudio: function (file, loop) {
     this.__audio[file] = wx.createInnerAudioContext();
-    this.__audio[file].src = 'https://c.rktk.qidapp.com/a/wxx/pk/' + file;
+    this.__audio[file].src = 'https://cdn.chinaruankao.com/a/wxx/pk/' + file;
     this.__audio[file].loop = loop === true ? true : false;
     this.__audio[file].autoplay = false;
   },
