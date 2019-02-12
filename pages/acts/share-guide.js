@@ -97,8 +97,7 @@ Page({
 
   onShareAppMessage: function() {
     let d = app.warpShareData();
-    d.imageUrl = 'https://cdn.chinaruankao.com/a/wxx/share-img.png?v2';
-    //d.imageUrl = 'https://cdn.chinaruankao.com/a/wxx/share-img-txtk.png';
+    d.imageUrl = 'https://cdn.chinaruankao.com/a/wxx/share-img.png';
     return d;
   }
 })
