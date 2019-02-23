@@ -8,6 +8,7 @@ Page({
   },
   roomId: null,
   onShowTimes: 0,
+  onShareTrigger: false,
 
   onLoad: function (e) {
     if (!!app.GLOBAL_DATA.RED_DOT[2]) {
@@ -64,6 +65,14 @@ Page({
 
       that.__loadMeta();
       if (s == 'onPullDownRefresh') wx.stopPullDownRefresh();
+
+      // 判断是否进入房间
+      if (_data.error_code == 0 && that.onShareTrigger === true && app.reenterSource && app.reenterSource.path == 'pages/pk/start') {
+        that.onShareTrigger = false
+        wx.navigateTo({
+          url: 'room-wait?id=' + that.roomId
+        });
+      }
     });
 
     let u = app.GLOBAL_DATA.USER_INFO;
@@ -116,16 +125,22 @@ Page({
       d = {
         title: app.GLOBAL_DATA.USER_INFO.nick + '向你发起挑战',
         path: '/pages/pk/start?pkroom=' + (that.roomId && that.roomId != 'HOLD' ? that.roomId : ''),
-        success: function (res) {
-          if (that.roomId) {
-            wx.navigateTo({
-              url: 'room-wait?id=' + that.roomId
-            });
-          }
-        }
+        // 新版微信已取消
+        // success: function (res) {
+        //   if (that.roomId) {
+        //     wx.navigateTo({
+        //       url: 'room-wait?id=' + that.roomId
+        //     });
+        //   }
+        // }
       }
+      this.onShareTrigger = true
     }
     return d;
+  },
+
+  onHide: function(e) {
+    console.log('离开 PK 首页 ...')
   },
 
   checkReady: function () {

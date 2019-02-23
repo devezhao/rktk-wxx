@@ -55,6 +55,7 @@ App({
 
   onShow: function(e) {
     console.log("小程序进入前台: " + JSON.stringify(e));
+    this.reenterSource = e
   },
 
   onHide: function(e) {

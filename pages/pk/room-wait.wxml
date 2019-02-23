@@ -8,7 +8,7 @@
     </view>
     <view class="user bar animated slideInRight">
       <view class="headimg">
-        <image src="{{barHeadimg || ''}}"></image>
+        <image src="{{barHeadimg  || '../../images/afo-unknow.png'}}"></image>
       </view>
       <view class="nick">{{barNick || ''}}</view>
     </view>
