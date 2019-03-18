@@ -45,6 +45,21 @@ Page({
       return;
     }
 
+    // let that = this;
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '确认立即激活吗？',
+    //   confirmText: '确认',
+    //   success: function (res) {
+    //     if (res.confirm) {
+    //       that.__buyNow();
+    //     }
+    //   }
+    // });
+    this.__buyNow();
+  },
+
+  __buyNow: function() {
     let that = this;
     that.setData({
       buyNowProgress: true

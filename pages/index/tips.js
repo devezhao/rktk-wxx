@@ -25,15 +25,13 @@ Page({
         hideBtn: false
       });
     } else if (msg.indexOf('会员') > -1 && msg.indexOf('成功') > -1) {
-      // this.setData({
-      //   hideRetBtn: false
-      // });
+      this.setData({
+        hideRetBtn: false
+      });
     }
   },
 
   retHome: function() {
-    wx.redirectTo({
-      url: '../my/home'
-    });
+    app.gotoPage('/pages/my/home');
   }
 })
