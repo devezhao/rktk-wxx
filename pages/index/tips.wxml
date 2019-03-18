@@ -9,3 +9,6 @@
 <view class="fix-foobar btns" hidden="{{hideBtn}}">
   <button class="weui-btn" type="default" open-type="contact">{{btnText}}</button>
 </view>
+<view class="fix-foobar btns" hidden="{{hideRetBtn}}">
+  <button class="weui-btn" type="default" bindtap="retHome">返回</button>
+</view>

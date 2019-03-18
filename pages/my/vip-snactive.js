@@ -55,6 +55,7 @@ Page({
       });
       let _data = res.data;
       if (_data.error_code == 0) {
+        app.GLOBAL_DATA.RELOAD_VIP = ['Home'];
         wx.redirectTo({
           url: '../index/tips?msg=' + _data.data.level + '会员激活成功'
         });

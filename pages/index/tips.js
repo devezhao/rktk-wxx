@@ -4,7 +4,8 @@ const zutils = require('../../utils/zutils.js');
 Page({
   data: {
     btnText: '返回首页',
-    hideBtn: true
+    hideBtn: true,
+    hideRetBtn: true
   },
   fromCoinBuy: false,
 
@@ -23,6 +24,16 @@ Page({
         btnText: '点击提交',
         hideBtn: false
       });
+    } else if (msg.indexOf('会员') > -1 && msg.indexOf('成功') > -1) {
+      // this.setData({
+      //   hideRetBtn: false
+      // });
     }
+  },
+
+  retHome: function() {
+    wx.redirectTo({
+      url: '../my/home'
+    });
   }
 })
