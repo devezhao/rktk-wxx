@@ -1,0 +1,23 @@
+<view class="page" style="padding-bottom:50px">
+  <view class="page__bd">
+    <view class="weui-cells__title">激活码</view>
+    <view class="tt">
+      <input type="text" placeholder="输入激活码" maxlength="20" bindinput="inputTake" data-id="sncode" />
+    </view>
+    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-sn" class="color-link fs-14" style="display:inline-block;margin-top:6px;">
+      [ 什么是激活码 ]
+    </navigator>
+
+    <view class="weui-cells__title">选择考试类型</view>
+    <view class="tt" bindtap="selectSubject">
+      <view>{{subjectName || '选择考试类型'}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+  </view>
+
+  <view class="page__hd">
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="buyNow" disabled="{{buyNowProgress}}">立即激活</button>
+    </view>
+  </view>
+</view>

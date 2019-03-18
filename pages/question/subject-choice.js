@@ -16,6 +16,9 @@ Page({
         frontColor: '#ffffff',
         backgroundColor: '#a18d62'
       });
+      
+    }
+    if (this.back == 'vip' || this.back == 'vipsn') {
       this.setData({
         vipHide: true
       })
@@ -40,7 +43,7 @@ Page({
 
   subjectChange: function (e) {
     var _selected = e.detail.value;
-    if (this.back == 'vip') {
+    if (this.back == 'vip' || this.back == 'vipsn') {
       app.GLOBAL_DATA.__BuySubject = _selected;
       wx.navigateBack();
       return;

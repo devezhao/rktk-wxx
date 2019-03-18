@@ -6,3 +6,14 @@
 .weui-cell__ft switch {
   margin-right: -5px;
 }
+
+.rktk .weui-cell__hd image {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 13px;
+}
+
+.rktk .weui-cell__bd {
+  margin-left: 27px;
+}

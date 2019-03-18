@@ -38,4 +38,17 @@
       </view>
     </view>
   </view>
+
+  <view class="page__hd">
+    <view class="weui-cells__title">其他</view>
+    <view class="weui-cells weui-cells_after-title rktk">
+      <navigator url="vip-snactive" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image src="../../images/ic_vip-active.png"></image>
+        </view>
+        <view class="weui-cell__bd">激活VIP会员</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+    </view>
+  </view>
 </view>

@@ -30,7 +30,8 @@
     "pages/pk/start",
     "pages/pk/rank",
     "pages/pk/room-wait",
-    "pages/pk/room-pk"
+    "pages/pk/room-pk",
+    "pages/my/vip-snactive"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4b8ef9",
