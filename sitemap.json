@@ -1,0 +1,37 @@
+{
+  "rules": [
+    {
+      "action": "allow",
+      "page": "pages/question/subject-list"
+    },
+    {
+      "action": "allow",
+      "page": "pages/question/subject-choice"
+    },
+    {
+      "action": "allow",
+      "page": "pages/question/subject",
+      "params": [
+        "id"
+      ]
+    },
+    {
+      "action": "allow",
+      "page": "pages/exam/explain",
+      "params": [
+        "id"
+      ]
+    },
+    {
+      "action": "allow",
+      "page": "pages/exam/explain-rich",
+      "params": [
+        "id"
+      ]
+    },
+    {
+      "action": "disallow",
+      "page": "*"
+    }
+  ]
+}
