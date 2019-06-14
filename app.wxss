@@ -471,13 +471,13 @@ button.btn-mask {
 .highbar {
   margin: 0 14px;
   background-color: #fefcec;
-  padding: 9px 12px;
+  padding: 7px 14px;
   margin-top: 13px;
   color: #f87c3d;
   font-size: 14px;
-  border-radius: 3px;
+  border-radius: 99px;
   position: relative;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.05);
 }
 
 .highbar .weui-cell__ft_in-access {
@@ -492,7 +492,7 @@ button.btn-mask {
 
 .highbar.icon icon {
   position: absolute;
-  top: 13px;
+  top: 11px;
   left: 12px;
 }
 

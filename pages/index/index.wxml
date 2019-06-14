@@ -50,7 +50,6 @@
               <image src="../../images/h-icon-study-report.png" class="x26"></image>
             </view>
             <text>答题报告</text>
-            <text class="bag">新</text>
           </button>
         </form>
       </view>
