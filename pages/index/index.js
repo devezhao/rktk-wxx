@@ -101,6 +101,8 @@ Page({
       if (lastFs != this.__lastFs) {
         this.__loadFollowSubject(fs);
       }
+    } else {
+      this.setData({ followSubjects: null })
     }
   },
 

@@ -12,7 +12,7 @@
   </view>
 
   <view class="page__hd">
-    <view class="weui-cells__title">系统通知</view>
+    <view class="weui-cells__title">通知</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">题库更新</view>
@@ -30,11 +30,15 @@
   </view>
 
   <view class="page__hd">
-    <view class="weui-cells__title">缓存</view>
+    <view class="weui-cells__title">数据</view>
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_access weui-cell_warn" hover-class="weui-cell_active" bindtap="cleanCache">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="cleanCache">
         <view class="weui-cell__bd">清空缓存</view>
         <view class="weui-cell__ft">{{cacheSize || ''}}</view>
+      </view>
+      <view class="weui-cell weui-cell_access weui-cell_warn" hover-class="weui-cell_active" bindtap="cleanExam">
+        <view class="weui-cell__bd">重置答题数据</view>
+        <view class="weui-cell__ft"></view>
       </view>
     </view>
   </view>
