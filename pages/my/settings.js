@@ -42,7 +42,7 @@ Page({
 
   cleanCache: function () {
     let that = this;
-    this.__showModal('确认清空缓存？', () => {
+    this.__showModal('确认清空本地缓存？', () => {
       wx.clearStorage();
 
       app.GLOBAL_DATA.FOLLOW_SUBJECT = [];
@@ -52,6 +52,8 @@ Page({
         that.setData({ cacheSize: '0KB' })
         app.getUserInfoForce(true)
       });
+      // 刷新用户首页
+      app.GLOBAL_DATA.RELOAD_VIP = ['Home'];
     })
   },
 
