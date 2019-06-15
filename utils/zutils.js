@@ -1,6 +1,6 @@
-//const baseUrl = 'https://rk.chinaruankao.com/';
-//const baseUrl = 'http://192.168.0.159:8080/rktk/';
-const baseUrl = 'http://192.168.0.235:8080/rktk/';
+const baseUrl = 'https://rk.chinaruankao.com/';
+//const baseUrl = 'http://192.168.0.159:8180/rktk/';
+//const baseUrl = 'http://192.168.0.235:8080/rktk/';
 
 // GET 方法
 function z_get(app, url, call) {
@@ -26,10 +26,11 @@ function z_get(app, url, call) {
     header: { wxxuid: wxxuid },
     success: call || function (res) { },
     fail: function (res) {
-      if (res.errMsg && res.errMsg.indexOf('timeout') > -1) {
+      if (res.errMsg) {
         wx.showToast({
           icon: 'none',
-          title: '请求超时，请检查网络'
+          duration: 5000,
+          title: (res.errMsg.indexOf('timeout') > -1 ? '请求超时' : '请求失败') + '，请检查你的网络'
         })
       }
       console.error('请求失败<GET:' + url + '> - ' + JSON.stringify(res || []));

@@ -53,6 +53,12 @@ Page({
           homeicon: _data.homeicon
         });
       }
+
+      if (_data.huawei) {
+        that.setData({
+          huawei: _data.huawei
+        });
+      }
     });
 
     app.getUserInfo(function(u) {

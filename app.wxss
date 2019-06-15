@@ -43,6 +43,10 @@ page, .page {
   opacity: 0.8;
 }
 
+.center {
+  text-align: center;
+}
+
 .top-block {
   padding: 24px 14px;
   background-color: #fff;
@@ -471,10 +475,10 @@ button.btn-mask {
 .highbar {
   margin: 0 14px;
   background-color: #fefcec;
-  padding: 7px 14px;
+  padding: 6px 14px;
   margin-top: 13px;
   color: #f87c3d;
-  font-size: 14px;
+  font-size: 13px;
   border-radius: 99px;
   position: relative;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.05);
@@ -483,7 +487,7 @@ button.btn-mask {
 .highbar .weui-cell__ft_in-access {
   position: absolute;
   right: 12px;
-  margin-top: -11px;
+  margin-top: -10px;
 }
 
 .highbar.icon {
@@ -492,7 +496,7 @@ button.btn-mask {
 
 .highbar.icon icon {
   position: absolute;
-  top: 11px;
+  top: 8px;
   left: 12px;
 }
 
