@@ -61,7 +61,13 @@ Page({
         });
       };
       _data.fail = function (res) {
-        console.log('充值失败: ' + JSON.stringify(res));
+        console.log('学豆充值失败: ' + JSON.stringify(res));
+        if ((res.errMsg || '').indexOf(' cancel') > -1) {
+          wx.showToast({
+            icon: 'none',
+            title: '用户取消支付'
+          })
+        }
       };
       wx.requestPayment(_data);
     });
