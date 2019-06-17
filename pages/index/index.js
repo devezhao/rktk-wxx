@@ -206,15 +206,17 @@ Page({
   // 推荐题库
   __loadRecommend: function() {
     zutils.get(app, 'api/home/recommend-subjects', (res) => {
+      this.setData({
+        recommendSubjectsLoaded: true
+      })
       let _data = res.data.data
       if (!_data) return
       let _subjects = _data.recommend_subjects
       this.__formatSubject(_subjects)
+      _data = {}
+      _data.recommendSubjects = [_subjects[0], _subjects[1], _subjects[2]]
       if (_subjects.length > 3) {
-        _data.recommend_subjects = [_subjects[0], _subjects[1], _subjects[2]]
-        _data.recommend_subjects2 = [_subjects[3], _subjects[4], _subjects[5]]
-      } else {
-        _data.recommend_subjects2 = null
+        _data.recommendSubjects2 = [_subjects[3], _subjects[4], _subjects[5]]
       }
       this.setData(_data)
     })

@@ -51,7 +51,7 @@
         </form>
       </view>
     </view>
-    <view class="weui-flex top-column">
+    <view class="weui-flex top-column" hidden="true">
       <view class="weui-flex__item">
         <form bindsubmit="gotoPage" report-submit="true" data-url="">
           <button class="icon-w" formType="submit">
@@ -163,10 +163,10 @@
     </view>
   </view>
 
-  <view class="weui-panel weui-panel_access">
+  <view class="weui-panel weui-panel_access" hidden="{{recommendSubjectsLoaded != true}}">
     <view class="weui-panel__hd">推荐题库</view>
     <view class="weui-panel__bd">
-      <block wx:if="{{!recommend_subjects || recommend_subjects.length == 0}}">
+      <block wx:if="{{!recommendSubjects || recommendSubjects.length == 0}}">
         <view class="weui-media-box rktk-record">
           <view class="weui-media-box__title nodata-tips">
             请先选择考试类型
@@ -178,10 +178,10 @@
           </view>
         </view>
       </block>
-      <block wx:if="{{!!recommend_subjects && recommend_subjects.length > 0}}">
+      <block wx:if="{{!!recommendSubjects && recommendSubjects.length > 0}}">
         <view class="weui-media-box rktk-record">
           <view class="weui-flex" style="margin:0px -6px">
-            <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects}}" wx:key="*this">
+            <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommendSubjects}}" wx:key="*this">
               <view class="book {{item[12]}}">
                 <block wx:if="{{item[11] != null}}">
                   <text>{{item[11]}}</text>
@@ -191,9 +191,9 @@
               </view>
             </navigator>
           </view>
-          <block wx:if="{{!!recommend_subjects2 && recommend_subjects2.length > 0}}">
+          <block wx:if="{{!!recommendSubjects2 && recommendSubjects2.length > 0}}">
             <view class="weui-flex" style="margin:0px -6px;margin-top:8px;">
-              <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects2}}" wx:key="*this">
+              <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommendSubjects2}}" wx:key="*this">
                 <view class="book {{item[12]}}">
                   <block wx:if="{{item[11] != null}}">
                     <text>{{item[11]}}</text>
@@ -207,7 +207,7 @@
         </view>
       </block>
     </view>
-    <view class="weui-panel__ft" hidden="{{!recommend_subjects || recommend_subjects.length == 0}}">
+    <view class="weui-panel__ft" hidden="{{!recommendSubjects || recommendSubjects.length == 0}}">
       <view bindtap="gotoPage" data-url="/pages/question/subject-list" class="weui-cell weui-cell_access weui-cell_link">
         <view class="weui-cell__bd">查看全部</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>

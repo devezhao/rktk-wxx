@@ -7,8 +7,8 @@ Page({
     nick: '游客',
     level: '普通会员',
     subject: '选择考试类型',
-    isIOS: true,
-    iosNoVip: true
+    iOS: true,
+    runMode: 1
   },
   showTimes: 0,
 
@@ -17,10 +17,7 @@ Page({
       app.hideReddot(2, app.GLOBAL_DATA.RED_DOT[3]);
     }
 
-    this.setData({ isIOS: app.GLOBAL_DATA.IS_IOS });
-    if (app.GLOBAL_DATA.IS_IOS == false) {
-      this.setData({ iosNoVip: false });
-    }
+    this.setData({ iOS: app.GLOBAL_DATA.IS_IOS });
 
     let that = this;
     app.getUserInfo(function (u) {
@@ -74,19 +71,21 @@ Page({
     zutils.get(app, 'api/user/infos', function (res) {
       typeof cb == 'function' && cb();
       let _data = res.data.data;
+      let isVip = _data.user_level.indexOf('VIP') > -1
       that.setData({
         level: _data.user_level,
         subject: _data.subject,
         coin: _data.coin_balance,
-        vip: _data.user_level.indexOf('VIP') > -1 ? 'vip' : '',
+        vip: isVip,
         vip_discount: _data.vip_discount || '',
         vip2_discount: _data.vip2_discount || '',
         bindMobile: _data.bindMobile || '',
-        bindMobileShow: !!!_data.bindMobile
+        bindMobileShow: !!!_data.bindMobile,
+        runMode: _data.runMode || 0
       });
       that.__UID = _data.longUid;
 
-      if (that.data.vip == 'vip') {
+      if (isVip) {
         wx.setNavigationBarColor({
           frontColor: '#ffffff',
           backgroundColor: '#a18d62'
@@ -97,8 +96,6 @@ Page({
             vipLevelFull: '已开通' + _data.subject + _data.level + '会员'
           })
         });
-
-        that.setData({ iosNoVip: false })
       }
     });
     zutils.get(app, 'api/user/study-infos', function (res) {
