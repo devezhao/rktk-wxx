@@ -29,7 +29,7 @@
       <button type="primary" open-type="share" class="T2" disabled="{{btnDisabled}}">请好友代付</button>
       <view class="color-link scan" bindtap="showPayQrcode">扫码支付</view>
       <view class="highbar icon">
-        <icon type="warn" size="14" color="#f87c3d" style="top:12px"></icon>
+        <icon type="warn" size="14" color="#f87c3d"></icon>
         受苹果/微信支付政策影响，暂不支持在 iOS 设备支付。你可邀请好友或通过安卓手机支付。
       </view>
     </block>

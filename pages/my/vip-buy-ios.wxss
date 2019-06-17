@@ -56,9 +56,18 @@
 
 .color-link.scan {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 15px;
   background: url(https://cdn.chinaruankao.com/a/wxx/ic_scan2.png) no-repeat 0 1px;
   background-size: 20px 20px;
   padding-left: 24px;
+}
+
+.highbar.icon {
+  box-shadow: 0 0 0 #fff;
+  border-radius: 3px;
+}
+
+.highbar.icon icon {
+  top: 8px;
 }
