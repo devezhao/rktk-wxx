@@ -8,6 +8,7 @@
     "pages/question/subject-choice",
     "pages/question/subject-list",
     "pages/question/subject",
+    "pages/question/subject-ai",
     "pages/exam/exam",
     "pages/exam/exam-result",
     "pages/exam/explain",

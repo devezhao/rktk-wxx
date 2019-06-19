@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="top-block">
+      <view class="subtitle">{{parent_name}}</view>
+      <view class="title">{{subject_name}}</view>
+      <view class="subtitle">{{subject_desc}}</view>
+      <view class="subtitle infos">
+        <block wx:if="{{vip_free == true}}">
+          <text class="color-base2">(VIP免费)</text>
+        </block>
+        <block wx:elif="{{coin > 0}}">
+          {{coin}}学豆起
+        </block>
+        <block wx:else>
+          <text wx:if="{{coin == 0}}" class="color-base2">免费</text>
+          <text wx:if="{{coin == -1}}" class="color-base2">(限免)</text>
+          <text wx:if="{{coin == -2}}" class="color-base2">(VIP专享)</text>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="fix-foobar">
+    <view class="pull-left">
+      <form bindsubmit="toExplain" report-submit="true">
+        <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析</button>
+      </form>
+    </view>
+    <view class="pull-left">
+      <form bindsubmit="toExam" report-submit="true">
+        <button class="weui-btn split" type="primary" formType="submit">开始答题</button>
+      </form>
+    </view>
+  </view>
+</view>
+<view class="float-btns">
+  <button class="zbtn" bindtap="shareboxOpen">
+    <image src="../../images/share.png" class="share"></image>
+  </button>
+</view>
+<import src="../comps/z-sharebox.wxml" />
+<template is="z-sharebox" data="{{...shareboxData}}" />

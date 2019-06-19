@@ -51,9 +51,9 @@
         </form>
       </view>
     </view>
-    <view class="weui-flex top-column" hidden="true">
+    <view class="weui-flex top-column">
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA23">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#3498db">
               <image src="../../images/v2/ic_h-hot.png" />
@@ -64,7 +64,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA24">
           <button class="icon-w" formType="submit">
             <view class="icon inc" style="background-color:#e67e22">
               <image src="../../images/v2/ic_h-inc.png" />
@@ -75,7 +75,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="todayExam" report-submit="true">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA26">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#2ecc71">
               <image src="../../images/v2/ic_h-rnd.png" />
@@ -86,7 +86,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA25">
           <button class="icon-w" formType="submit">
             <view class="icon rem" style="background-color:#34495e">
               <image src="../../images/v2/ic_h-rem.png" />
