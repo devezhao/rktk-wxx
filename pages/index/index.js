@@ -4,7 +4,8 @@ const zutils = require('../../utils/zutils.js')
 Page({
   data: {
     hideCoupon: true,
-    hideBanners: false
+    hideBanners: false,
+    openAis: false
   },
 
   onLoad: function(e) {
@@ -19,14 +20,43 @@ Page({
     this.setData({
       isAndroid: app.GLOBAL_DATA.IS_ANDROID
     })
-
+    
     let that = this
-    zutils.get(app, 'api/home/comdata', function(res) {
+
+    app.getUserInfo(function (u) {
+      that.__loadComdata()
+      that.__loadRecent()
+      that.__loadRecommend()
+      that.__checkTwxx()
+      that.__checkToken()
+      setTimeout(function () {
+        that.__checkCoupon()
+      }, 666)
+    })
+    
+    wx.getStorage({
+      key: 'FOLLOW_SUBJECT',
+      success: function(res) {
+        let fs = res.data.split(',')
+        app.GLOBAL_DATA.FOLLOW_SUBJECT = fs
+        if (fs.length > 0) {
+          that.__loadFollowSubject(fs)
+        }
+      }
+    })
+
+    // 跳转页面
+    if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage))
+  },
+
+  __loadComdata: function () {
+    let that = this
+    zutils.get(app, 'api/home/comdata', function (res) {
       let _data = res.data.data
-      // if (res.data.error_code > 1000) {
-      //   wx.redirectTo({ url: '/pages/index/tips?msg=' + res.data.error_msg })
-      //   return
-      // }
+      if (res.data.error_code > 1000) {
+        wx.redirectTo({ url: '/pages/index/tips?msg=' + res.data.error_msg })
+        return
+      }
 
       wx.setNavigationBarTitle({
         title: _data.title || '软考必备'
@@ -48,35 +78,12 @@ Page({
           app.showReddot(_data.reddot[k], k)
         }
       }
-
+      
       that.setData({
         icontext: _data.icontext || null,
-        declaration: _data.declaration || null
+        declaration: _data.declaration || null,
+        openAis: _data.open_ais === true
       })
-    })
-
-    app.getUserInfo(function(u) {
-      that.__loadRecent()
-      that.__loadRecommend()
-      that.__checkTwxx()
-      that.__checkToken()
-      setTimeout(function() {
-        that.__checkCoupon()
-      }, 666)
-    })
-
-    // 跳转页面
-    if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage))
-
-    wx.getStorage({
-      key: 'FOLLOW_SUBJECT',
-      success: function(res) {
-        let fs = res.data.split(',')
-        app.GLOBAL_DATA.FOLLOW_SUBJECT = fs
-        if (fs.length > 0) {
-          that.__loadFollowSubject(fs)
-        }
-      }
     })
   },
 

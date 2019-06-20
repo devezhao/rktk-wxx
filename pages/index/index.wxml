@@ -51,7 +51,7 @@
         </form>
       </view>
     </view>
-    <view class="weui-flex top-column">
+    <view class="weui-flex top-column" hidden="{{!openAis}}">
       <view class="weui-flex__item">
         <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA23">
           <button class="icon-w" formType="submit">

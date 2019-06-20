@@ -1,1 +1,18 @@
 @import "subject.wxss";
+
+.highbar.desc {
+  background-color: #fff;
+  color: #444;
+  border-radius: 3px;
+  padding: 7px 14px;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.text-bold {
+  font-size: 13px;
+  font-weight: bold;
+  color: #999;
+  margin: 0 14px;
+  margin-top: 14px;
+}
