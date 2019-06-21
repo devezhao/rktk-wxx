@@ -20,20 +20,20 @@ Page({
     this.setData({
       isAndroid: app.GLOBAL_DATA.IS_ANDROID
     })
-    
-    let that = this
 
-    app.getUserInfo(function (u) {
+    const that = this
+
+    app.getUserInfo(function(u) {
       that.__loadComdata()
       that.__loadRecent()
       that.__loadRecommend()
       that.__checkTwxx()
       that.__checkToken()
-      setTimeout(function () {
+      setTimeout(function() {
         that.__checkCoupon()
       }, 666)
     })
-    
+
     wx.getStorage({
       key: 'FOLLOW_SUBJECT',
       success: function(res) {
@@ -46,15 +46,39 @@ Page({
     })
 
     // 跳转页面
-    if (e.nextpage) app.gotoPage(decodeURIComponent(e.nextpage))
+    if (e.nextpage) {
+      app.gotoPage(decodeURIComponent(e.nextpage))
+      return
+    }
+
+    // 显示收藏提醒
+    if (!(e.scene == 1089 || e.scene == 1001 || e.scene == 1022 || e.scene == 1023 || e.scene == 1027)) {
+      let showFav = function (t) {
+        that.setData({ showFav: true, showFavClazz: 'animated bounceIn slow' })
+        wx.setStorage({ key: 'SHOW_FAV', data: t || 1 })
+      }
+      setTimeout(() => {
+        wx.getStorage({
+          key: 'SHOW_FAV',
+          success: function (res) {
+            if (res.data < 3) showFav(res.data + 1)
+          },
+          fail: function (res) {
+            showFav(1)
+          }
+        })
+      }, 1500)
+    }
   },
 
-  __loadComdata: function () {
+  __loadComdata: function() {
     let that = this
-    zutils.get(app, 'api/home/comdata', function (res) {
+    zutils.get(app, 'api/home/comdata', function(res) {
       let _data = res.data.data
       if (res.data.error_code > 1000) {
-        wx.redirectTo({ url: '/pages/index/tips?msg=' + res.data.error_msg })
+        wx.redirectTo({
+          url: '/pages/index/tips?msg=' + res.data.error_msg
+        })
         return
       }
 
@@ -78,7 +102,7 @@ Page({
           app.showReddot(_data.reddot[k], k)
         }
       }
-      
+
       that.setData({
         icontext: _data.icontext || null,
         declaration: _data.declaration || null,

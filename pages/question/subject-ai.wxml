@@ -16,9 +16,13 @@
       </view>
     </view>
   </view>
-  <view class="page__hd">
-    <view class="text-bold">题库说明</view>
-    <view class="highbar desc">{{subject_desc}}</view>
+  <view class="page__hd ais-tips">
+    <view class="text-bold">AI 题库</view>
+    <view class="arrow up"></view>
+    <view class="highbar desc">
+      <image src="../../images/ai-tips.png" />
+      {{subject_desc}}
+    </view>
   </view>
   <view class="fix-foobar">
     <view class="pull-left">

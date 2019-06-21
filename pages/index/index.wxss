@@ -1,3 +1,5 @@
+@import "../../libs/animate.wxss";
+
 .home-swiper {
   height: 150px;
   width: 100%;
@@ -277,13 +279,18 @@
   color: #ec961d;
 }
 
-.highbar.coupon {
-  background-color: #f96260;
-  color: #fff;
+.tooltip.fav {
+  left: auto;
+  right: 7px;
 }
 
-.highbar.coupon .weui-cell__ft_in-access:after {
-  border-color: rgba(255, 255, 255, 0.6);
+.tooltip.fav .arrow.up {
+  left: auto;
+  right: 58.5px;
+}
+
+.tooltip.fav .content {
+  padding: 9px 14px;
 }
 
 /* HomeIcon https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=16947 */

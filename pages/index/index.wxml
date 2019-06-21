@@ -99,14 +99,14 @@
     </view>
   </view>
 
-  <view class="highbar coupon center" hidden="{{!declaration}}">
+  <view class="highbar red center" hidden="{{!declaration}}">
     {{declaration}}
   </view>
   <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
     你有 <text style="font-weight:bold">{{unexams}}</text> 份答题未交卷，点击查看并继续答题
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-  <navigator url="/pages/my/vip-buy?s=coupon" class="highbar coupon icon" wx:if="{{showConponHighbar}}">
+  <navigator url="/pages/my/vip-buy?s=coupon" class="highbar red icon" wx:if="{{showConponHighbar}}">
     <icon type="info" size="15" color="#fff"></icon>
     你有2张价值{{coupon_amount || 150}}元的优惠券即将过期
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -247,5 +247,12 @@
         <button type="default" formType="submit" class="text">稍后使用</button>
       </form>
     </view>
+  </view>
+</view>
+
+<view class="tooltip fav {{showFavClazz}}" wx:if="{{showFav}}">
+  <view class="tooltip-inner">
+    <view class="arrow up"></view>
+    <view class="content">添加小程序方便下次使用</view>
   </view>
 </view>
