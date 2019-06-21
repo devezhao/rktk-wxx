@@ -17,6 +17,13 @@
     },
     {
       "action": "allow",
+      "page": "pages/question/subject-ai",
+      "params": [
+        "id"
+      ]
+    },
+    {
+      "action": "allow",
       "page": "pages/exam/explain",
       "params": [
         "id"

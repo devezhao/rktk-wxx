@@ -61,7 +61,7 @@ Page({
         wx.getStorage({
           key: 'SHOW_FAV',
           success: function (res) {
-            if (res.data < 3) showFav(res.data + 1)
+            if (res.data < 1) showFav(res.data + 1)
           },
           fail: function (res) {
             showFav(1)
@@ -163,7 +163,8 @@ Page({
     setTimeout(function() {
       if (rktk_token == true) {
         wx.setClipboardData({
-          data: ''
+          data: '',
+          complete: () => wx.hideToast()
         })
       }
     }, 1500)

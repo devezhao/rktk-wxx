@@ -71,13 +71,13 @@
 .top-column .weui-flex__item .icon-w .icon.inc image {
   width: 26px ;
   height: 26px;
-  margin-top: 7px;
+  margin-top: 8px;
 }
 
 .top-column .weui-flex__item .icon-w .icon.rem image {
   width: 27px ;
   height: 27px;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .top-column .weui-flex__item .icon-w text.bag {

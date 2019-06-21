@@ -21,7 +21,7 @@
     <view class="arrow up"></view>
     <view class="highbar desc">
       <image src="../../images/ai-tips.png" />
-      {{subject_desc}}
+      <view>{{subject_desc}}</view>
     </view>
   </view>
   <view class="fix-foobar">

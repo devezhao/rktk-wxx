@@ -27,7 +27,7 @@
     </view>
   </view>
   <view class="fix-foobar" style="background-color:#fff;" wx:if="{{listData && listData.length > 0}}">
-    <view style="margin:14px;">
+    <view style="margin:9px 14px;">
       <button class="weui-btn" type="primary" bindtap="explainAll">练习全部错题</button>
     </view>
   </view>
