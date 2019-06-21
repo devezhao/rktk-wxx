@@ -6,7 +6,7 @@
           <view class="weui-media-box__title has-btn-more">{{item[1]}}</view>
           <view class="weui-media-box__info">
             <view class="weui-media-box__info__meta">{{item[2]}} 第{{item[4]}}题</view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra hide">收藏于{{item[3]}}</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra hide">{{item[3]}}</view>
           </view>
           <view class="btn-more" catchtap="moreAction" data-id="{{item[0]}}"><image src="/images/action-more2.png"></image></view>
         </navigator>

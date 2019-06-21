@@ -143,7 +143,7 @@
             耗时
             <text>{{item[4]}}</text>
           </view>
-          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">于{{item[3]}}</view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[3]}}</view>
         </view>
       </navigator>
       <block wx:if="{{!recent_exams || recent_exams.length == 0}}">
