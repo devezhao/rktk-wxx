@@ -44,9 +44,9 @@
     </block>
   </view>
 
-  <view class="page__bd" style="padding-top:12px;" hidden="{{vipHide || !subjectList_1}}">
-    <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dNoSubject">
-      <button class="weui-btn link" type="default" formType="submit">[ 没有需要的考试类型 ]</button>
+  <view class="page__bd" style="padding-top:12px;margin-bottom:1px" hidden="{{vipHide || !subjectList_1}}">
+    <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}%26k%3dintro">
+      <button class="weui-btn link" type="default" formType="submit">[ 查看各科目考试要求 ]</button>
     </form>
   </view>
 </view>

@@ -12,7 +12,7 @@ function z_get(app, url, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 600);
+    }, 800);
   }
 
   let wxxuid = null;
