@@ -12,13 +12,6 @@ Page({
     let that = this;
     app.getUserInfo(function(u) {
       that.__onLoad(e);
-
-      // setTimeout(function(){
-      //   if (/^U[0-9]{5,10}$/.test(u.nick)) {
-      //     app.getUserInfoForce(true);
-      //     return;
-      //   }
-      // }, 666);
     });
   },
 

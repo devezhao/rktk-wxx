@@ -65,6 +65,7 @@ var z_sharebox = {
       wx.setClipboardData({
         data: text,
         success: function () {
+          wx.hideToast()
           that.shareboxClose(page);
         }
       });
@@ -80,6 +81,7 @@ var z_sharebox = {
         data: text,
         success: function () {
           that.shareboxClose(page);
+          wx.hideToast()
           wx.showToast({
             icon: 'none',
             title: '链接已复制'

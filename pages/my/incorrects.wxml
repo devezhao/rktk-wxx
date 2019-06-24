@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="page__hd weui-panel__compact" style="padding-bottom:71px;" wx:if="{{listData && listData.length > 0}}">
+  <view class="page__hd weui-panel__compact" style="padding-bottom:60px;" wx:if="{{listData && listData.length > 0}}">
     <view class="weui-panel" wx:for="{{listData}}" wx:key="*this">
       <view class="weui-panel__bd">
         <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">
@@ -27,7 +27,7 @@
     </view>
   </view>
   <view class="fix-foobar" style="background-color:#fff;" wx:if="{{listData && listData.length > 0}}">
-    <view style="margin:14px;">
+    <view style="margin:9px 14px;">
       <button class="weui-btn" type="primary" bindtap="explainAll">练习全部错题</button>
     </view>
   </view>

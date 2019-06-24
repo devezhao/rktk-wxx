@@ -1,3 +1,5 @@
+@import "../../libs/animate.wxss";
+
 .home-swiper {
   height: 150px;
   width: 100%;
@@ -8,9 +10,14 @@
   width: 100%;
 }
 
-.top-column {
-  background-color: #fff;
+.page__hd.ttop {
   border-bottom: 1rpx solid #d9d9d9;
+  background-color: #fff;
+  padding: 7px 0;
+}
+
+.top-column {
+  padding: 2px 0;
 }
 
 .top-column .weui-flex__item view, .top-column .weui-flex__item navigator {
@@ -19,38 +26,64 @@
 }
 
 .top-column .weui-flex__item .icon-w {
-  padding: 12px 0;
+  padding: 6px 0;
   border-radius: 0;
-  font-size: 14px;
   line-height: 1;
   background-color: #fff;
   position: relative;
 }
 
 .top-column .weui-flex__item .icon-w:active {
-  background-color: #ececec;
+  opacity: 0.6;
 }
 
 .top-column .weui-flex__item .icon-w .icon {
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #aaa;
   display: inline-block;
   overflow: hidden;
+  opacity: 0.8;
+}
+
+.top-column .weui-flex__item .icon-w .icon image {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  margin-top: 7px;
 }
 
 .top-column .weui-flex__item .icon-w text {
   display: block;
-  color: #333;
+  color: #444;
   text-align: center;
-  font-size: 13px;
-  margin-top: 3px;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.top-column .weui-flex__item .icon-w .icon.fav image {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+}
+
+.top-column .weui-flex__item .icon-w .icon.inc image {
+  width: 26px;
+  height: 26px;
+  margin-top: 8px;
+}
+
+.top-column .weui-flex__item .icon-w .icon.rem image {
+  width: 27px;
+  height: 27px;
+  margin-top: 6px;
 }
 
 .top-column .weui-flex__item .icon-w text.bag {
   position: absolute;
-  top: 3px;
-  right: 21px;
+  top: -2px;
+  right: 18px;
   color: #fff;
   background-color: #f00;
   font-size: 10px;
@@ -61,10 +94,7 @@
   border-radius: 99px;
   text-align: center;
   overflow: hidden;
-}
-
-.android .top-column .weui-flex__item .icon-w text.bag {
-  line-height: 18px;
+  border: 1px solid #fff;
 }
 
 .weui-media-box__title.nodata-tips {
@@ -249,19 +279,28 @@
   color: #ec961d;
 }
 
-.highbar.coupon {
-  background-color: #f96260;
-  color: #fff;
+.tooltip.fav {
+  left: auto;
+  right: 7px;
 }
 
-.highbar.coupon .weui-cell__ft_in-access:after {
-  border-color: rgba(255, 255, 255, 0.6);
+.tooltip.fav .arrow.up {
+  left: auto;
+  right: 58.5px;
 }
 
-.top-column .weui-flex__item .icon-w text.bag.incorrect {
-  background-color: #eee;
-  color: #333;
-  font-size: 11px;
-  padding-left: 3px;
-  padding-right: 3px;
+.tooltip.fav .content {
+  padding: 9px 14px;
 }
+
+@media screen and (min-width: 376px) {
+  .tooltip.fav {
+    right: 9px;
+  }
+
+  .tooltip.fav .arrow.up {
+    right: 67px;
+  }
+}
+
+/* HomeIcon https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=16947 */

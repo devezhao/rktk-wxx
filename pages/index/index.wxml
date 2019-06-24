@@ -7,14 +7,13 @@
     </swiper-item>
   </swiper>
 
-  <view class="page__hd">
+  <view class="page__hd ttop">
     <view class="weui-flex top-column">
       <view class="weui-flex__item">
         <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/my-favs">
           <button class="icon-w" formType="submit">
-            <view class="icon">
-              <image wx:if="{{homeicon && homeicon[1]}}" class="x32" src="{{homeicon[1]}}"></image>
-              <image wx:else src="../../images/h-icon-star.png" class="x26"></image>
+            <view class="icon fav" style="background-color:#f1c40f">
+              <image src="../../images/v2/ic_h-fav.png" />
             </view>
             <text>我的收藏</text>
           </button>
@@ -23,21 +22,19 @@
       <view class="weui-flex__item">
         <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/incorrects">
           <button class="icon-w" formType="submit">
-            <view class="icon">
-              <image wx:if="{{homeicon && homeicon[0]}}" class="x32" src="{{homeicon[0]}}"></image>
-              <image wx:else src="../../images/h-icon-incorrect.png" class="x26"></image>
+            <view class="icon" style="background-color:#e74c3c">
+              <image src="../../images/v2/ic_h-cuo.png" />
             </view>
-            <text>错题练习</text>
-            <text class="bag incorrect" wx:if="{{incorrect_count && incorrect_count > 0}}">+{{incorrect_count}}</text>
+            <text>错题本</text>
+            <text class="bag" wx:if="{{incorrect_count && incorrect_count > 0}}">+{{incorrect_count}}</text>
           </button>
         </form>
       </view>
       <view class="weui-flex__item">
         <form bindsubmit="todayExam" report-submit="true">
           <button class="icon-w" formType="submit">
-            <view class="icon">
-              <image wx:if="{{homeicon && homeicon[2]}}" class="x32" src="{{homeicon[2]}}"></image>
-              <image wx:else src="../../images/h-home-rnd.png" class="x30"></image>
+            <view class="icon" style="background-color:#1abc9c">
+              <image src="../../images/v2/ic_h-day.png" />
             </view>
             <text>每日一练</text>
           </button>
@@ -46,24 +43,70 @@
       <view class="weui-flex__item">
         <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/exam/exam-report">
           <button class="icon-w" formType="submit">
-            <view class="icon">
-              <image src="../../images/h-icon-study-report.png" class="x26"></image>
+            <view class="icon" style="background-color:#9b59b6">
+              <image src="../../images/v2/ic_h-rep.png" />
             </view>
             <text>答题报告</text>
           </button>
         </form>
       </view>
     </view>
+    <view class="weui-flex top-column" hidden="{{!openAis}}">
+      <view class="weui-flex__item">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA23">
+          <button class="icon-w" formType="submit">
+            <view class="icon" style="background-color:#3498db">
+              <image src="../../images/v2/ic_h-hot.png" />
+            </view>
+            <text>高频题</text>
+            <text class="bag">新</text>
+          </button>
+        </form>
+      </view>
+      <view class="weui-flex__item">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA24">
+          <button class="icon-w" formType="submit">
+            <view class="icon inc" style="background-color:#e67e22">
+              <image src="../../images/v2/ic_h-inc.png" />
+            </view>
+            <text>易错题</text>
+            <text class="bag">新</text>
+          </button>
+        </form>
+      </view>
+      <view class="weui-flex__item">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA26">
+          <button class="icon-w" formType="submit">
+            <view class="icon" style="background-color:#2ecc71">
+              <image src="../../images/v2/ic_h-rnd.png" />
+            </view>
+            <text>随机答题</text>
+            <text class="bag">新</text>
+          </button>
+        </form>
+      </view>
+      <view class="weui-flex__item">
+        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA25">
+          <button class="icon-w" formType="submit">
+            <view class="icon rem" style="background-color:#34495e">
+              <image src="../../images/v2/ic_h-rem.png" />
+            </view>
+            <text>智能荐题</text>
+            <text class="bag">新</text>
+          </button>
+        </form>
+      </view>
+    </view>
   </view>
 
-  <view class="highbar coupon center" hidden="{{!huawei}}">
-    {{huawei}}
+  <view class="highbar red center" hidden="{{!declaration}}">
+    {{declaration}}
   </view>
   <navigator url="../my/my-unexam" class="highbar" hidden="{{!unexams || unexams <= 0}}">
     你有 <text style="font-weight:bold">{{unexams}}</text> 份答题未交卷，点击查看并继续答题
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
-  <navigator url="/pages/my/vip-buy?s=coupon" class="highbar coupon icon" wx:if="{{showConponHighbar}}">
+  <navigator url="/pages/my/vip-buy?s=coupon" class="highbar red icon" wx:if="{{showConponHighbar}}">
     <icon type="info" size="15" color="#fff"></icon>
     你有2张价值{{coupon_amount || 150}}元的优惠券即将过期
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -100,7 +143,7 @@
             耗时
             <text>{{item[4]}}</text>
           </view>
-          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">于{{item[3]}}</view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[3]}}</view>
         </view>
       </navigator>
       <block wx:if="{{!recent_exams || recent_exams.length == 0}}">
@@ -120,10 +163,10 @@
     </view>
   </view>
 
-  <view class="weui-panel weui-panel_access">
+  <view class="weui-panel weui-panel_access" hidden="{{recommendSubjectsLoaded != true}}">
     <view class="weui-panel__hd">推荐题库</view>
     <view class="weui-panel__bd">
-      <block wx:if="{{!recommend_subjects || recommend_subjects.length == 0}}">
+      <block wx:if="{{!recommendSubjects || recommendSubjects.length == 0}}">
         <view class="weui-media-box rktk-record">
           <view class="weui-media-box__title nodata-tips">
             请先选择考试类型
@@ -135,10 +178,10 @@
           </view>
         </view>
       </block>
-      <block wx:if="{{!!recommend_subjects && recommend_subjects.length > 0}}">
+      <block wx:if="{{!!recommendSubjects && recommendSubjects.length > 0}}">
         <view class="weui-media-box rktk-record">
           <view class="weui-flex" style="margin:0px -6px">
-            <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects}}" wx:key="*this">
+            <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommendSubjects}}" wx:key="*this">
               <view class="book {{item[12]}}">
                 <block wx:if="{{item[11] != null}}">
                   <text>{{item[11]}}</text>
@@ -148,9 +191,9 @@
               </view>
             </navigator>
           </view>
-          <block wx:if="{{!!recommend_subjects2 && recommend_subjects2.length > 0}}">
+          <block wx:if="{{!!recommendSubjects2 && recommendSubjects2.length > 0}}">
             <view class="weui-flex" style="margin:0px -6px;margin-top:8px;">
-              <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommend_subjects2}}" wx:key="*this">
+              <navigator url="../question/subject?id={{item[0]}}" class="weui-flex__item" wx:for="{{recommendSubjects2}}" wx:key="*this">
                 <view class="book {{item[12]}}">
                   <block wx:if="{{item[11] != null}}">
                     <text>{{item[11]}}</text>
@@ -164,7 +207,7 @@
         </view>
       </block>
     </view>
-    <view class="weui-panel__ft" hidden="{{!recommend_subjects || recommend_subjects.length == 0}}">
+    <view class="weui-panel__ft" hidden="{{!recommendSubjects || recommendSubjects.length == 0}}">
       <view bindtap="gotoPage" data-url="/pages/question/subject-list" class="weui-cell weui-cell_access weui-cell_link">
         <view class="weui-cell__bd">查看全部</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -204,5 +247,12 @@
         <button type="default" formType="submit" class="text">稍后使用</button>
       </form>
     </view>
+  </view>
+</view>
+
+<view class="tooltip fav {{showFavClazz}}" wx:if="{{showFav}}">
+  <view class="tooltip-inner">
+    <view class="arrow up"></view>
+    <view class="content">添加小程序方便下次使用</view>
   </view>
 </view>

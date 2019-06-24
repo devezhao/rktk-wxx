@@ -9,7 +9,7 @@
     </view>
   </view>
 
-  <view class="highbar" wx:if="{{urlMsg}}" style="text-align:center;font-size:12px">
+  <view class="highbar center red" wx:if="{{urlMsg}}">
     {{urlMsg}}
   </view>
 

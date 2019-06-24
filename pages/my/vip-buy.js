@@ -37,9 +37,11 @@ Page({
     });
 
     if (e.msg) {
-      this.setData({ urlMsg: e.msg });
+      setTimeout(() => {
+        this.setData({ urlMsg: e.msg });
+      }, 600)
     }
-    
+
     // if (app.GLOBAL_DATA.IS_IOS === true) {
     //   app.alert('由于相关政策，你暂时无法在这里开通会员。', function(){
     //     app.gotoPage('/pages/index/index');
@@ -122,7 +124,7 @@ Page({
     app.reportKpi('VIP.CLICKBUY');
 
     let that = this;
-    that.setData({ buyNowProgress:true });
+    that.setData({ buyNowProgress: true });
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData);
     zutils.post(app, _url, function (res) {
       that.setData({ buyNowProgress: false });

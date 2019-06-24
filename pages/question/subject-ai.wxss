@@ -1,0 +1,41 @@
+@import "subject.wxss";
+
+.highbar.desc {
+  background-color: #fff;
+  color: #444;
+  border-radius: 3px;
+  padding: 8px 14px;
+  padding-left: 58px;
+  margin-top: 0;
+}
+
+.highbar.desc > image {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.highbar.desc > view {
+  line-height: 1.4;
+  height: 42px;
+  font-size: 15px;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.text-bold {
+  font-size: 13px;
+  color: #999;
+  margin: 0 14px;
+  margin-top: 14px;
+  margin-left: 23px;
+}
+
+.ais-tips .arrow.up {
+  margin-left: 36px;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #fff;
+}

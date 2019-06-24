@@ -60,7 +60,7 @@ page, .page {
 }
 
 .top-block view.subtitle {
-  font-size: 14;
+  font-size: 14px;
   color: #999;
 }
 
@@ -500,6 +500,15 @@ button.btn-mask {
   left: 12px;
 }
 
+.highbar.red {
+  background-color: #f96260;
+  color: #fff;
+}
+
+.highbar.red .weui-cell__ft_in-access:after {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
 .weui-btn.link {
   font-size: 15px;
   color: #586c94;
@@ -535,4 +544,41 @@ button.btn-mask {
 
 .weui-panel__compact .weui-panel:first-child {
   margin-top: 0;
+}
+
+.arrow.up {
+  width: 0px;
+  height: 0px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #2f2f2f;
+  font-size: 0px;
+  line-height: 0px;
+}
+
+.tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.tooltip .tooltip-inner {
+  position: relative;
+}
+
+.tooltip .tooltip-inner .arrow.up {
+  border-bottom-color: rgba(0,0,0,0.5);
+  margin-left: 10px;
+  position: absolute;
+  top: -5px;
+}
+
+.tooltip .tooltip-inner .content {
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 3px;
+  line-height: 1;
+  margin-top: 5px;
 }
