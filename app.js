@@ -19,6 +19,8 @@ App({
     IS_IOS: false,
     // 红点
     RED_DOT: {},
+    // 运行模式
+    RUN_MODE: 0
   },
 
   onLaunch: function(e) {
@@ -197,7 +199,7 @@ App({
   },
 
   gotoVipBuy: function(msg, forceTips) {
-    if (this.GLOBAL_DATA.IS_IOS) {
+    if (this.GLOBAL_DATA.IS_IOS && this.GLOBAL_DATA.RUN_MODE != 99) {
       this.alert('你还不是VIP会员');
       return;
     }
