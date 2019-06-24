@@ -25,6 +25,7 @@ Page({
         headimgUrl: u.headimgUrl,
         nick: u.nick,
         user: u.uid,
+        runMode: app.GLOBAL_DATA.RUN_MODE
       });
       that.__onLoad();
 
@@ -80,8 +81,7 @@ Page({
         vip_discount: _data.vip_discount || '',
         vip2_discount: _data.vip2_discount || '',
         bindMobile: _data.bindMobile || '',
-        bindMobileShow: !!!_data.bindMobile,
-        runMode: _data.runMode || 0
+        bindMobileShow: !!!_data.bindMobile
       });
       that.__UID = _data.longUid;
 
