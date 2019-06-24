@@ -108,9 +108,6 @@ Page({
         declaration: _data.declaration || null,
         openAis: _data.open_ais === true
       })
-
-      // 0, 1, 99
-      app.GLOBAL_DATA.RUN_MODE = _data.runMode || 0
     })
   },
 
