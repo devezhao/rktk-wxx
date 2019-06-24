@@ -1,6 +1,6 @@
 const baseUrl = 'https://rk.chinaruankao.com/';
 //const baseUrl = 'http://192.168.0.159:8180/rktk/';
-//const baseUrl = 'http://192.168.0.235:8080/rktk/';
+//const baseUrl = 'http://192.168.0.234:8080/rktk/';
 
 // GET 方法
 function z_get(app, url, call) {

@@ -39,7 +39,7 @@
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <view class="weui-media-box__thumb {{item[12]}}">
                 <text class="Y">{{item[10]}}</text>
-                <text class="M {{isAndroid ? 'android' : ''}}">{{item[11]}}</text>
+                <text class="M">{{item[11]}}</text>
               </view>
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
@@ -47,10 +47,12 @@
               <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
               <view class="weui-media-box__info">
                 <view class="weui-media-box__info__meta">
-                  <block wx:if="{{item[12] == 'T2' || item[12] == 'T3'}}">考题数 <text>{{item[3]}}</text></block>
-                  <block wx:else>通过率 <text>{{item[4]}}%</text></block>
+                  考题数 <text>{{item[3]}}</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[12] == 'T1'}}">
+                  通过率 <text>{{item[4]}}%</text>
+                </view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra hide">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
                   <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
                   <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>
@@ -77,10 +79,10 @@
               <view class="weui-media-box__title">{{item[1]}}</view>
               <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
               <view class="weui-media-box__info">
-                <view class="weui-media-box__info__meta">考题数
-                 <text>{{item[3]}}</text>
+                <view class="weui-media-box__info__meta">
+                  考题数 <text>{{item[3]}}</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra hide">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
                   <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
                   <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>

@@ -19,8 +19,7 @@ Page({
     if (wwidth > 90) wwidth = 90;
     if (wwidth < 60) wwidth = 60;
     this.setData({
-      fyWidth: wwidth,
-      isAndroid: app.GLOBAL_DATA.IS_ANDROID
+      fyWidth: wwidth
     });
   },
 
@@ -67,6 +66,8 @@ Page({
           if (sname.indexOf('论文') > -1) {
             _sublist1[i][12] = 'T3';
           }
+        } else {
+          _sublist1[i][12] = 'T1';
         }
       }
 

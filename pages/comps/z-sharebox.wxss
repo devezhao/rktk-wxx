@@ -62,6 +62,7 @@
 .sharebox view button.weui-btn {
   border-radius: 0;
   font-size: 17px;
+  line-height: 2.6;
 }
 
 .dialog {

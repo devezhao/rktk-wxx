@@ -6,8 +6,8 @@
       <view class="subtitle infos">
         考题数 {{question_num}}
         <block wx:if="{{subject_type == 1}}">
-          <text>/</text> 满分 {{question_scope}}
           <text>/</text> 通过率 {{pass_percent}}%
+          <text>/</text> 满分 {{question_scope}}
         </block>
         <block wx:if="{{subject_type == 11}}">
           <text>/</text> 满分 {{question_scope}}
