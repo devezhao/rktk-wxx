@@ -37,11 +37,11 @@ Page({
   },
 
   toExam: function (e) {
-    if (this.data.coin == -2) {
+    if (this.data.vip_free == false && this.data.coin == -2) {
       app.gotoVipBuy('本题库为VIP专享，开通VIP会员可立即答题')
       return
     }
-    
+
     let that = this
     wx.showActionSheet({
       itemList: ['答10题', '答20题', '答30题'],
