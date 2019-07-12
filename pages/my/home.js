@@ -81,7 +81,8 @@ Page({
         vip_discount: _data.vip_discount || '',
         vip2_discount: _data.vip2_discount || '',
         bindMobile: _data.bindMobile || '',
-        bindMobileShow: !!!_data.bindMobile
+        bindMobileShow: !!!_data.bindMobile,
+        runMode: _data.runMode
       });
       that.__UID = _data.longUid;
 
