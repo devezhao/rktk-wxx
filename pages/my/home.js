@@ -67,11 +67,27 @@ Page({
     }
   },
 
-  __onLoad: function (cb) {
+  __onLoad: function (cb, retry) {
     let that = this;
     zutils.get(app, 'api/user/infos', function (res) {
-      typeof cb == 'function' && cb();
       let _data = res.data.data;
+      if (!_data) {
+        if (retry) {
+          _data = wx.getStorageSync('home.USER_INFOS')
+          console.warn('Use cache when request failed again : ' + JSON.stringify(_data || {}))
+        } else {
+          that.__onLoad(cb, true)
+        }
+      } else {
+        wx.setStorage({
+          key: 'home.USER_INFOS',
+          data: _data
+        })
+      }
+      
+      if (!_data) return
+      typeof cb == 'function' && cb();
+
       let isVip = _data.user_level.indexOf('VIP') > -1
       that.setData({
         level: _data.user_level,

@@ -5,6 +5,7 @@ Page({
   data: {
     hideCoupon: true,
     hideBanners: false,
+    banners: [['https://cdn.chinaruankao.com/fs/20180123/akwarg2q20k37zkk.png', '/pages/acts/share-guide']],
     openAis: false
   },
 
@@ -71,10 +72,9 @@ Page({
     }
   },
 
-  __loadComdata: function() {
+  __loadComdata: function(retry) {
     let that = this
     zutils.get(app, 'api/home/comdata', function(res) {
-      let _data = res.data.data
       if (res.data.error_code > 1000) {
         wx.redirectTo({
           url: '/pages/index/tips?msg=' + res.data.error_msg
@@ -82,6 +82,20 @@ Page({
         return
       }
 
+      let _data = res.data.data
+      if (!_data) {
+        if (retry) {
+          wx.showToast({
+            icon: 'none',
+            duration: 4000,
+            title: '请求失败，请稍后重试'
+          })
+        } else {
+          that.__loadComdata(true)
+        }
+      }
+
+      if (!_data) return
       wx.setNavigationBarTitle({
         title: _data.title || '软考必备'
       })
