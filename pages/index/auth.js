@@ -40,5 +40,9 @@ Page({
         }
       });
     });
+  },
+
+  goback() {
+    wx.navigateBack()
   }
 })

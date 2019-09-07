@@ -7,5 +7,6 @@
     <view class="btn-warp" style="margin-top:5%">
       <button class="weui-btn" type="default" bindgetuserinfo="storeUserInfo" open-type="getUserInfo" lang="zh_CN" disabled="{{!authActive}}">{{authText || '立即授权'}}</button>
     </view>
+    <button class="weui-btn link" bindtap="goback">暂不授权</button>
   </view>
 </view>

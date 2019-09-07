@@ -316,6 +316,15 @@ image.x24 {
   opacity: 0.8;
 }
 
+.tag-vip {
+  color: #ec5353 !important;
+  font-size: 10px;
+  line-height: 1;
+  padding: 0px 4px;
+  border-radius: 3px;
+  border: 1px solid #ec5353;
+}
+
 .tipsbar {
   position: fixed;
   left: 0;

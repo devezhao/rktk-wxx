@@ -46,17 +46,17 @@
               <view class="weui-media-box__title">{{item[1]}}</view>
               <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
               <view class="weui-media-box__info">
-                <view class="weui-media-box__info__meta">
-                  考题数 <text>{{item[3]}}</text>
+                <view class="weui-media-box__info__meta">考题数
+                  <text>{{item[3]}}</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[12] == 'T1'}}">
-                  通过率 <text>{{item[4]}}%</text>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[12] == 'T1'}}">通过率
+                  <text>{{item[4]}}%</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra hide">
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[2] == -2}}">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
                   <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
                   <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>
-                  <text wx:if="{{item[2] == -2}}" class="color-base2">(VIP专享)</text>
+                  <text wx:if="{{item[2] == -2}}" class="tag-vip">VIP专享</text>
                 </view>
               </view>
             </view>
@@ -80,7 +80,8 @@
               <view class="weui-media-box__desc">{{item[5] == null ? "" : item[5]}}</view>
               <view class="weui-media-box__info">
                 <view class="weui-media-box__info__meta">
-                  考题数 <text>{{item[3]}}</text>
+                  考题数
+                  <text>{{item[3]}}</text>
                 </view>
                 <view class="weui-media-box__info__meta weui-media-box__info__meta_extra hide">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>

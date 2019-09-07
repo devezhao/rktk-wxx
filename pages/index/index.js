@@ -140,6 +140,7 @@ Page({
       this.__loadRecent()
     }
     if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Index')) {
+      this.__loadComdata()
       this.__loadRecommend()
     }
 

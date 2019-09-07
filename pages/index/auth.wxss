@@ -6,3 +6,10 @@
   width: 60%;
   border: 1px solid #d9d9d9;
 }
+
+.weui-btn.link {
+  color: #999;
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 12px;
+}
