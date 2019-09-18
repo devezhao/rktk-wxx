@@ -484,7 +484,7 @@ button.btn-mask {
 .highbar {
   margin: 0 14px;
   background-color: #fefcec;
-  padding: 6px 14px;
+  padding: 8px 14px;
   margin-top: 13px;
   color: #f87c3d;
   font-size: 13px;
@@ -505,7 +505,7 @@ button.btn-mask {
 
 .highbar.icon icon {
   position: absolute;
-  top: 8px;
+  top: 10px;
   left: 12px;
 }
 
