@@ -1,5 +1,5 @@
 <view class="page {{isAndroid ? 'android' : ''}}">
-  <swiper class="home-swiper" style="{{swiperHeight}}" indicator-dots="true" autoplay="true" interval="6000" duration="500" indicator-active-color="#fff" hidden="{{hideBanners}}">
+  <swiper class="home-swiper" style="{{swiperHeight}}" indicator-dots="true" autoplay="true" interval="5000" duration="400" indicator-active-color="#fff" hidden="{{hideBanners}}" bindchange="bannerChange" easing-function="easeOutCubic">
     <swiper-item wx:for="{{banners}}" wx:key="*this">
       <view data-url="{{item[1]}}" bindtap="gotoPage">
         <image src="{{item[0]}}" />
