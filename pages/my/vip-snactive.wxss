@@ -5,9 +5,9 @@ page, .page {
 }
 
 .tt {
-  border-color: #999;
-  color: #555;
   background-color: #fff;
+  border-color: #d9d9d9;
+  color: #444;
 }
 
 .fix-foobar.btns {

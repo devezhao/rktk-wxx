@@ -26,9 +26,8 @@
 
     <view class="weui-cells__title">开通会员等级</view>
     <view class="tt L1" data-tt="vip" bindtap="selectType">
-      <view class="level pull-left">
-        VIP会员
-        <text>{{vipExpires && '有效期至'}} {{vipExpires || ''}}</text>
+      <view class="level pull-left">VIP会员
+        <text>有效期至 {{vipExpires}}</text>
       </view>
       <view class="price pull-right">
         ¥{{feeVip || 199}}
@@ -40,8 +39,7 @@
       <view class="clearfix"></view>
     </view>
     <view class="tt" data-tt="svip" bindtap="selectType">
-      <view class="level pull-left">
-        SVIP会员
+      <view class="level pull-left">SVIP会员
         <text>永久有效</text>
       </view>
       <view class="price pull-right">

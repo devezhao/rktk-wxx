@@ -72,6 +72,13 @@
         </view>
         <view class="weui-cell__bd">你还不是VIP会员</view>
       </view>
+      <navigator url="vip-snactive" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image src="../../images/ic_vip-active.png"></image>
+        </view>
+        <view class="weui-cell__bd">激活VIP会员</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
     </block>
   </view>
 
