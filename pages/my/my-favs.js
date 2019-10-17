@@ -38,9 +38,7 @@ Page({
       success: function (res) {
         if (res.tapIndex == 0) {
           zutils.post(app, 'api/fav/toggle?question=' + _id, function (res) {
-            wx.showToast({
-              title: '已取消收藏'
-            });
+            wx.showToast({ title: '已取消收藏' });
             that.pageNo = 1;
             that.list();
           });

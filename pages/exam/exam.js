@@ -229,11 +229,9 @@ Page({
       that.setData({
         isFav: _data.is_fav
       });
-      wx.showToast({
-        title: _data.is_fav ? '已加入收藏' : '已取消收藏'
-      });
 
       if (_data.is_fav) {
+        wx.showToast({ title: '已加入收藏' });
         that.favList.push(q.questionId);
       } else {
         zutils.array.erase(that.favList, q.questionId);

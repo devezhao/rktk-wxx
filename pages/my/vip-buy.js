@@ -38,15 +38,24 @@ Page({
     })
 
     if (e.msg) {
-        this.setData({ urlMsg: e.msg })
-        setTimeout(() => {
-          wx.showModal({
-            title: '提示',
-            content: e.msg,
-            showCancel: false,
-            confirmText: '知道了'
-          })
-        }, 1000)
+      this.setData({ urlMsg: e.msg })
+      wx.getStorage({
+        key: 'urlMsgOnModal',
+        success: function (res) {
+          // Nothings
+        },
+        fail: function (res) {
+          setTimeout(() => {
+            wx.showModal({
+              title: '提示',
+              content: e.msg,
+              showCancel: false,
+              confirmText: '知道了'
+            })
+            wx.setStorage({ key: 'urlMsgOnModal', data: '1' })
+          }, 1000)
+        }
+      })
     }
 
     // if (app.GLOBAL_DATA.IS_IOS === true) {

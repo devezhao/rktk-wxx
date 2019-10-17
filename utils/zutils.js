@@ -1,5 +1,5 @@
 const baseUrl = 'https://rk.chinaruankao.com/';
-//const baseUrl = 'http://192.168.0.159:8180/rktk/';
+//const baseUrl = 'http://192.168.0.199:8180/rktk/';
 //const baseUrl = 'http://192.168.0.234:8080/rktk/';
 
 // GET 方法
@@ -12,7 +12,7 @@ function z_get(app, url, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 800);
+    }, 600);
   }
 
   let wxxuid = null;
@@ -59,7 +59,7 @@ function z_post(app, url, data, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 400);
+    }, 600);
   }
 
   let wxxuid = null;

@@ -260,7 +260,7 @@ Page({
       let _data = res.data.data;
       that.qcached[that.data.currentQuestionId].isFav = _data.is_fav;
       that.setData({ isFav: _data.is_fav });
-      wx.showToast({ title: _data.is_fav ? '已加入收藏' : '已取消收藏' });
+      if (_data.is_fav) wx.showToast({ title: '已加入收藏' });
     });
   },
 
