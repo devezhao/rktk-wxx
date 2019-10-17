@@ -1,6 +1,7 @@
-const baseUrl = 'https://rk.chinaruankao.com/';
-//const baseUrl = 'http://192.168.0.199:8180/rktk/';
-//const baseUrl = 'http://192.168.0.234:8080/rktk/';
+const BASE_URL = 'https://rk.chinaruankao.com/';
+//const BASE_URL = 'http://192.168.0.199:8180/rktk/';
+
+const SLOW_TIMEOUT = 666
 
 // GET 方法
 function z_get(app, url, call) {
@@ -12,7 +13,7 @@ function z_get(app, url, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 600);
+    }, SLOW_TIMEOUT);
   }
 
   let wxxuid = null;
@@ -21,9 +22,9 @@ function z_get(app, url, call) {
   }
 
   wx.request({
-    url: baseUrl + url,
+    url: BASE_URL + url,
     method: 'GET',
-    header: { wxxuid: wxxuid },
+    header: { wxxuid: wxxuid, xagent: 'wechat' },
     success: call || function (res) { },
     fail: function (res) {
       if (res.errMsg) {
@@ -59,7 +60,7 @@ function z_post(app, url, data, call) {
         title: '请稍后'
       });
       loading_show = true;
-    }, 600);
+    }, SLOW_TIMEOUT);
   }
 
   let wxxuid = null;
@@ -68,9 +69,9 @@ function z_post(app, url, data, call) {
   }
 
   wx.request({
-    url: baseUrl + url,
+    url: BASE_URL + url,
     method: 'POST',
-    header: { wxxuid: wxxuid },
+    header: { wxxuid: wxxuid, xagent: 'wechat' },
     data: data,
     success: call || function (res) { },
     fail: function (res) {
@@ -155,7 +156,7 @@ var z_date_format = function (format, date) {
 module.exports = {
   get: z_get,
   post: z_post,
-  baseUrl: baseUrl,
+  BASE_URL: BASE_URL,
   array: z_array,
   extends: z_extends,
   formatDate: z_date_format
