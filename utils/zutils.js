@@ -156,7 +156,7 @@ var z_date_format = function (format, date) {
 module.exports = {
   get: z_get,
   post: z_post,
-  BASE_URL: BASE_URL,
+  baseUrl: BASE_URL,
   array: z_array,
   extends: z_extends,
   formatDate: z_date_format
