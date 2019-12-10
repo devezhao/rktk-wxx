@@ -590,4 +590,14 @@ button.btn-mask {
   border-radius: 3px;
   line-height: 1;
   margin-top: 5px;
+  position: relative
+}
+
+.tooltip .tooltip-inner .content.close {
+  padding-right: 24px
+}
+.tooltip .tooltip-inner .content.close::after {
+  content: '✕';
+  position: absolute;
+  right: 8px;
 }

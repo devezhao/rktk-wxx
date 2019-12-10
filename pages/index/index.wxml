@@ -250,9 +250,9 @@
   </view>
 </view>
 
-<view class="tooltip fav {{showFavClazz}}" wx:if="{{showFav}}">
+<view class="tooltip fav {{showFavClazz}}" wx:if="{{showFav}}" bindtap="hideFav">
   <view class="tooltip-inner">
     <view class="arrow up"></view>
-    <view class="content">添加小程序方便下次使用</view>
+    <view class="content close">添加小程序方便下次使用</view>
   </view>
 </view>

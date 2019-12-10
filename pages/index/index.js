@@ -377,5 +377,9 @@ Page({
         backgroundColor: b.length >= 3 ? b[2] : '#4b8ef9'
       })
     }, delay || 200)
+  },
+
+  hideFav: function() {
+    this.setData({ showFav: false })
   }
 })
