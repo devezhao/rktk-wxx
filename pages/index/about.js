@@ -37,5 +37,19 @@ Page({
 
   github: function () {
     app.alert('Fork on GitHub. https://github.com/devezhao/rktk-wxx/');
+  },
+
+  reqMessage: function (e) {
+    let call = function (res) {
+      console.log(JSON.stringify(res))
+      let url = e.currentTarget.dataset.url
+      if (url) app.gotoPage(url)
+    }
+
+    wx.requestSubscribeMessage({
+      tmplIds: ['PKPJKrLCGr_dyAhNZlZRirkQw3kprcdOixTfdl8HasI'],
+      success(res) { call(res) },
+      fail(res) { call(res); }
+    })
   }
 })
