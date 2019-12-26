@@ -40,16 +40,13 @@ Page({
   },
 
   reqMessage: function (e) {
-    let call = function (res) {
-      console.log(JSON.stringify(res))
-      let url = e.currentTarget.dataset.url
-      if (url) app.gotoPage(url)
-    }
-
     wx.requestSubscribeMessage({
       tmplIds: ['PKPJKrLCGr_dyAhNZlZRirkQw3kprcdOixTfdl8HasI'],
-      success(res) { call(res) },
-      fail(res) { call(res); }
+      complete(res) {
+        console.log(JSON.stringify(res))
+        let url = e.currentTarget.dataset.url
+        if (url) app.gotoPage(url)
+      },
     })
   }
 })
