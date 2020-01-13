@@ -40,13 +40,18 @@ Page({
   },
 
   reqMessage: function (e) {
-    wx.requestSubscribeMessage({
-      tmplIds: ['PKPJKrLCGr_dyAhNZlZRirkQw3kprcdOixTfdl8HasI'],
-      complete(res) {
-        console.log(JSON.stringify(res))
-        let url = e.currentTarget.dataset.url
-        if (url) app.gotoPage(url)
-      },
-    })
+    if (wx.requestSubscribeMessage) {
+      wx.requestSubscribeMessage({
+        tmplIds: ['PKPJKrLCGr_dyAhNZlZRirkQw3kprcdOixTfdl8HasI'],
+        complete(res) {
+          console.log(JSON.stringify(res))
+          let url = e.currentTarget.dataset.url
+          if (url) app.gotoPage(url)
+        }
+      })
+    } else {
+      let url = e.currentTarget.dataset.url
+      if (url) app.gotoPage(url)
+    }
   }
 })
