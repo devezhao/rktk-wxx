@@ -10,7 +10,7 @@
   <view class="page__hd ttop">
     <view class="weui-flex top-column">
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/my-favs">
+        <form bindsubmit="gotoPage" data-url="/pages/my/my-favs">
           <button class="icon-w" formType="submit">
             <view class="icon fav" style="background-color:#f1c40f">
               <image src="../../images/v2/ic_h-fav.png" />
@@ -20,7 +20,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/incorrects">
+        <form bindsubmit="gotoPage" data-url="/pages/my/incorrects">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#e74c3c">
               <image src="../../images/v2/ic_h-cuo.png" />
@@ -31,7 +31,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="todayExam" report-submit="true">
+        <form bindsubmit="todayExam">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#1abc9c">
               <image src="../../images/v2/ic_h-day.png" />
@@ -41,7 +41,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/exam/exam-report">
+        <form bindsubmit="gotoPage" data-url="/pages/exam/exam-report">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#9b59b6">
               <image src="../../images/v2/ic_h-rep.png" />
@@ -53,7 +53,7 @@
     </view>
     <view class="weui-flex top-column" hidden="{{!openAis}}">
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA23">
+        <form bindsubmit="gotoPage" data-url="/pages/question/subject-ai?id=110-000000000000FA23">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#3498db">
               <image src="../../images/v2/ic_h-hot.png" />
@@ -64,7 +64,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA24">
+        <form bindsubmit="gotoPage" data-url="/pages/question/subject-ai?id=110-000000000000FA24">
           <button class="icon-w" formType="submit">
             <view class="icon inc" style="background-color:#e67e22">
               <image src="../../images/v2/ic_h-inc.png" />
@@ -75,7 +75,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA26">
+        <form bindsubmit="gotoPage" data-url="/pages/question/subject-ai?id=110-000000000000FA26">
           <button class="icon-w" formType="submit">
             <view class="icon" style="background-color:#2ecc71">
               <image src="../../images/v2/ic_h-rnd.png" />
@@ -86,7 +86,7 @@
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-ai?id=110-000000000000FA25">
+        <form bindsubmit="gotoPage" data-url="/pages/question/subject-ai?id=110-000000000000FA25">
           <button class="icon-w" formType="submit">
             <view class="icon rem" style="background-color:#34495e">
               <image src="../../images/v2/ic_h-rem.png" />
@@ -171,7 +171,7 @@
           <view class="weui-media-box__title nodata-tips">
             请先选择考试类型
             <view>
-              <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/question/subject-choice?back=1">
+              <form bindsubmit="gotoPage" data-url="/pages/question/subject-choice?back=1">
                 <button class="weui-btn link" type="default" formType="submit">[ 点击选择 ]</button>
               </form>
             </view>
@@ -240,10 +240,10 @@
       <view class="clearfix"></view>
     </view>
     <view class="btns">
-      <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/my/vip-buy?s=coupon">
+      <form bindsubmit="gotoPage" data-url="/pages/my/vip-buy?s=coupon">
         <button type="default" formType="submit">立即使用</button>
       </form>
-      <form bindsubmit="hideCoupon" report-submit="true">
+      <form bindsubmit="hideCoupon">
         <button type="default" formType="submit" class="text">稍后使用</button>
       </form>
     </view>

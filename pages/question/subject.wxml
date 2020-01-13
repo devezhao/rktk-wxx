@@ -30,14 +30,14 @@
   <block wx:if="{{is_open == true && subject_type != 3}}">
     <view class="fix-foobar">
       <view class="pull-left">
-        <form bindsubmit="toExplain" report-submit="true">
+        <form bindsubmit="toExplain">
           <button class="weui-btn" type="primary" formType="submit" class="xfree">考题解析
             <text hidden="{{vip_free == true || explain_free == false || coin == -2}}">(限免)</text>
           </button>
         </form>
       </view>
       <view class="pull-left">
-        <form bindsubmit="toExam" report-submit="true">
+        <form bindsubmit="toExam">
           <button class="weui-btn split" type="primary" formType="submit">开始答题</button>
         </form>
       </view>

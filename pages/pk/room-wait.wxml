@@ -28,7 +28,7 @@
       <button open-type="share" class="btn-mask"></button>
     </view>
     <view hidden="{{showConfirm == false}}" class="confirm animated zoomIn">
-      <form bindsubmit="confirmPk" report-submit="true">
+      <form bindsubmit="confirmPk">
         <button type="button" type="primary" formType="submit">开始对战</button>
       </form>
     </view>

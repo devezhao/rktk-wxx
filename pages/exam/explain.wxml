@@ -69,12 +69,12 @@
   <view class="zbtn" bindtap="gotoPage" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
     <text class="L2">考题\n纠错</text>
   </view>
-  <form bindsubmit="fav" report-submit="true">
+  <form bindsubmit="fav">
     <button class="zbtn" formType="submit">
       <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
     </button>
   </form>
-  <form bindsubmit="shareboxOpen" report-submit="true">
+  <form bindsubmit="shareboxOpen">
     <button class="zbtn" formType="submit">
       <image src="../../images/share.png" class="share"></image>
     </button>

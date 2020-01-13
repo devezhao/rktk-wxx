@@ -33,17 +33,17 @@
     <view>点击题号可查看考题解析</view>
   </view>
   <view class="pull-left">
-    <form bindsubmit="shareScope" report-submit="true">
+    <form bindsubmit="shareScope">
       <button class="weui-btn" type="default" formType="submit" open-type="share">分享成绩</button>
     </form>
   </view>
   <view class="pull-left" wx:if="{{showPk}}">
-    <form bindsubmit="gotoPk" report-submit="true">
+    <form bindsubmit="gotoPk">
       <button class="weui-btn split" type="default" formType="submit">好友对战</button>
     </form>
   </view>
   <view class="pull-left" wx:else>
-    <form bindsubmit="gotoSubject" report-submit="true">
+    <form bindsubmit="gotoSubject">
       <button class="weui-btn split" type="default" formType="submit">再答一次</button>
     </form>
   </view>

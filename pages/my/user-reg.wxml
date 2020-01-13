@@ -18,7 +18,7 @@
       </view>
     </view>
     <view class="weui-btn-area">
-      <form bindsubmit="bindMobile" report-submit="true">
+      <form bindsubmit="bindMobile">
         <button class="weui-btn" type="primary" formType="submit" disabled="{{inputBad}}">确定</button>
       </form>
     </view>

@@ -45,14 +45,14 @@
   </view>
 
   <view class="page__bd" style="padding-top:12px;margin-bottom:1px" hidden="{{vipHide || !subjectList_1}}">
-    <form bindsubmit="gotoPage" report-submit="true" data-url="/pages/index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}%26k%3dintro">
+    <form bindsubmit="gotoPage" data-url="/pages/index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}%26k%3dintro">
       <button class="weui-btn link" type="default" formType="submit">[ 查看各科目考试要求 ]</button>
     </form>
   </view>
 </view>
 
 <view class="fix-foobar btns" hidden="{{vipHide}}">
-  <form bindsubmit="saveChange" report-submit="true">
+  <form bindsubmit="saveChange">
     <button class="weui-btn" type="default" formType="submit">确定</button>
   </form>
 </view>

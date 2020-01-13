@@ -34,7 +34,7 @@
 </view>
 
 <view class="fix-foobar btns">
-  <form bindsubmit="inviteList" report-submit="true">
+  <form bindsubmit="inviteList">
     <button class="weui-btn" type="default" formType="submit">查看奖励</button>
   </form>
 </view>

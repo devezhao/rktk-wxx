@@ -29,33 +29,33 @@
   <view class="fix-foobar">
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <form bindsubmit="prevQuestion" report-submit="true" hidden="{{isFirst}}">
+        <form bindsubmit="prevQuestion" hidden="{{isFirst}}">
           <button class="zbtn" formType="submit">
             <image src="../../images/arrow-left.png"></image>
           </button>
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="fav" report-submit="true">
+        <form bindsubmit="fav">
           <button class="zbtn" formType="submit">
             <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
           </button>
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="showDtcard" report-submit="true">
+        <form bindsubmit="showDtcard">
           <button class="zbtn" formType="submit">
             <image src="../../images/exam-card.png" style="margin-top:8px;width:26px;height:26px;"></image>
           </button>
         </form>
       </view>
       <view class="weui-flex__item">
-        <form bindsubmit="nextQuestion" report-submit="true" hidden="{{isLast}}">
+        <form bindsubmit="nextQuestion" hidden="{{isLast}}">
           <button class="zbtn" formType="submit">
             <image src="../../images/arrow-right.png"></image>
           </button>
         </form>
-        <form bindsubmit="finish" report-submit="true" hidden="{{!isLast}}">
+        <form bindsubmit="finish" hidden="{{!isLast}}">
           <button class="zbtn done" formType="submit">
             <text>交卷</text>
           </button>
@@ -74,7 +74,7 @@
       <view>
         <icon bindtap="closeDtcard" type="cancel" size="42" color="#aaa"></icon>
       </view>
-      <form bindsubmit="finish" report-submit="true">
+      <form bindsubmit="finish">
         <button class="weui-btn" type="primary" formType="submit" style="margin-top:9px">交卷并查看结果</button>
       </form>
     </view>

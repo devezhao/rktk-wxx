@@ -30,7 +30,7 @@
   </view>
 
   <view class="page__bd" style="margin-top:15px;text-align:center">
-    <form bindsubmit="buyNow" report-submit="true">
+    <form bindsubmit="buyNow">
       <button type="button" type="primary" formType="submit" class="T2">支付{{fee}}元</button>
     </form>
     <navigator class="color-link" style="margin-top:12px;font-size:15px;display:inline-block" url="../index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dBuyCoin">[ 支付遇到问题 ]</navigator>
