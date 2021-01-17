@@ -1,5 +1,5 @@
-const BASE_URL = 'https://rk.chinaruankao.com/';
-//const BASE_URL = 'http://192.168.0.199:8180/rktk/';
+// const BASE_URL = 'https://rk.chinaruankao.com/';
+const BASE_URL = 'http://192.168.0.199:8180/rktk/';
 
 const SLOW_TIMEOUT = 666
 
@@ -71,7 +71,7 @@ function z_post(app, url, data, call) {
   wx.request({
     url: BASE_URL + url,
     method: 'POST',
-    header: { wxxuid: wxxuid, xagent: 'wechat' },
+    header: { wxxuid: wxxuid, xagent: 'wechat', xver: '2021' },
     data: data,
     success: call || function (res) { },
     fail: function (res) {

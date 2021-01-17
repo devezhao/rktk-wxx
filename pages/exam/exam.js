@@ -314,7 +314,7 @@ Page({
       clearInterval(this._countdown);
       this._countdown = null;
       wx.setNavigationBarTitle({
-        title: '软考必备'
+        title: '软考大师'
       });
     }
   },

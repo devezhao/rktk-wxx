@@ -97,7 +97,7 @@ Page({
 
       if (!_data) return
       wx.setNavigationBarTitle({
-        title: _data.title || '软考必备'
+        title: _data.title || '软考大师'
       })
 
       // Banner

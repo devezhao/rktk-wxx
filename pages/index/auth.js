@@ -8,7 +8,7 @@ Page({
 
   onLoad: function (e) {
     this.nexturl = decodeURIComponent(e.nexturl || '/pages/index/index');
-    wx.setNavigationBarTitle({ title: '软考必备' });
+    wx.setNavigationBarTitle({ title: '软考大师' });
 
     let that = this;
     wx.login({

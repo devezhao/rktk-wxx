@@ -2,7 +2,7 @@
   <view class="ver">
     <image src="/images/logo200.png"></image>
     <view bindtap="enableDebug">
-      软考必备 V1.4.0
+      软考大师 V1.5.0
     </view>
   </view>
   <view class="weui-cells rktk">
@@ -43,5 +43,5 @@
 </view>
 
 <view class="fix-foobar">
-<view style="color:#888;font-size:13px;text-align:center;padding:12px">联系我们 rktksupport@sina.com</view>
+<view style="color:#888;font-size:13px;text-align:center;padding:12px">联系我们 chinaruankao@ruifang-tech.com</view>
 </view>

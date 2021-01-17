@@ -1,6 +1,6 @@
 <view class="page">
   <view class="page__bd" style="padding-top:16px;font-size:16px;">
-    通过以下任意一种方式邀请好友使用软考必备，每邀请一位好友可获得10学豆奖励，多邀多送！
+    通过以下任意一种方式邀请好友使用软考大师（原软考必备），每邀请一位好友可获得10学豆奖励，多邀多送！
   </view>
   <view class="page__hd">
     <view class="weui-cells__title" bindtap="ccopy">分享文字链接（点击可复制）</view>
