@@ -28,20 +28,33 @@ App({
     console.log("小程序初始化: " + JSON.stringify(this.enterSource));
 
     let that = this;
-    wx.getStorage({
-      key: 'USER_INFO',
-      success: function(res) {
-        console.log('用户信息: ' + JSON.stringify(res));
-        that.GLOBAL_DATA.USER_INFO = res.data;
-        that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
-      },
-      fail: function() {
-        that.getUserInfo()
-      },
-      complete: function() {
-        //that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
+    // wx.getStorage({
+    //   key: 'USER_INFO',
+    //   success: function(res) {
+    //     console.log('用户信息: ' + JSON.stringify(res));
+    //     that.GLOBAL_DATA.USER_INFO = res.data;
+    //     that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
+    //   },
+    //   fail: function() {
+    //     that.getUserInfo()
+    //   },
+    //   complete: function() {
+    //     //that.reportKpi('LOGIN', null, JSON.stringify(that.enterSource));
+    //   }
+    // });
+
+    that.getUserInfo(function(data) {
+      if (data.openid2020) {
+        that.alert('「软考必备」已正式更名为「软考大师」，请点击确定跳转至新版', () => {
+          wx.navigateToMiniProgram({
+            appId: 'wx3c6f9729eb1c0616',
+            extraData: {
+              'openid2020': data.openid2020
+            }
+          })
+        })
       }
-    });
+    })
 
     wx.getSystemInfo({
       success: function(res) {
