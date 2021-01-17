@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://rk.chinaruankao.com/';
-const BASE_URL = 'http://192.168.0.199:8180/rktk/';
+const BASE_URL = 'https://rk.chinaruankao.com/';
+// const BASE_URL = 'http://192.168.0.199:8180/rktk/';
 
 const SLOW_TIMEOUT = 666
 
