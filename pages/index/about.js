@@ -40,18 +40,7 @@ Page({
   },
 
   reqMessage: function (e) {
-    if (wx.requestSubscribeMessage) {
-      wx.requestSubscribeMessage({
-        tmplIds: ['PKPJKrLCGr_dyAhNZlZRirkQw3kprcdOixTfdl8HasI'],
-        complete(res) {
-          console.log(JSON.stringify(res))
-          let url = e.currentTarget.dataset.url
-          if (url) app.gotoPage(url)
-        }
-      })
-    } else {
-      let url = e.currentTarget.dataset.url
-      if (url) app.gotoPage(url)
-    }
+    const url = e.currentTarget.dataset.url
+    app.subscribe(['mbEmGwIBS-1ZHQSVj5eIZFdqTIW-LkOzXhSsKXkNjwg'], () => app.gotoPage(url))
   }
 })

@@ -287,5 +287,20 @@ App({
       showCancel: false,
       success: fn || function() {}
     });
+  },
+
+  // 订阅消息
+  subscribe: function(tmplIds, fn) {
+    if (wx.requestSubscribeMessage) {
+      wx.requestSubscribeMessage({
+        tmplIds: ['mbEmGwIBS-1ZHQSVj5eIZFdqTIW-LkOzXhSsKXkNjwg'],
+        complete(res) {
+          console.log(JSON.stringify(res))
+          typeof fn === 'function' && fn()
+        }
+      })
+    } else {
+      typeof fn === 'function' && fn()
+    }
   }
 })
