@@ -38,24 +38,26 @@ Page({
     })
 
     if (e.msg) {
-      this.setData({ urlMsg: e.msg })
-      wx.getStorage({
-        key: 'urlMsgOnModal',
-        success: function (res) {
-          // Nothings
-        },
-        fail: function (res) {
-          setTimeout(() => {
-            wx.showModal({
-              title: '提示',
-              content: e.msg,
-              showCancel: false,
-              confirmText: '知道了'
-            })
-            wx.setStorage({ key: 'urlMsgOnModal', data: '1' })
-          }, 1000)
-        }
+      this.setData({
+        urlMsg: e.msg
       })
+      //   wx.getStorage({
+      //     key: 'urlMsgOnModal',
+      //     success: function (res) {
+      //       // Nothings
+      //     },
+      //     fail: function (res) {
+      //       setTimeout(() => {
+      //         wx.showModal({
+      //           title: '提示',
+      //           content: e.msg,
+      //           showCancel: false,
+      //           confirmText: '知道了'
+      //         })
+      //         wx.setStorage({ key: 'urlMsgOnModal', data: '1' })
+      //       }, 1000)
+      //     }
+      //   })
     }
 
     // if (app.GLOBAL_DATA.IS_IOS === true) {
@@ -140,10 +142,14 @@ Page({
     app.reportKpi('VIP.CLICKBUY')
 
     let that = this
-    that.setData({ buyNowProgress: true })
+    that.setData({
+      buyNowProgress: true
+    })
     let _url = 'api/pay/create-buyvip?subject=' + this.__buydata.subject + '&tt=' + this.data.tt + '&coupon=' + (!!this.data.couponData)
     zutils.post(app, _url, function (res) {
-      that.setData({ buyNowProgress: false })
+      that.setData({
+        buyNowProgress: false
+      })
       let _data = res.data
       if (_data.error_code > 0) {
         app.alert(_data.error_msg)
@@ -152,7 +158,9 @@ Page({
 
       _data = _data.data
       if (app.GLOBAL_DATA.IS_IOS === true) {
-        wx.navigateTo({ url: './vip-buy-ios?id=' + _data.__id })
+        wx.navigateTo({
+          url: './vip-buy-ios?id=' + _data.__id
+        })
         return
       }
 
