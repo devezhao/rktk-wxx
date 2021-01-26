@@ -1,10 +1,15 @@
 <view class="page">
+  <view class="highbar center red" wx:if="{{urlMsg}}">
+    {{urlMsg}}
+  </view>
+
   <view class="page__bd">
     <view class="weui-cells__title">激活码</view>
     <view class="tt">
       <input type="text" placeholder="输入激活码" maxlength="20" bindinput="inputTake" data-id="sncode" />
     </view>
-    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-sn" class="color-link fs-14" style="display:inline-block;margin-top:6px;">
+    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-sn" class="color-link fs-14"
+      style="display:inline-block;margin-top:6px;">
       [ 什么是激活码 ]
     </navigator>
     <view class="weui-cells__title">选择考试类型</view>

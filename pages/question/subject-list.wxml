@@ -56,7 +56,7 @@
                   通过率
                   <text>{{item[4]}}%</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[2] != 0}}">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
                   <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
                   <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>

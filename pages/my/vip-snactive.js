@@ -8,7 +8,11 @@ Page({
   inputData: {},
 
   onLoad: function (e) {
-    // TODO
+    if (e.msg) {
+      this.setData({
+        urlMsg: e.msg
+      })
+    }
   },
 
   onShow: function (e) {
@@ -59,7 +63,7 @@ Page({
     this.__buyNow();
   },
 
-  __buyNow: function() {
+  __buyNow: function () {
     let that = this;
     that.setData({
       buyNowProgress: true

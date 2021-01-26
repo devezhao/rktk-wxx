@@ -1,6 +1,8 @@
 const app = app || getApp()
 const zutils = require('../../utils/zutils.js')
-import { zsharebox } from '../comps/z-sharebox.js'
+import {
+  zsharebox
+} from '../comps/z-sharebox.js'
 
 Page({
   data: {
@@ -32,13 +34,15 @@ Page({
       }
 
       this.setData(_data.data)
-      wx.setNavigationBarTitle({ title: _data.data.subject_name })
+      wx.setNavigationBarTitle({
+        title: _data.data.subject_name
+      })
     })
   },
 
   toExam: function (e) {
     if (this.data.vip_free == false && this.data.coin == -2) {
-      app.gotoVipBuy('本题库为VIP专享，开通VIP会员可立即答题')
+      app.gotoVipBuy('本题库为VIP专享，开通VIP会员可免费答题')
       return
     }
 

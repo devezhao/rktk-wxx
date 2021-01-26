@@ -52,7 +52,7 @@ Page({
     let tips_content = '将进入答题页面，请做好准备';
     if (this.data.vip_free == false) {
       if (this.data.coin == -2) {
-        app.gotoVipBuy('本题库为VIP专享，开通VIP会员可立即答题');
+        app.gotoVipBuy('本题库为VIP专享，开通VIP会员可免费答题');
         return;
       } else if (this.data.coin > 0) {
         tips_content = '本次答题将消耗' + this.data.coin + '学豆';
