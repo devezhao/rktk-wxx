@@ -5,7 +5,9 @@ Page({
   data: {
     hideCoupon: true,
     hideBanners: false,
-    banners: [['https://cdn.chinaruankao.com/fs/20180123/akwarg2q20k37zkk.png', '/pages/acts/share-guide']],
+    banners: [
+      ['https://cdn.chinaruankao.com/fs/20180123/akwarg2q20k37zkk.png', '/pages/acts/share-guide']
+    ],
     openAis: false
   },
 
@@ -55,8 +57,14 @@ Page({
     // 显示收藏提醒
     if (!(e.scene == 1089 || e.scene == 1001 || e.scene == 1022 || e.scene == 1023 || e.scene == 1027)) {
       let showFav = function (t) {
-        that.setData({ showFav: true, showFavClazz: 'animated bounceIn slow' })
-        wx.setStorage({ key: 'SHOW_FAV', data: t || 1 })
+        that.setData({
+          showFav: true,
+          showFavClazz: 'animated bounceIn slow'
+        })
+        wx.setStorage({
+          key: 'SHOW_FAV',
+          data: t || 1
+        })
       }
       setTimeout(() => {
         wx.getStorage({
@@ -109,7 +117,11 @@ Page({
         that.setData({
           banners: _data.banners
         })
-        that.bannerChange({ detail: { current: 0 } }, 1)
+        that.bannerChange({
+          detail: {
+            current: 0
+          }
+        }, 1)
       }
       // 红点
       if (_data.reddot) {
@@ -314,8 +326,8 @@ Page({
   },
 
   gotoPage: function (e) {
-    let formId = (e && e.detail) ? (e.detail.formId || '') : ''
-    zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId)
+    // let formId = (e && e.detail) ? (e.detail.formId || '') : ''
+    // zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId)
     let url = e.currentTarget.dataset.url
     if (url) app.gotoPage(e.currentTarget.dataset.url)
     else app.alert('暂未开放')
@@ -358,8 +370,8 @@ Page({
   },
 
   hideCoupon: function (e) {
-    let formId = (e && e.detail) ? (e.detail.formId || '') : ''
-    if (formId) zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId)
+    // let formId = (e && e.detail) ? (e.detail.formId || '') : ''
+    // if (formId) zutils.post(app, 'api/user/report-formid?noloading&formId=' + formId)
 
     let that = this
     that.setData({
@@ -379,7 +391,9 @@ Page({
     }, delay || 200)
   },
 
-  hideFav: function() {
-    this.setData({ showFav: false })
+  hideFav: function () {
+    this.setData({
+      showFav: false
+    })
   }
 })

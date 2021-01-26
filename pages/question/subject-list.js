@@ -8,9 +8,9 @@ Page({
     yearsHide: true
   },
 
-  onLoad: function() {
+  onLoad: function () {
     var that = this;
-    app.getUserInfo(function(u) {
+    app.getUserInfo(function (u) {
       that.listSubject(null, u);
     });
 
@@ -23,21 +23,21 @@ Page({
     });
   },
 
-  onShow: function() {
+  onShow: function () {
     if (zutils.array.inAndErase(app.GLOBAL_DATA.RELOAD_SUBJECT, 'Subject')) {
       this.listSubject();
     }
   },
 
-  onPullDownRefresh: function() {
-    this.listSubject(function() {
+  onPullDownRefresh: function () {
+    this.listSubject(function () {
       wx.stopPullDownRefresh();
     });
   },
 
-  listSubject: function(cb, u) {
+  listSubject: function (cb, u) {
     let that = this;
-    zutils.post(app, 'api/subject/list?showAll=0&filter=' + this.data.filter, function(res) {
+    zutils.post(app, 'api/subject/list?showAll=0&filter=' + this.data.filter, function (res) {
       typeof cb == 'function' && cb();
       if (res.data.error_code > 0) {
         that.setData({
@@ -99,7 +99,7 @@ Page({
     });
   },
 
-  doFilter: function(e) {
+  doFilter: function (e) {
     let s = e.currentTarget.dataset.s;
     this.setData({
       filter: s,
@@ -109,19 +109,19 @@ Page({
     this.listSubject();
   },
 
-  doShowYears: function() {
+  doShowYears: function () {
     this.setData({
       yearsHide: false
     });
     return false;
   },
-  doHideYears: function() {
+  doHideYears: function () {
     this.setData({
       yearsHide: true
     })
   },
 
-  onPageScroll: function(res) {
+  onPageScroll: function (res) {
     if (~~res.scrollTop > 80) {
       if (this.data.filterHold == false) {
         this.setData({
@@ -137,15 +137,15 @@ Page({
     }
   },
 
-  gotoPage: function(e) {
-    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+  gotoPage: function (e) {
+    // zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
     app.gotoPage(e);
   },
 
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     var d = app.warpShareData('/pages/question/subject-list');
     if (this.data.subject) d.title = this.data.subject + '题库';
-    else d.title = '软考题库';
+    else d.title = '软考大师';
     console.log(d);
     return d;
   }

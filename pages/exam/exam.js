@@ -110,7 +110,7 @@ Page({
 
     let formId = (e && e.detail) ? (e.detail.formId || '') : '';
     if (q._answers) {
-      zutils.post(app, 'api/user/report-formid?formId=' + formId);
+      // zutils.post(app, 'api/user/report-formid?formId=' + formId);
       that.setData(answers_data);
     } else {
       zutils.get(app, 'api/question/get-answers?noloading&question=' + q.questionId + '&formId=' + formId, function (res) {
@@ -144,7 +144,9 @@ Page({
 
   gotoQuestion: function (e) {
     var seq = ~~e.currentTarget.dataset.seq;
-    this.dtcardAnimation.translateY('100%').step({ duration: 0 });
+    this.dtcardAnimation.translateY('100%').step({
+      duration: 0
+    });
     this.setData({
       dtcardAnimation: this.dtcardAnimation.export(),
       seqCurrent: seq
@@ -195,8 +197,8 @@ Page({
   },
 
   showDtcard: function (e) {
-    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
-    zutils.post(app, 'api/user/report-formid?formId=' + formId);
+    // let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    // zutils.post(app, 'api/user/report-formid?formId=' + formId);
 
     var that = this;
     var takes = [];
@@ -204,7 +206,10 @@ Page({
       var q = this.questionList[seq];
       var clazz = q._selected && q._selected.length > 0 ? 'active' : '';
       if (!!clazz && ~~q.answerNum > q._selected.length) clazz += ' half';
-      takes.push({ seq: q.seq, clazz: clazz });
+      takes.push({
+        seq: q.seq,
+        clazz: clazz
+      });
     }
 
     this.dtcardAnimation.translateY(0).step();
@@ -231,7 +236,9 @@ Page({
       });
 
       if (_data.is_fav) {
-        wx.showToast({ title: '已加入收藏' });
+        wx.showToast({
+          title: '已加入收藏'
+        });
         that.favList.push(q.questionId);
       } else {
         zutils.array.erase(that.favList, q.questionId);
@@ -344,7 +351,9 @@ Page({
     if (!this.__turning_CX) return;
     this.__turning_CX = -9999;
     if (this.__turning !== true) {
-      this.turningAnimation.opacity(1).step({ duration: 100 });
+      this.turningAnimation.opacity(1).step({
+        duration: 100
+      });
       this.setData({
         turningData: this.turningAnimation.export()
       });
@@ -353,10 +362,14 @@ Page({
     this.__turning = false;
 
     if (this.__turningLeft < 0) {
-      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({
+        duration: 100
+      });
       this.nextQuestion();
     } else {
-      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({
+        duration: 100
+      });
       this.prevQuestion();
     }
     this.setData({

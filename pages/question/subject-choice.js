@@ -16,7 +16,7 @@ Page({
         frontColor: '#ffffff',
         backgroundColor: '#a18d62'
       });
-      
+
     }
     if (this.back == 'vip' || this.back == 'vipsn') {
       this.setData({
@@ -92,7 +92,7 @@ Page({
   },
 
   gotoPage: function (e) {
-    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+    // zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
     app.gotoPage(e);
   }
 });

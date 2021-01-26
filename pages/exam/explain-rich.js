@@ -1,7 +1,9 @@
 const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
-import { zsharebox } from '../comps/z-sharebox.js';
+import {
+  zsharebox
+} from '../comps/z-sharebox.js';
 
 Page({
   data: {
@@ -11,7 +13,7 @@ Page({
     hideNos: true,
     isIOS: false
   },
-  questionId: null,  // for share
+  questionId: null, // for share
   qcached: {},
   qosid: null,
 
@@ -51,8 +53,7 @@ Page({
             } else {
               idx = 1;
             }
-          } catch (e) {
-          }
+          } catch (e) {}
 
           that.setData({
             hideNos: false,
@@ -135,8 +136,12 @@ Page({
     zutils.post(app, 'api/fav/toggle?question=' + this.data.currentQuestionId + '&formId=' + formId, function (res) {
       let _data = res.data.data;
       that.qcached[that.data.currentQuestionId].isFav = _data.is_fav;
-      that.setData({ isFav: _data.is_fav });
-      if (_data.is_fav) wx.showToast({ title: '已加入收藏' });
+      that.setData({
+        isFav: _data.is_fav
+      });
+      if (_data.is_fav) wx.showToast({
+        title: '已加入收藏'
+      });
     });
   },
 
@@ -154,8 +159,8 @@ Page({
   },
 
   shareboxOpen: function (e) {
-    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
-    zutils.post(app, 'api/user/report-formid?formId=' + formId);
+    // let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    // zutils.post(app, 'api/user/report-formid?formId=' + formId);
     zsharebox.shareboxOpen(this);
   },
   shareboxClose: function () {
@@ -207,7 +212,9 @@ Page({
     if (!this.__turning_CX) return;
     this.__turning_CX = -9999;
     if (this.__turning !== true) {
-      this.turningAnimation.opacity(1).step({ duration: 100 });
+      this.turningAnimation.opacity(1).step({
+        duration: 100
+      });
       this.setData({
         turningData: this.turningAnimation.export()
       });
@@ -216,10 +223,14 @@ Page({
     this.__turning = false;
 
     if (this.__turningLeft < 0) {
-      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({
+        duration: 100
+      });
       this.goNext();
     } else {
-      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({
+        duration: 100
+      });
       this.goPrev();
     }
     this.setData({

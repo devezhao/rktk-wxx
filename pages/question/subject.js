@@ -1,6 +1,8 @@
 const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
-import { zsharebox } from '../comps/z-sharebox.js';
+import {
+  zsharebox
+} from '../comps/z-sharebox.js';
 
 Page({
   data: {
@@ -8,20 +10,20 @@ Page({
   },
   subjectId: null,
 
-  onLoad: function(e) {
+  onLoad: function (e) {
     let that = this;
-    app.getUserInfo(function(u) {
+    app.getUserInfo(function (u) {
       that.__onLoad(e);
     });
   },
 
-  __onLoad: function(e) {
+  __onLoad: function (e) {
     let that = this;
     that.subjectId = e.id;
-    zutils.get(app, 'api/subject/details?id=' + that.subjectId, function(res) {
+    zutils.get(app, 'api/subject/details?id=' + that.subjectId, function (res) {
       let _data = res.data;
       if (_data.error_code > 0) {
-        app.alert(_data.error_msg, function(){
+        app.alert(_data.error_msg, function () {
           app.gotoPage('/pages/index/index');
         })
         return;
@@ -37,7 +39,7 @@ Page({
     });
   },
 
-  toExam: function(e) {
+  toExam: function (e) {
     if (this.data.subject_type == 11) {
       app.alert('本题库不支持答题');
       return;
@@ -62,7 +64,7 @@ Page({
       title: '提示',
       content: tips_content,
       confirmText: '开始答题',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           that.__toExam(that.subjectId, e);
         }
@@ -71,11 +73,11 @@ Page({
   },
 
   // 知识点答题
-  toExam_Type2: function(e) {
+  toExam_Type2: function (e) {
     let that = this;
     wx.showActionSheet({
       itemList: ['答10题', '答20题', '答30题'],
-      success: function(res) {
+      success: function (res) {
         let tapIndex = res.tapIndex;
         let num = tapIndex == 0 ? 10 : 20;
         if (tapIndex == 2) num = 30;
@@ -89,9 +91,9 @@ Page({
           title: '提示',
           content: tips_content,
           confirmText: '开始答题',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
-              zutils.post(app, 'api/subject/gen-private?quote=' + that.subjectId + '&num=' + num + '&formId=' + (e.detail.formId || ''), function(res) {
+              zutils.post(app, 'api/subject/gen-private?quote=' + that.subjectId + '&num=' + num + '&formId=' + (e.detail.formId || ''), function (res) {
                 let _data = res.data;
                 if (_data.error_code == 0) {
                   that.__toExam(_data.data, null);
@@ -106,9 +108,9 @@ Page({
     });
   },
 
-  __toExam: function(subject, e) {
+  __toExam: function (subject, e) {
     let that = this;
-    zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (!!e ? (e.detail.formId || '') : ''), function(res) {
+    zutils.post(app, 'api/exam/start?subject=' + subject + '&formId=' + (!!e ? (e.detail.formId || '') : ''), function (res) {
       app.followSubject(that.subjectId);
       let _data = res.data;
       if (_data.error_code == 0) {
@@ -121,14 +123,14 @@ Page({
     });
   },
 
-  __examErrorMsg: function(error_msg) {
+  __examErrorMsg: function (error_msg) {
     error_msg = error_msg || '系统繁忙，请稍后重试';
     if (error_msg.indexOf('会员') > -1) {
       wx.showModal({
         title: '提示',
         content: error_msg,
         confirmText: '立即开通',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
               url: '/pages/my/vip-buy'
@@ -141,7 +143,7 @@ Page({
         title: '提示',
         content: error_msg,
         confirmText: '立即邀请',
-        success: function(res) {
+        success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
               url: '/pages/acts/share-guide'
@@ -154,8 +156,8 @@ Page({
     }
   },
 
-  toExplain: function(e) {
-    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+  toExplain: function (e) {
+    // zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
 
     if (this.data.vip_free == false && this.data.coin == -2) {
       app.gotoVipBuy('本题库为VIP专享，开通VIP会员可立即免费使用');
@@ -176,32 +178,32 @@ Page({
     });
   },
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     let d = app.warpShareData('/pages/question/subject?id=' + this.subjectId);
     if (this.fullName) d.title = this.fullName;
     console.log(d);
     return d;
   },
 
-  shareboxOpen: function() {
+  shareboxOpen: function () {
     zsharebox.shareboxOpen(this);
   },
-  shareboxClose: function() {
+  shareboxClose: function () {
     zsharebox.shareboxClose(this);
   },
-  dialogOpen: function() {
+  dialogOpen: function () {
     zsharebox.dialogOpen(this);
   },
-  dialogClose: function() {
+  dialogClose: function () {
     zsharebox.dialogClose(this);
   },
-  share2Frined: function() {
+  share2Frined: function () {
     zsharebox.share2Frined(this);
   },
-  share2QQ: function() {
+  share2QQ: function () {
     zsharebox.share2QQ(this);
   },
-  share2CopyLink: function() {
+  share2CopyLink: function () {
     zsharebox.share2CopyLink(this);
   }
 });

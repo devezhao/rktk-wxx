@@ -1,7 +1,9 @@
 const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
-import { zsharebox } from '../comps/z-sharebox.js';
+import {
+  zsharebox
+} from '../comps/z-sharebox.js';
 Page({
   data: {
     shareboxData: zsharebox.data,
@@ -82,7 +84,7 @@ Page({
   },
 
   shareScope: function (e) {
-    zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
+    // zutils.post(app, 'api/user/report-formid?formId=' + (e.detail.formId || ''));
   },
 
   onShareAppMessage: function () {

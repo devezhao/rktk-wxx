@@ -1,7 +1,9 @@
 const app = app || getApp();
 const zutils = require('../../utils/zutils.js');
 
-import { zsharebox } from '../comps/z-sharebox.js';
+import {
+  zsharebox
+} from '../comps/z-sharebox.js';
 
 Page({
   data: {
@@ -12,7 +14,7 @@ Page({
     hideInteractiveMode: true,
     interactiveMode: false
   },
-  questionId: null,  // for share
+  questionId: null, // for share
   qcached: {},
   qosid: null,
   answerKey: null,
@@ -37,26 +39,37 @@ Page({
       // 强制练习模式
       if (e.interactive == 1) {
         this.canInteractive = true;
-        this.setData({ hideInteractiveMode: false, interactiveMode: true });
+        this.setData({
+          hideInteractiveMode: false,
+          interactiveMode: true
+        });
       } else {
-        this.setData({ hideInteractiveMode: false });
+        this.setData({
+          hideInteractiveMode: false
+        });
         wx.getStorage({
           key: 'ExplainInteractiveMode',
           success: function (res) {
-            that.setData({ interactiveMode: res.data == true });
+            that.setData({
+              interactiveMode: res.data == true
+            });
           }
         });
         zutils.get(app, 'api/user/can-interactive?subject=' + this.qosid, function (res) {
           that.canInteractive = res.data.data != 'NO';
           if (that.data.interactiveMode == true && that.canInteractive == false) {
-            that.setData({ interactiveMode: false });
+            that.setData({
+              interactiveMode: false
+            });
           }
         });
       }
     }
 
     if (!!this.answerKey || viewSubject == true) {
-      this.setData({ pageClazz: 'has-btm' });
+      this.setData({
+        pageClazz: 'has-btm'
+      });
     }
 
     app.getUserInfo(function (u) {
@@ -65,7 +78,9 @@ Page({
       });
 
       if (viewSubject == false) {
-        that.setData({ currentQuestionId: that.qosid });
+        that.setData({
+          currentQuestionId: that.qosid
+        });
         that.__loadQuestion(e);
       } else {
         zutils.get(app, 'api/subject/subject-qids?subject=' + that.qosid, function (res) {
@@ -150,7 +165,7 @@ Page({
   },
 
   __checkExplainShow: function () {
-    return;  // 暂时不用
+    return; // 暂时不用
     if (this.data.explain_freedom != 'LIMIT') return;
     let that = this;
     that.setData({
@@ -216,7 +231,7 @@ Page({
     }
     this.setData({
       answer_list: answer_list,
-      showExplain: this.__selectAnswer.length == answer_list.length / 4,  // 显示解析
+      showExplain: this.__selectAnswer.length == answer_list.length / 4, // 显示解析
     });
   },
 
@@ -227,7 +242,9 @@ Page({
     }
 
     let toggle = this.data.interactiveMode == false;
-    this.setData({ interactiveMode: toggle });
+    this.setData({
+      interactiveMode: toggle
+    });
     wx.setStorage({
       key: 'ExplainInteractiveMode',
       data: toggle
@@ -244,7 +261,7 @@ Page({
     for (var i = 0; i < answer_key.length; i++) {
       var a = answer_key[i].substr(1);
       answer_key[i] = (a == 'X') ? '无' : a;
-      if (a == 'ull') {  // null
+      if (a == 'ull') { // null
         answer_key[i] = '未作答';
         answer_key[i] = '无';
       }
@@ -259,8 +276,12 @@ Page({
     zutils.post(app, 'api/fav/toggle?question=' + this.data.currentQuestionId + '&formId=' + formId, function (res) {
       let _data = res.data.data;
       that.qcached[that.data.currentQuestionId].isFav = _data.is_fav;
-      that.setData({ isFav: _data.is_fav });
-      if (_data.is_fav) wx.showToast({ title: '已加入收藏' });
+      that.setData({
+        isFav: _data.is_fav
+      });
+      if (_data.is_fav) wx.showToast({
+        title: '已加入收藏'
+      });
     });
   },
 
@@ -278,8 +299,8 @@ Page({
   },
 
   shareboxOpen: function (e) {
-    let formId = (e && e.detail) ? (e.detail.formId || '') : '';
-    zutils.post(app, 'api/user/report-formid?formId=' + formId);
+    // let formId = (e && e.detail) ? (e.detail.formId || '') : '';
+    // zutils.post(app, 'api/user/report-formid?formId=' + formId);
     zsharebox.shareboxOpen(this);
   },
   shareboxClose: function () {
@@ -305,7 +326,7 @@ Page({
     app.gotoPage(e);
   },
 
-  gotoVipBuy: function() {
+  gotoVipBuy: function () {
     app.gotoVipBuy();
   },
 
@@ -335,7 +356,9 @@ Page({
     if (!this.__turning_CX) return;
     this.__turning_CX = -9999;
     if (this.__turning !== true) {
-      this.turningAnimation.opacity(1).step({ duration: 100 });
+      this.turningAnimation.opacity(1).step({
+        duration: 100
+      });
       this.setData({
         turningData: this.turningAnimation.export()
       });
@@ -344,10 +367,14 @@ Page({
     this.__turning = false;
 
     if (this.__turningLeft < 0) {
-      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.turningAnimation.translateX('-100%').step().translateX(0).opacity(1).step({
+        duration: 100
+      });
       this.goNext();
     } else {
-      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({ duration: 100 });
+      this.turningAnimation.translateX('100%').step().translateX(0).opacity(1).step({
+        duration: 100
+      });
       this.goPrev();
     }
     this.setData({

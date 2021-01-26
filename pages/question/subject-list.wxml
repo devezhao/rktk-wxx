@@ -15,7 +15,8 @@
         <view bindtap="doFilter" class="s {{filter == 10 ? 'active' : ''}}" data-s="10">知识点</view>
       </view>
       <view class="weui-flex__item">
-        <view catchtap="doShowYears" class="s {{(filter == 20 || filter > 2000) ? 'active' : ''}}" data-s="20">{{yearsText || '年份'}}</view>
+        <view catchtap="doShowYears" class="s {{(filter == 20 || filter > 2000) ? 'active' : ''}}" data-s="20">
+          {{yearsText || '年份'}}</view>
       </view>
     </view>
   </view>
@@ -36,7 +37,8 @@
       <view class="weui-cells__title">{{subname1}}</view>
       <view class="weui-panel weui-panel_access">
         <view class="weui-panel__bd">
-          <navigator wx:for="{{sublist1}}" wx:key="*this" url="subject?id={{item[0]}}" class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
+          <navigator wx:for="{{sublist1}}" wx:key="*this" url="subject?id={{item[0]}}"
+            class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <view class="weui-media-box__thumb {{item[12]}}">
                 <text class="Y">{{item[10]}}</text>
@@ -50,10 +52,11 @@
                 <view class="weui-media-box__info__meta">考题数
                   <text>{{item[3]}}</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[12] == 'T1'}}">通过率
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[12] == 'T1'}}">
+                  通过率
                   <text>{{item[4]}}%</text>
                 </view>
-                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{item[2] == -2}}">
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
                   <text wx:if="{{item[2] > 0}}">{{item[2]}}学豆</text>
                   <text wx:if="{{item[2] == 0}}" class="color-base2">免费</text>
                   <text wx:if="{{item[2] == -1}}" class="color-base2">(限免)</text>
@@ -70,7 +73,8 @@
       <view class="weui-cells__title">{{subname2}}</view>
       <view class="weui-panel weui-panel_access">
         <view class="weui-panel__bd">
-          <navigator wx:for="{{sublist2}}" wx:key="*this" url="subject?id={{item[0]}}" class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
+          <navigator wx:for="{{sublist2}}" wx:key="*this" url="subject?id={{item[0]}}"
+            class="weui-media-box weui-media-box_appmsg rktk-record" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <view class="weui-media-box__thumb T4">
                 <text class="T">知识点</text>
