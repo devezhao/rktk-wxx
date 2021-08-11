@@ -1,6 +1,7 @@
 @import "../comps/z-sharebox.wxss";
 
-page, .page {
+page,
+.page {
   background-color: #fff;
 }
 
@@ -37,7 +38,8 @@ page, .page {
   word-wrap: break-word;
 }
 
-.answer-list .item.selected, .answer-list .item.right {
+.answer-list .item.selected,
+.answer-list .item.right {
   background-color: #d9534f;
   border-width: 0;
 }
@@ -46,13 +48,15 @@ page, .page {
   background-color: #4cae4c;
 }
 
-.answer-list .item.selected .key, .answer-list .item.right .key {
+.answer-list .item.selected .key,
+.answer-list .item.right .key {
   color: #fff;
   width: 33px;
   padding-top: 10px;
 }
 
-.answer-list .item.selected .text, .answer-list .item.right .text {
+.answer-list .item.selected .text,
+.answer-list .item.right .text {
   border: 1rpx solid #ddd;
   border-left: 1rpx solid #d9534f;
   margin-left: 33px;
@@ -311,4 +315,8 @@ view.go-hover {
   border-radius: 99px;
   color: #fff;
   border: 1px solid #fff;
+}
+
+.fullscreen-fix .fix-foobar {
+  padding-bottom: 18px;
 }

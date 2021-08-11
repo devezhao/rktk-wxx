@@ -1,6 +1,7 @@
 @import "libs/weui.wxss";
 
-page, .page {
+page,
+.page {
   background-color: #f7f7f9;
   font-size: 14px;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
@@ -158,7 +159,8 @@ page, .page {
   background-color: #4b8ef9;
 }
 
-.zbtn.active, .zbtn.active text {
+.zbtn.active,
+.zbtn.active text {
   color: #fff;
 }
 
@@ -166,7 +168,9 @@ page, .page {
   opacity: 0.8;
 }
 
-button, button::after, .weui-btn {
+button,
+button::after,
+.weui-btn {
   border: 0 none;
   border-radius: 2px;
 }
@@ -299,11 +303,13 @@ image.x24 {
   height: 20px;
 }
 
-.color-base1, .color-base {
+.color-base1,
+.color-base {
   color: #4b8ef9 !important;
 }
 
-.color-base2, .color-high {
+.color-base2,
+.color-high {
   color: #ec5353 !important;
 }
 
@@ -431,9 +437,9 @@ button.btn-mask {
   font-family: "codefont";
   src: url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.eot");
   src: url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.eot?#iefix") format("embedded-opentype"),
-         url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.woff") format("woff"),
-         url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.ttf") format("truetype"),
-         url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.svg#consola") format("svg");
+    url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.woff") format("woff"),
+    url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.ttf") format("truetype"),
+    url("https://cdn.chinaruankao.com/a/fonts/consola-v3/consola.svg#consola") format("svg");
   font-style: normal;
   font-weight: normal;
 }
@@ -576,14 +582,14 @@ button.btn-mask {
 }
 
 .tooltip .tooltip-inner .arrow.up {
-  border-bottom-color: rgba(0,0,0,0.5);
+  border-bottom-color: rgba(0, 0, 0, 0.5);
   margin-left: 10px;
   position: absolute;
   top: -5px;
 }
 
 .tooltip .tooltip-inner .content {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-size: 13px;
   padding: 6px 8px;
@@ -596,8 +602,15 @@ button.btn-mask {
 .tooltip .tooltip-inner .content.close {
   padding-right: 24px
 }
+
 .tooltip .tooltip-inner .content.close::after {
   content: '✕';
   position: absolute;
   right: 8px;
+}
+
+/* 全面屏 */
+
+.fullscreen-fix .fix-foobar button {
+  padding-bottom: 18px;
 }

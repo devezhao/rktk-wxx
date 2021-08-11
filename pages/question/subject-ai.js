@@ -15,6 +15,10 @@ Page({
     app.getUserInfo((u) => {
       this.__onLoad(e)
     })
+
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
   },
 
   __onLoad: function (e) {

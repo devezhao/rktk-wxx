@@ -1,110 +1,117 @@
-<view class="page {{pageClazz}}">
-  <view class="page__hd weui-flex top-position">
-    <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
-      <image src="../../images/icon-marker.png"></image> 考题
-    </view>
-    <view class="weui-flex__item {{viewId == 'answers' ? 'active' : ''}}" data-vid="answers" bindtap="position">
-      <image src="../../images/icon-marker.png"></image> 参考答案
-    </view>
-    <view class="weui-flex__item {{viewId == 'explain' ? 'active' : ''}}" data-vid="explain" bindtap="position">
-      <image src="../../images/icon-marker.png"></image> 考题解析
-    </view>
-  </view>
-
-  <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}" style="height:{{viewHeight}}px;margin-top:40px" animation="{{turningData}}" bindlongpress="turningStart" bindtouchmove="turningMove" bindtouchend="turningEnd">
-    <view class="page__bd" id="question" style="padding-top:1px">
-      <view class="question">
-        <rich-text nodes="{{question}}"></rich-text>
+<view class=" {{isFullScreen ? 'fullscreen-fix' : '' }}">
+  <view class="page {{pageClazz}}">
+    <view class="page__hd weui-flex top-position">
+      <view class="weui-flex__item {{viewId == 'question' ? 'active' : ''}}" data-vid="question" bindtap="position">
+        <image src="../../images/icon-marker.png"></image> 考题
+      </view>
+      <view class="weui-flex__item {{viewId == 'answers' ? 'active' : ''}}" data-vid="answers" bindtap="position">
+        <image src="../../images/icon-marker.png"></image> 参考答案
+      </view>
+      <view class="weui-flex__item {{viewId == 'explain' ? 'active' : ''}}" data-vid="explain" bindtap="position">
+        <image src="../../images/icon-marker.png"></image> 考题解析
       </view>
     </view>
 
-    <view class="page__bd" id="answers" style="padding-top:1px">
-      <view class="answer-list">
-        <block wx:for="{{answer_list}}" wx:key="*this">
-          <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
-          </view>
-          <view class="item {{item[10]}}" bindtap="interactiveAnswer" data-key="{{item[0]}}">
-            <view class="key">{{item[11]}}</view>
-            <view class="text">
-              <rich-text nodes="{{item[1]}}"></rich-text>
+    <scroll-view scroll-y="true" scroll-with-animation="true" scroll-into-view="{{viewId}}"
+      style="height:{{viewHeight}}px;margin-top:40px" animation="{{turningData}}" bindlongpress="turningStart"
+      bindtouchmove="turningMove" bindtouchend="turningEnd">
+      <view class="page__bd" id="question" style="padding-top:1px">
+        <view class="question">
+          <rich-text nodes="{{question}}"></rich-text>
+        </view>
+      </view>
+
+      <view class="page__bd" id="answers" style="padding-top:1px">
+        <view class="answer-list">
+          <block wx:for="{{answer_list}}" wx:key="*this">
+            <view class="split-line" wx:if="{{index > 0 && index % 4 == 0}}">
             </view>
-            <view class="clearfix"></view>
-          </view>
-        </block>
+            <view class="item {{item[10]}}" bindtap="interactiveAnswer" data-key="{{item[0]}}">
+              <view class="key">{{item[11]}}</view>
+              <view class="text">
+                <rich-text nodes="{{item[1]}}"></rich-text>
+              </view>
+              <view class="clearfix"></view>
+            </view>
+          </block>
+        </view>
       </view>
-    </view>
 
-    <view class="page__hd" id="explain" hidden="{{source_subject == null}}">
-      <view class="explain-source" bindtap="gotoPage" data-url="/pages/question/subject?id={{source_subject_id}}">
-        <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}</view>
-      <view class="explain-title">
-        考题解析
-      </view>
-      <view class="explain-content" wx:if="{{showExplain == true}}">
-        <block wx:if="{{explain_freedom == 'LIMIT'}}">
-          <view class="explain-limit">
+      <view class="page__hd" id="explain" hidden="{{source_subject == null}}">
+        <view class="explain-source" bindtap="gotoPage" data-url="/pages/question/subject?id={{source_subject_id}}">
+          <icon type="info_circle" size="15" color='#777'></icon> {{source_subject}}
+        </view>
+        <view class="explain-title">
+          考题解析
+        </view>
+        <view class="explain-content" wx:if="{{showExplain == true}}">
+          <block wx:if="{{explain_freedom == 'LIMIT'}}">
+            <view class="explain-limit">
+              <rich-text nodes="{{explain}}"></rich-text>
+              <view hidden="{{hideGradual}}" class="gradual"></view>
+            </view>
+            <view hidden="{{hideGradual}}" class="explain-more">
+              <button bindtap="gotoVipBuy">查看完整解析</button>
+            </view>
+          </block>
+          <block wx:else>
             <rich-text nodes="{{explain}}"></rich-text>
-            <view hidden="{{hideGradual}}" class="gradual"></view>
-          </view>
-          <view hidden="{{hideGradual}}" class="explain-more">
-            <button bindtap="gotoVipBuy">查看完整解析</button>
-          </view>
-        </block>
-        <block wx:else>
-          <rich-text nodes="{{explain}}"></rich-text>
-        </block>
+          </block>
+        </view>
+        <view class="explain-content interactive" wx:else>
+          <view>已开启练习模式，解析及参考答案将在答题后显示。</view>
+        </view>
       </view>
-      <view class="explain-content interactive" wx:else>
-        <view>已开启练习模式，解析及参考答案将在答题后显示。</view>
-      </view>
+    </scroll-view>
+  </view>
+
+  <view class="float-btns">
+    <view class="zbtn {{interactiveMode == true ? 'active' : ''}}" bindtap="toggleInteractive"
+      hidden="{{hideInteractiveMode}}">
+      <text class="L2">练习\n模式</text>
+      <view class="N hide">新</view>
     </view>
-  </scroll-view>
-</view>
+    <view class="zbtn" bindtap="gotoPage"
+      data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
+      <text class="L2">考题\n纠错</text>
+    </view>
+    <form bindsubmit="fav">
+      <button class="zbtn" formType="submit">
+        <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
+      </button>
+    </form>
+    <form bindsubmit="shareboxOpen">
+      <button class="zbtn" formType="submit">
+        <image src="../../images/share.png" class="share"></image>
+      </button>
+    </form>
+  </view>
 
-<view class="float-btns">
-  <view class="zbtn {{interactiveMode == true ? 'active' : ''}}" bindtap="toggleInteractive" hidden="{{hideInteractiveMode}}">
-    <text class="L2">练习\n模式</text>
-    <view class="N hide">新</view>
+  <view class="fix-foobar answerkeys" hidden="{{yourAnswer == null}}">
+    <view class="pull-left">
+      参考答案
+      <text>{{rightAnswer}}</text>
+    </view>
+    <view class="pull-left">
+      你的答案
+      <text>{{yourAnswer}}</text>
+    </view>
+    <view class="clearfix"></view>
   </view>
-  <view class="zbtn" bindtap="gotoPage" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}%26type%3dCorrect-{{currentQuestionId}}">
-    <text class="L2">考题\n纠错</text>
-  </view>
-  <form bindsubmit="fav">
-    <button class="zbtn" formType="submit">
-      <image src="../../images/star{{isFav ? '-filled' : ''}}.png" class="fav"></image>
-    </button>
-  </form>
-  <form bindsubmit="shareboxOpen">
-    <button class="zbtn" formType="submit">
-      <image src="../../images/share.png" class="share"></image>
-    </button>
-  </form>
-</view>
 
-<view class="fix-foobar answerkeys" hidden="{{yourAnswer == null}}">
-  <view class="pull-left">
-    参考答案
-    <text>{{rightAnswer}}</text>
-  </view>
-  <view class="pull-left">
-    你的答案
-    <text>{{yourAnswer}}</text>
-  </view>
-  <view class="clearfix"></view>
-</view>
+  <import src="../comps/z-sharebox.wxml" />
+  <template is="z-sharebox" data="{{...shareboxData}}" />
 
-<import src="../comps/z-sharebox.wxml" />
-<template is="z-sharebox" data="{{...shareboxData}}" />
-
-<view class="page-nos" hidden="{{hideNos}}">
-  <view class="el page-prev" bindtap="goPrev" hover-class="go-hover">
-    <image src="../../images/arrow-left-fff.png"></image>
+  <view class="page-nos" hidden="{{hideNos}}">
+    <view class="el page-prev" bindtap="goPrev" hover-class="go-hover">
+      <image src="../../images/arrow-left-fff.png"></image>
+    </view>
+    <view class="el page-no">
+      {{qidsNo}}/{{qidsTotal}}
+    </view>
+    <view class="el page-next" bindtap="goNext" hover-class="go-hover">
+      <image src="../../images/arrow-right-fff.png"></image>
+    </view>
+    <view class="clearfix"></view>
   </view>
-  <view class="el page-no">
-    {{qidsNo}}/{{qidsTotal}}
-  </view>
-  <view class="el page-next" bindtap="goNext" hover-class="go-hover">
-    <image src="../../images/arrow-right-fff.png"></image>
-  </view>
-  <view class="clearfix"></view>
 </view>

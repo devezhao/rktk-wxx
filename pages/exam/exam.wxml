@@ -1,4 +1,4 @@
-<view class="page">
+<view class="page {{isFullScreen ? 'fullscreen-fix' : '' }}">
   <view class="page__hd subtitle">
     <view class="pull-left">{{subject}}</view>
     <view class="pull-right seq-no">
@@ -7,7 +7,8 @@
     <view class="clearfix"></view>
   </view>
 
-  <view class="page__bd question-area" style="min-height:{{qareaHeight}}px;" animation="{{turningData}}" bindlongpress="turningStart" bindtouchmove="turningMove" bindtouchend="turningEnd">
+  <view class="page__bd question-area" style="min-height:{{qareaHeight}}px;" animation="{{turningData}}"
+    bindlongpress="turningStart" bindtouchmove="turningMove" bindtouchend="turningEnd">
     <view class="question">
       <rich-text nodes="{{question}}"></rich-text>
     </view>
@@ -66,7 +67,8 @@
 
   <view class="dt-card" animation="{{dtcardAnimation}}">
     <view class="seqs" style="height:{{seqsHeight}}px">
-      <view wx:for="{{questionTakes}}" wx:key="*this" class="{{item.clazz}}" bindtap="gotoQuestion" data-seq="{{item.seq}}">
+      <view wx:for="{{questionTakes}}" wx:key="*this" class="{{item.clazz}}" bindtap="gotoQuestion"
+        data-seq="{{item.seq}}">
         {{item.seq}}
       </view>
     </view>

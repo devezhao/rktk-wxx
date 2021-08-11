@@ -28,6 +28,10 @@ Page({
       return;
     }
 
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
+
     app.GLOBAL_DATA.RELOAD_EXAM = ['Index'];
     app.GLOBAL_DATA.RELOAD_COIN = ['Home'];
 

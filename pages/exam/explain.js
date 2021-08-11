@@ -33,6 +33,10 @@ Page({
       }
     });
 
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
+
     // 从题库解析
     let viewSubject = this.qosid.substr(0, 3) == '110';
     if (viewSubject == true) {

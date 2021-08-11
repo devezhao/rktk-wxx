@@ -4,7 +4,8 @@
   padding-bottom: 55px;
 }
 
-.circle, .circle-scope {
+.circle,
+.circle-scope {
   width: 100px;
   height: 100px;
   z-index: 1;
@@ -87,4 +88,8 @@
   padding: 3px 7px;
   border-radius: 99px;
   line-height: 1;
+}
+
+.fullscreen-fix .seqs {
+  padding-bottom: 41px;
 }

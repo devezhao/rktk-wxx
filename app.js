@@ -17,6 +17,7 @@ App({
     SYS_INFO: {},
     IS_ANDROID: false,
     IS_IOS: false,
+    IS_FULLSCREEN: false,
     // 红点
     RED_DOT: {},
     // 运行模式
@@ -47,6 +48,8 @@ App({
       success: function (res) {
         that.GLOBAL_DATA.IS_ANDROID = /Android/g.test(res.system);
         that.GLOBAL_DATA.IS_IOS = /iOS/g.test(res.system);
+        // 全面屏
+        that.GLOBAL_DATA.IS_FULLSCREEN = res.safeArea && res.safeArea.height && (res.safeArea.bottom - res.safeArea.height >= 30)
 
         // NOTE!!! 使用 windowHeight 会有问题，高度可能与页面获取的不一致（由是否有tab决定）
         that.GLOBAL_DATA.SYS_INFO = res;

@@ -16,13 +16,17 @@ Page({
         frontColor: '#ffffff',
         backgroundColor: '#a18d62'
       });
-
     }
+
     if (this.back == 'vip' || this.back == 'vipsn') {
       this.setData({
         vipHide: true
       })
     }
+
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
 
     var that = this;
     app.getUserInfo(function (u) {

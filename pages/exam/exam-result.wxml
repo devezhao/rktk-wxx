@@ -1,51 +1,54 @@
-<view class="page">
-  <view class="page__hd">
-    <view class="top-block">
-      <canvas class="circle" canvas-id="circle-scope" hidden="{{pkimgUrl != null}}">
-        <view class="circle-scope {{scope_color}}">
-          {{scope}}
-          <text>分</text>
+<view class=" {{isFullScreen ? 'fullscreen-fix' : '' }}">
+  <view class="page">
+    <view class="page__hd">
+      <view class="top-block">
+        <canvas class="circle" canvas-id="circle-scope" hidden="{{pkimgUrl != null}}">
+          <view class="circle-scope {{scope_color}}">
+            {{scope}}
+            <text>分</text>
+          </view>
+        </canvas>
+        <view style="height:100px;" hidden="{{pkimgUrl == null}}"></view>
+        <view class="title" style="margin-top:6px;">
+          {{scope_tips}}
         </view>
-      </canvas>
-      <view style="height:100px;" hidden="{{pkimgUrl == null}}"></view>
-      <view class="title" style="margin-top:6px;">
-        {{scope_tips}}
+        <view class="subtitle infos">
+          满分 {{full_scope}}
+          <text>/</text> 正确率 {{scope_percent}}
+          <text>/</text> 耗时 {{duration}}
+        </view>
       </view>
-      <view class="subtitle infos">
-        满分 {{full_scope}}
-        <text>/</text> 正确率 {{scope_percent}}
-        <text>/</text> 耗时 {{duration}}
+    </view>
+    <view class="page__hd">
+      <view class="seqs">
+        <navigator class="item {{item[2] == item[3] ? 'right' : ''}}" wx:for="{{exam_items}}" wx:key="*this"
+          url="explain?id={{item[0]}}&a={{item[3]}}">
+          {{item[1]}}
+        </navigator>
+        <view class="clearfix"></view>
       </view>
     </view>
   </view>
-  <view class="page__hd">
-    <view class="seqs">
-      <navigator class="item {{item[2] == item[3] ? 'right' : ''}}" wx:for="{{exam_items}}" wx:key="*this" url="explain?id={{item[0]}}&a={{item[3]}}">
-        {{item[1]}}
-      </navigator>
-      <view class="clearfix"></view>
-    </view>
-  </view>
-</view>
 
-<view class="fix-foobar btns">
-  <view class="exp-tips">
-    <view>点击题号可查看考题解析</view>
+  <view class="fix-foobar btns">
+    <view class="exp-tips">
+      <view>点击题号可查看考题解析</view>
+    </view>
+    <view class="pull-left">
+      <form bindsubmit="shareScope">
+        <button class="weui-btn" type="default" formType="submit" open-type="share">分享成绩</button>
+      </form>
+    </view>
+    <view class="pull-left" wx:if="{{showPk}}">
+      <form bindsubmit="gotoPk">
+        <button class="weui-btn split" type="default" formType="submit">好友对战</button>
+      </form>
+    </view>
+    <view class="pull-left" wx:else>
+      <form bindsubmit="gotoSubject">
+        <button class="weui-btn split" type="default" formType="submit">再答一次</button>
+      </form>
+    </view>
+    <view class="clearfix"></view>
   </view>
-  <view class="pull-left">
-    <form bindsubmit="shareScope">
-      <button class="weui-btn" type="default" formType="submit" open-type="share">分享成绩</button>
-    </form>
-  </view>
-  <view class="pull-left" wx:if="{{showPk}}">
-    <form bindsubmit="gotoPk">
-      <button class="weui-btn split" type="default" formType="submit">好友对战</button>
-    </form>
-  </view>
-  <view class="pull-left" wx:else>
-    <form bindsubmit="gotoSubject">
-      <button class="weui-btn split" type="default" formType="submit">再答一次</button>
-    </form>
-  </view>
-  <view class="clearfix"></view>
 </view>

@@ -21,6 +21,7 @@
     </view>
   </view>
   <view class="filter-years" hidden="{{yearsHide}}" style="width:{{fyWidth}}px">
+    <view bindtap="doFilter" data-s="2021">2021</view>
     <view bindtap="doFilter" data-s="2020">2020</view>
     <view bindtap="doFilter" data-s="2019">2019</view>
     <view bindtap="doFilter" data-s="2018">2018</view>

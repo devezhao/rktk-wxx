@@ -29,9 +29,13 @@ Page({
         hideRetBtn: false
       });
     }
+
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
   },
 
-  retHome: function() {
+  retHome: function () {
     app.gotoPage('/pages/my/home');
   }
 })

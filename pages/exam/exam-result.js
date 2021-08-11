@@ -21,6 +21,10 @@ Page({
     this.setData({
       showPk: e.s == 'exam'
     });
+
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
   },
 
   loadResult: function (checkKeep) {

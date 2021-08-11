@@ -12,6 +12,10 @@ Page({
     app.getUserInfo(function () {
       that.list();
     })
+
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
   },
 
   list: function () {
@@ -67,7 +71,9 @@ Page({
       let _data = res.data.data || res.data;
       if (_data.isVip == true) {
         app.reportKpi('EXPLAIN', subjectId);
-        wx.navigateTo({ url: '../exam/explain?interactive=1&id=' + subjectId });
+        wx.navigateTo({
+          url: '../exam/explain?interactive=1&id=' + subjectId
+        });
       } else {
         app.gotoVipBuy('本功能为VIP专享，开通VIP会员可立即使用');
       }

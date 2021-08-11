@@ -1,3 +1,7 @@
 .weui-cell__ft_in-radio radio {
   margin-right: -3px;
 }
+
+.fullscreen-fix {
+  padding-bottom: 23px;
+}

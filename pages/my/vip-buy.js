@@ -16,6 +16,10 @@ Page({
     else if (e.s == 'tmsg') app.reportKpi('TMSG.CLICK')
     else if (e.msg) app.reportKpi('AMSG.CLICK')
 
+    this.setData({
+      isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
+    })
+
     let that = this
     zutils.get(app, 'api/user/vip-info', function (res) {
       let _data = res.data.data

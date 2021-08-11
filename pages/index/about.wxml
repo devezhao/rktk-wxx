@@ -46,5 +46,7 @@
 </view>
 
 <view class="fix-foobar">
-  <view style="color:#888;font-size:13px;text-align:center;padding:12px">联系我们 chinaruankao@ruifang-tech.com</view>
+  <view style="color:#888;font-size:13px;text-align:center;padding:12px;padding-bottom:23px;">
+    联系我们 chinaruankao@ruifang-tech.com
+  </view>
 </view>

@@ -1,33 +1,33 @@
-<view class="page">
-  <view class="page__hd weui-panel__compact" style="padding-bottom:60px;" wx:if="{{listData && listData.length > 0}}">
-    <view class="weui-panel" wx:for="{{listData}}" wx:key="*this">
-      <view class="weui-panel__bd">
-        <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">
-          <view class="weui-media-box__title has-btn-more">{{item[1]}}</view>
-          <view class="weui-media-box__info">
-            <view class="weui-media-box__info__meta">
-              答错次数
-              <text>{{item[4]}}</text>
+<view class=" {{isFullScreen ? 'fullscreen-fix' : '' }}">
+  <view class="page">
+    <view class="page__hd weui-panel__compact" style="padding-bottom:60px;" wx:if="{{listData && listData.length > 0}}">
+      <view class="weui-panel" wx:for="{{listData}}" wx:key="*this">
+        <view class="weui-panel__bd">
+          <navigator url="../exam/explain?id={{item[0]}}" class="weui-media-box rktk-record">
+            <view class="weui-media-box__title has-btn-more">{{item[1]}}</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">
+                答错次数
+                <text>{{item[4]}}</text>
+              </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                答错率
+                <text>{{item[5]}}%</text>
+              </view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[2]}}</view>
             </view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">
-              答错率
-              <text>{{item[5]}}%</text>
+            <view class="btn-more" catchtap="moreAction" data-qid="{{item[0]}}">
+              <image src="/images/action-more2.png"></image>
             </view>
-            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item[2]}}</view>
-          </view>
-          <view class="btn-more" catchtap="moreAction" data-qid="{{item[0]}}">
-            <image src="/images/action-more2.png"></image>
-          </view>
-        </navigator>
+          </navigator>
+        </view>
+      </view>
+      <view wx:if="{{listData && listData.length > 0}}" class="foot-count">
+        <icon type="info" size="14" color="#aaa"></icon>
+        <text>连续答对2次自动移出错题本</text>
       </view>
     </view>
-    <view wx:if="{{listData && listData.length > 0}}" class="foot-count">
-      <icon type="info" size="14" color="#aaa"></icon>
-      <text>连续答对2次自动移出错题本</text>
-    </view>
-  </view>
-  <view class="fix-foobar" style="background-color:#fff;" wx:if="{{listData && listData.length > 0}}">
-    <view style="margin:9px 14px;">
+    <view class="fix-foobar" wx:if="{{listData && listData.length > 0}}">
       <button class="weui-btn" type="primary" bindtap="explainAll">练习全部错题</button>
     </view>
   </view>
