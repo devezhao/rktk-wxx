@@ -51,7 +51,7 @@ Page({
       success: function (res) {
         that.setData({
           seqsHeight: res.windowHeight - 113,
-          qareaHeight: res.windowHeight - 105
+          qareaHeight: res.windowHeight - 115
         });
       },
     });

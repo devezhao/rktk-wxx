@@ -88,5 +88,9 @@ Page({
     let id = e.currentTarget.dataset.id;
     let val = e.detail.value;
     this.inputData[id] = val;
+  },
+
+  snbuyTips: function () {
+    app.alert('搜索并关注公众号“锐昉科技”，回复“激活码”即可购买')
   }
 })

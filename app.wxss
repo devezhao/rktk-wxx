@@ -101,6 +101,7 @@ page,
 
 .float-btns {
   bottom: 66px;
+  bottom: 77px;
   right: 14px;
   position: fixed;
   z-index: 19;

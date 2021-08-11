@@ -1,6 +1,7 @@
 @import "vip-buy.wxss";
 
-page, .page {
+page,
+.page {
   background-color: #f7f7f9;
 }
 
@@ -8,13 +9,4 @@ page, .page {
   background-color: #fff;
   border-color: #d9d9d9;
   color: #444;
-}
-
-.fix-foobar.btns {
-  background-color: #eee;
-}
-
-.fix-foobar.btns .pull-right button {
-  background-color: #4b8ef9;
-  border-top: 1px solid #4b8ef9;
 }

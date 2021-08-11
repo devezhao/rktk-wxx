@@ -8,10 +8,14 @@
     <view class="tt">
       <input type="text" placeholder="输入激活码" maxlength="20" bindinput="inputTake" data-id="sncode" />
     </view>
-    <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-sn" class="color-link fs-14"
-      style="display:inline-block;margin-top:6px;">
-      [ 什么是激活码 ]
-    </navigator>
+    <view style="margin-top:6px;">
+      <navigator url="../index/h5?url=m%2ffaq.htm%3fk%3dvip-sn" class="color-link fs-14" style="display:inline-block;">
+        [ 什么是激活码 ]
+      </navigator>
+      <view class="color-link fs-14" style="display:inline-block;margin-left:10px" bindtap="snbuyTips">
+        [ 购买激活码 ]
+      </view>
+    </view>
     <view class="weui-cells__title">选择考试类型</view>
     <view class="tt" bindtap="selectSubject">
       <view>{{subjectName || '选择考试类型'}}</view>

@@ -6,7 +6,7 @@ page,
 }
 
 .page.has-btm .explain-content {
-  padding-bottom: 60px;
+  padding-bottom: 70px;
 }
 
 .question {
@@ -105,7 +105,7 @@ page,
   font-size: 15px;
   padding: 14px;
   padding-top: 0;
-  padding-bottom: 9px;
+  padding-bottom: 23px;
 }
 
 .explain-source {
@@ -161,7 +161,7 @@ page,
 
 .page-nos {
   position: fixed;
-  bottom: 15px;
+  bottom: 23px;
   width: 162px;
   left: 50%;
   margin-left: -81px;

@@ -5,7 +5,8 @@ var z_sharebox = {
   data: {
     shareboxHide: true,
     dialogHide: true,
-    typeTokenText: 'Token'
+    typeTokenText: 'Token',
+    isFullScreen: app.GLOBAL_DATA.IS_FULLSCREEN
   },
 
   shareboxOpen: function (page) {
@@ -27,7 +28,9 @@ var z_sharebox = {
 
   shareboxClose: function (page) {
     this.data.shareboxHide = true;
-    this.shareboxAnimation.translateY('100%').step({ duration: 100 });
+    this.shareboxAnimation.translateY('100%').step({
+      duration: 100
+    });
     this.data.shareboxAnimation = this.shareboxAnimation.export();
     page.setData({
       shareboxData: this.data

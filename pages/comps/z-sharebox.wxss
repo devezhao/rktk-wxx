@@ -108,3 +108,7 @@
   margin-top: 6px;
   text-align: left;
 }
+
+.fullscreen-fix.weui-btn {
+  padding-bottom: 18px;
+}

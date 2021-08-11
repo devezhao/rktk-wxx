@@ -1,4 +1,5 @@
-page, .page {
+page,
+.page {
   background-color: #fff;
   min-height: 100%;
 }
@@ -30,7 +31,7 @@ page, .page {
 }
 
 .question-area {
-  padding-bottom: 62px;
+  padding-bottom: 72px;
   padding-top: 43px;
   transform: translateX(0px);
 }
@@ -86,7 +87,7 @@ page, .page {
 }
 
 .fix-foobar {
-  padding-bottom: 14px;
+  padding-bottom: 18px;
 }
 
 .fix-foobar .weui-flex {
