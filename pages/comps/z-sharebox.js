@@ -58,7 +58,7 @@ var z_sharebox = {
   share2QQ: function (page) {
     var that = this;
     zutils.get(app, 'api/share/token-gen?id=' + (page.subjectId || page.questionId), function (res) {
-      var text = res.data.data;
+      var text = res.data.data.replace('软考大师（原软考必备）', '软考大师');
       that.data.shareboxHide = true;
       that.data.dialogHide = false;
       that.data.typeTokenText = text;
