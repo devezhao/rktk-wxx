@@ -5,7 +5,8 @@
       <view class="icon-box__title">需要授权后使用</view>
     </view>
     <view class="btn-warp" style="margin-top:5%">
-      <button class="weui-btn" type="default" bindgetuserinfo="storeUserInfo" open-type="getUserInfo" lang="zh_CN" disabled="{{!authActive}}">{{authText || '立即授权'}}</button>
+      <!-- <button class="weui-btn" type="default" bindgetuserinfo="storeUserInfo" open-type="getUserInfo" lang="zh_CN" disabled="{{!authActive}}">{{authText || '立即授权'}}</button> -->
+      <button class="weui-btn" type="default" bindtap="storeUserProfile" disabled="{{!authActive}}">{{authText || '立即授权'}}</button>
     </view>
     <button class="weui-btn link" bindtap="goback">暂不</button>
   </view>

@@ -2,28 +2,25 @@
   <view class="ver">
     <image src="/images/logo200.png"></image>
     <view bindtap="enableDebug">
-      软考大师 V1.6.0
+      软考大师 V1.6.1
     </view>
   </view>
   <view class="weui-cells rktk">
-    <navigator url="/pages/index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access"
-      hover-class="weui-cell_active">
+    <navigator url="/pages/index/h5?url=m%2ffaq.htm%3fuser%3d{{user}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="/images/icon-faq.png"></image>
       </view>
       <view class="weui-cell__bd">常见问题</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </navigator>
-    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"
-      data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}" bindtap="reqMessage">
+    <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" data-url="/pages/index/h5?url=m%2ffeedback.htm%3fuser%3d{{user}}" bindtap="reqMessage">
       <view class="weui-cell__hd">
         <image src="/images/icon-feedback2.png"></image>
       </view>
       <view class="weui-cell__bd">问题反馈</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
     </view>
-    <navigator url="/pages/index/h5?url=m%2frights.htm" class="weui-cell weui-cell_access"
-      hover-class="weui-cell_active">
+    <navigator url="/pages/index/h5?url=m%2frights.htm" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__hd">
         <image src="/images/ic_about.png"></image>
       </view>
